@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		388CA27C243AEE0900E99CED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27B243AEE0900E99CED /* AppDelegate.swift */; };
 		388CA27E243AEE0900E99CED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27D243AEE0900E99CED /* SceneDelegate.swift */; };
-		388CA280243AEE0900E99CED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27F243AEE0900E99CED /* ViewController.swift */; };
+		388CA280243AEE0900E99CED /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27F243AEE0900E99CED /* ToDoListViewController.swift */; };
 		388CA283243AEE0900E99CED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388CA281243AEE0900E99CED /* Main.storyboard */; };
 		388CA285243AEE0C00E99CED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388CA284243AEE0C00E99CED /* Assets.xcassets */; };
 		388CA288243AEE0C00E99CED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388CA286243AEE0C00E99CED /* LaunchScreen.storyboard */; };
@@ -19,7 +19,7 @@
 		388CA278243AEE0900E99CED /* ToDoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		388CA27B243AEE0900E99CED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		388CA27D243AEE0900E99CED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		388CA27F243AEE0900E99CED /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		388CA27F243AEE0900E99CED /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
 		388CA282243AEE0900E99CED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		388CA284243AEE0C00E99CED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		388CA287243AEE0C00E99CED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,15 +56,39 @@
 		388CA27A243AEE0900E99CED /* ToDoListApp */ = {
 			isa = PBXGroup;
 			children = (
+				388CA28F243AFE4400E99CED /* ViewControllers */,
+				388CA290243AFE5900E99CED /* Models */,
+				388CA291243AFE6100E99CED /* Views */,
 				388CA27B243AEE0900E99CED /* AppDelegate.swift */,
 				388CA27D243AEE0900E99CED /* SceneDelegate.swift */,
-				388CA27F243AEE0900E99CED /* ViewController.swift */,
 				388CA281243AEE0900E99CED /* Main.storyboard */,
 				388CA284243AEE0C00E99CED /* Assets.xcassets */,
 				388CA286243AEE0C00E99CED /* LaunchScreen.storyboard */,
 				388CA289243AEE0C00E99CED /* Info.plist */,
 			);
 			path = ToDoListApp;
+			sourceTree = "<group>";
+		};
+		388CA28F243AFE4400E99CED /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				388CA27F243AEE0900E99CED /* ToDoListViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		388CA290243AFE5900E99CED /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		388CA291243AFE6100E99CED /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				388CA280243AEE0900E99CED /* ViewController.swift in Sources */,
+				388CA280243AEE0900E99CED /* ToDoListViewController.swift in Sources */,
 				388CA27C243AEE0900E99CED /* AppDelegate.swift in Sources */,
 				388CA27E243AEE0900E99CED /* SceneDelegate.swift in Sources */,
 			);

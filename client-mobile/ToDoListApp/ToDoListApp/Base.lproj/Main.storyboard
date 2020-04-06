@@ -31,19 +31,19 @@
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kzZ-5V-lwK">
                                         <rect key="frame" x="0.0" y="0.0" width="380" height="726"/>
                                         <connections>
-                                            <segue destination="CAB-3M-HSg" kind="embed" id="aUe-ec-DMy"/>
+                                            <segue destination="CAB-3M-HSg" kind="embed" identifier="ToDo" id="aUe-ec-DMy"/>
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1O-D8-KvJ">
                                         <rect key="frame" x="408" y="0.0" width="379" height="726"/>
                                         <connections>
-                                            <segue destination="CAB-3M-HSg" kind="embed" id="ZZp-gk-9Fb"/>
+                                            <segue destination="CAB-3M-HSg" kind="embed" identifier="InProgress" id="ZZp-gk-9Fb"/>
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TRf-c2-JF0">
                                         <rect key="frame" x="815" y="0.0" width="379" height="726"/>
                                         <connections>
-                                            <segue destination="CAB-3M-HSg" kind="embed" id="03g-bN-MDo"/>
+                                            <segue destination="CAB-3M-HSg" kind="embed" identifier="Done" id="03g-bN-MDo"/>
                                         </connections>
                                     </containerView>
                                 </subviews>
@@ -71,15 +71,15 @@
             <objects>
                 <tableViewController id="CAB-3M-HSg" customClass="CardListViewController" customModule="ToDoListApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="YvI-UP-bZL">
-                        <rect key="frame" x="0.0" y="0.0" width="380" height="726"/>
+                        <rect key="frame" x="0.0" y="0.0" width="379" height="726"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Ids-EJ-h60">
-                                <rect key="frame" x="0.0" y="28" width="380" height="43.5"/>
+                                <rect key="frame" x="0.0" y="28" width="379" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ids-EJ-h60" id="RkV-ya-FRC">
-                                    <rect key="frame" x="0.0" y="0.0" width="380" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="379" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -96,6 +96,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aUe-ec-DMy"/>
+        <segue reference="03g-bN-MDo"/>
     </inferredMetricsTieBreakers>
 </document>

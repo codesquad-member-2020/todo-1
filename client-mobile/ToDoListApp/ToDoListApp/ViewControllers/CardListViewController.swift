@@ -10,6 +10,10 @@ import UIKit
 
 class CardListViewController: UITableViewController {
     
+    static let todoIdentifier = "ToDo"
+    static let inProgressIdentifier = "InProgress"
+    static let doneIdentifier = "Done"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

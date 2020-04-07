@@ -18,20 +18,35 @@ class ToDoListViewController: UIViewController {
     @IBOutlet weak var toDoBadgeLabel: UILabel!
     
     let toDoCardListDataSource = ToDoCardListDataSource()
-    let toDoCardListDelegate = ToDoCardListDelegate()
-    
     let inProgressCardListDataSource = InProgressCardListDataSource()
+    let doneCardListDataSource = DoneCardListDataSource()
+    
+    let toDoCardListDelegate = ToDoCardListDelegate()
     let inProgressCardListDelegate = InProgressCardListDelegate()
+    let doneCardListDelegate = DoneCardListDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        todoTableView.dataSource = toDoCardListDataSource
-        todoTableView.delegate = toDoCardListDelegate
+        configureCardList()
         
         toDoBedgeView.badgeLabel = toDoBadgeLabel
-        
-        inProgressTableView.delegate = inProgressCardListDelegate
+    }
+    
+    private func configureCardList() {
+        configureCardListDatasource()
+        configureCardListDelegate()
+    }
+    
+    private func configureCardListDatasource() {
+        todoTableView.dataSource = toDoCardListDataSource
         inProgressTableView.dataSource = inProgressCardListDataSource
+        doneTableView.dataSource = doneCardListDataSource
+    }
+    
+    private func configureCardListDelegate() {
+        todoTableView.delegate = toDoCardListDelegate
+        inProgressTableView.delegate = inProgressCardListDelegate
+        doneTableView.delegate = doneCardListDelegate
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -14,7 +14,7 @@ class ToDoListViewController: UIViewController {
     var inProgressTableView: UITableView!
     var doneTableView: UITableView!
     
-    @IBOutlet weak var toDoBedgeView: ToDoBedgeView!
+    @IBOutlet weak var toDoBedgeView: BedgeView!
     @IBOutlet weak var toDoBadgeLabel: UILabel!
     
     let toDoCardListDataSource = ToDoCardListDataSource()

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ToDoBedgeView: UIView {
+class BedgeView: UIView {
     
     fileprivate let height: CGFloat = 26
     var badgeLabel: UILabel!

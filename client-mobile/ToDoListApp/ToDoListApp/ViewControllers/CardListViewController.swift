@@ -1,21 +1,26 @@
 //
-//  CardListViewController.swift
+//  TempVCViewController.swift
 //  ToDoListApp
 //
-//  Created by Cory Kim on 2020/04/06.
+//  Created by Cory Kim on 2020/04/07.
 //  Copyright © 2020 corykim0829. All rights reserved.
 //
 
 import UIKit
 
-class CardListViewController: UITableViewController {
+class CardListViewController: UIViewController {
+
+    @IBOutlet weak var tableView: UITableView!
     
-    static let todoIdentifier = "ToDo"
-    static let inProgressIdentifier = "InProgress"
-    static let doneIdentifier = "Done"
+    var dataSource = ToDoCardListDataSource()
+    let delegate = ToDoCardListDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        tableView.dataSource = dataSource
+        tableView.delegate = delegate
     }
+    
+
 }

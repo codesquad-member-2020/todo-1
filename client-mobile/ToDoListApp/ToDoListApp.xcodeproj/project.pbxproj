@@ -15,13 +15,13 @@
 		3831B971243B58DF00550FA1 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831B970243B58DF00550FA1 /* CardCell.swift */; };
 		387B8B31243C711600805A34 /* DoneCardListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B8B30243C711600805A34 /* DoneCardListDataSource.swift */; };
 		387B8B33243C713600805A34 /* DoneCardListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B8B32243C713600805A34 /* DoneCardListDelegate.swift */; };
+		387B8B35243C977D00805A34 /* CardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B8B34243C977D00805A34 /* CardListViewController.swift */; };
 		388CA27C243AEE0900E99CED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27B243AEE0900E99CED /* AppDelegate.swift */; };
 		388CA27E243AEE0900E99CED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27D243AEE0900E99CED /* SceneDelegate.swift */; };
 		388CA280243AEE0900E99CED /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27F243AEE0900E99CED /* ToDoListViewController.swift */; };
 		388CA283243AEE0900E99CED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388CA281243AEE0900E99CED /* Main.storyboard */; };
 		388CA285243AEE0C00E99CED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388CA284243AEE0C00E99CED /* Assets.xcassets */; };
 		388CA288243AEE0C00E99CED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388CA286243AEE0C00E99CED /* LaunchScreen.storyboard */; };
-		388CA293243B089C00E99CED /* CardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA292243B089C00E99CED /* CardListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +33,7 @@
 		3831B970243B58DF00550FA1 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		387B8B30243C711600805A34 /* DoneCardListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneCardListDataSource.swift; sourceTree = "<group>"; };
 		387B8B32243C713600805A34 /* DoneCardListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneCardListDelegate.swift; sourceTree = "<group>"; };
+		387B8B34243C977D00805A34 /* CardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewController.swift; sourceTree = "<group>"; };
 		388CA278243AEE0900E99CED /* ToDoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		388CA27B243AEE0900E99CED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		388CA27D243AEE0900E99CED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,7 +42,6 @@
 		388CA284243AEE0C00E99CED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		388CA287243AEE0C00E99CED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		388CA289243AEE0C00E99CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		388CA292243B089C00E99CED /* CardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				388CA27F243AEE0900E99CED /* ToDoListViewController.swift */,
-				388CA292243B089C00E99CED /* CardListViewController.swift */,
+				387B8B34243C977D00805A34 /* CardListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -190,7 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3831B96B243B51D600550FA1 /* ToDoCardListDelegate.swift in Sources */,
-				388CA293243B089C00E99CED /* CardListViewController.swift in Sources */,
+				387B8B35243C977D00805A34 /* CardListViewController.swift in Sources */,
 				3831B96F243B55FB00550FA1 /* InProgressCardListDelegate.swift in Sources */,
 				3831B96D243B55E000550FA1 /* InProgressCardListDataSource.swift in Sources */,
 				387B8B33243C713600805A34 /* DoneCardListDelegate.swift in Sources */,

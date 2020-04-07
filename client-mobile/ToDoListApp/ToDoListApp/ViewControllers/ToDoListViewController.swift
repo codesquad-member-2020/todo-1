@@ -10,12 +10,17 @@ import UIKit
 
 class ToDoListViewController: UIViewController {
 
+    private let cardListViewControllerIdentifier = "CardList"
+    
+    private var todoCardListViewController: CardListViewController!
+    private var inProgressCardListViewController: CardListViewController!
+    private var doneCardListViewController: CardListViewController!
+    
     var todoTableView: UITableView!
     var inProgressTableView: UITableView!
     var doneTableView: UITableView!
     
-    @IBOutlet weak var toDoBedgeView: BedgeView!
-    @IBOutlet weak var toDoBadgeLabel: UILabel!
+    @IBOutlet weak var stackView: UIStackView!
     
     let toDoCardListDataSource = ToDoCardListDataSource()
     let inProgressCardListDataSource = InProgressCardListDataSource()
@@ -27,9 +32,15 @@ class ToDoListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCardList()
         
-        toDoBedgeView.badgeLabel = toDoBadgeLabel
+        todoCardListViewController = storyboard?.instantiateViewController(identifier: cardListViewControllerIdentifier)
+        inProgressCardListViewController = storyboard?.instantiateViewController(identifier: cardListViewControllerIdentifier)
+        doneCardListViewController = storyboard?.instantiateViewController(identifier: cardListViewControllerIdentifier)
+        
+        [todoCardListViewController, inProgressCardListViewController, doneCardListViewController].forEach {
+            self.addChild($0!)
+            self.stackView.addArrangedSubview($0!.view)
+        }
     }
     
     private func configureCardList() {
@@ -47,22 +58,6 @@ class ToDoListViewController: UIViewController {
         todoTableView.delegate = toDoCardListDelegate
         inProgressTableView.delegate = inProgressCardListDelegate
         doneTableView.delegate = doneCardListDelegate
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case CardListViewController.todoIdentifier:
-            let cardListViewController = segue.destination as! CardListViewController
-            todoTableView = cardListViewController.tableView
-        case CardListViewController.inProgressIdentifier:
-            let cardListViewController = segue.destination as! CardListViewController
-            inProgressTableView = cardListViewController.tableView
-        case CardListViewController.doneIdentifier:
-            let cardListViewController = segue.destination as! CardListViewController
-            doneTableView = cardListViewController.tableView
-        default:
-            break
-        }
     }
 }
 

@@ -14,12 +14,19 @@ class ToDoListViewController: UIViewController {
     var inProgressTableView: UITableView!
     var doneTableView: UITableView!
     
+    let toDoCardListDataSource = ToDoCardListDataSource()
+    let toDoCardListDelegate = ToDoCardListDelegate()
+    
+    let inProgressCardListDataSource = InProgressCardListDataSource()
+    let inProgressCardListDelegate = InProgressCardListDelegate()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        todoTableView.dataSource = toDoCardListDataSource
+        todoTableView.delegate = toDoCardListDelegate
         
-        todoTableView.backgroundColor = .red
-        inProgressTableView.backgroundColor = .green
-        doneTableView.backgroundColor = .yellow
+        inProgressTableView.delegate = inProgressCardListDelegate
+        inProgressTableView.dataSource = inProgressCardListDataSource
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

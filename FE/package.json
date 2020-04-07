@@ -3,6 +3,12 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "main.js",
+	"scripts": {
+		"dev:assets": "webpack --config ./config/webpack.config.dev -w",
+		"build:assets": "webpack --config ./config/webpack.config.prod",
+		"prebuild": "rm -rf build",
+		"build": "npm run prebuild && npm run build:assets"
+	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {

@@ -24,7 +24,6 @@ class ToDoListViewController: UIViewController {
         super.viewDidLoad()
         todoTableView.dataSource = toDoCardListDataSource
         todoTableView.delegate = toDoCardListDelegate
-        todoTableView.backgroundColor = UIColor(named: "cardListBackGroundColor")
         
         inProgressTableView.delegate = inProgressCardListDelegate
         inProgressTableView.dataSource = inProgressCardListDataSource

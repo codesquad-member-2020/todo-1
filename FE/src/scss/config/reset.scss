@@ -143,3 +143,10 @@ button {
 		outline: none;
 	}
 }
+
+i {
+	cursor: pointer;
+	&:hover {
+		color: $pink;
+	}
+}

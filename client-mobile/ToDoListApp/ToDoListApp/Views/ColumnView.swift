@@ -13,4 +13,8 @@ class ColumnView: UIView {
     var bedgeView: BedgeView!
     var nameLabel: UILabel!
     var addCardButton: UIButton!
+    
+    func updateName(_ name: String) {
+        nameLabel.text = name
+    }
 }

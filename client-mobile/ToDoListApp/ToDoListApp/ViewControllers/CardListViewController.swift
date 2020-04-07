@@ -42,6 +42,6 @@ class CardListViewController: UIViewController {
     }
     
     private func updateColumn() {
-        
+        columnView.updateName(column.name)
     }
 }

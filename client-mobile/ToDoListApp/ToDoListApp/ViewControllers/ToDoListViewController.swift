@@ -29,9 +29,8 @@ class ToDoListViewController: UIViewController {
         for column in columns {
             guard let cardList = storyboard?.instantiateViewController(identifier: cardListViewControllerIdentifier) as? CardListViewController else { return }
             self.addChild(cardList)
-            cardList.column = column
             self.stackView.addArrangedSubview(cardList.view)
-            
+            cardList.column = column
         }
     }
 }

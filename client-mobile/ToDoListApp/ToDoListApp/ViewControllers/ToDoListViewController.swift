@@ -10,58 +10,27 @@ import UIKit
 
 class ToDoListViewController: UIViewController {
 
-    var todoTableView: UITableView!
-    var inProgressTableView: UITableView!
-    var doneTableView: UITableView!
+    private let cardListViewControllerIdentifier = "CardList"
     
-    @IBOutlet weak var toDoBedgeView: ToDoBedgeView!
-    @IBOutlet weak var toDoBadgeLabel: UILabel!
+    @IBOutlet weak var stackView: UIStackView!
     
-    let toDoCardListDataSource = ToDoCardListDataSource()
-    let inProgressCardListDataSource = InProgressCardListDataSource()
-    let doneCardListDataSource = DoneCardListDataSource()
-    
-    let toDoCardListDelegate = ToDoCardListDelegate()
-    let inProgressCardListDelegate = InProgressCardListDelegate()
-    let doneCardListDelegate = DoneCardListDelegate()
+    private var columns: [Column] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCardList()
-        
-        toDoBedgeView.badgeLabel = toDoBadgeLabel
     }
     
     private func configureCardList() {
-        configureCardListDatasource()
-        configureCardListDelegate()
-    }
-    
-    private func configureCardListDatasource() {
-        todoTableView.dataSource = toDoCardListDataSource
-        inProgressTableView.dataSource = inProgressCardListDataSource
-        doneTableView.dataSource = doneCardListDataSource
-    }
-    
-    private func configureCardListDelegate() {
-        todoTableView.delegate = toDoCardListDelegate
-        inProgressTableView.delegate = inProgressCardListDelegate
-        doneTableView.delegate = doneCardListDelegate
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case CardListViewController.todoIdentifier:
-            let cardListViewController = segue.destination as! CardListViewController
-            todoTableView = cardListViewController.tableView
-        case CardListViewController.inProgressIdentifier:
-            let cardListViewController = segue.destination as! CardListViewController
-            inProgressTableView = cardListViewController.tableView
-        case CardListViewController.doneIdentifier:
-            let cardListViewController = segue.destination as! CardListViewController
-            doneTableView = cardListViewController.tableView
-        default:
-            break
+        columns = [Column(identifier: 1, name: "해야할 일", cards: []),
+                   Column(identifier: 2, name: "하고있는 일", cards: []),
+                   Column(identifier: 3, name: "완료한 일", cards: [])]
+        
+        for column in columns {
+            guard let cardListViewController = storyboard?.instantiateViewController(identifier: cardListViewControllerIdentifier) as? CardListViewController else { return }
+            self.addChild(cardListViewController)
+            self.stackView.addArrangedSubview(cardListViewController.view)
+            cardListViewController.column = column
         }
     }
 }

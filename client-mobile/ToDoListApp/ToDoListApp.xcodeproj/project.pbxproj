@@ -18,6 +18,7 @@
 		387B8B35243C977D00805A34 /* CardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B8B34243C977D00805A34 /* CardListViewController.swift */; };
 		387B8B37243CBA4700805A34 /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B8B36243CBA4700805A34 /* Column.swift */; };
 		387B8B39243CBAC400805A34 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B8B38243CBAC400805A34 /* Card.swift */; };
+		387B8B3B243CBFEE00805A34 /* ColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B8B3A243CBFEE00805A34 /* ColumnView.swift */; };
 		388CA27C243AEE0900E99CED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27B243AEE0900E99CED /* AppDelegate.swift */; };
 		388CA27E243AEE0900E99CED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27D243AEE0900E99CED /* SceneDelegate.swift */; };
 		388CA280243AEE0900E99CED /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27F243AEE0900E99CED /* ToDoListViewController.swift */; };
@@ -38,6 +39,7 @@
 		387B8B34243C977D00805A34 /* CardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewController.swift; sourceTree = "<group>"; };
 		387B8B36243CBA4700805A34 /* Column.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
 		387B8B38243CBAC400805A34 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		387B8B3A243CBFEE00805A34 /* ColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnView.swift; sourceTree = "<group>"; };
 		388CA278243AEE0900E99CED /* ToDoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		388CA27B243AEE0900E99CED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		388CA27D243AEE0900E99CED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				387B8B32243C713600805A34 /* DoneCardListDelegate.swift */,
 				3831B970243B58DF00550FA1 /* CardCell.swift */,
 				380A5AE0243C5A360063A9F6 /* BedgeView.swift */,
+				387B8B3A243CBFEE00805A34 /* ColumnView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				3831B96D243B55E000550FA1 /* InProgressCardListDataSource.swift in Sources */,
 				387B8B33243C713600805A34 /* DoneCardListDelegate.swift in Sources */,
 				388CA280243AEE0900E99CED /* ToDoListViewController.swift in Sources */,
+				387B8B3B243CBFEE00805A34 /* ColumnView.swift in Sources */,
 				381C3A52243B505F00F83D4B /* ToDoCardListDataSource.swift in Sources */,
 				387B8B31243C711600805A34 /* DoneCardListDataSource.swift in Sources */,
 				387B8B37243CBA4700805A34 /* Column.swift in Sources */,

@@ -10,6 +10,14 @@ import UIKit
 
 class CardListViewController: UIViewController {
 
+    var column: Column! {
+        didSet {
+            updateColumn()
+        }
+    }
+    
+    @IBOutlet weak var columnView: UIView!
+    
     @IBOutlet weak var tableView: UITableView!
     
     var dataSource = ToDoCardListDataSource()
@@ -22,5 +30,7 @@ class CardListViewController: UIViewController {
         tableView.delegate = delegate
     }
     
-
+    private func updateColumn() {
+        
+    }
 }

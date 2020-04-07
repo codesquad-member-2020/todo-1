@@ -231,6 +231,7 @@ sdasdsad</string>
                         <viewLayoutGuide key="safeArea" id="tbT-yL-72M"/>
                     </view>
                     <connections>
+                        <outlet property="columnView" destination="nC1-T4-bH7" id="OIY-A8-ZcE"/>
                         <outlet property="tableView" destination="MK3-04-ZMa" id="JH8-Lb-5xz"/>
                     </connections>
                 </viewController>

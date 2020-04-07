@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6RK-Wv-UGg">
+    <device id="ipad11_0rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -12,17 +13,17 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ToDoListViewController" customModule="ToDoListApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="kwk-8x-SFc">
-                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <rect key="frame" x="0.0" y="50" width="1194" height="764"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Sbz-z8-dJV">
-                                        <rect key="frame" x="0.0" y="0.0" width="181.5" height="556"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="379.5" height="764"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2kr-34-FbE">
-                                                <rect key="frame" x="0.0" y="0.0" width="181.5" height="56"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="379.5" height="56"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="해야할 일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aej-1G-E91">
                                                         <rect key="frame" x="54" y="16.5" width="71" height="23"/>
@@ -51,7 +52,7 @@
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSN-gf-BDo">
-                                                        <rect key="frame" x="141.5" y="16" width="24" height="24"/>
+                                                        <rect key="frame" x="339.5" y="16" width="24" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="24" id="fno-fg-dOg"/>
                                                             <constraint firstAttribute="width" secondItem="pSN-gf-BDo" secondAttribute="height" multiplier="1:1" id="zBA-Tg-k3x"/>
@@ -72,7 +73,7 @@
                                                 </constraints>
                                             </view>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kzZ-5V-lwK">
-                                                <rect key="frame" x="0.0" y="56" width="181.5" height="500"/>
+                                                <rect key="frame" x="0.0" y="56" width="379.5" height="708"/>
                                                 <connections>
                                                     <segue destination="CAB-3M-HSg" kind="embed" identifier="ToDo" id="aUe-ec-DMy"/>
                                                 </connections>
@@ -81,10 +82,10 @@
                                         <color key="backgroundColor" name="cardListBackGroundColor"/>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qrf-Oo-Zuz">
-                                        <rect key="frame" x="209.5" y="0.0" width="181" height="556"/>
+                                        <rect key="frame" x="407.5" y="0.0" width="379" height="764"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7In-wK-Ze9">
-                                                <rect key="frame" x="0.0" y="0.0" width="181" height="56"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="379" height="56"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="하고있는 일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7b-dR-lBG">
                                                         <rect key="frame" x="54" y="16.5" width="87.5" height="23"/>
@@ -113,7 +114,7 @@
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuD-Uh-oZR">
-                                                        <rect key="frame" x="141" y="16" width="24" height="24"/>
+                                                        <rect key="frame" x="339" y="16" width="24" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="24" id="Rr8-br-kIH"/>
                                                             <constraint firstAttribute="width" secondItem="WuD-Uh-oZR" secondAttribute="height" multiplier="1:1" id="kst-U3-K4C"/>
@@ -134,7 +135,7 @@
                                                 </constraints>
                                             </view>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1O-D8-KvJ">
-                                                <rect key="frame" x="0.0" y="56" width="181" height="500"/>
+                                                <rect key="frame" x="0.0" y="56" width="379" height="708"/>
                                                 <connections>
                                                     <segue destination="CAB-3M-HSg" kind="embed" identifier="InProgress" id="ZZp-gk-9Fb"/>
                                                 </connections>
@@ -142,10 +143,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="e5H-Fx-Ovi">
-                                        <rect key="frame" x="418.5" y="0.0" width="181.5" height="556"/>
+                                        <rect key="frame" x="814.5" y="0.0" width="379.5" height="764"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dEC-VV-gcU">
-                                                <rect key="frame" x="0.0" y="0.0" width="181.5" height="56"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="379.5" height="56"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="완료한 일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mot-cF-Ny5">
                                                         <rect key="frame" x="54" y="16.5" width="71" height="23"/>
@@ -174,7 +175,7 @@
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1k-tE-W4v">
-                                                        <rect key="frame" x="141.5" y="16" width="24" height="24"/>
+                                                        <rect key="frame" x="339.5" y="16" width="24" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="h1k-tE-W4v" secondAttribute="height" multiplier="1:1" id="31X-TD-VWB"/>
                                                             <constraint firstAttribute="width" constant="24" id="K0p-64-yfc"/>
@@ -195,7 +196,7 @@
                                                 </constraints>
                                             </view>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TRf-c2-JF0">
-                                                <rect key="frame" x="0.0" y="56" width="181.5" height="500"/>
+                                                <rect key="frame" x="0.0" y="56" width="379.5" height="708"/>
                                                 <connections>
                                                     <segue destination="CAB-3M-HSg" kind="embed" identifier="Done" id="03g-bN-MDo"/>
                                                 </connections>
@@ -238,15 +239,15 @@
             <objects>
                 <viewController id="Tdl-32-mr1" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5iA-yf-WZ9">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="680"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OAh-Qj-PNl">
-                                <rect key="frame" x="0.0" y="40" width="600" height="540"/>
+                                <rect key="frame" x="0.0" y="53" width="375" height="627"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OFh-Rk-l6e">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="32"/>
+                                <rect key="frame" x="0.0" y="13" width="375" height="32"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activities" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffw-VA-UA8">
                                         <rect key="frame" x="16" y="6" width="74" height="20.5"/>
@@ -357,7 +358,7 @@ sdasdsad</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KOi-4X-N0y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="929"/>
+            <point key="canvasLocation" x="799" y="860"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3yp-0t-Scw">

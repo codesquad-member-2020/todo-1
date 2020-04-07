@@ -12,10 +12,6 @@ class ToDoListViewController: UIViewController {
 
     private let cardListViewControllerIdentifier = "CardList"
     
-    private var todoCardListViewController: CardListViewController!
-    private var inProgressCardListViewController: CardListViewController!
-    private var doneCardListViewController: CardListViewController!
-    
     var todoTableView: UITableView!
     var inProgressTableView: UITableView!
     var doneTableView: UITableView!
@@ -30,16 +26,19 @@ class ToDoListViewController: UIViewController {
     let inProgressCardListDelegate = InProgressCardListDelegate()
     let doneCardListDelegate = DoneCardListDelegate()
     
+    private var columns: [Column] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        todoCardListViewController = storyboard?.instantiateViewController(identifier: cardListViewControllerIdentifier)
-        inProgressCardListViewController = storyboard?.instantiateViewController(identifier: cardListViewControllerIdentifier)
-        doneCardListViewController = storyboard?.instantiateViewController(identifier: cardListViewControllerIdentifier)
+        columns = [Column(identifier: 1, name: "해야할 일", cards: []),
+                   Column(identifier: 2, name: "하고있는 일", cards: []),
+                   Column(identifier: 3, name: "완료한 일", cards: [])]
         
-        [todoCardListViewController, inProgressCardListViewController, doneCardListViewController].forEach {
-            self.addChild($0!)
-            self.stackView.addArrangedSubview($0!.view)
+        for _ in columns {
+            guard let cardList = storyboard?.instantiateViewController(identifier: cardListViewControllerIdentifier) else { return }
+            self.addChild(cardList)
+            self.stackView.addArrangedSubview(cardList.view)
         }
     }
     

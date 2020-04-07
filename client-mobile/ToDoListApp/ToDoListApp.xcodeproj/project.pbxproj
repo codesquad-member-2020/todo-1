@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		380A5AE1243C5A360063A9F6 /* ToDoBedgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A5AE0243C5A360063A9F6 /* ToDoBedgeView.swift */; };
 		381C3A52243B505F00F83D4B /* ToDoCardListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381C3A51243B505F00F83D4B /* ToDoCardListDataSource.swift */; };
 		3831B96B243B51D600550FA1 /* ToDoCardListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831B96A243B51D600550FA1 /* ToDoCardListDelegate.swift */; };
 		3831B96D243B55E000550FA1 /* InProgressCardListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831B96C243B55E000550FA1 /* InProgressCardListDataSource.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		380A5AE0243C5A360063A9F6 /* ToDoBedgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoBedgeView.swift; sourceTree = "<group>"; };
 		381C3A51243B505F00F83D4B /* ToDoCardListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCardListDataSource.swift; sourceTree = "<group>"; };
 		3831B96A243B51D600550FA1 /* ToDoCardListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCardListDelegate.swift; sourceTree = "<group>"; };
 		3831B96C243B55E000550FA1 /* InProgressCardListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InProgressCardListDataSource.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				3831B96A243B51D600550FA1 /* ToDoCardListDelegate.swift */,
 				3831B96E243B55FB00550FA1 /* InProgressDelegate.swift */,
 				3831B970243B58DF00550FA1 /* CardCell.swift */,
+				380A5AE0243C5A360063A9F6 /* ToDoBedgeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				388CA27C243AEE0900E99CED /* AppDelegate.swift in Sources */,
 				388CA27E243AEE0900E99CED /* SceneDelegate.swift in Sources */,
 				3831B971243B58DF00550FA1 /* CardCell.swift in Sources */,
+				380A5AE1243C5A360063A9F6 /* ToDoBedgeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

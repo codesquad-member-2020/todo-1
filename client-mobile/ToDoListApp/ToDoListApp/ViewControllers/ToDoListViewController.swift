@@ -14,6 +14,9 @@ class ToDoListViewController: UIViewController {
     var inProgressTableView: UITableView!
     var doneTableView: UITableView!
     
+    @IBOutlet weak var toDoBedgeView: ToDoBedgeView!
+    @IBOutlet weak var toDoBadgeLabel: UILabel!
+    
     let toDoCardListDataSource = ToDoCardListDataSource()
     let toDoCardListDelegate = ToDoCardListDelegate()
     
@@ -24,6 +27,8 @@ class ToDoListViewController: UIViewController {
         super.viewDidLoad()
         todoTableView.dataSource = toDoCardListDataSource
         todoTableView.delegate = toDoCardListDelegate
+        
+        toDoBedgeView.badgeLabel = toDoBadgeLabel
         
         inProgressTableView.delegate = inProgressCardListDelegate
         inProgressTableView.dataSource = inProgressCardListDataSource

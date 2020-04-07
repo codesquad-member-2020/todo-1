@@ -18,6 +18,7 @@ class CardListViewController: UIViewController {
     
     @IBOutlet weak var columnView: ColumnView!
     @IBOutlet weak var bedgeView: BedgeView!
+    @IBOutlet weak var bedgeLabel: UILabel!
     @IBOutlet weak var columnNameLabel: UILabel!
     @IBOutlet weak var addCardButton: UIButton!
     
@@ -37,11 +38,13 @@ class CardListViewController: UIViewController {
     
     private func configureColumnView() {
         columnView.bedgeView = bedgeView
+        columnView.bedgeLabel = bedgeLabel
         columnView.nameLabel = columnNameLabel
         columnView.addCardButton = addCardButton
     }
     
     private func updateColumn() {
         columnView.updateName(column.name)
+        columnView.updateBedge(column.cards)
     }
 }

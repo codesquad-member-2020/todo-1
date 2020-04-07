@@ -232,6 +232,7 @@ sdasdsad</string>
                     </view>
                     <connections>
                         <outlet property="addCardButton" destination="dh1-4d-aLD" id="7pB-XK-4Hw"/>
+                        <outlet property="bedgeLabel" destination="RVR-Z0-nPN" id="ubP-pz-OIX"/>
                         <outlet property="bedgeView" destination="Zxy-Eb-ORH" id="D2S-IB-6St"/>
                         <outlet property="columnNameLabel" destination="nQM-V2-vXo" id="gKo-uF-OAb"/>
                         <outlet property="columnView" destination="nC1-T4-bH7" id="OIY-A8-ZcE"/>

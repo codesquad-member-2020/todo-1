@@ -9,6 +9,7 @@
 import Foundation
 
 struct Column {
+    
     let identifier: Int
     var name: String
     var cards: [Card]

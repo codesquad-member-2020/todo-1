@@ -26,10 +26,12 @@ class ToDoListViewController: UIViewController {
                    Column(identifier: 2, name: "하고있는 일", cards: []),
                    Column(identifier: 3, name: "완료한 일", cards: [])]
         
-        for _ in columns {
-            guard let cardList = storyboard?.instantiateViewController(identifier: cardListViewControllerIdentifier) else { return }
+        for column in columns {
+            guard let cardList = storyboard?.instantiateViewController(identifier: cardListViewControllerIdentifier) as? CardListViewController else { return }
             self.addChild(cardList)
+            cardList.column = column
             self.stackView.addArrangedSubview(cardList.view)
+            
         }
     }
 }

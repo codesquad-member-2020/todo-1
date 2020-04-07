@@ -16,7 +16,10 @@ class CardListViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var columnView: UIView!
+    @IBOutlet weak var columnView: ColumnView!
+    @IBOutlet weak var bedgeView: BedgeView!
+    @IBOutlet weak var columnNameLabel: UILabel!
+    @IBOutlet weak var addCardButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,8 +29,16 @@ class CardListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureColumnView()
+        
         tableView.dataSource = dataSource
         tableView.delegate = delegate
+    }
+    
+    private func configureColumnView() {
+        columnView.bedgeView = bedgeView
+        columnView.nameLabel = columnNameLabel
+        columnView.addCardButton = addCardButton
     }
     
     private func updateColumn() {

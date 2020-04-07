@@ -10,11 +10,7 @@ import UIKit
 
 class CardListViewController: UIViewController {
 
-    var column: Column! {
-        didSet {
-            updateColumn()
-        }
-    }
+    var column: Column! { didSet { updateColumn() } }
     
     @IBOutlet weak var columnView: ColumnView!
     @IBOutlet weak var bedgeView: BedgeView!
@@ -24,7 +20,7 @@ class CardListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var dataSource = CardListDataSource()
+    let dataSource = CardListDataSource()
     let delegate = CardListDelegate()
     
     override func viewDidLoad() {

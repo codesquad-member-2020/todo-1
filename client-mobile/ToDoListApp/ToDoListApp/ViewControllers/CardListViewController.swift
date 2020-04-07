@@ -44,5 +44,7 @@ class CardListViewController: UIViewController {
     private func updateColumn() {
         columnView.updateName(column.name)
         columnView.updateBedge(column.cards)
+        dataSource.cards = column.cards
+        tableView.reloadData()
     }
 }

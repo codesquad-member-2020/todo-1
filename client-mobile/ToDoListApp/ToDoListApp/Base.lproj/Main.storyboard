@@ -215,6 +215,12 @@ sdasdsad</string>
                                                         <constraint firstItem="LA5-7r-JZT" firstAttribute="top" secondItem="RkV-ya-FRC" secondAttribute="top" constant="16" id="k6j-5x-0wf"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="contentLabel" destination="0Qn-kq-wKF" id="isN-xW-g6u"/>
+                                                    <outlet property="deviceLabel" destination="wvb-cx-1sC" id="Ibn-SO-Wmx"/>
+                                                    <outlet property="stackView" destination="LA5-7r-JZT" id="dKG-KC-ngk"/>
+                                                    <outlet property="titleLabel" destination="t2d-2P-ipm" id="s8j-FM-TfI"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>

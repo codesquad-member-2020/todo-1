@@ -29,9 +29,11 @@ class CardListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureColumnView()
-        
+        configureTableView()
+    }
+    
+    private func configureTableView() {
         tableView.dataSource = dataSource
         tableView.delegate = delegate
     }

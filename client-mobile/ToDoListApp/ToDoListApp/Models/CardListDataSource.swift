@@ -1,5 +1,5 @@
 //
-//  InProgressCardListDataSource.swift
+//  ToDoCardListDataSource.swift
 //  ToDoListApp
 //
 //  Created by Cory Kim on 2020/04/06.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InProgressCardListDataSource: NSObject, UITableViewDataSource {
+class CardListDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
@@ -16,6 +16,7 @@ class InProgressCardListDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CardCell.identifier, for: indexPath) as! CardCell
+        
         return cell
     }
 }

@@ -24,8 +24,8 @@ class CardListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var dataSource = ToDoCardListDataSource()
-    let delegate = ToDoCardListDelegate()
+    var dataSource = CardListDataSource()
+    let delegate = CardListDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()

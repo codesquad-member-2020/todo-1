@@ -8,5 +8,5 @@
 
 import UIKit
 
-class ToDoCardListDelegate: NSObject, UITableViewDelegate {
+class CardListDelegate: NSObject, UITableViewDelegate {
 }

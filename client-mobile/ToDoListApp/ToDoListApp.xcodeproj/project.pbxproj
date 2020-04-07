@@ -56,6 +56,7 @@
 		387B8B3C243CC75100805A34 /* CardList */ = {
 			isa = PBXGroup;
 			children = (
+				381C3A51243B505F00F83D4B /* CardListDataSource.swift */,
 				3831B96A243B51D600550FA1 /* CardListDelegate.swift */,
 				3831B970243B58DF00550FA1 /* CardCell.swift */,
 				380A5AE0243C5A360063A9F6 /* BedgeView.swift */,
@@ -67,7 +68,6 @@
 		387B8B3D243CC76C00805A34 /* CardList */ = {
 			isa = PBXGroup;
 			children = (
-				381C3A51243B505F00F83D4B /* CardListDataSource.swift */,
 				387B8B36243CBA4700805A34 /* Column.swift */,
 				387B8B38243CBAC400805A34 /* Card.swift */,
 			);

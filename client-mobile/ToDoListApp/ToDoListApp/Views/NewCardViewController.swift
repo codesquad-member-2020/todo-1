@@ -10,9 +10,14 @@ import UIKit
 
 class NewCardViewController: UIViewController {
 
+    @IBOutlet weak var contentsTextView: CardContentsTextView!
+    
+    let contentsTextViewDelegate = CardContetnsTextViewDelegate()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        contentsTextView.delegate = contentsTextViewDelegate
     }
 
     @IBAction func cancelButtonTapped(_ sender: Any) {

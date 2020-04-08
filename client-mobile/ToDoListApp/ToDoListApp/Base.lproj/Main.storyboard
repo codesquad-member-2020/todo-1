@@ -289,7 +289,7 @@ sdasdsad</string>
                                 <color key="textColor" red="0.55325983499999998" green="0.55325983499999998" blue="0.55325983499999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTr-CU-Jn4">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTr-CU-Jn4" customClass="CardContentsTextView" customModule="ToDoListApp" customModuleProvider="target">
                                 <rect key="frame" x="28" y="142" width="660" height="240"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -317,6 +317,9 @@ sdasdsad</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UAc-fh-x4q"/>
                     </view>
+                    <connections>
+                        <outlet property="contentsTextView" destination="YTr-CU-Jn4" id="UvS-VT-fff"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vM3-Dt-Skd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

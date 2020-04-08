@@ -16,3 +16,18 @@ export function columnContainer() {
     </div>
   </main>`;
 }
+
+export function column(columnName, numOfCards) {
+	const columnHeader = `<div class="column__header">
+					<div>
+						<span class="column__counter">${numOfCards}</span>
+						<h3 class="column__name">${columnName}</h3>
+					</div>
+					<div>
+						<i class="fas fa-plus"></i>
+						<i class="fas fa-ellipsis-h"></i>
+					</div>
+        </div>`;
+	const columnBody = `<div class="column__body"></div>`;
+	return `<div class="column">${columnHeader}${columnBody}</div>`;
+}

@@ -264,6 +264,9 @@ sdasdsad</string>
                                 <rect key="frame" x="28" y="28" width="54" height="33"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="skG-No-lBB" eventType="touchUpInside" id="yTy-g6-xeY"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Card" textAlignment="natural" minimumFontSize="34" translatesAutoresizingMaskIntoConstraints="NO" id="xT0-Fy-WBu">
                                 <rect key="frame" x="28" y="85" width="596" height="41"/>

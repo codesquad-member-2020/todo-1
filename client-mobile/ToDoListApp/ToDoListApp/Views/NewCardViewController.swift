@@ -15,4 +15,7 @@ class NewCardViewController: UIViewController {
 
     }
 
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }

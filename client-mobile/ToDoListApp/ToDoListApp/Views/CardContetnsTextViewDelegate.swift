@@ -15,16 +15,6 @@ class CardContetnsTextViewDelegate: NSObject, UITextViewDelegate {
     
     var viewModel: NewCardViewModel?
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        updatePlaceholder(textView: textView)
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text == "" {
-            updatePlaceholder(textView: textView)
-        }
-    }
-    
     func textViewDidChangeSelection(_ textView: UITextView) {
         guard let text = textView.text else { return }
         viewModel?.contents = text
@@ -34,16 +24,5 @@ class CardContetnsTextViewDelegate: NSObject, UITextViewDelegate {
         guard let textViewText = textView.text else { return true }
         let estimatedTextCount = textViewText.count + text.count - range.length
         return estimatedTextCount <= contentsTextCountLimitation
-    }
-    
-    private func updatePlaceholder(textView: UITextView) {
-        guard let text = textView.text else { return }
-        if text == placeholder {
-            textView.text = ""
-            textView.textColor = .black
-        } else if text == "" {
-            textView.text = placeholder
-            textView.textColor = .lightGray
-        }
     }
 }

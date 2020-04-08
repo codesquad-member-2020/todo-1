@@ -11,7 +11,8 @@ import UIKit
 class NewCardViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var contentsTextView: CardContentsTextView!
+    @IBOutlet weak var contentsTextView: UITextView!
+    @IBOutlet weak var contentsPlaceholderLabel: UILabel!
     @IBOutlet weak var addCardButton: UIButton!
     
     let contentsTextViewDelegate = CardContetnsTextViewDelegate()
@@ -38,6 +39,9 @@ class NewCardViewController: UIViewController {
     private func configureViewModelHandler() {
         viewModel.buttonStateChanged = { canAddCard in
             self.addCardButton.isEnabled = canAddCard
+        }
+        viewModel.contentNilStatusChanged = { isEmpty in
+            self.contentsPlaceholderLabel.isHidden = !isEmpty
         }
     }
 

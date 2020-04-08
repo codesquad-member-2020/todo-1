@@ -289,7 +289,7 @@ sdasdsad</string>
                                 <color key="textColor" red="0.55325983499999998" green="0.55325983499999998" blue="0.55325983499999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTr-CU-Jn4" customClass="CardContentsTextView" customModule="ToDoListApp" customModuleProvider="target">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTr-CU-Jn4">
                                 <rect key="frame" x="28" y="142" width="660" height="240"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -299,6 +299,12 @@ sdasdsad</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내용을 입력해주세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y0z-2i-QF2">
+                                <rect key="frame" x="33" y="150.5" width="158" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -311,14 +317,17 @@ sdasdsad</string>
                             <constraint firstItem="Dwh-tc-ScI" firstAttribute="leading" secondItem="xT0-Fy-WBu" secondAttribute="trailing" constant="16" id="XB5-0f-Wv1"/>
                             <constraint firstItem="YTr-CU-Jn4" firstAttribute="leading" secondItem="UAc-fh-x4q" secondAttribute="leading" constant="28" id="ck6-y9-b10"/>
                             <constraint firstItem="UAc-fh-x4q" firstAttribute="trailing" secondItem="YTr-CU-Jn4" secondAttribute="trailing" constant="24" id="gVq-3i-tRY"/>
+                            <constraint firstItem="y0z-2i-QF2" firstAttribute="leading" secondItem="YTr-CU-Jn4" secondAttribute="leading" constant="5" id="nd2-lg-niS"/>
                             <constraint firstItem="iaF-s2-WTN" firstAttribute="top" secondItem="YTr-CU-Jn4" secondAttribute="bottom" constant="16" id="oxN-12-fyo"/>
                             <constraint firstItem="5kz-Zk-cj4" firstAttribute="leading" secondItem="UAc-fh-x4q" secondAttribute="leading" constant="28" id="rpU-pb-Xat"/>
                             <constraint firstItem="YTr-CU-Jn4" firstAttribute="top" secondItem="xT0-Fy-WBu" secondAttribute="bottom" constant="16" id="wzj-uF-Tjo"/>
+                            <constraint firstItem="y0z-2i-QF2" firstAttribute="top" secondItem="YTr-CU-Jn4" secondAttribute="top" constant="8.5" id="z8Y-ej-368"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UAc-fh-x4q"/>
                     </view>
                     <connections>
                         <outlet property="addCardButton" destination="Dwh-tc-ScI" id="idq-FJ-6t7"/>
+                        <outlet property="contentsPlaceholderLabel" destination="y0z-2i-QF2" id="aNE-ht-7AL"/>
                         <outlet property="contentsTextView" destination="YTr-CU-Jn4" id="UvS-VT-fff"/>
                         <outlet property="titleTextField" destination="xT0-Fy-WBu" id="RRT-4N-Lvb"/>
                     </connections>

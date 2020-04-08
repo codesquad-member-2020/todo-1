@@ -16,4 +16,13 @@ struct Card {
     var contents: String
     var device: String
     var idnex: Int
+    
+    init(viewModel: NewCardViewModel) {
+        self.identifier = 0
+        self.column = Column(identifier: 0, name: "", cards: [])
+        self.title = viewModel.title
+        self.contents = viewModel.contents
+        self.device = viewModel.device
+        self.idnex = 0
+    }
 }

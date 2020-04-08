@@ -274,7 +274,7 @@ sdasdsad</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dwh-tc-ScI">
+                            <button opaque="NO" contentMode="scaleAspectFill" enabled="NO" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dwh-tc-ScI">
                                 <rect key="frame" x="640" y="83.5" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Dwh-tc-ScI" secondAttribute="height" multiplier="1:1" id="eTv-mt-gfu"/>
@@ -318,7 +318,9 @@ sdasdsad</string>
                         <viewLayoutGuide key="safeArea" id="UAc-fh-x4q"/>
                     </view>
                     <connections>
+                        <outlet property="addCardButton" destination="Dwh-tc-ScI" id="idq-FJ-6t7"/>
                         <outlet property="contentsTextView" destination="YTr-CU-Jn4" id="UvS-VT-fff"/>
+                        <outlet property="titleTextField" destination="xT0-Fy-WBu" id="RRT-4N-Lvb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vM3-Dt-Skd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

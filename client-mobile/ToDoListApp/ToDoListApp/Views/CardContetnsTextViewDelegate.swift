@@ -13,6 +13,8 @@ class CardContetnsTextViewDelegate: NSObject, UITextViewDelegate {
     private let placeholder: String = "내용을 입력해주세요"
     private let contentsTextCountLimitation: Int = 500
     
+    var viewModel: NewCardViewModel?
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         updatePlaceholder(textView: textView)
     }
@@ -25,7 +27,7 @@ class CardContetnsTextViewDelegate: NSObject, UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         guard let textViewText = textView.text else { return true }
-        let changedText = "\(textViewText)\(text)"
+        viewModel?.contents = "\(textViewText)\(text)"
         let estimatedTextCount = textViewText.count + text.count - range.length
         return estimatedTextCount <= contentsTextCountLimitation
     }

@@ -10,5 +10,9 @@ export function header() {
 }
 
 export function columnContainer() {
-	return ``;
+	return `<main>
+		<div class="columns-container">
+      <div class="columns"></div>
+    </div>
+  </main>`;
 }

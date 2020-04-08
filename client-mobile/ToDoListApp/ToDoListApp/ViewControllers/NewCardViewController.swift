@@ -20,15 +20,22 @@ class NewCardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configureDelegates()
+        configureViewModel()
+        configureViewModelHandler()
+    }
+    
+    private func configureDelegates() {
         contentsTextView.delegate = contentsTextViewDelegate
         titleTextField.delegate = titleTextFieldDelegate
-        contentsTextViewDelegate.viewModel = viewModel
-        titleTextFieldDelegate.viewModel = viewModel
-        configureViewModel()
     }
     
     private func configureViewModel() {
+        contentsTextViewDelegate.viewModel = viewModel
+        titleTextFieldDelegate.viewModel = viewModel
+    }
+    
+    private func configureViewModelHandler() {
         viewModel.buttonStateChanged = { canAddCard in
             self.addCardButton.isEnabled = canAddCard
         }

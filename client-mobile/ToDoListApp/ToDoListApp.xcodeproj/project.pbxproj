@@ -137,10 +137,18 @@
 			isa = PBXGroup;
 			children = (
 				387B8B3C243CC75100805A34 /* CardList */,
+				38B44760243DC40A00232A15 /* NewCard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		38B44760243DC40A00232A15 /* NewCard */ = {
+			isa = PBXGroup;
+			children = (
 				38B43794243D9241000C2A8D /* CardContetnsTextViewDelegate.swift */,
 				3830F72A243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift */,
 			);
-			path = Views;
+			path = NewCard;
 			sourceTree = "<group>";
 		};
 		38D116F9243D9D2A00E3D90E /* ViewModels */ = {

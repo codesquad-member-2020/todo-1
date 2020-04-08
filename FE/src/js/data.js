@@ -49,7 +49,7 @@ export default {
 		{
 			columnName: "Done",
 			id: 3,
-			index: 4,
+			index: 2,
 			cards: [],
 		},
 	],

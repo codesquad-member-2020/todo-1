@@ -1,5 +1,12 @@
+import { header } from "../utils/template";
+
 export default class Header {
 	constructor($target) {
-		console.log($target);
+		this.$target = $target;
+		this.render();
+	}
+
+	render() {
+		this.$target.insertAdjacentHTML("afterbegin", header());
 	}
 }

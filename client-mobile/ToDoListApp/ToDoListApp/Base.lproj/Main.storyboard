@@ -177,9 +177,6 @@
                                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="0.0"/>
                                                             <state key="normal" image="text.justify" catalog="system"/>
-                                                            <connections>
-                                                                <action selector="test:" destination="Ids-EJ-h60" eventType="touchDragInside" id="aWz-Cf-vLK"/>
-                                                            </connections>
                                                         </button>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LA5-7r-JZT">
                                                             <rect key="frame" x="52" y="16" width="1134" height="112.5"/>

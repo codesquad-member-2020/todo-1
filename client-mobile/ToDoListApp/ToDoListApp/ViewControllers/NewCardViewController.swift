@@ -15,6 +15,8 @@ class NewCardViewController: UIViewController {
     @IBOutlet weak var contentsPlaceholderLabel: UILabel!
     @IBOutlet weak var addCardButton: UIButton!
     
+    var column: Column!
+    
     let contentsTextViewDelegate = CardContetnsTextViewDelegate()
     let titleTextFieldDelegate = CardTitleTextFieldDelegate()
     let viewModel = NewCardViewModel()
@@ -44,7 +46,11 @@ class NewCardViewController: UIViewController {
             self.contentsPlaceholderLabel.isHidden = !isEmpty
         }
     }
-
+    
+    @IBAction func addNewCardTapped(_ sender: Any) {
+        print(column.name)
+    }
+    
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

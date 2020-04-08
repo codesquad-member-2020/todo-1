@@ -265,29 +265,29 @@ sdasdsad</string>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <state key="normal" title="Cancel"/>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Card" textAlignment="natural" minimumFontSize="37" translatesAutoresizingMaskIntoConstraints="NO" id="xT0-Fy-WBu">
-                                <rect key="frame" x="28" y="85" width="584" height="45"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Card" textAlignment="natural" minimumFontSize="34" translatesAutoresizingMaskIntoConstraints="NO" id="xT0-Fy-WBu">
+                                <rect key="frame" x="28" y="85" width="596" height="41"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="37"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dwh-tc-ScI">
-                                <rect key="frame" x="628" y="83.5" width="48" height="48"/>
+                                <rect key="frame" x="640" y="83.5" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Dwh-tc-ScI" secondAttribute="height" multiplier="1:1" id="eTv-mt-gfu"/>
-                                    <constraint firstAttribute="width" constant="48" id="ldh-Gu-Ky5"/>
+                                    <constraint firstAttribute="width" constant="44" id="ldh-Gu-Ky5"/>
                                 </constraints>
                                 <state key="normal" image="arrow.up.circle.fill" catalog="system"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPad에서 작성됨" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaF-s2-WTN">
-                                <rect key="frame" x="28" y="402" width="111" height="21"/>
+                                <rect key="frame" x="28" y="398" width="111" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.55325983499999998" green="0.55325983499999998" blue="0.55325983499999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTr-CU-Jn4">
-                                <rect key="frame" x="28" y="146" width="660" height="240"/>
+                                <rect key="frame" x="28" y="142" width="660" height="240"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="Qq9-0Q-Guh"/>
@@ -303,7 +303,7 @@ sdasdsad</string>
                             <constraint firstItem="iaF-s2-WTN" firstAttribute="leading" secondItem="UAc-fh-x4q" secondAttribute="leading" constant="28" id="BhN-nS-zD9"/>
                             <constraint firstItem="xT0-Fy-WBu" firstAttribute="leading" secondItem="UAc-fh-x4q" secondAttribute="leading" constant="28" id="ERs-uK-yG0"/>
                             <constraint firstItem="5kz-Zk-cj4" firstAttribute="top" secondItem="UAc-fh-x4q" secondAttribute="top" constant="28" id="HxG-CG-8ue"/>
-                            <constraint firstItem="UAc-fh-x4q" firstAttribute="trailing" secondItem="Dwh-tc-ScI" secondAttribute="trailing" constant="36" id="MWG-Bw-ahK"/>
+                            <constraint firstItem="UAc-fh-x4q" firstAttribute="trailing" secondItem="Dwh-tc-ScI" secondAttribute="trailing" constant="28" id="MWG-Bw-ahK"/>
                             <constraint firstItem="xT0-Fy-WBu" firstAttribute="top" secondItem="5kz-Zk-cj4" secondAttribute="bottom" constant="24" id="S7U-FX-gea"/>
                             <constraint firstItem="Dwh-tc-ScI" firstAttribute="leading" secondItem="xT0-Fy-WBu" secondAttribute="trailing" constant="16" id="XB5-0f-Wv1"/>
                             <constraint firstItem="YTr-CU-Jn4" firstAttribute="leading" secondItem="UAc-fh-x4q" secondAttribute="leading" constant="28" id="ck6-y9-b10"/>

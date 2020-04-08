@@ -117,6 +117,7 @@
 			children = (
 				388CA27F243AEE0900E99CED /* ToDoListViewController.swift */,
 				387B8B34243C977D00805A34 /* CardListViewController.swift */,
+				38B43792243D85B3000C2A8D /* NewCardViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -133,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				387B8B3C243CC75100805A34 /* CardList */,
-				38B43792243D85B3000C2A8D /* NewCardViewController.swift */,
 				38B43794243D9241000C2A8D /* CardContetnsTextViewDelegate.swift */,
 				38B43796243D94BB000C2A8D /* CardContentsTextView.swift */,
 			);

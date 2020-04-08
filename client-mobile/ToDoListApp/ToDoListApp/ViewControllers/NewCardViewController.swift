@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol NewCardDelegation {
+    func addNewCard(_ card: Card)
+}
+
 class NewCardViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
@@ -20,6 +24,8 @@ class NewCardViewController: UIViewController {
     let contentsTextViewDelegate = CardContetnsTextViewDelegate()
     let titleTextFieldDelegate = CardTitleTextFieldDelegate()
     let viewModel = NewCardViewModel()
+    
+    var delegate: NewCardDelegation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +54,10 @@ class NewCardViewController: UIViewController {
     }
     
     @IBAction func addNewCardTapped(_ sender: Any) {
-        print(column.name)
+        let card = Card(viewModel: viewModel)
+        self.dismiss(animated: true) {
+            self.delegate?.addNewCard(card)
+        }
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

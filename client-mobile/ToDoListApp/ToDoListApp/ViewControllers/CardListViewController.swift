@@ -8,8 +8,8 @@
 
 import UIKit
 
-class CardListViewController: UIViewController {
-
+class CardListViewController: UIViewController, NewCardDelegation {
+    
     var column: Column! { didSet { updateColumn() } }
     
     @IBOutlet weak var columnView: ColumnView!
@@ -51,7 +51,13 @@ class CardListViewController: UIViewController {
     @IBAction func addNewCardButtonTapped(_ sender: Any) {
         guard let newCardViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? NewCardViewController else { return }
         present(newCardViewController, animated: true, completion: {
+            newCardViewController.delegate = self
             newCardViewController.column = self.column
         })
+    }
+    
+    func addNewCard(_ card: Card) {
+        column.appendCard(card)
+        tableView.reloadData()
     }
 }

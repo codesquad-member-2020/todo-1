@@ -14,9 +14,13 @@ class CardTitleTextFieldDelegate: NSObject, UITextFieldDelegate {
     
     var viewModel: NewCardViewModel?
     
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        viewModel?.title = text
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let textFieldText = textField.text else { return true }
-        viewModel?.title = "\(textFieldText)\(string)"
         let estimatedTextCount = textFieldText.count + string.count - range.length
         return estimatedTextCount <= titleTextCountLimitation
     }

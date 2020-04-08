@@ -25,9 +25,13 @@ class CardContetnsTextViewDelegate: NSObject, UITextViewDelegate {
         }
     }
     
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        guard let text = textView.text else { return }
+        viewModel?.contents = text
+    }
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         guard let textViewText = textView.text else { return true }
-        viewModel?.contents = "\(textViewText)\(text)"
         let estimatedTextCount = textViewText.count + text.count - range.length
         return estimatedTextCount <= contentsTextCountLimitation
     }

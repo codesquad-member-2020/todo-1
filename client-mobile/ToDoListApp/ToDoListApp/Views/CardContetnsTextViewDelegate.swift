@@ -23,7 +23,9 @@ class CardContetnsTextViewDelegate: NSObject, UITextViewDelegate {
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        return true
+        guard let textViewText = textView.text else { return true }
+        let estimatedTextCount = textViewText.count + text.count - range.length
+        return estimatedTextCount <= 500
     }
     
     private func updatePlaceholder(textView: UITextView) {

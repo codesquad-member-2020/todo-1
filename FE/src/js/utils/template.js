@@ -31,3 +31,11 @@ export function column(columnName, numOfCards) {
 	const columnBody = `<div class="column__body"></div>`;
 	return `<div class="column">${columnHeader}${columnBody}</div>`;
 }
+
+export function card({ contents }) {
+	return `<div class="card">
+						<i class="far fa-sticky-note"></i>
+						<span class="content">${contents}</span>
+						<i class="fas fa-times"></i>
+					</div>`;
+}

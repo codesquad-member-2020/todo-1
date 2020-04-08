@@ -57,7 +57,9 @@ class CardListViewController: UIViewController, NewCardDelegation {
     }
     
     func addNewCard(_ card: Card) {
+        tableView.beginUpdates()
         column.appendCard(card)
-        tableView.reloadData()
+        tableView.insertRows(at: [IndexPath(row: column.cards.count - 1, section: 0)], with: .fade)
+        tableView.endUpdates()
     }
 }

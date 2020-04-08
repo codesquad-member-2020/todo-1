@@ -17,11 +17,7 @@ class CardCell: UITableViewCell {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var deviceLabel: UILabel!
     
-    var card: Card! {
-        didSet {
-            updateCardCell()
-        }
-    }
+    var card: Card! { didSet { updateCardCell() } }
     
     private func updateCardCell() {
         titleLabel.text = card.title

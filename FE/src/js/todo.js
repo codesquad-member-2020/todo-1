@@ -1,6 +1,9 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import "Scss/styles.scss";
+import data from "./data";
 import Todo from "./components/Todo";
 
-new Todo(document.querySelector("#Todo"));
+const $target = document.querySelector("#Todo");
+
+new Todo({ $target, data });

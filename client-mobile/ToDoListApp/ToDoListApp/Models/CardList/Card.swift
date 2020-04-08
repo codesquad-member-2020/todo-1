@@ -15,7 +15,7 @@ struct Card {
     var title: String
     var contents: String
     var device: String
-    var idnex: Int
+    var index: Int
     
     init(viewModel: NewCardViewModel) {
         self.identifier = 0
@@ -23,6 +23,6 @@ struct Card {
         self.title = viewModel.title
         self.contents = viewModel.contents
         self.device = viewModel.device
-        self.idnex = 0
+        self.index = 0
     }
 }

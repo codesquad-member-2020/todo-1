@@ -10,6 +10,8 @@ import UIKit
 
 class CardListViewController: UIViewController, NewCardDelegation {
     
+    static let identifier = "CardList"
+    
     @IBOutlet weak var columnView: ColumnView!
     @IBOutlet weak var bedgeView: BedgeView!
     @IBOutlet weak var bedgeLabel: UILabel!

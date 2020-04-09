@@ -9,8 +9,6 @@
 import UIKit
 
 class ToDoListViewController: UIViewController {
-
-    private let cardListViewControllerIdentifier = "CardList"
     
     @IBOutlet weak var stackView: UIStackView!
     
@@ -23,7 +21,7 @@ class ToDoListViewController: UIViewController {
     
     private func configureCardList() {
         for column in columns {
-            guard let cardListViewController = storyboard?.instantiateViewController(identifier: cardListViewControllerIdentifier) as? CardListViewController else { return }
+            guard let cardListViewController = storyboard?.instantiateViewController(identifier: CardListViewController.identifier) as? CardListViewController else { return }
             self.addChild(cardListViewController)
             self.stackView.addArrangedSubview(cardListViewController.view)
             cardListViewController.columnViewModel = ColumnViewModel()

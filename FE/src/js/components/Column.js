@@ -1,21 +1,65 @@
 import { column } from "../utils/template";
 import Card from "./Card";
+import CardCreator from "./CardCreator";
 
 export default class Column {
 	$column = null;
-	cards = null;
+	$columnHeader = null;
+	$columnBody = null;
+	cardCreatorIsShowing = false;
+	cards = [];
 
 	constructor({ $target, data }) {
 		this.$target = $target;
 		this.data = data;
 
 		this.render();
+		this.cacheDomElements();
+		this.bindeEventListener();
+
+		this.renderCards();
+
+		this.cardCreator = new CardCreator({
+			$target: this.$columnBody,
+			data: {
+				visible: false,
+			},
+		});
 	}
 
 	render() {
-		const { columnName, index, cards } = this.data;
+		const { columnName, cards } = this.data;
 		this.$target.insertAdjacentHTML("beforeend", column(columnName, cards.length));
-		this.$column = [...this.$target.children][index].querySelector(".column__body");
-		this.cards = cards.map((card) => new Card({ $target: this.$column, data: card }));
+	}
+
+	cacheDomElements() {
+		this.$column = [...this.$target.children][this.data.index];
+		this.$columnHeader = this.$column.querySelector(".column__header");
+		this.$columnBody = this.$column.querySelector(".column__body");
+	}
+
+	bindeEventListener() {
+		const addCardButton = this.$columnHeader.querySelector(".add-card");
+		addCardButton.addEventListener("click", this.handleCardCreator.bind(this));
+	}
+
+	renderCards() {
+		const {
+			$columnBody,
+			data: { cards },
+		} = this;
+		if (cards.length !== 0) {
+			this.cards = cards.map((card) => new Card({ $target: $columnBody, data: card }));
+		}
+	}
+
+	handleCardCreator() {
+		if (!this.cardCreatorIsShowing) {
+			this.cardCreator.toggleDisplay({ visible: true });
+			this.cardCreatorIsShowing = true;
+		} else {
+			this.cardCreator.toggleDisplay({ visible: false });
+			this.cardCreatorIsShowing = false;
+		}
 	}
 }

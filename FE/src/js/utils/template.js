@@ -24,7 +24,7 @@ export function column(columnName, numOfCards) {
 						<h3 class="column__name">${columnName}</h3>
 					</div>
 					<div>
-						<i class="fas fa-plus"></i>
+						<i class="fas fa-plus add-card"></i>
 						<i class="fas fa-ellipsis-h"></i>
 					</div>
         </div>`;
@@ -41,11 +41,10 @@ export function card({ contents }) {
 }
 
 export function cardCreator() {
-	return `<div class="card-creator">
+	return `<div class="card-creator" style="display:none;">
             <textarea class="card-textarea" placeholder="Enter a note"></textarea>
             <div class="card-creator__buttons">
               <button type="button" class="add" disabled>Add</button>
               <button type="button" class="cancel">Cancel</button>
-            </div>
           </div>`;
 }

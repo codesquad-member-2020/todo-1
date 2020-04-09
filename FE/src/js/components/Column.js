@@ -1,4 +1,5 @@
 import { column } from "../utils/template";
+import data from "../data";
 import Card from "./Card";
 import CardCreator from "./CardCreator";
 
@@ -6,6 +7,7 @@ export default class Column {
 	$column = null;
 	$columnHeader = null;
 	$columnBody = null;
+	$cardContainer = null;
 	cardCreatorIsShowing = false;
 	cards = [];
 
@@ -36,6 +38,7 @@ export default class Column {
 		this.$column = [...this.$target.children][this.data.index];
 		this.$columnHeader = this.$column.querySelector(".column__header");
 		this.$columnBody = this.$column.querySelector(".column__body");
+		this.$cardContainer = this.$column.querySelector(".card-container");
 	}
 
 	bindeEventListener() {
@@ -45,11 +48,11 @@ export default class Column {
 
 	renderCards() {
 		const {
-			$columnBody,
+			$cardContainer,
 			data: { cards },
 		} = this;
 		if (cards.length !== 0) {
-			this.cards = cards.map((card) => new Card({ $target: $columnBody, data: card }));
+			this.cards = cards.map((card) => new Card({ $target: $cardContainer, data: card }));
 		}
 	}
 
@@ -63,7 +66,19 @@ export default class Column {
 		}
 	}
 
-	addCard(data) {
-		console.log(data);
+	createCardObj(data) {
+		return {
+			userId: "reese",
+			title: data,
+			contents: null,
+			device: "web",
+			row: this.cards.length + 1,
+		};
+	}
+
+	addCard(value) {
+		const data = this.createCardObj(value);
+		const newCard = new Card({ $target: this.$cardContainer, data });
+		this.cards.push(newCard);
 	}
 }

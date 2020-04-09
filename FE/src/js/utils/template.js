@@ -28,14 +28,14 @@ export function column(columnName, numOfCards) {
 						<i class="fas fa-ellipsis-h"></i>
 					</div>
         </div>`;
-	const columnBody = `<div class="column__body"></div>`;
+	const columnBody = `<div class="column__body"><div class="card-container"></div></div>`;
 	return `<div class="column">${columnHeader}${columnBody}</div>`;
 }
 
-export function card({ contents }) {
+export function card({ title }) {
 	return `<div class="card">
 						<i class="far fa-sticky-note"></i>
-						<span class="content">${contents}</span>
+						<span class="content">${title}</span>
 						<i class="fas fa-times"></i>
 					</div>`;
 }

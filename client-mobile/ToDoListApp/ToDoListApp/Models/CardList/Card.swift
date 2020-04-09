@@ -10,11 +10,11 @@ import Foundation
 
 struct Card {
     
-    let identifier: Int
-    var title: String
-    var contents: String
-    var device: String
-    var index: Int
+    private(set) var identifier: Int
+    private(set) var title: String
+    private(set) var contents: String
+    private(set) var device: String
+    private(set) var index: Int
     
     init(viewModel: CardViewModel) {
         self.identifier = 0

@@ -10,7 +10,7 @@ import UIKit
 
 class ColumnViewController: UIViewController, NewCardDelegation {
     
-    static let identifier = "CardList"
+    static let identifier = "Column"
     
     @IBOutlet weak var columnView: ColumnView!
     @IBOutlet weak var bedgeView: BedgeView!

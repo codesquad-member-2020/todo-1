@@ -3,10 +3,11 @@ import { card } from "../utils/template";
 export default class Card {
 	constructor({ $target, data }) {
 		this.$target = $target;
-		this.render(data);
+		this.data = data;
+		this.render();
 	}
 
-	render(data) {
-		this.$target.insertAdjacentHTML("beforeend", card(data));
+	render() {
+		this.$target.insertAdjacentHTML("afterbegin", card(this.data));
 	}
 }

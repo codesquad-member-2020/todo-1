@@ -24,18 +24,27 @@ export function column(columnName, numOfCards) {
 						<h3 class="column__name">${columnName}</h3>
 					</div>
 					<div>
-						<i class="fas fa-plus"></i>
+						<i class="fas fa-plus add-card"></i>
 						<i class="fas fa-ellipsis-h"></i>
 					</div>
         </div>`;
-	const columnBody = `<div class="column__body"></div>`;
+	const columnBody = `<div class="column__body"><div class="card-container"></div></div>`;
 	return `<div class="column">${columnHeader}${columnBody}</div>`;
 }
 
-export function card({ contents }) {
+export function card({ title }) {
 	return `<div class="card">
 						<i class="far fa-sticky-note"></i>
-						<span class="content">${contents}</span>
+						<span class="content">${title}</span>
 						<i class="fas fa-times"></i>
 					</div>`;
+}
+
+export function cardCreator() {
+	return `<div class="card-creator" style="display:none;">
+            <textarea class="card-textarea" placeholder="Enter a note"></textarea>
+            <div class="card-creator__buttons">
+              <button type="button" class="add" disabled>Add</button>
+              <button type="button" class="cancel">Cancel</button>
+          </div>`;
 }

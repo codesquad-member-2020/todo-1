@@ -101,6 +101,6 @@ export default class Column {
 		// send card id to the server
 
 		// remove Card DOM
-		console.log($card);
+		this.$cardContainer.removeChild($card);
 	}
 }

@@ -48,11 +48,10 @@ export default class Column {
 
 	renderCards() {
 		const {
-			$cardContainer,
 			initialData: { cards },
 		} = this;
 		if (cards.length !== 0) {
-			cards.forEach((card) => new Card({ $target: $cardContainer, data: card }));
+			cards.forEach((card) => new Card({ $target: this, data: card }));
 		}
 	}
 
@@ -85,7 +84,7 @@ export default class Column {
 		// send newCardObj to the server
 
 		// render Card DOM
-		new Card({ $target: this.$cardContainer, data: newCardObj });
+		new Card({ $target: this, data: newCardObj });
 
 		// update counter
 		const counter = this.$columnHeader.querySelector(".column__counter");

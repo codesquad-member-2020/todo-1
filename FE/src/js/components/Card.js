@@ -1,6 +1,8 @@
 import { card } from "../utils/template";
 
 export default class Card {
+	$cardContainer = null;
+
 	constructor({ $target, data }) {
 		this.$target = $target;
 		this.data = data;
@@ -9,11 +11,12 @@ export default class Card {
 	}
 
 	render() {
-		this.$target.insertAdjacentHTML("afterbegin", card(this.data));
+		this.$cardContainer = this.$target.$cardContainer;
+		this.$cardContainer.insertAdjacentHTML("afterbegin", card(this.data));
 	}
 
 	bindeEventListener() {
-		this.$target.addEventListener("click", (e) => this.deleteCard(e));
+		this.$cardContainer.addEventListener("click", (e) => this.deleteCard(e));
 	}
 
 	deleteCard(e) {

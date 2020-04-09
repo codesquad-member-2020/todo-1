@@ -21,13 +21,15 @@ class CardListViewController: UIViewController, NewCardDelegation {
     let dataSource = CardListDataSource()
     let delegate = CardListDelegate()
     
-    var columnViewModel: ColumnViewModel?
+    var columnViewModel: ColumnViewModel? { didSet { configureViewModelHandler() } }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureColumnView()
         configureTableView()
-        
+    }
+    
+    private func configureViewModelHandler() {
         columnViewModel?.updateNotify(changed: { (column) in
             self.updateColumn(column)
         })

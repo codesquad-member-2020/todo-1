@@ -20,7 +20,7 @@ export default class Column {
 		this.renderCards();
 
 		this.cardCreator = new CardCreator({
-			$target: this.$columnBody,
+			$target: this,
 			data: {
 				visible: false,
 			},

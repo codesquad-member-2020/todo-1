@@ -12,11 +12,12 @@ export default class CardCreator {
 	}
 
 	render() {
-		this.$target.insertAdjacentHTML("afterbegin", cardCreator());
+		const $columnBody = this.$target.$columnBody;
+		$columnBody.insertAdjacentHTML("afterbegin", cardCreator());
 	}
 
 	cacheDomElements() {
-		this.$cardCreator = this.$target.querySelector(".card-creator");
+		this.$cardCreator = this.$target.$column.querySelector(".card-creator");
 		this.$textArea = this.$cardCreator.querySelector(".card-textarea");
 		this.$addButton = this.$cardCreator.querySelector(".add");
 		this.$cancelButton = this.$cardCreator.querySelector(".cancel");
@@ -54,6 +55,7 @@ export default class CardCreator {
 		this.clearTextArea();
 		this.deactivateAddButton();
 		this.toggleDisplay({ visible: false });
+		this.$target.cardCreatorIsShowing = false;
 	}
 
 	toggleDisplay(nextData) {

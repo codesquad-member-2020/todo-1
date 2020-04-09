@@ -14,6 +14,8 @@ protocol NetworkManagable {
 
 class MockNetworkManager: NetworkManagable {
     
+    static let shared = MockNetworkManager()
+    
     func requestData(completion: @escaping (Data?, Error?) -> Void) {
         let baseURL = "http://15.165.109.128"
         let path = "/api/columns"

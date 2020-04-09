@@ -39,3 +39,13 @@ export function card({ contents }) {
 						<i class="fas fa-times"></i>
 					</div>`;
 }
+
+export function cardCreator() {
+	return `<div class="card-creator">
+            <textarea class="card-textarea" placeholder="Enter a note"></textarea>
+            <div class="card-creator__buttons">
+              <button type="button" class="add" disabled>Add</button>
+              <button type="button" class="cancel">Cancel</button>
+            </div>
+          </div>`;
+}

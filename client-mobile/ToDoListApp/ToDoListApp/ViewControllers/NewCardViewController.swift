@@ -23,7 +23,7 @@ class NewCardViewController: UIViewController {
     
     let contentsTextViewDelegate = CardContetnsTextViewDelegate()
     let titleTextFieldDelegate = CardTitleTextFieldDelegate()
-    let viewModel = NewCardViewModel()
+    let cardViewModel = CardViewModel()
     
     var delegate: NewCardDelegation?
     
@@ -40,21 +40,21 @@ class NewCardViewController: UIViewController {
     }
     
     private func configureViewModel() {
-        contentsTextViewDelegate.viewModel = viewModel
-        titleTextFieldDelegate.viewModel = viewModel
+        contentsTextViewDelegate.cardViewModel = cardViewModel
+        titleTextFieldDelegate.cardViewModel = cardViewModel
     }
     
     private func configureViewModelHandler() {
-        viewModel.buttonStateChanged = { canAddCard in
+        cardViewModel.buttonStateChanged = { canAddCard in
             self.addCardButton.isEnabled = canAddCard
         }
-        viewModel.contentNilStatusChanged = { isEmpty in
+        cardViewModel.contentNilStatusChanged = { isEmpty in
             self.contentsPlaceholderLabel.isHidden = !isEmpty
         }
     }
     
     @IBAction func addNewCardTapped(_ sender: Any) {
-        let card = Card(viewModel: viewModel)
+        let card = Card(viewModel: cardViewModel)
         self.dismiss(animated: true) {
             self.delegate?.addNewCard(card)
         }

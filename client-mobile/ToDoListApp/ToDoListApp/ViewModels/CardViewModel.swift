@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewCardViewModel {
+class CardViewModel {
     
     var title: String = "" { didSet { checkValidation() } }
     var contents: String = "" { didSet { checkContents() } }

@@ -16,7 +16,7 @@ struct Card {
     var device: String
     var index: Int
     
-    init(viewModel: NewCardViewModel) {
+    init(viewModel: CardViewModel) {
         self.identifier = 0
         self.title = viewModel.title
         self.contents = viewModel.contents

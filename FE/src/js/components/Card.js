@@ -21,6 +21,9 @@ export default class Card {
 
 	deleteCard(e) {
 		e.stopImmediatePropagation();
-		console.log(e.target);
+		if (e.target.classList.contains("delete-card")) {
+			const selectedCard = e.target.parentElement;
+			this.$target.deleteCard({ $card: selectedCard, id: selectedCard.dataset.id });
+		}
 	}
 }

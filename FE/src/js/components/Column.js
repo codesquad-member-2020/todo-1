@@ -90,4 +90,17 @@ export default class Column {
 		const counter = this.$columnHeader.querySelector(".column__counter");
 		counter.textContent = Number(counter.textContent) + 1;
 	}
+
+	deleteCard({ $card, id }) {
+		// update data
+		const cardList = data.columns.find((column) => column.index === this.columnIndex).cards;
+		data.columns.find((column) => column.index === this.columnIndex).cards = cardList.filter(
+			(card) => card.id !== id
+		);
+
+		// send card id to the server
+
+		// remove Card DOM
+		console.log($card);
+	}
 }

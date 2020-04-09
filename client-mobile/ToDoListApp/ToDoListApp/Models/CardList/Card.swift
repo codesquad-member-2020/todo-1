@@ -11,7 +11,6 @@ import Foundation
 struct Card {
     
     let identifier: Int
-    var column: Column
     var title: String
     var contents: String
     var device: String
@@ -19,7 +18,6 @@ struct Card {
     
     init(viewModel: NewCardViewModel) {
         self.identifier = 0
-        self.column = Column(identifier: 0, name: "", cards: [])
         self.title = viewModel.title
         self.contents = viewModel.contents
         self.device = viewModel.device

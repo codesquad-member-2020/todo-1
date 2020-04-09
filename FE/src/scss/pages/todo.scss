@@ -149,9 +149,56 @@ main {
 			padding-top: 1px;
 		}
 		.fa-sticky-note {
+			transition: none;
 			&:hover {
 				color: $black;
 			}
+		}
+	}
+	.card-creator {
+		margin-bottom: 8px;
+	}
+	.card-textarea {
+		min-width: 100%;
+		min-height: 100px;
+		resize: none;
+		resize: vertical;
+		padding: 6px 8px;
+		margin-bottom: 7px;
+		font-size: 12px;
+		line-height: 20px;
+		color: $black;
+		vertical-align: middle;
+		background-color: $white;
+		border: 1px solid $midgrey;
+		border-radius: 3px;
+		outline: none;
+		box-shadow: inset 0 1px 2px rgba(27, 31, 35, 0.075);
+	}
+	.card-creator__buttons {
+		height: 30px;
+		display: flex;
+		justify-content: space-between;
+		button {
+			width: 49%;
+			height: 100%;
+			font-size: 14px;
+			font-weight: bold;
+			border: 1px solid $midgrey;
+			border-radius: 6px;
+		}
+		.add {
+			background: $muddypink;
+			color: $white;
+			&:enabled {
+				background: $pink;
+				cursor: pointer;
+			}
+		}
+		.cancel {
+			background: $white;
+			color: $black;
+			cursor: pointer;
 		}
 	}
 }

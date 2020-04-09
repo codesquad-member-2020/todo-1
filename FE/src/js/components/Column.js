@@ -102,5 +102,9 @@ export default class Column {
 
 		// remove Card DOM
 		this.$cardContainer.removeChild($card);
+
+		// update counter
+		const counter = this.$columnHeader.querySelector(".column__counter");
+		counter.textContent = Number(counter.textContent) - 1;
 	}
 }

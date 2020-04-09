@@ -50,7 +50,7 @@ export function cardCreator() {
 }
 
 export function alert(message) {
-	return `<div class="alert">
+	return `<div class="alert" style="display:none;">
 		<div class="alert__message">${message}</div>
 		<div class="alert__buttons">
 			<button class="cancel">Cancel</button>

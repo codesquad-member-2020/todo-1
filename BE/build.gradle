@@ -22,7 +22,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly group: 'com.h2database', name: 'h2', version: '1.4.192'
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    runtimeOnly group: 'mysql', name: 'mysql-connector-java', version: '8.0.17'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

@@ -21,6 +21,6 @@ struct Card {
         self.title = viewModel.title
         self.contents = viewModel.contents
         self.device = viewModel.device
-        self.index = 0
+        self.index = viewModel.index
     }
 }

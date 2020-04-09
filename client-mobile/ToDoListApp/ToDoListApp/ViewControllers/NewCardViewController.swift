@@ -54,6 +54,7 @@ class NewCardViewController: UIViewController {
     }
     
     @IBAction func addNewCardTapped(_ sender: Any) {
+        cardViewModel.index = column.numberOfCards
         let card = Card(viewModel: cardViewModel)
         self.dismiss(animated: true) {
             self.delegate?.addNewCard(card)

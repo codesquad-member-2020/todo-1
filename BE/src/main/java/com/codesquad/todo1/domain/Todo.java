@@ -14,12 +14,14 @@ public class Todo {
     @Id
     private Long id;
 
-    private String column;
+    private String columnName;
+    private int section;
     private List<Card> cards = new ArrayList<>();
 
     @Builder
-    public Todo(Long id, String column) {
+    public Todo(Long id, String columnName, int section) {
         this.id = id;
-        this.column = column;
+        this.columnName = columnName;
+        this.section = section;
     }
 }

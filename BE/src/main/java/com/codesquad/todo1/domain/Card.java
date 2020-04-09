@@ -14,13 +14,13 @@ public class Card {
     private String title;
     private String contents;
     private String device;
-    private Integer order;
+    private Integer row;
 
-    public Card(String userId, String title, String contents, String device, Integer order) {
+    public Card(String userId, String title, String contents, String device, Integer row) {
         this.userId = userId;
         this.title = title;
         this.contents = contents;
         this.device = device;
-        this.order = order;
+        this.row = row;
     }
 }

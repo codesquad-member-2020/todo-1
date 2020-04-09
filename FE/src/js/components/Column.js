@@ -77,14 +77,18 @@ export default class Column {
 	}
 
 	addCard(value) {
-		// data 업데이트
+		// update data
 		const cardList = data.columns.find((column) => column.index === this.columnIndex).cards;
 		const newCardObj = this.createCardObj.call(this, value, cardList);
 		cardList.push(newCardObj);
 
-		// 서버에 newCardObj 전송
+		// send newCardObj to the server
 
-		// Card DOM 추가
+		// render Card DOM
 		new Card({ $target: this.$cardContainer, data: newCardObj });
+
+		// update counter
+		const counter = this.$columnHeader.querySelector(".column__counter");
+		counter.textContent = Number(counter.textContent) + 1;
 	}
 }

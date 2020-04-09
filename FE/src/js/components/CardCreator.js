@@ -25,6 +25,7 @@ export default class CardCreator {
 	bindeEventListener() {
 		const { $textArea, $addButton, $cancelButton } = this;
 		$textArea.addEventListener("input", (e) => this.handleTextArea.call(this, e));
+		$cancelButton.addEventListener("click", this.disableCardCreator.bind(this));
 	}
 
 	handleTextArea(e) {
@@ -43,6 +44,16 @@ export default class CardCreator {
 
 	deactivateAddButton() {
 		this.$addButton.setAttribute("disabled", true);
+	}
+
+	clearTextArea() {
+		this.$textArea.value = "";
+	}
+
+	disableCardCreator() {
+		this.clearTextArea();
+		this.deactivateAddButton();
+		this.toggleDisplay({ visible: false });
 	}
 
 	toggleDisplay(nextData) {

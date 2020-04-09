@@ -45,7 +45,7 @@ class NewCardViewController: UIViewController {
     }
     
     private func configureViewModelHandler() {
-        cardViewModel.buttonStateChanged = { canAddCard in
+        cardViewModel.buttonStatusChanged = { canAddCard in
             self.addCardButton.isEnabled = canAddCard
         }
         cardViewModel.contentNilStatusChanged = { isEmpty in

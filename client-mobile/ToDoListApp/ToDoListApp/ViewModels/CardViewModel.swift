@@ -13,11 +13,11 @@ class CardViewModel {
     var title: String = "" { didSet { checkValidation() } }
     var contents: String = "" { didSet { checkContents() } }
     var device: String = "iPad"
-    var canAddCard: Bool = false { didSet { buttonStateChanged?(canAddCard) } }
+    var canAddCard: Bool = false { didSet { buttonStatusChanged?(canAddCard) } }
     var isContentsEmpty: Bool = true { didSet { contentNilStatusChanged?(isContentsEmpty) } }
     
     var contentNilStatusChanged: ((Bool) -> Void)?
-    var buttonStateChanged: ((Bool) -> Void)?
+    var buttonStatusChanged: ((Bool) -> Void)?
     
     private func checkValidation() {
         canAddCard = (title != "") && (contents != "")

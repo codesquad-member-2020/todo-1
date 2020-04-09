@@ -23,4 +23,12 @@ struct Card {
         self.device = viewModel.device
         self.index = viewModel.index
     }
+    
+    init(identifier: Int, title: String, contents: String, device: String, index: Int) {
+        self.identifier = identifier
+        self.title = title
+        self.contents = contents
+        self.device = device
+        self.index = index
+    }
 }

@@ -10,8 +10,6 @@ import UIKit
 
 class CardListViewController: UIViewController, NewCardDelegation {
     
-    var column: Column! { didSet { updateColumn() } }
-    
     @IBOutlet weak var columnView: ColumnView!
     @IBOutlet weak var bedgeView: BedgeView!
     @IBOutlet weak var bedgeLabel: UILabel!
@@ -23,10 +21,16 @@ class CardListViewController: UIViewController, NewCardDelegation {
     let dataSource = CardListDataSource()
     let delegate = CardListDelegate()
     
+    var columnViewModel: ColumnViewModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureColumnView()
         configureTableView()
+        
+        columnViewModel?.updateNotify(changed: { (column) in
+            self.updateColumn(column)
+        })
     }
     
     private func configureTableView() {
@@ -41,7 +45,8 @@ class CardListViewController: UIViewController, NewCardDelegation {
         columnView.addCardButton = addCardButton
     }
     
-    private func updateColumn() {
+    private func updateColumn(_ column: Column?) {
+        guard let column = column else { return }
         columnView.updateName(column.name)
         columnView.updateBedge(column.cards)
         dataSource.cards = column.cards
@@ -52,14 +57,14 @@ class CardListViewController: UIViewController, NewCardDelegation {
         guard let newCardViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? NewCardViewController else { return }
         present(newCardViewController, animated: true, completion: {
             newCardViewController.delegate = self
-            newCardViewController.column = self.column
         })
     }
     
     func addNewCard(_ card: Card) {
         tableView.beginUpdates()
-        column.appendCard(card)
-        tableView.insertRows(at: [IndexPath(row: column.numberOfCards - 1, section: 0)], with: .bottom)
+        columnViewModel?.addCard(card)
+        guard let numberOfCards = columnViewModel?.numberOfCards else { return }
+        tableView.insertRows(at: [IndexPath(row: numberOfCards - 1, section: 0)], with: .bottom)
         tableView.endUpdates()
     }
 }

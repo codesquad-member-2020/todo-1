@@ -26,4 +26,8 @@ struct Column {
     mutating func appendCard(_ card: Card) {
         cards.append(card)
     }
+    
+    func toViewModel() -> ColumnViewModel {
+        return ColumnViewModel(with: self)
+    }
 }

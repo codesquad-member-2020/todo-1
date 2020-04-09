@@ -27,6 +27,7 @@ class ToDoListViewController: UIViewController {
             self.addChild(cardListViewController)
             self.stackView.addArrangedSubview(cardListViewController.view)
             cardListViewController.columnViewModel = ColumnViewModel()
+            cardListViewController.updateColumn(column)
         }
     }
 }

@@ -19,6 +19,17 @@ class ToDoListViewController: UIViewController {
         configureCardList()
     }
     
+    private func requestColumnsData(completion: @escaping ([Column]) -> Void) {
+        MockNetworkManager.shared.requestColumns { (columns, error) in
+            if error != nil {
+                // alert
+                return
+            }
+            guard let columns = columns else { return }
+            completion(columns)
+        }
+    }
+    
     private func configureCardList() {
         for column in columns {
             guard let cardListViewController = storyboard?.instantiateViewController(identifier: CardListViewController.identifier) as? CardListViewController else { return }

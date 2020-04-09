@@ -8,6 +8,7 @@ export default class Column {
 	$columnHeader = null;
 	$columnBody = null;
 	$cardContainer = null;
+	$counter = null;
 	cardCreatorIsShowing = false;
 
 	constructor({ $target, initialData }) {
@@ -39,6 +40,7 @@ export default class Column {
 		this.$columnHeader = this.$column.querySelector(".column__header");
 		this.$columnBody = this.$column.querySelector(".column__body");
 		this.$cardContainer = this.$column.querySelector(".card-container");
+		this.$counter = this.$columnHeader.querySelector(".column__counter");
 	}
 
 	bindeEventListener() {
@@ -87,8 +89,7 @@ export default class Column {
 		new Card({ $target: this, data: newCardObj });
 
 		// update counter
-		const counter = this.$columnHeader.querySelector(".column__counter");
-		counter.textContent = Number(counter.textContent) + 1;
+		this.$counter.textContent = Number(this.$counter.textContent) + 1;
 	}
 
 	deleteCard({ $card, id }) {
@@ -104,7 +105,6 @@ export default class Column {
 		this.$cardContainer.removeChild($card);
 
 		// update counter
-		const counter = this.$columnHeader.querySelector(".column__counter");
-		counter.textContent = Number(counter.textContent) - 1;
+		this.$counter.textContent = Number(this.$counter.textContent) - 1;
 	}
 }

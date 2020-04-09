@@ -8,27 +8,19 @@
 
 import Foundation
 
-struct Card {
+struct Card: Codable {
     
-    private(set) var identifier: Int
+    private(set) var id: Int
     private(set) var title: String
     private(set) var contents: String
     private(set) var device: String
-    private(set) var index: Int
-    
-    init(viewModel: CardViewModel) {
-        self.identifier = 0
-        self.title = viewModel.title
-        self.contents = viewModel.contents
-        self.device = viewModel.device
-        self.index = viewModel.index
-    }
+    private(set) var row: Int
     
     init(identifier: Int, title: String, contents: String, device: String, index: Int) {
-        self.identifier = identifier
+        self.id = identifier
         self.title = title
         self.contents = contents
         self.device = device
-        self.index = index
+        self.row = index
     }
 }

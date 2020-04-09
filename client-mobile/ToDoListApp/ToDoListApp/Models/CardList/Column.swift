@@ -8,19 +8,20 @@
 
 import Foundation
 
-struct Column {
+struct Column: Codable {
     
-    private(set) var identifier: Int
+    let identifier: Int
     private(set) var name: String
     private(set) var cards: [Card]
+    private(set) var section: Int
     var numberOfCards: Int {
         return cards.count
     }
     
-    init(identifier: Int, name: String, cards: [Card]) {
-        self.identifier = identifier
-        self.name = name
-        self.cards = cards
+    enum CodingKeys: String, CodingKey {
+        case identifier = "id"
+        case name = "columnName"
+        case cards, section
     }
     
     mutating func appendCard(_ card: Card) {

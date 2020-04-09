@@ -17,11 +17,7 @@ class CardCell: UITableViewCell {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var deviceLabel: UILabel!
     
-    var card: Card! {
-        didSet {
-            updateCardCell()
-        }
-    }
+    var card: Card! { didSet { updateCardCell() } }
     
     private func updateCardCell() {
         titleLabel.text = card.title
@@ -37,11 +33,4 @@ class CardCell: UITableViewCell {
         super.awakeFromNib()
         
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

@@ -24,7 +24,7 @@
 		388CA288243AEE0C00E99CED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388CA286243AEE0C00E99CED /* LaunchScreen.storyboard */; };
 		38B43793243D85B3000C2A8D /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B43792243D85B3000C2A8D /* NewCardViewController.swift */; };
 		38B43795243D9241000C2A8D /* CardContetnsTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B43794243D9241000C2A8D /* CardContetnsTextViewDelegate.swift */; };
-		38D116FB243D9D3E00E3D90E /* NewCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D116FA243D9D3E00E3D90E /* NewCardViewModel.swift */; };
+		38D116FB243D9D3E00E3D90E /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D116FA243D9D3E00E3D90E /* CardViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +47,7 @@
 		388CA289243AEE0C00E99CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38B43792243D85B3000C2A8D /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
 		38B43794243D9241000C2A8D /* CardContetnsTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContetnsTextViewDelegate.swift; sourceTree = "<group>"; };
-		38D116FA243D9D3E00E3D90E /* NewCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewModel.swift; sourceTree = "<group>"; };
+		38D116FA243D9D3E00E3D90E /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,16 +137,24 @@
 			isa = PBXGroup;
 			children = (
 				387B8B3C243CC75100805A34 /* CardList */,
+				38B44760243DC40A00232A15 /* NewCard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		38B44760243DC40A00232A15 /* NewCard */ = {
+			isa = PBXGroup;
+			children = (
 				38B43794243D9241000C2A8D /* CardContetnsTextViewDelegate.swift */,
 				3830F72A243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift */,
 			);
-			path = Views;
+			path = NewCard;
 			sourceTree = "<group>";
 		};
 		38D116F9243D9D2A00E3D90E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				38D116FA243D9D3E00E3D90E /* NewCardViewModel.swift */,
+				38D116FA243D9D3E00E3D90E /* CardViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -235,7 +243,7 @@
 				388CA27C243AEE0900E99CED /* AppDelegate.swift in Sources */,
 				388CA27E243AEE0900E99CED /* SceneDelegate.swift in Sources */,
 				3831B971243B58DF00550FA1 /* CardCell.swift in Sources */,
-				38D116FB243D9D3E00E3D90E /* NewCardViewModel.swift in Sources */,
+				38D116FB243D9D3E00E3D90E /* CardViewModel.swift in Sources */,
 				380A5AE1243C5A360063A9F6 /* BedgeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

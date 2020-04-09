@@ -11,9 +11,16 @@ import Foundation
 struct Card {
     
     let identifier: Int
-    var column: Column
     var title: String
     var contents: String
     var device: String
-    var idnex: Int
+    var index: Int
+    
+    init(viewModel: CardViewModel) {
+        self.identifier = 0
+        self.title = viewModel.title
+        self.contents = viewModel.contents
+        self.device = viewModel.device
+        self.index = viewModel.index
+    }
 }

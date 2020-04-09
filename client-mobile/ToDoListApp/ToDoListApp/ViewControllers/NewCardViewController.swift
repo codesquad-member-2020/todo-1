@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol NewCardDelegation {
+    func addNewCard(_ card: Card)
+}
+
 class NewCardViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
@@ -15,9 +19,13 @@ class NewCardViewController: UIViewController {
     @IBOutlet weak var contentsPlaceholderLabel: UILabel!
     @IBOutlet weak var addCardButton: UIButton!
     
+    var column: Column!
+    
     let contentsTextViewDelegate = CardContetnsTextViewDelegate()
     let titleTextFieldDelegate = CardTitleTextFieldDelegate()
-    let viewModel = NewCardViewModel()
+    let cardViewModel = CardViewModel()
+    
+    var delegate: NewCardDelegation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,19 +40,27 @@ class NewCardViewController: UIViewController {
     }
     
     private func configureViewModel() {
-        contentsTextViewDelegate.viewModel = viewModel
-        titleTextFieldDelegate.viewModel = viewModel
+        contentsTextViewDelegate.cardViewModel = cardViewModel
+        titleTextFieldDelegate.cardViewModel = cardViewModel
     }
     
     private func configureViewModelHandler() {
-        viewModel.buttonStateChanged = { canAddCard in
+        cardViewModel.buttonStatusChanged = { canAddCard in
             self.addCardButton.isEnabled = canAddCard
         }
-        viewModel.contentNilStatusChanged = { isEmpty in
+        cardViewModel.contentNilStatusChanged = { isEmpty in
             self.contentsPlaceholderLabel.isHidden = !isEmpty
         }
     }
-
+    
+    @IBAction func addNewCardTapped(_ sender: Any) {
+        cardViewModel.index = column.numberOfCards
+        let card = Card(viewModel: cardViewModel)
+        self.dismiss(animated: true) {
+            self.delegate?.addNewCard(card)
+        }
+    }
+    
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

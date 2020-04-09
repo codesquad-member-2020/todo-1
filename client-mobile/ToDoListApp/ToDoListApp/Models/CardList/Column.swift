@@ -12,5 +12,12 @@ struct Column {
     
     let identifier: Int
     var name: String
-    var cards: [Card]
+    private(set) var cards: [Card]
+    var numberOfCards: Int {
+        return cards.count
+    }
+    
+    mutating func appendCard(_ card: Card) {
+        cards.append(card)
+    }
 }

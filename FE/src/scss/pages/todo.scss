@@ -1,0 +1,157 @@
+.todo-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+header {
+	width: 100%;
+	background: $white;
+	height: 90px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+
+.header-container {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 30px;
+	border-bottom: 1.5px solid $lightgrey;
+	h1 {
+		margin: 0;
+		font-size: 30px;
+		font-weight: bold;
+	}
+	div {
+		font-size: 24px;
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		&:hover {
+			color: $pink;
+		}
+	}
+}
+
+main {
+	flex: 1;
+	width: 100%;
+	position: absolute;
+	top: 90px;
+	left: 0;
+}
+
+.columns-container {
+	width: 100%;
+	height: 100%;
+	padding: 30px;
+	overflow-x: visible;
+	.columns {
+		display: flex;
+		height: 100%;
+	}
+	.column {
+		min-width: 355px;
+		max-width: 355px;
+		min-height: 600px;
+		max-height: 600px;
+		background: $lightgrey;
+		border: 1px solid $midgrey;
+		border-radius: 6px;
+		margin-right: 16px;
+		display: flex;
+		flex-direction: column;
+	}
+	.column-add {
+		min-width: 355px;
+		max-width: 355px;
+		padding-right: 16px;
+		div {
+			height: 140px;
+			border: 1px dashed $grey;
+			border-radius: 6px;
+			font-weight: 500;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+			i {
+				margin-right: 5px;
+			}
+			&:hover {
+				color: $pink;
+			}
+		}
+	}
+}
+
+.column__header {
+	display: flex;
+	justify-content: space-between;
+	padding: 12px;
+	div {
+		display: flex;
+		align-items: center;
+	}
+	i {
+		margin-left: 12px;
+		font-size: 16px;
+	}
+	.column__counter {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding-bottom: 3px;
+		font-weight: bold;
+		width: 24px;
+		height: 24px;
+		background: $grey;
+		border-radius: 50%;
+		margin-right: 8px;
+		text-align: center;
+	}
+	.column__name {
+		font-weight: bold;
+		padding-bottom: 3px;
+	}
+}
+.column__body {
+	padding: 10px;
+	padding-top: 0;
+	height: 100%;
+	overflow-y: auto;
+	.card {
+		padding: 12px;
+		width: 100%;
+		height: 100px;
+		background: $white;
+		border-radius: 6px;
+		margin-bottom: 10px;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		cursor: pointer;
+		* {
+			height: fit-content;
+		}
+		.content {
+			display: inline-block;
+			width: 86%;
+			height: 1.3em;
+			line-height: 1.2em;
+			overflow-y: hidden;
+		}
+		i {
+			font-size: 17px;
+			padding-top: 1px;
+		}
+		.fa-sticky-note {
+			&:hover {
+				color: $black;
+			}
+		}
+	}
+}

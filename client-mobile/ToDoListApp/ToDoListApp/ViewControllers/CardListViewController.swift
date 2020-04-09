@@ -29,6 +29,10 @@ class CardListViewController: UIViewController, NewCardDelegation {
         configureTableView()
     }
     
+    func updateColumn(_ column: Column) {
+        columnViewModel?.updateColumn(column)
+    }
+    
     private func configureViewModelHandler() {
         columnViewModel?.updateNotify(changed: { (column) in
             self.updateColumn(column)

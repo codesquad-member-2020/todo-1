@@ -2,21 +2,19 @@ import { column } from "../utils/template";
 import Card from "./Card";
 
 export default class Column {
+	$column = null;
 	cards = null;
 
 	constructor({ $target, data }) {
 		this.$target = $target;
+		this.data = data;
 
-		const { columnName, id, index, cards } = data;
-		this.render(columnName, cards.length);
-		this.createCards(index, cards);
+		this.render();
 	}
 
-	render(columnName, numOfCards) {
-		this.$target.insertAdjacentHTML("beforeend", column(columnName, numOfCards));
-	}
-
-	createCards(index, cards) {
+	render() {
+		const { columnName, index, cards } = this.data;
+		this.$target.insertAdjacentHTML("beforeend", column(columnName, cards.length));
 		this.$column = [...this.$target.children][index].querySelector(".column__body");
 		this.cards = cards.map((card) => new Card({ $target: this.$column, data: card }));
 	}

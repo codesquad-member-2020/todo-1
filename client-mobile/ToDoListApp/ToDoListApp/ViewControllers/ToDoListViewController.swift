@@ -12,11 +12,14 @@ class ToDoListViewController: UIViewController {
     
     @IBOutlet weak var stackView: UIStackView!
     
-    private var columns: [Column] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCardList()
+        
+        requestColumnsData { (columns) in
+            DispatchQueue.main.async {
+                self.configureColumns(columns)
+            }
+        }
     }
     
     private func requestColumnsData(completion: @escaping ([Column]) -> Void) {
@@ -30,7 +33,7 @@ class ToDoListViewController: UIViewController {
         }
     }
     
-    private func configureCardList() {
+    private func configureColumns(_ columns: [Column]) {
         for column in columns {
             guard let cardListViewController = storyboard?.instantiateViewController(identifier: CardListViewController.identifier) as? CardListViewController else { return }
             self.addChild(cardListViewController)

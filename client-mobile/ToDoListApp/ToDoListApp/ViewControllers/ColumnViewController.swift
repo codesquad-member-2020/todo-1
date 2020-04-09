@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardListViewController: UIViewController, NewCardDelegation {
+class ColumnViewController: UIViewController, NewCardDelegation {
     
     static let identifier = "CardList"
     

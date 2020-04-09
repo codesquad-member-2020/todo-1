@@ -35,11 +35,11 @@ class ToDoListViewController: UIViewController {
     
     private func configureColumns(_ columns: [Column]) {
         for column in columns {
-            guard let cardListViewController = storyboard?.instantiateViewController(identifier: CardListViewController.identifier) as? CardListViewController else { return }
-            self.addChild(cardListViewController)
-            self.stackView.addArrangedSubview(cardListViewController.view)
-            cardListViewController.columnViewModel = ColumnViewModel()
-            cardListViewController.updateColumn(column)
+            guard let columnViewController = storyboard?.instantiateViewController(identifier: ColumnViewController.identifier) as? ColumnViewController else { return }
+            self.addChild(columnViewController)
+            self.stackView.addArrangedSubview(columnViewController.view)
+            columnViewController.columnViewModel = ColumnViewModel()
+            columnViewController.updateColumn(column)
         }
     }
 }

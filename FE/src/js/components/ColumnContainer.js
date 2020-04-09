@@ -5,6 +5,7 @@ import Alert from "./Alert";
 export default class ColumnContainer {
 	$columnContainer = null;
 	columns = null;
+	$selectedCard = null;
 
 	constructor({ $target, initialData }) {
 		this.$target = $target;
@@ -15,7 +16,7 @@ export default class ColumnContainer {
 
 		this.alert = new Alert({
 			data: { message: "선택하신 카드를 삭제하시겠습니까?", visible: false },
-			onConfirm: (e) => this.deleteCard.bind(this, e),
+			onConfirm: () => this.requestDeletingCard(),
 		});
 	}
 
@@ -28,18 +29,22 @@ export default class ColumnContainer {
 	}
 
 	bindeEventListener() {
-		this.$columnContainer.addEventListener("click", (e) => this.showAlert(e));
+		this.$columnContainer.addEventListener("click", (e) => this.handleDeleteRequest(e));
 	}
 
-	showAlert(e) {
+	handleDeleteRequest(e) {
 		e.stopImmediatePropagation();
 		if (e.target.classList.contains("delete-card")) {
 			this.alert.toggleDisplay({ visible: true });
+			this.$selectedCard = e.target.parentElement;
 		}
 	}
 
-	deleteCard(e) {
-		const selectedCard = e.target.parentElement;
-		this.$target.deleteCard({ $card: selectedCard, id: selectedCard.dataset.id });
+	requestDeletingCard() {
+		const { $selectedCard } = this;
+		const selectedColumn = this.columns.find(
+			(column) => column.$column === $selectedCard.closest(".column")
+		);
+		selectedColumn.deleteCard({ $card: $selectedCard, id: $selectedCard.dataset.id });
 	}
 }

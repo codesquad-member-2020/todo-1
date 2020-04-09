@@ -8,7 +8,6 @@ export default class Alert {
 	constructor({ data, onConfirm }) {
 		this.data = data;
 		this.onConfirm = onConfirm;
-
 		this.render();
 		this.cacheDomElements();
 		this.bindEventListenr();
@@ -26,6 +25,12 @@ export default class Alert {
 
 	bindEventListenr() {
 		this.$cancel.addEventListener("click", this.toggleDisplay.bind(this, { visible: false }));
+		this.$confirm.addEventListener("click", () => this.handleDeletingCard());
+	}
+
+	handleDeletingCard() {
+		this.onConfirm();
+		this.toggleDisplay({ visible: false });
 	}
 
 	toggleDisplay(nextData) {

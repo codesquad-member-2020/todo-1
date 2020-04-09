@@ -9,11 +9,11 @@ export default class Column {
 	$columnBody = null;
 	$cardContainer = null;
 	cardCreatorIsShowing = false;
-	cards = [];
 
-	constructor({ $target, data }) {
+	constructor({ $target, initialData }) {
 		this.$target = $target;
-		this.data = data;
+		this.initialData = initialData;
+		this.columnIndex = initialData.index;
 
 		this.render();
 		this.cacheDomElements();
@@ -30,12 +30,12 @@ export default class Column {
 	}
 
 	render() {
-		const { columnName, cards } = this.data;
+		const { columnName, cards } = this.initialData;
 		this.$target.insertAdjacentHTML("beforeend", column(columnName, cards.length));
 	}
 
 	cacheDomElements() {
-		this.$column = [...this.$target.children][this.data.index];
+		this.$column = [...this.$target.children][this.columnIndex];
 		this.$columnHeader = this.$column.querySelector(".column__header");
 		this.$columnBody = this.$column.querySelector(".column__body");
 		this.$cardContainer = this.$column.querySelector(".card-container");
@@ -49,10 +49,10 @@ export default class Column {
 	renderCards() {
 		const {
 			$cardContainer,
-			data: { cards },
+			initialData: { cards },
 		} = this;
 		if (cards.length !== 0) {
-			this.cards = cards.map((card) => new Card({ $target: $cardContainer, data: card }));
+			cards.forEach((card) => new Card({ $target: $cardContainer, data: card }));
 		}
 	}
 
@@ -66,19 +66,25 @@ export default class Column {
 		}
 	}
 
-	createCardObj(data) {
+	createCardObj(value, cardList) {
 		return {
 			userId: "reese",
-			title: data,
+			title: value,
 			contents: null,
 			device: "web",
-			row: this.cards.length + 1,
+			row: cardList.length + 1,
 		};
 	}
 
 	addCard(value) {
-		const data = this.createCardObj(value);
-		const newCard = new Card({ $target: this.$cardContainer, data });
-		this.cards.push(newCard);
+		// data 업데이트
+		const cardList = data.columns.find((column) => column.index === this.columnIndex).cards;
+		const newCardObj = this.createCardObj.call(this, value, cardList);
+		cardList.push(newCardObj);
+
+		// 서버에 newCardObj 전송
+
+		// Card DOM 추가
+		new Card({ $target: this.$cardContainer, data: newCardObj });
 	}
 }

@@ -16,7 +16,7 @@ export default class ColumnContainer {
 		this.$target.insertAdjacentHTML("beforeend", columnContainer());
 		this.$columnContainer = this.$target.querySelector(".columns");
 		this.columns = this.data.map(
-			(column) => new Column({ $target: this.$columnContainer, data: column })
+			(column) => new Column({ $target: this.$columnContainer, initialData: column })
 		);
 	}
 }

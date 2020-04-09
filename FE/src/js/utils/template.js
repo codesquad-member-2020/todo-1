@@ -48,3 +48,13 @@ export function cardCreator() {
               <button type="button" class="cancel">Cancel</button>
           </div>`;
 }
+
+export function alert(message) {
+	return `<div class="alert">
+		<div class="alert__message">${message}</div>
+		<div class="alert__buttons">
+			<button class="cancel">Cancel</button>
+			<button class="confirm">Confirm</button>
+		</div>
+	</div>`;
+}

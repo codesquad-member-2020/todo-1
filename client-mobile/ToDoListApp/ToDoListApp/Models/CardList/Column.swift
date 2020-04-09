@@ -10,11 +10,17 @@ import Foundation
 
 struct Column {
     
-    let identifier: Int
-    var name: String
+    private(set) var identifier: Int
+    private(set) var name: String
     private(set) var cards: [Card]
     var numberOfCards: Int {
         return cards.count
+    }
+    
+    init(identifier: Int, name: String, cards: [Card]) {
+        self.identifier = identifier
+        self.name = name
+        self.cards = cards
     }
     
     mutating func appendCard(_ card: Card) {

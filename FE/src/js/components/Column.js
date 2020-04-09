@@ -8,6 +8,7 @@ export default class Column {
 	$columnHeader = null;
 	$columnBody = null;
 	$cardContainer = null;
+	$counter = null;
 	cardCreatorIsShowing = false;
 
 	constructor({ $target, initialData }) {
@@ -39,6 +40,7 @@ export default class Column {
 		this.$columnHeader = this.$column.querySelector(".column__header");
 		this.$columnBody = this.$column.querySelector(".column__body");
 		this.$cardContainer = this.$column.querySelector(".card-container");
+		this.$counter = this.$columnHeader.querySelector(".column__counter");
 	}
 
 	bindeEventListener() {
@@ -48,11 +50,10 @@ export default class Column {
 
 	renderCards() {
 		const {
-			$cardContainer,
 			initialData: { cards },
 		} = this;
 		if (cards.length !== 0) {
-			cards.forEach((card) => new Card({ $target: $cardContainer, data: card }));
+			cards.forEach((card) => new Card({ $target: this, data: card }));
 		}
 	}
 
@@ -85,10 +86,25 @@ export default class Column {
 		// send newCardObj to the server
 
 		// render Card DOM
-		new Card({ $target: this.$cardContainer, data: newCardObj });
+		new Card({ $target: this, data: newCardObj });
 
 		// update counter
-		const counter = this.$columnHeader.querySelector(".column__counter");
-		counter.textContent = Number(counter.textContent) + 1;
+		this.$counter.textContent = Number(this.$counter.textContent) + 1;
+	}
+
+	deleteCard({ $card, id }) {
+		// update data
+		const cardList = data.columns.find((column) => column.index === this.columnIndex).cards;
+		data.columns.find((column) => column.index === this.columnIndex).cards = cardList.filter(
+			(card) => card.id !== id
+		);
+
+		// send card id to the server
+
+		// remove Card DOM
+		this.$cardContainer.removeChild($card);
+
+		// update counter
+		this.$counter.textContent = Number(this.$counter.textContent) - 1;
 	}
 }

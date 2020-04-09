@@ -32,11 +32,11 @@ export function column(columnName, numOfCards) {
 	return `<div class="column">${columnHeader}${columnBody}</div>`;
 }
 
-export function card({ title }) {
-	return `<div class="card">
+export function card({ title, id }) {
+	return `<div class="card" data-id="${id}">
 						<i class="far fa-sticky-note"></i>
 						<span class="content">${title}</span>
-						<i class="fas fa-times"></i>
+						<i class="fas fa-times delete-card"></i>
 					</div>`;
 }
 
@@ -47,4 +47,14 @@ export function cardCreator() {
               <button type="button" class="add" disabled>Add</button>
               <button type="button" class="cancel">Cancel</button>
           </div>`;
+}
+
+export function alert(message) {
+	return `<div class="alert">
+		<div class="alert__message">${message}</div>
+		<div class="alert__buttons">
+			<button class="cancel">Cancel</button>
+			<button class="confirm">Confirm</button>
+		</div>
+	</div>`;
 }

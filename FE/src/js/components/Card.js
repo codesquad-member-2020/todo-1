@@ -1,13 +1,29 @@
 import { card } from "../utils/template";
 
 export default class Card {
+	$cardContainer = null;
+
 	constructor({ $target, data }) {
 		this.$target = $target;
 		this.data = data;
 		this.render();
+		this.bindeEventListener();
 	}
 
 	render() {
-		this.$target.insertAdjacentHTML("afterbegin", card(this.data));
+		this.$cardContainer = this.$target.$cardContainer;
+		this.$cardContainer.insertAdjacentHTML("afterbegin", card(this.data));
+	}
+
+	bindeEventListener() {
+		this.$cardContainer.addEventListener("click", (e) => this.deleteCard(e));
+	}
+
+	deleteCard(e) {
+		e.stopImmediatePropagation();
+		if (e.target.classList.contains("delete-card")) {
+			const selectedCard = e.target.parentElement;
+			this.$target.deleteCard({ $card: selectedCard, id: selectedCard.dataset.id });
+		}
 	}
 }

@@ -62,4 +62,8 @@ export default class Column {
 			this.cardCreatorIsShowing = false;
 		}
 	}
+
+	addCard(data) {
+		console.log(data);
+	}
 }

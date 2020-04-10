@@ -28,6 +28,7 @@
 		38B43795243D9241000C2A8D /* CardContentsTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B43794243D9241000C2A8D /* CardContentsTextViewDelegate.swift */; };
 		38E05A49243F7436005679EC /* TItleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E05A48243F7436005679EC /* TItleViewModel.swift */; };
 		38F437E324401EFC009BE1FF /* ContentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F437E224401EFC009BE1FF /* ContentsViewModel.swift */; };
+		38F437E524403AE7009BE1FF /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F437E424403AE7009BE1FF /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		38B43794243D9241000C2A8D /* CardContentsTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContentsTextViewDelegate.swift; sourceTree = "<group>"; };
 		38E05A48243F7436005679EC /* TItleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TItleViewModel.swift; sourceTree = "<group>"; };
 		38F437E224401EFC009BE1FF /* ContentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsViewModel.swift; sourceTree = "<group>"; };
+		38F437E424403AE7009BE1FF /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 		388CA290243AFE5900E99CED /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				38F437E424403AE7009BE1FF /* UserData.swift */,
 				387B8B3D243CC76C00805A34 /* CardList */,
 				38AB7CC1243F34DE00ADD8F8 /* NetworkManager.swift */,
 			);
@@ -250,6 +253,7 @@
 				3831B96B243B51D600550FA1 /* CardListDelegate.swift in Sources */,
 				387B8B35243C977D00805A34 /* ColumnViewController.swift in Sources */,
 				388CA280243AEE0900E99CED /* ToDoListViewController.swift in Sources */,
+				38F437E524403AE7009BE1FF /* UserData.swift in Sources */,
 				38F437E324401EFC009BE1FF /* ContentsViewModel.swift in Sources */,
 				387B8B3B243CBFEE00805A34 /* ColumnView.swift in Sources */,
 				381C3A52243B505F00F83D4B /* CardListDataSource.swift in Sources */,

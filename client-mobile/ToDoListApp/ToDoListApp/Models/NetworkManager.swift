@@ -30,8 +30,8 @@ class MockNetworkManager: NetworkManagable {
             if let error = error { completion(nil, error) }
             let decoder = JSONDecoder()
             guard let data = data else { return }
-            guard let colums = try? decoder.decode([Column].self, from: data) else { return }
-            completion(colums, nil)
+            guard let userData = try? decoder.decode(UserData.self, from: data) else { return }
+            completion(userData.columns, nil)
         }
     }
 }

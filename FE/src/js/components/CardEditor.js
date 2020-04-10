@@ -33,7 +33,7 @@ export default class CardEditor {
 			$cardEditor,
 			data: { contents, visible },
 		} = this;
-		this.$cardEditor.querySelector(".editor-contents").textContent = contents;
+		this.$cardEditor.querySelector(".editor-contents").value = contents;
 		visible ? ($cardEditor.style.display = "block") : ($cardEditor.style.display = "none");
 	}
 }

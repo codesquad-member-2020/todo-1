@@ -16,8 +16,8 @@ struct Card: Codable {
     private(set) var device: String
     private(set) var row: Int
     
-    init(identifier: Int, title: String, contents: String, device: String, index: Int) {
-        self.id = identifier
+    init(id: Int, title: String, contents: String, device: String, index: Int) {
+        self.id = id
         self.title = title
         self.contents = contents
         self.device = device

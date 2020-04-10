@@ -91,6 +91,7 @@ export default class Column {
 
 		// update counter
 		this.$counter.textContent = Number(this.$counter.textContent) + 1;
+		console.log("card added!", data);
 	}
 
 	deleteCard({ $card, id }) {
@@ -107,6 +108,7 @@ export default class Column {
 
 		// update counter
 		this.$counter.textContent = Number(this.$counter.textContent) - 1;
+		console.log("card deleted!", data);
 	}
 
 	updateCard({ $card, id, contents }) {
@@ -125,5 +127,6 @@ export default class Column {
 
 		// render new contents in the card
 		$card.querySelector(".contents").textContent = contents;
+		console.log("card updated!", data);
 	}
 }

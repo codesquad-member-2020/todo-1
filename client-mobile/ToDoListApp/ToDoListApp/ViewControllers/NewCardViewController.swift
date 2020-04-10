@@ -21,27 +21,37 @@ class NewCardViewController: UIViewController {
     
     var column: Column!
     
-    let contentsTextViewDelegate = CardContetnsTextViewDelegate()
-    let titleTextFieldDelegate = CardTitleTextFieldDelegate()
     let cardViewModel = CardViewModel()
+    
+    private var titleViewModel: TitleViewModel?
+    private var contentsViewModel: ContentsViewModel?
+    private var titleDelegate: CardTitleTextFieldDelegate?
+    private var contentsDelegate: CardContetnsTextViewDelegate?
     
     var delegate: NewCardDelegation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViewModels()
         configureDelegates()
-        configureViewModel()
         configureViewModelHandler()
     }
     
     private func configureDelegates() {
-        contentsTextView.delegate = contentsTextViewDelegate
-        titleTextField.delegate = titleTextFieldDelegate
+        titleDelegate = CardTitleTextFieldDelegate(titleViewModel: titleViewModel)
+        contentsDelegate = CardContetnsTextViewDelegate(contentsViewModel: contentsViewModel)
+        
+        titleTextField.delegate = titleDelegate
+        contentsTextView.delegate = contentsDelegate
     }
     
-    private func configureViewModel() {
-        contentsTextViewDelegate.cardViewModel = cardViewModel
-        titleTextFieldDelegate.cardViewModel = cardViewModel
+    private func configureViewModels() {
+        titleViewModel = TitleViewModel { (title) in
+            print(title)
+        }
+        contentsViewModel = ContentsViewModel(changed: { (contents) in
+            print(contents)
+        })
     }
     
     private func configureViewModelHandler() {

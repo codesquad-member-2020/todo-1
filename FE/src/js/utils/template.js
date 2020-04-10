@@ -35,7 +35,7 @@ export function column(columnName, numOfCards) {
 export function card({ title, id }) {
 	return `<div class="card" data-id="${id}">
 						<i class="far fa-sticky-note"></i>
-						<span class="content">${title}</span>
+						<span class="contents">${title}</span>
 						<i class="fas fa-times delete-card"></i>
 					</div>`;
 }
@@ -59,7 +59,7 @@ export function alert(message) {
 	</div>`;
 }
 
-export function cardEditor(content) {
+export function cardEditor(contents) {
 	return `<div class="card-editor" style="display:none;">
 			<div class="editor-container">
 				<div class="editor-header">
@@ -67,7 +67,7 @@ export function cardEditor(content) {
 					<i class="fas fa-times close-editor"></i>
 				</div>
 				<span class="sub-title">note</span>
-				<textarea class="editor-content">${content}</textarea>
+				<textarea class="editor-contents">${contents}</textarea>
 				<button class="save">Save note</button>
 			</div>
 		</div>`;

@@ -21,7 +21,7 @@ export default class ColumnContainer {
 		});
 
 		this.cardEditor = new CardEditor({
-			data: { content: null, visible: false },
+			data: { contents: null, visible: false },
 			onSave: () => console.log("hey, editor!"),
 		});
 	}
@@ -59,14 +59,14 @@ export default class ColumnContainer {
 		const classList = e.target.classList;
 		const isCard =
 			classList.contains("card") ||
-			classList.contains("content") ||
+			classList.contains("contents") ||
 			classList.contains("fa-sticky-note");
 		if (isCard) {
 			this.$selectedCard = e.target.closest(".card");
-			const content = [...this.$selectedCard.children].find(
-				(element) => element.className === "content"
+			const contents = [...this.$selectedCard.children].find(
+				(element) => element.className === "contents"
 			).textContent;
-			this.cardEditor.toggleDisplay({ content, visible: true });
+			this.cardEditor.toggleDisplay({ contents, visible: true });
 		}
 	}
 

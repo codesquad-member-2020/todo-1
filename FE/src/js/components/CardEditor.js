@@ -13,7 +13,7 @@ export default class CardEditor {
 	}
 
 	render() {
-		document.getElementById("Todo").insertAdjacentHTML("afterend", cardEditor(this.data.content));
+		document.getElementById("Todo").insertAdjacentHTML("afterend", cardEditor(this.data.contents));
 	}
 
 	cacheDomElements() {
@@ -26,9 +26,9 @@ export default class CardEditor {
 		this.data = nextData;
 		const {
 			$cardEditor,
-			data: { content, visible },
+			data: { contents, visible },
 		} = this;
-		this.$cardEditor.querySelector(".editor-content").textContent = content;
+		this.$cardEditor.querySelector(".editor-contents").textContent = contents;
 		visible ? ($cardEditor.style.display = "block") : ($cardEditor.style.display = "none");
 	}
 }

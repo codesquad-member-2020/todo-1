@@ -27,13 +27,14 @@ class ToDoListViewController: UIViewController {
     }
     
     private func requestColumnsData(completion: @escaping ([Column]) -> Void) {
-        MockNetworkManager.shared.requestColumns { (columns, error) in
-            if error != nil {
+        MockNetworkManager.shared.requestData { (result) in
+            switch result {
+            case .success(let columns):
+                guard let columns = columns else { return }
+                completion(columns)
+            case .failure(_):
                 self.showErrorAlert()
-                return
             }
-            guard let columns = columns else { return }
-            completion(columns)
         }
     }
     

@@ -9,29 +9,46 @@
 import Foundation
 
 protocol NetworkManagable {
-    func requestData(completion: @escaping (Data?, Error?) -> Void)
+    associatedtype RequestData
+    
+    func requestData(completion: @escaping (Result<RequestData, RequestError>) -> Void)
+}
+
+enum RequestError: Error {
+    case ServerError
+    case URLSessionError
+    case JSONDecodingError
 }
 
 class MockNetworkManager: NetworkManagable {
+    typealias RequestData = [Column]?
     
     static let shared = MockNetworkManager()
     
-    func requestData(completion: @escaping (Data?, Error?) -> Void) {
+    private func requestDataToServer(completion: @escaping (Result<Data?, RequestError>) -> Void) {
         let baseURL = "http://15.165.109.128"
         let path = "/api/columns"
-        URLSession.shared.dataTask(with: URL(string: baseURL + path)!) { (data, _, error) in
-            if let error = error { completion(nil, error) }
-            completion(data, nil)
+        let successStatusCode = 200
+        
+        URLSession.shared.dataTask(with: URL(string: baseURL + path)!) { (data, response, error) in
+            guard let response = response as? HTTPURLResponse else { return }
+            if response.statusCode != successStatusCode { completion(.failure(.ServerError)) }
+            if error != nil { completion(.failure(.URLSessionError)) }
+            completion(.success(data))
         }.resume()
     }
     
-    func requestColumns(completion: @escaping ([Column]?, Error?) -> Void) {
-        requestData { (data, error) in
-            if let error = error { completion(nil, error) }
-            let decoder = JSONDecoder()
-            guard let data = data else { return }
-            guard let userData = try? decoder.decode(UserData.self, from: data) else { return }
-            completion(userData.columns, nil)
+    func requestData(completion: @escaping (Result<RequestData, RequestError>) -> Void) {
+        requestDataToServer { (result) in
+            switch result {
+            case .success(let data):
+                let decoder = JSONDecoder()
+                guard let data = data else { return }
+                guard let userData = try? decoder.decode(UserData.self, from: data) else { return }
+                completion(.success(userData.columns))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardContetnsTextViewDelegate: NSObject, UITextViewDelegate {
+class CardContentsTextViewDelegate: NSObject, UITextViewDelegate {
     
     private let placeholder: String = "내용을 입력해주세요"
     private let contentsTextCountLimitation: Int = 500

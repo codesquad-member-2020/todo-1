@@ -26,7 +26,7 @@ class NewCardViewController: UIViewController {
     private var titleViewModel: TitleViewModel?
     private var contentsViewModel: ContentsViewModel?
     private var titleDelegate: CardTitleTextFieldDelegate?
-    private var contentsDelegate: CardContetnsTextViewDelegate?
+    private var contentsDelegate: CardContentsTextViewDelegate?
     
     var delegate: NewCardDelegation?
     
@@ -39,7 +39,7 @@ class NewCardViewController: UIViewController {
     
     private func configureDelegates() {
         titleDelegate = CardTitleTextFieldDelegate(titleViewModel: titleViewModel)
-        contentsDelegate = CardContetnsTextViewDelegate(contentsViewModel: contentsViewModel)
+        contentsDelegate = CardContentsTextViewDelegate(contentsViewModel: contentsViewModel)
         
         titleTextField.delegate = titleDelegate
         contentsTextView.delegate = contentsDelegate

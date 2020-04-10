@@ -13,11 +13,15 @@ class CardContetnsTextViewDelegate: NSObject, UITextViewDelegate {
     private let placeholder: String = "내용을 입력해주세요"
     private let contentsTextCountLimitation: Int = 500
     
-    var cardViewModel: CardViewModel?
+    private var contentsViewModel: ContentsViewModel?
+    
+    init(contentsViewModel: ContentsViewModel?) {
+        self.contentsViewModel = contentsViewModel
+    }
     
     func textViewDidChangeSelection(_ textView: UITextView) {
         guard let text = textView.text else { return }
-        cardViewModel?.contents = text
+        contentsViewModel?.update(with: text)
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

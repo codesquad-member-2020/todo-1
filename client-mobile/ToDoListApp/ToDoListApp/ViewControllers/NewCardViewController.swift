@@ -21,8 +21,6 @@ class NewCardViewController: UIViewController {
     
     var column: Column!
     
-    let cardViewModel = CardViewModel()
-    
     private var titleText: String = ""
     private var contentsText: String = ""
     
@@ -37,7 +35,6 @@ class NewCardViewController: UIViewController {
         super.viewDidLoad()
         configureViewModels()
         configureDelegates()
-        configureViewModelHandler()
     }
     
     private func configureDelegates() {
@@ -68,21 +65,8 @@ class NewCardViewController: UIViewController {
         addCardButton.isEnabled = (titleText != "") && (contentsText != "")
     }
     
-    private func configureViewModelHandler() {
-        cardViewModel.buttonStatusChanged = { canAddCard in
-            self.addCardButton.isEnabled = canAddCard
-        }
-        cardViewModel.contentNilStatusChanged = { isEmpty in
-            self.contentsPlaceholderLabel.isHidden = !isEmpty
-        }
-    }
-    
     @IBAction func addNewCardTapped(_ sender: Any) {
-        cardViewModel.index = column.numberOfCards
-        let card = Card(viewModel: cardViewModel)
-        self.dismiss(animated: true) {
-            self.delegate?.addNewCard(card)
-        }
+
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

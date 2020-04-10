@@ -21,7 +21,7 @@ export default class ColumnContainer {
 		});
 
 		this.cardEditor = new CardEditor({
-			data: { data: null, visible: false },
+			data: { content: null, visible: false },
 			onSave: () => console.log("hey, editor!"),
 		});
 	}
@@ -36,6 +36,7 @@ export default class ColumnContainer {
 
 	bindeEventListener() {
 		this.$columnContainer.addEventListener("click", (e) => this.handleDeleteRequest(e));
+		this.$columnContainer.addEventListener("dblclick", (e) => this.handleEditingRequest(e));
 	}
 
 	handleDeleteRequest(e) {
@@ -53,4 +54,21 @@ export default class ColumnContainer {
 		);
 		selectedColumn.deleteCard({ $card: $selectedCard, id: $selectedCard.dataset.id });
 	}
+
+	handleEditingRequest(e) {
+		const classList = e.target.classList;
+		const isCard =
+			classList.contains("card") ||
+			classList.contains("content") ||
+			classList.contains("fa-sticky-note");
+		if (isCard) {
+			this.$selectedCard = e.target.closest(".card");
+			const content = [...this.$selectedCard.children].find(
+				(element) => element.className === "content"
+			).textContent;
+			this.cardEditor.toggleDisplay({ content, visible: true });
+		}
+	}
+
+	updateCard() {}
 }

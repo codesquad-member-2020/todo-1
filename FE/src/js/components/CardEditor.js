@@ -21,4 +21,14 @@ export default class CardEditor {
 		this.$cancel = this.$cardEditor.querySelector(".close-editor");
 		this.$save = this.$cardEditor.querySelector(".save");
 	}
+
+	toggleDisplay(nextData) {
+		this.data = nextData;
+		const {
+			$cardEditor,
+			data: { content, visible },
+		} = this;
+		this.$cardEditor.querySelector(".editor-content").textContent = content;
+		visible ? ($cardEditor.style.display = "block") : ($cardEditor.style.display = "none");
+	}
 }

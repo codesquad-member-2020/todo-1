@@ -84,6 +84,7 @@ export default class Column {
 		cardList.push(newCardObj);
 
 		// send newCardObj to the server
+		// synchronize card id with the one received from the server
 
 		// render Card DOM
 		new Card({ $target: this, data: newCardObj });

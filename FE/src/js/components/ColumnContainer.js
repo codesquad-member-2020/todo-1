@@ -36,7 +36,7 @@ export default class ColumnContainer {
 
 	bindeEventListener() {
 		this.$columnContainer.addEventListener("click", (e) => this.handleDeleteRequest(e));
-		this.$columnContainer.addEventListener("dblclick", (e) => this.handleEditingRequest(e));
+		this.$columnContainer.addEventListener("dblclick", (e) => this.handleUpdateRequest(e));
 	}
 
 	handleDeleteRequest(e) {
@@ -55,7 +55,7 @@ export default class ColumnContainer {
 		selectedColumn.deleteCard({ $card: $selectedCard, id: $selectedCard.dataset.id });
 	}
 
-	handleEditingRequest(e) {
+	handleUpdateRequest(e) {
 		const classList = e.target.classList;
 		const isCard =
 			classList.contains("card") ||

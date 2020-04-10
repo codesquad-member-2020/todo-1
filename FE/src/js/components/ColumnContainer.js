@@ -1,6 +1,7 @@
 import { columnContainer } from "../utils/template";
 import Column from "./Column";
 import Alert from "./Alert";
+import CardEditor from "./CardEditor";
 
 export default class ColumnContainer {
 	$columnContainer = null;
@@ -17,6 +18,11 @@ export default class ColumnContainer {
 		this.alert = new Alert({
 			data: { message: "선택하신 카드를 삭제하시겠습니까?", visible: false },
 			onConfirm: () => this.deleteCard(),
+		});
+
+		this.cardEditor = new CardEditor({
+			data: { data: null, visible: false },
+			onSave: () => console.log("hey, editor!"),
 		});
 	}
 

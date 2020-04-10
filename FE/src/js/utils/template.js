@@ -60,7 +60,7 @@ export function alert(message) {
 }
 
 export function cardEditor(content) {
-	return `<div class="card-editor">
+	return `<div class="card-editor" style="display:none;">
 			<div class="editor-container">
 				<div class="editor-header">
 					<span class="title">Edit note</span>
@@ -68,7 +68,7 @@ export function cardEditor(content) {
 				</div>
 				<span class="sub-title">note</span>
 				<textarea class="editor-content">${content}</textarea>
-				<button>Save note</button>
+				<button class="save">Save note</button>
 			</div>
 		</div>`;
 }

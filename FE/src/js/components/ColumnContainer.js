@@ -16,7 +16,7 @@ export default class ColumnContainer {
 
 		this.alert = new Alert({
 			data: { message: "선택하신 카드를 삭제하시겠습니까?", visible: false },
-			onConfirm: () => this.requestDeletingCard(),
+			onConfirm: () => this.deleteCard(),
 		});
 	}
 
@@ -40,7 +40,7 @@ export default class ColumnContainer {
 		}
 	}
 
-	requestDeletingCard() {
+	deleteCard() {
 		const { $selectedCard } = this;
 		const selectedColumn = this.columns.find(
 			(column) => column.$column === $selectedCard.closest(".column")

@@ -66,7 +66,7 @@ class NewCardViewController: UIViewController {
     }
     
     @IBAction func addNewCardTapped(_ sender: Any) {
-        let card = Card(id: nil, title: titleText, contents: contentsText, device: device, index: 0)
+        let card = Card(title: titleText, contents: contentsText, device: device, index: 0)
         newCardDelegate?.addNewCard(card)
         dismiss(animated: true, completion: nil)
     }

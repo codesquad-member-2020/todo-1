@@ -12,6 +12,9 @@ public class ApiShowList {
     private int statusCode;
     private List<Todo> columns;
 
+    public ApiShowList(int statusCode) {
+        this.statusCode = statusCode;
+    }
     public ApiShowList(int statusCode, List<Todo> columns) {
         this.statusCode = statusCode;
         this.columns = columns;

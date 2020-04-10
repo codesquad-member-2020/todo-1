@@ -27,18 +27,19 @@ class ToDoListViewController: UIViewController {
     }
     
     private func requestColumnsData(completion: @escaping ([Column]) -> Void) {
-        MockNetworkManager.shared.requestColumns { (columns, error) in
-            if error != nil {
-                self.showErrorAlert()
-                return
+        MockNetworkManager.shared.requestData { (result) in
+            switch result {
+            case .success(let columns):
+                guard let columns = columns else { return }
+                completion(columns)
+            case .failure(let error):
+                self.showErrorAlert(error: error)
             }
-            guard let columns = columns else { return }
-            completion(columns)
         }
     }
     
-    private func showErrorAlert() {
-        let alert = UIAlertController(title: "Network Error", message: "Failed to load data", preferredStyle: .alert)
+    private func showErrorAlert(error: RequestError) {
+        let alert = UIAlertController(title: "Error", message: error.description, preferredStyle: .alert)
         let action = UIAlertAction(title: "Done", style: .default) { _ in
             self.configureToDoList()
         }

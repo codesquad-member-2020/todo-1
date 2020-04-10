@@ -14,9 +14,6 @@ struct Column: Codable {
     private(set) var name: String
     private(set) var cards: [Card]
     private(set) var section: Int
-    var numberOfCards: Int {
-        return cards.count
-    }
     
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
@@ -24,7 +21,7 @@ struct Column: Codable {
         case cards, section
     }
     
-    mutating func appendCard(_ card: Card) {
-        cards.append(card)
+    mutating func insertCard(_ card: Card, at index: Int) {
+        cards.insert(card, at: index)
     }
 }

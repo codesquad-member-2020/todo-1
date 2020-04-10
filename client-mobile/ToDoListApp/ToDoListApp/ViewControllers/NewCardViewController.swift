@@ -19,8 +19,6 @@ class NewCardViewController: UIViewController {
     @IBOutlet weak var contentsPlaceholderLabel: UILabel!
     @IBOutlet weak var addCardButton: UIButton!
     
-    var column: Column!
-    
     private var titleText: String = ""
     private var contentsText: String = ""
     
@@ -29,7 +27,9 @@ class NewCardViewController: UIViewController {
     private var titleDelegate: CardTitleTextFieldDelegate?
     private var contentsDelegate: CardContentsTextViewDelegate?
     
-    var delegate: NewCardDelegation?
+    private let device = "iOS"
+    
+    var newCardDelegate: NewCardDelegation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +66,9 @@ class NewCardViewController: UIViewController {
     }
     
     @IBAction func addNewCardTapped(_ sender: Any) {
-
+        let card = Card(id: nil, title: titleText, contents: contentsText, device: device, index: 0)
+        newCardDelegate?.addNewCard(card)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

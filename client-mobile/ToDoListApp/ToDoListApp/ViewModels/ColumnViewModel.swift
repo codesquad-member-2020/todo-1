@@ -18,9 +18,6 @@ class ColumnViewModel: ViewModelBinding {
     typealias Key = Column?
     private var column: Key = nil { didSet { changeHandler(column) } }
     private var changeHandler: (Key) -> Void
-    var numberOfCards: Int {
-        return column?.numberOfCards ?? 0
-    }
     
     init(with column: Column? = nil, changed handler: @escaping (Key) -> Void = { _ in } ) {
         self.changeHandler = handler
@@ -36,7 +33,7 @@ class ColumnViewModel: ViewModelBinding {
         self.changeHandler = changed
     }
     
-    func addCard(_ card: Card) {
-        column?.appendCard(card)
+    func insertCard(_ card: Card, at index: Int) {
+        column?.insertCard(card, at: index)
     }
 }

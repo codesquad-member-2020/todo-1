@@ -64,15 +64,14 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     @IBAction func addNewCardButtonTapped(_ sender: Any) {
         guard let newCardViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? NewCardViewController else { return }
         present(newCardViewController, animated: true, completion: {
-            newCardViewController.delegate = self
+            newCardViewController.newCardDelegate = self
         })
     }
     
     func addNewCard(_ card: Card) {
         tableView.beginUpdates()
-        columnViewModel?.addCard(card)
-        guard let numberOfCards = columnViewModel?.numberOfCards else { return }
-        tableView.insertRows(at: [IndexPath(row: numberOfCards - 1, section: 0)], with: .bottom)
+        columnViewModel?.insertCard(card, at: 0)
+        tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .top)
         tableView.endUpdates()
     }
 }

@@ -22,7 +22,7 @@ export default class ColumnContainer {
 
 		this.cardEditor = new CardEditor({
 			data: { contents: null, visible: false },
-			onSave: () => console.log("hey, editor!"),
+			onSave: (contents) => this.updateCard(contents),
 		});
 	}
 
@@ -70,5 +70,12 @@ export default class ColumnContainer {
 		}
 	}
 
-	updateCard() {}
+	updateCard(contents) {
+		const { $selectedCard } = this;
+		const selectedColumn = this.columns.find(
+			(column) => column.$column === $selectedCard.closest(".column")
+		);
+
+		selectedColumn.updateCard({ $card: $selectedCard, id: $selectedCard.dataset.id, contents });
+	}
 }

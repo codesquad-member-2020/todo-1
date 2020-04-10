@@ -32,10 +32,10 @@ export function column(columnName, numOfCards) {
 	return `<div class="column">${columnHeader}${columnBody}</div>`;
 }
 
-export function card({ title, id }) {
+export function card({ contents, id }) {
 	return `<div class="card" data-id="${id}">
 						<i class="far fa-sticky-note"></i>
-						<span class="contents">${title}</span>
+						<span class="contents">${contents}</span>
 						<i class="fas fa-times delete-card"></i>
 					</div>`;
 }

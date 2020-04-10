@@ -25,6 +25,13 @@ export default class CardEditor {
 
 	bindEventListener() {
 		this.$cancel.addEventListener("click", this.toggleDisplay.bind(this, { visible: false }));
+		this.$save.addEventListener("click", () => this.handleUpdatingCard());
+	}
+
+	handleUpdatingCard() {
+		const newContents = this.$cardEditor.querySelector(".editor-contents").value;
+		this.onSave(newContents);
+		this.toggleDisplay({ visible: false });
 	}
 
 	toggleDisplay(nextData) {

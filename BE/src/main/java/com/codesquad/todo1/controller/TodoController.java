@@ -1,5 +1,6 @@
 package com.codesquad.todo1.controller;
 
+import com.codesquad.todo1.api.ApiShowList;
 import com.codesquad.todo1.domain.Todo;
 import com.codesquad.todo1.service.TodoService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class TodoController {
     private final TodoService todoService;
 
     @GetMapping("/columns")
-    public ResponseEntity<List<Todo>> show() {
-        return ResponseEntity.ok(todoService.showTodoList());
+    public ApiShowList show() {
+        return new ApiShowList(200, todoService.showTodoList());
     }
 }

@@ -10,6 +10,7 @@ export default class CardEditor {
 		this.onSave = onSave;
 		this.render();
 		this.cacheDomElements();
+		this.bindEventListener();
 	}
 
 	render() {
@@ -20,6 +21,10 @@ export default class CardEditor {
 		this.$cardEditor = document.querySelector(".card-editor");
 		this.$cancel = this.$cardEditor.querySelector(".close-editor");
 		this.$save = this.$cardEditor.querySelector(".save");
+	}
+
+	bindEventListener() {
+		this.$cancel.addEventListener("click", this.toggleDisplay.bind(this, { visible: false }));
 	}
 
 	toggleDisplay(nextData) {

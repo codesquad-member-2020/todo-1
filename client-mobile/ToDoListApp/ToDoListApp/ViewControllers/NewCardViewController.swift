@@ -23,6 +23,9 @@ class NewCardViewController: UIViewController {
     
     let cardViewModel = CardViewModel()
     
+    private var titleText: String = ""
+    private var contentsText: String = ""
+    
     private var titleViewModel: TitleViewModel?
     private var contentsViewModel: ContentsViewModel?
     private var titleDelegate: CardTitleTextFieldDelegate?
@@ -47,11 +50,22 @@ class NewCardViewController: UIViewController {
     
     private func configureViewModels() {
         titleViewModel = TitleViewModel { (title) in
-            print(title)
+            self.titleText = title
+            self.updateButtonValidation()
         }
         contentsViewModel = ContentsViewModel(changed: { (contents) in
-            print(contents)
+            self.contentsText = contents
+            self.updateContentsPlaceholderLabel()
+            self.updateButtonValidation()
         })
+    }
+    
+    private func updateContentsPlaceholderLabel() {
+        contentsPlaceholderLabel.isHidden = contentsText != ""
+    }
+    
+    private func updateButtonValidation() {
+        addCardButton.isEnabled = (titleText != "") && (contentsText != "")
     }
     
     private func configureViewModelHandler() {

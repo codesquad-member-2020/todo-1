@@ -25,12 +25,24 @@ class MockNetworkManager: NetworkManagable {
     
     static let shared = MockNetworkManager()
     
+    private let baseURL = "http://15.165.109.128"
+    
+    enum path: String, CustomStringConvertible {
+        case GetColumns = "/api/columns"
+        
+        var description: String {
+            return self.rawValue
+        }
+    }
+    
+    private func RequestURL(path: path) -> URL {
+        return URL(string: baseURL + path.description)!
+    }
+    
     private func requestDataToServer(completion: @escaping (Result<Data?, RequestError>) -> Void) {
-        let baseURL = "http://15.165.109.128"
-        let path = "/api/columns"
         let successStatusCode = 200
         
-        URLSession.shared.dataTask(with: URL(string: baseURL + path)!) { (data, response, error) in
+        URLSession.shared.dataTask(with: RequestURL(path: .GetColumns)) { (data, response, error) in
             guard let response = response as? HTTPURLResponse else { return }
             if response.statusCode != successStatusCode { completion(.failure(.ServerError)) }
             if error != nil { completion(.failure(.URLSessionError)) }

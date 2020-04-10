@@ -32,14 +32,14 @@ class ToDoListViewController: UIViewController {
             case .success(let columns):
                 guard let columns = columns else { return }
                 completion(columns)
-            case .failure(_):
-                self.showErrorAlert()
+            case .failure(let error):
+                self.showErrorAlert(error: error)
             }
         }
     }
     
-    private func showErrorAlert() {
-        let alert = UIAlertController(title: "Network Error", message: "Failed to load data", preferredStyle: .alert)
+    private func showErrorAlert(error: RequestError) {
+        let alert = UIAlertController(title: "Error", message: error.description, preferredStyle: .alert)
         let action = UIAlertAction(title: "Done", style: .default) { _ in
             self.configureToDoList()
         }

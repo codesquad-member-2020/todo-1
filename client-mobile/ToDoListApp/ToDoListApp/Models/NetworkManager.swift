@@ -14,10 +14,14 @@ protocol NetworkManagable {
     func requestData(completion: @escaping (Result<RequestData, RequestError>) -> Void)
 }
 
-enum RequestError: Error {
-    case ServerError
-    case URLSessionError
-    case JSONDecodingError
+enum RequestError: String, Error, CustomStringConvertible {
+    case ServerError = "서버 통신 요청에 실패했습니다."
+    case URLSessionError = "네트워크 요청에 실패했습니다."
+    case JSONDecodingError = ""
+    
+    var description: String {
+        return self.rawValue
+    }
 }
 
 class MockNetworkManager: NetworkManagable {

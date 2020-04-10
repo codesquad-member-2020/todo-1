@@ -70,8 +70,8 @@ export default class Column {
 	createCardObj(value, cardList) {
 		return {
 			userId: "reese",
-			title: value,
-			contents: null,
+			title: "제목없음",
+			contents: value,
 			device: "web",
 			row: cardList.length + 1,
 		};
@@ -84,12 +84,14 @@ export default class Column {
 		cardList.push(newCardObj);
 
 		// send newCardObj to the server
+		// synchronize card id with the one received from the server
 
 		// render Card DOM
 		new Card({ $target: this, data: newCardObj });
 
 		// update counter
 		this.$counter.textContent = Number(this.$counter.textContent) + 1;
+		console.log("card added!", data);
 	}
 
 	deleteCard({ $card, id }) {
@@ -106,5 +108,25 @@ export default class Column {
 
 		// update counter
 		this.$counter.textContent = Number(this.$counter.textContent) - 1;
+		console.log("card deleted!", data);
+	}
+
+	updateCard({ $card, id, contents }) {
+		// update data
+		const cardList = data.columns.find((column) => column.index === this.columnIndex).cards;
+		let updatedCard;
+		for (let index = 0, length = cardList.length; index < length; index++) {
+			if (cardList[index].id === id) {
+				cardList[index].contents = contents;
+				updatedCard = cardList[index];
+				break;
+			}
+		}
+
+		// send updatedCard to the server
+
+		// render new contents in the card
+		$card.querySelector(".contents").textContent = contents;
+		console.log("card updated!", data);
 	}
 }

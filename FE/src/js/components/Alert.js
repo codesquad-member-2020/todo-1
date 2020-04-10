@@ -10,7 +10,7 @@ export default class Alert {
 		this.onConfirm = onConfirm;
 		this.render();
 		this.cacheDomElements();
-		this.bindEventListenr();
+		this.bindEventListener();
 	}
 
 	render() {
@@ -23,7 +23,7 @@ export default class Alert {
 		this.$confirm = this.$alert.querySelector(".confirm");
 	}
 
-	bindEventListenr() {
+	bindEventListener() {
 		this.$cancel.addEventListener("click", this.toggleDisplay.bind(this, { visible: false }));
 		this.$confirm.addEventListener("click", () => this.handleDeletingCard());
 	}

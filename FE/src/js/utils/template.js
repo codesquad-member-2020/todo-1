@@ -58,3 +58,17 @@ export function alert(message) {
 		</div>
 	</div>`;
 }
+
+export function cardEditor(content) {
+	return `<div class="card-editor">
+			<div class="editor-container">
+				<div class="editor-header">
+					<span class="title">Edit note</span>
+					<i class="fas fa-times close-editor"></i>
+				</div>
+				<span class="sub-title">note</span>
+				<textarea class="editor-content">${content}</textarea>
+				<button>Save note</button>
+			</div>
+		</div>`;
+}

@@ -19,46 +19,56 @@ class NewCardViewController: UIViewController {
     @IBOutlet weak var contentsPlaceholderLabel: UILabel!
     @IBOutlet weak var addCardButton: UIButton!
     
-    var column: Column!
+    private var titleText: String = ""
+    private var contentsText: String = ""
     
-    let contentsTextViewDelegate = CardContetnsTextViewDelegate()
-    let titleTextFieldDelegate = CardTitleTextFieldDelegate()
-    let cardViewModel = CardViewModel()
+    private var titleViewModel: TitleViewModel?
+    private var contentsViewModel: ContentsViewModel?
+    private var titleDelegate: CardTitleTextFieldDelegate?
+    private var contentsDelegate: CardContentsTextViewDelegate?
     
-    var delegate: NewCardDelegation?
+    private let device = "iOS"
+    
+    var newCardDelegate: NewCardDelegation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViewModels()
         configureDelegates()
-        configureViewModel()
-        configureViewModelHandler()
     }
     
     private func configureDelegates() {
-        contentsTextView.delegate = contentsTextViewDelegate
-        titleTextField.delegate = titleTextFieldDelegate
+        titleDelegate = CardTitleTextFieldDelegate(titleViewModel: titleViewModel)
+        contentsDelegate = CardContentsTextViewDelegate(contentsViewModel: contentsViewModel)
+        
+        titleTextField.delegate = titleDelegate
+        contentsTextView.delegate = contentsDelegate
     }
     
-    private func configureViewModel() {
-        contentsTextViewDelegate.cardViewModel = cardViewModel
-        titleTextFieldDelegate.cardViewModel = cardViewModel
+    private func configureViewModels() {
+        titleViewModel = TitleViewModel { (title) in
+            self.titleText = title
+            self.updateButtonValidation()
+        }
+        contentsViewModel = ContentsViewModel(changed: { (contents) in
+            self.contentsText = contents
+            self.updateContentsPlaceholderLabel()
+            self.updateButtonValidation()
+        })
     }
     
-    private func configureViewModelHandler() {
-        cardViewModel.buttonStatusChanged = { canAddCard in
-            self.addCardButton.isEnabled = canAddCard
-        }
-        cardViewModel.contentNilStatusChanged = { isEmpty in
-            self.contentsPlaceholderLabel.isHidden = !isEmpty
-        }
+    private func updateContentsPlaceholderLabel() {
+        contentsPlaceholderLabel.isHidden = contentsText != ""
+    }
+    
+    private func updateButtonValidation() {
+        addCardButton.isEnabled = (titleText != "") && (contentsText != "")
     }
     
     @IBAction func addNewCardTapped(_ sender: Any) {
-        cardViewModel.index = column.numberOfCards
-        let card = Card(viewModel: cardViewModel)
-        self.dismiss(animated: true) {
-            self.delegate?.addNewCard(card)
-        }
+        let card = Card(title: titleText, contents: contentsText, device: device, index: 0)
+        newCardDelegate?.addNewCard(card)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

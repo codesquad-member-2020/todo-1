@@ -8,9 +8,9 @@
 
 import UIKit
 
-class CardListViewController: UIViewController, NewCardDelegation {
+class ColumnViewController: UIViewController, NewCardDelegation {
     
-    var column: Column! { didSet { updateColumn() } }
+    static let identifier = "Column"
     
     @IBOutlet weak var columnView: ColumnView!
     @IBOutlet weak var bedgeView: BedgeView!
@@ -23,10 +23,22 @@ class CardListViewController: UIViewController, NewCardDelegation {
     let dataSource = CardListDataSource()
     let delegate = CardListDelegate()
     
+    var columnViewModel: ColumnViewModel? { didSet { configureViewModelHandler() } }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureColumnView()
         configureTableView()
+    }
+    
+    func updateColumn(_ column: Column) {
+        columnViewModel?.updateColumn(column)
+    }
+    
+    private func configureViewModelHandler() {
+        columnViewModel?.updateNotify(changed: { (column) in
+            self.updateColumn(column)
+        })
     }
     
     private func configureTableView() {
@@ -41,7 +53,8 @@ class CardListViewController: UIViewController, NewCardDelegation {
         columnView.addCardButton = addCardButton
     }
     
-    private func updateColumn() {
+    private func updateColumn(_ column: Column?) {
+        guard let column = column else { return }
         columnView.updateName(column.name)
         columnView.updateBedge(column.cards)
         dataSource.cards = column.cards
@@ -51,15 +64,14 @@ class CardListViewController: UIViewController, NewCardDelegation {
     @IBAction func addNewCardButtonTapped(_ sender: Any) {
         guard let newCardViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? NewCardViewController else { return }
         present(newCardViewController, animated: true, completion: {
-            newCardViewController.delegate = self
-            newCardViewController.column = self.column
+            newCardViewController.newCardDelegate = self
         })
     }
     
     func addNewCard(_ card: Card) {
         tableView.beginUpdates()
-        column.appendCard(card)
-        tableView.insertRows(at: [IndexPath(row: column.numberOfCards - 1, section: 0)], with: .bottom)
+        columnViewModel?.insertCard(card, at: 0)
+        tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .top)
         tableView.endUpdates()
     }
 }

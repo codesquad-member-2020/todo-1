@@ -9,28 +9,50 @@
 import UIKit
 
 class ToDoListViewController: UIViewController {
-
-    private let cardListViewControllerIdentifier = "CardList"
     
     @IBOutlet weak var stackView: UIStackView!
     
-    private var columns: [Column] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCardList()
+        
+        configureToDoList()
     }
     
-    private func configureCardList() {
-        columns = [Column(identifier: 1, name: "해야할 일", cards: []),
-                   Column(identifier: 2, name: "하고있는 일", cards: []),
-                   Column(identifier: 3, name: "완료한 일", cards: [])]
-        
+    private func configureToDoList() {
+        requestColumnsData { (columns) in
+            DispatchQueue.main.async {
+                self.configureColumns(columns)
+            }
+        }
+    }
+    
+    private func requestColumnsData(completion: @escaping ([Column]) -> Void) {
+        MockNetworkManager.shared.requestColumns { (columns, error) in
+            if error != nil {
+                self.showErrorAlert()
+                return
+            }
+            guard let columns = columns else { return }
+            completion(columns)
+        }
+    }
+    
+    private func showErrorAlert() {
+        let alert = UIAlertController(title: "Network Error", message: "Failed to load data", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Done", style: .default) { _ in
+            self.configureToDoList()
+        }
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func configureColumns(_ columns: [Column]) {
         for column in columns {
-            guard let cardListViewController = storyboard?.instantiateViewController(identifier: cardListViewControllerIdentifier) as? CardListViewController else { return }
-            self.addChild(cardListViewController)
-            self.stackView.addArrangedSubview(cardListViewController.view)
-            cardListViewController.column = column
+            guard let columnViewController = storyboard?.instantiateViewController(identifier: ColumnViewController.identifier) as? ColumnViewController else { return }
+            self.addChild(columnViewController)
+            self.stackView.addArrangedSubview(columnViewController.view)
+            columnViewController.columnViewModel = ColumnViewModel()
+            columnViewController.updateColumn(column)
         }
     }
 }

@@ -12,11 +12,15 @@ class CardTitleTextFieldDelegate: NSObject, UITextFieldDelegate {
     
     private let titleTextCountLimitation: Int = 19
     
-    var cardViewModel: CardViewModel?
+    private var titleViewModel: TitleViewModel?
+    
+    init(titleViewModel: TitleViewModel?) {
+        self.titleViewModel = titleViewModel
+    }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let text = textField.text else { return }
-        cardViewModel?.title = text
+        titleViewModel?.update(with: text)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

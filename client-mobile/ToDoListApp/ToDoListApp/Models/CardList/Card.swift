@@ -8,19 +8,24 @@
 
 import Foundation
 
-struct Card {
+struct Card: Codable {
     
-    let identifier: Int
-    var title: String
-    var contents: String
-    var device: String
-    var index: Int
+    private(set) var identifier: Int?
+    private(set) var title: String
+    private(set) var contents: String
+    private(set) var device: String
+    private(set) var row: Int
     
-    init(viewModel: CardViewModel) {
-        self.identifier = 0
-        self.title = viewModel.title
-        self.contents = viewModel.contents
-        self.device = viewModel.device
-        self.index = viewModel.index
+    init(identifier: Int? = nil, title: String, contents: String, device: String, index: Int) {
+        self.identifier = identifier
+        self.title = title
+        self.contents = contents
+        self.device = device
+        self.row = index
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case identifier = "id"
+        case title, contents, device, row
     }
 }

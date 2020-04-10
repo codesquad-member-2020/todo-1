@@ -93,10 +93,10 @@
             </objects>
             <point key="canvasLocation" x="1559" y="134"/>
         </scene>
-        <!--Card List View Controller-->
+        <!--Column View Controller-->
         <scene sceneID="kcW-4T-NOs">
             <objects>
-                <viewController storyboardIdentifier="CardList" id="tTc-I3-ac2" customClass="CardListViewController" customModule="ToDoListApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Column" id="tTc-I3-ac2" customClass="ColumnViewController" customModule="ToDoListApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kx5-Uh-a7J">
                         <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

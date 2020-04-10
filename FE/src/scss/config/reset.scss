@@ -146,6 +146,7 @@ button {
 
 i {
 	cursor: pointer;
+	transition: color 0.1s ease-in-out;
 	&:hover {
 		color: $pink;
 	}

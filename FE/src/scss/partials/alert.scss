@@ -1,0 +1,45 @@
+.alert {
+	width: 400px;
+	height: 200px;
+	background: $white;
+	border: 1px solid $midgrey;
+	border-radius: 6px;
+	z-index: 100;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -200px;
+	* {
+		width: 100%;
+	}
+	.alert__message {
+		font-size: 14x;
+		font-weight: bold;
+		text-align: center;
+		height: 70%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.alert__buttons {
+		height: 30%;
+		display: flex;
+		justify-content: space-evenly;
+		button {
+			width: 45%;
+			height: 80%;
+			font-weight: bold;
+			border: 1px solid $midgrey;
+			border-radius: 6px;
+			cursor: pointer;
+		}
+		.cancel {
+			background: $white;
+		}
+		.confirm {
+			color: $white;
+			background: $pink;
+		}
+	}
+}

@@ -17,7 +17,7 @@ protocol NetworkManagable {
 enum RequestError: String, Error, CustomStringConvertible {
     case ServerError = "서버 통신 요청에 실패했습니다."
     case URLSessionError = "네트워크 요청에 실패했습니다."
-    case JSONDecodingError = ""
+    case JSONDecodingError = "데이터를 가져오는 중에 오류가 발생했습니다."
     
     var description: String {
         return self.rawValue
@@ -60,7 +60,10 @@ class MockNetworkManager: NetworkManagable {
             case .success(let data):
                 let decoder = JSONDecoder()
                 guard let data = data else { return }
-                guard let userData = try? decoder.decode(UserData.self, from: data) else { return }
+                guard let userData = try? decoder.decode(UserData.self, from: data) else {
+                    completion(.failure(.JSONDecodingError))
+                    return
+                }
                 completion(.success(userData.columns))
             case .failure(let error):
                 completion(.failure(error))

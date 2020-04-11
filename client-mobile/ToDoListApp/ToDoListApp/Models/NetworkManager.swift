@@ -29,10 +29,10 @@ class MockNetworkManager: NetworkManagable {
     
     static let shared = MockNetworkManager()
     
-    private let baseURL = "http://15.165.109.128"
+    private let baseURL = "http://13.124.169.123"
     
     enum path: String, CustomStringConvertible {
-        case GetColumns = "/api/columns"
+        case GetColumns = "/api/api/columns"
         
         var description: String {
             return self.rawValue

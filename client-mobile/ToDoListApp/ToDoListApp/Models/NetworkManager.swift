@@ -62,6 +62,7 @@ class MockNetworkManager: NetworkManagable {
 }
 
 extension MockNetworkManager {
+    
     enum path: String, CustomStringConvertible {
         case GetColumns = "/api/api/columns"
         

@@ -25,23 +25,12 @@ enum RequestError: String, Error, CustomStringConvertible {
 }
 
 class MockNetworkManager: NetworkManagable {
+    
     typealias RequestData = [Column]?
     
     static let shared = MockNetworkManager()
     
     private let baseURL = "http://13.124.169.123"
-    
-    enum path: String, CustomStringConvertible {
-        case GetColumns = "/api/api/columns"
-        
-        var description: String {
-            return self.rawValue
-        }
-    }
-    
-    private func RequestURL(path: path) -> URL {
-        return URL(string: baseURL + path.description)!
-    }
     
     private func requestDataToServer(completion: @escaping (Result<Data?, RequestError>) -> Void) {
         let successStatusCode = 200
@@ -69,5 +58,19 @@ class MockNetworkManager: NetworkManagable {
                 completion(.failure(error))
             }
         }
+    }
+}
+
+extension MockNetworkManager {
+    enum path: String, CustomStringConvertible {
+        case GetColumns = "/api/api/columns"
+        
+        var description: String {
+            return self.rawValue
+        }
+    }
+    
+    private func RequestURL(path: path) -> URL {
+        return URL(string: baseURL + path.description)!
     }
 }

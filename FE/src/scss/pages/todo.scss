@@ -137,43 +137,72 @@ main {
 		* {
 			height: fit-content;
 		}
-		.contents {
-			display: inline-block;
-			width: 86%;
-			height: 1.3em;
-			line-height: 1.2em;
-			overflow-y: hidden;
+		.card-wrapper {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			width: 90%;
+			height: 100%;
+			line-height: 1.3em;
 		}
 		i {
 			font-size: 17px;
 			padding-top: 1px;
 		}
 		.fa-sticky-note {
+			color: $black;
 			transition: none;
+			margin-right: 5px;
 			&:hover {
 				color: $black;
 			}
 		}
+		.title {
+			color: $pink;
+			font-weight: 600;
+			margin-bottom: 5px;
+			height: 25%;
+			overflow: hidden;
+		}
+		.contents {
+			height: 24%;
+			overflow: hidden;
+		}
+		.user-info {
+			font-size: 12px;
+			color: $grey;
+		}
+		.user-id {
+			font-weight: bold;
+		}
 	}
 	.card-creator {
 		margin-bottom: 8px;
-	}
-	.card-textarea {
-		min-width: 100%;
-		min-height: 100px;
-		resize: none;
-		resize: vertical;
-		padding: 6px 8px;
-		margin-bottom: 7px;
-		font-size: 12px;
-		line-height: 20px;
-		color: $black;
-		vertical-align: middle;
-		background-color: $white;
-		border: 1px solid $midgrey;
-		border-radius: 3px;
-		outline: none;
-		box-shadow: inset 0 1px 2px rgba(27, 31, 35, 0.075);
+		.card-title {
+			width: 100%;
+			height: 30px;
+			padding: 6px 8px;
+			border: 1px solid $midgrey;
+			border-radius: 3px;
+			margin-bottom: 7px;
+		}
+		.card-textarea {
+			min-width: 100%;
+			min-height: 100px;
+			resize: none;
+			resize: vertical;
+			padding: 6px 8px;
+			margin-bottom: 7px;
+			font-size: 12px;
+			line-height: 20px;
+			color: $black;
+			vertical-align: middle;
+			background-color: $white;
+			border: 1px solid $midgrey;
+			border-radius: 3px;
+			outline: none;
+			box-shadow: inset 0 1px 2px rgba(27, 31, 35, 0.075);
+		}
 	}
 	.card-creator__buttons {
 		height: 30px;

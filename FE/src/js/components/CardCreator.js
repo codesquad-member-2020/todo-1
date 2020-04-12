@@ -2,6 +2,9 @@ import { cardCreator } from "../utils/template";
 
 export default class CardCreator {
 	$cardCreator = null;
+	$textArea = null;
+	$addButton = null;
+	$cancelButton = null;
 
 	constructor({ $target, data }) {
 		this.$target = $target;
@@ -18,6 +21,7 @@ export default class CardCreator {
 
 	cacheDomElements() {
 		this.$cardCreator = this.$target.$column.querySelector(".card-creator");
+		this.$title = this.$cardCreator.querySelector(".card-title");
 		this.$textArea = this.$cardCreator.querySelector(".card-textarea");
 		this.$addButton = this.$cardCreator.querySelector(".add");
 		this.$cancelButton = this.$cardCreator.querySelector(".cancel");
@@ -60,7 +64,13 @@ export default class CardCreator {
 	}
 
 	addCard() {
-		this.$target.addCard(this.$textArea.value);
+		const title = this.$title.value;
+		const contents = this.$textArea.value;
+		if (!title) {
+			alert("제목을 입력해주세요.");
+			return;
+		}
+		this.$target.addCard({ title, contents });
 		this.clearTextArea();
 		this.deactivateAddButton();
 	}

@@ -32,8 +32,7 @@ export default class Column {
 	}
 
 	render() {
-		const { columnName, cards } = this.initialData;
-		this.$target.insertAdjacentHTML("beforeend", column(columnName, cards.length));
+		this.$target.insertAdjacentHTML("beforeend", column(this.initialData));
 	}
 
 	cacheDomElements() {

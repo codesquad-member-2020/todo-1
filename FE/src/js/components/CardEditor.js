@@ -2,6 +2,8 @@ import { cardEditor } from "../utils/template";
 
 export default class CardEditor {
 	$cardEditor = null;
+	$title = null;
+	$contents = null;
 	$cancel = null;
 	$save = null;
 
@@ -19,6 +21,8 @@ export default class CardEditor {
 
 	cacheDomElements() {
 		this.$cardEditor = document.querySelector(".card-editor");
+		this.$title = this.$cardEditor.querySelector(".editor-title");
+		this.$contents = this.$cardEditor.querySelector(".editor-contents");
 		this.$cancel = this.$cardEditor.querySelector(".close-editor");
 		this.$save = this.$cardEditor.querySelector(".save");
 	}
@@ -29,8 +33,9 @@ export default class CardEditor {
 	}
 
 	handleUpdatingCard() {
-		const newContents = this.$cardEditor.querySelector(".editor-contents").value;
-		this.onSave(newContents);
+		const newTitle = this.$title.value;
+		const newContents = this.$contents.value;
+		this.onSave(newTitle, newContents);
 		this.toggleDisplay({ visible: false });
 	}
 
@@ -38,8 +43,9 @@ export default class CardEditor {
 		this.data = nextData;
 		const {
 			$cardEditor,
-			data: { contents, visible },
+			data: { title, contents, visible },
 		} = this;
+		this.$cardEditor.querySelector(".editor-title").value = title;
 		this.$cardEditor.querySelector(".editor-contents").value = contents;
 		visible ? ($cardEditor.style.display = "block") : ($cardEditor.style.display = "none");
 	}

@@ -21,8 +21,8 @@ export default class ColumnContainer {
 		});
 
 		this.cardEditor = new CardEditor({
-			data: { contents: null, visible: false },
-			onSave: (contents) => this.updateCard(contents),
+			data: { title: null, contents: null, visible: false },
+			onSave: (title, contents) => this.updateCard(title, contents),
 		});
 	}
 
@@ -59,23 +59,31 @@ export default class ColumnContainer {
 		const classList = e.target.classList;
 		const isCard =
 			classList.contains("card") ||
+			classList.contains("card-wrapper") ||
+			classList.contains("title") ||
 			classList.contains("contents") ||
+			classList.contains("user-info") ||
+			classList.contains("user-id") ||
 			classList.contains("fa-sticky-note");
+
 		if (isCard) {
 			this.$selectedCard = e.target.closest(".card");
-			const contents = [...this.$selectedCard.children].find(
-				(element) => element.className === "contents"
-			).textContent;
-			this.cardEditor.toggleDisplay({ contents, visible: true });
+			const title = this.$selectedCard.querySelector(".title").textContent;
+			const contents = this.$selectedCard.querySelector(".contents").textContent;
+			this.cardEditor.toggleDisplay({ title, contents, visible: true });
 		}
 	}
 
-	updateCard(contents) {
+	updateCard(title, contents) {
 		const { $selectedCard } = this;
 		const selectedColumn = this.columns.find(
 			(column) => column.$column === $selectedCard.closest(".column")
 		);
 
-		selectedColumn.updateCard({ $card: $selectedCard, id: $selectedCard.dataset.id, contents });
+		selectedColumn.updateCard({
+			$card: $selectedCard,
+			id: $selectedCard.dataset.id,
+			data: { title, contents },
+		});
 	}
 }

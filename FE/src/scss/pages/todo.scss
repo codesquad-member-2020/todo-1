@@ -122,7 +122,14 @@ main {
 	padding: 10px;
 	padding-top: 0;
 	height: 100%;
-	overflow-y: auto;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	.card-container {
+		flex: 1;
+		height: 100%;
+		overflow: auto;
+	}
 	.card {
 		padding: 12px;
 		width: 100%;
@@ -133,7 +140,11 @@ main {
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
-		cursor: pointer;
+		cursor: move;
+		&.selected {
+			opacity: 0.5;
+			border: 1px dashed $pink;
+		}
 		* {
 			height: fit-content;
 		}

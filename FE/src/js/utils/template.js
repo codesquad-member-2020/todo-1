@@ -33,7 +33,7 @@ export function column(columnName, numOfCards) {
 }
 
 export function card({ id, title, contents, userId }) {
-	return `<div class="card" data-id="${id}">
+	return `<div class="card" data-id="${id}" draggable="true">
             <div class="card-wrapper">
               <div class="title"><i class="far fa-sticky-note"></i>${title}</div>
               <div class="contents">${contents}</div>

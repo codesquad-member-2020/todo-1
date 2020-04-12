@@ -28,8 +28,27 @@ export default class CardEditor {
 	}
 
 	bindEventListener() {
+		this.$contents.addEventListener("input", (e) => this.handleTextArea.call(this, e));
 		this.$cancel.addEventListener("click", this.toggleDisplay.bind(this, { visible: false }));
 		this.$save.addEventListener("click", () => this.handleUpdatingCard());
+	}
+
+	handleTextArea(e) {
+		const value = e.target.value;
+		const length = value.length;
+		length !== 0 ? this.activateSaveButton() : this.deactivateSaveButton();
+		if (length > 500) {
+			e.target.value = value.substring(0, 500);
+			alert("최대 500자 까지 입력할 수 있습니다.");
+		}
+	}
+
+	activateSaveButton() {
+		this.$save.removeAttribute("disabled");
+	}
+
+	deactivateSaveButton() {
+		this.$save.setAttribute("disabled", true);
 	}
 
 	handleUpdatingCard() {

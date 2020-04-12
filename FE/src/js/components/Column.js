@@ -68,11 +68,11 @@ export default class Column {
 		}
 	}
 
-	createCardObj(value) {
+	createCardObj({ title, contents }) {
 		return {
 			userId: "reese",
-			title: "제목없음",
-			contents: value,
+			title: title,
+			contents: contents,
 			device: "web",
 		};
 	}

@@ -10,18 +10,23 @@ import java.util.List;
 
 @Getter
 @ToString
-public class Todo {
+public class Category {
     @Id
     private Long id;
 
     private String columnName;
-    private int section;
     private List<Card> cards = new ArrayList<>();
 
-    @Builder
-    public Todo(Long id, String columnName, int section) {
+    public void cardAdd(Card card) {
+        this.cards.add(card);
+    }
+
+    public Category(Long id, String columnName) {
         this.id = id;
         this.columnName = columnName;
-        this.section = section;
+    }
+
+    public void addCard(Card card) {
+        this.cards.add(card);
     }
 }

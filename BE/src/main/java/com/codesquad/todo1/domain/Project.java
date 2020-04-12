@@ -9,11 +9,10 @@ import java.util.List;
 
 @Getter
 @ToString
-public class User {
+public class Project {
+
     @Id
     private Long id;
+    private List<Category> categories = new ArrayList<>();
 
-    private String userId;
-    private String password;
-    private List<Card> cards = new ArrayList<>();
 }

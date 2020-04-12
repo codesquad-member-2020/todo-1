@@ -13,12 +13,11 @@ struct Column: Codable {
     let identifier: Int
     private(set) var name: String
     private(set) var cards: [Card]
-    private(set) var section: Int
     
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
         case name = "columnName"
-        case cards, section
+        case cards
     }
     
     mutating func insertCard(_ card: Card, at index: Int) {

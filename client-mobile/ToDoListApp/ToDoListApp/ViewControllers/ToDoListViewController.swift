@@ -40,11 +40,15 @@ class ToDoListViewController: UIViewController {
     
     private func showErrorAlert(error: RequestError) {
         let alert = UIAlertController(title: "Error", message: error.description, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Done", style: .default) { _ in
+        let cancelAction = UIAlertAction(title: "Done", style: .default, handler: nil)
+        let retryAction = UIAlertAction(title: "Retry", style: .cancel) { _ in
             self.configureToDoList()
         }
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
+        alert.addAction(retryAction)
+        alert.addAction(cancelAction)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     private func configureColumns(_ columns: [Column]) {

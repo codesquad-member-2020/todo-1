@@ -10,22 +10,22 @@ import Foundation
 
 struct Card: Codable {
     
-    private(set) var identifier: Int?
-    private(set) var title: String
-    private(set) var contents: String
-    private(set) var device: String
-    private(set) var row: Int
+    let identifier: Int?
+    let userID: String
+    let title: String
+    let contents: String
+    let device: String
     
-    init(identifier: Int? = nil, title: String, contents: String, device: String, index: Int) {
+    init(identifier: Int? = nil, userID: String, title: String, contents: String, device: String, index: Int) {
         self.identifier = identifier
+        self.userID = userID
         self.title = title
         self.contents = contents
         self.device = device
-        self.row = index
     }
     
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
-        case title, contents, device, row
+        case userID, title, contents, device
     }
 }

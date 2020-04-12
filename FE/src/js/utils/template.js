@@ -32,16 +32,20 @@ export function column(columnName, numOfCards) {
 	return `<div class="column">${columnHeader}${columnBody}</div>`;
 }
 
-export function card({ contents, id }) {
+export function card({ id, title, contents, userId }) {
 	return `<div class="card" data-id="${id}">
-						<i class="far fa-sticky-note"></i>
-						<span class="contents">${contents}</span>
+            <div class="card-wrapper">
+              <div class="title"><i class="far fa-sticky-note"></i>${title}</div>
+              <div class="contents">${contents}</div>
+              <div class="user-info">Added by <span class="user-id">${userId}</span></div>
+            </div>
 						<i class="fas fa-times delete-card"></i>
 					</div>`;
 }
 
 export function cardCreator() {
 	return `<div class="card-creator" style="display:none;">
+            <input class="card-title" placeholder="Title"></input>
             <textarea class="card-textarea" placeholder="Enter a note"></textarea>
             <div class="card-creator__buttons">
               <button type="button" class="add" disabled>Add</button>

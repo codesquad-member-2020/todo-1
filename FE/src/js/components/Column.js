@@ -11,14 +11,15 @@ export default class Column {
 	$counter = null;
 	cardCreatorIsShowing = false;
 
-	constructor({ $target, initialData }) {
+	constructor({ $target, initialData, index }) {
 		this.$target = $target;
 		this.initialData = initialData;
-		this.columnIndex = initialData.index;
+		this.id = initialData.id;
+		this.index = index;
 
 		this.render();
 		this.cacheDomElements();
-		this.bindeEventListener();
+		this.bindEventListener();
 
 		this.renderCards();
 
@@ -36,14 +37,14 @@ export default class Column {
 	}
 
 	cacheDomElements() {
-		this.$column = [...this.$target.children][this.columnIndex];
+		this.$column = [...this.$target.children][this.index];
 		this.$columnHeader = this.$column.querySelector(".column__header");
 		this.$columnBody = this.$column.querySelector(".column__body");
 		this.$cardContainer = this.$column.querySelector(".card-container");
 		this.$counter = this.$columnHeader.querySelector(".column__counter");
 	}
 
-	bindeEventListener() {
+	bindEventListener() {
 		const addCardButton = this.$columnHeader.querySelector(".add-card");
 		addCardButton.addEventListener("click", this.handleCardCreator.bind(this));
 	}
@@ -67,20 +68,19 @@ export default class Column {
 		}
 	}
 
-	createCardObj(value, cardList) {
+	createCardObj(value) {
 		return {
 			userId: "reese",
 			title: "제목없음",
 			contents: value,
 			device: "web",
-			row: cardList.length + 1,
 		};
 	}
 
 	addCard(value) {
 		// update data
-		const cardList = data.columns.find((column) => column.index === this.columnIndex).cards;
-		const newCardObj = this.createCardObj.call(this, value, cardList);
+		const cardList = data.columns.find((column) => column.id === this.id).cards;
+		const newCardObj = this.createCardObj.call(this, value);
 		cardList.push(newCardObj);
 
 		// send newCardObj to the server
@@ -96,8 +96,8 @@ export default class Column {
 
 	deleteCard({ $card, id }) {
 		// update data
-		const cardList = data.columns.find((column) => column.index === this.columnIndex).cards;
-		data.columns.find((column) => column.index === this.columnIndex).cards = cardList.filter(
+		const cardList = data.columns.find((column) => column.id === this.id).cards;
+		data.columns.find((column) => column.id === this.id).cards = cardList.filter(
 			(card) => card.id !== id
 		);
 
@@ -113,7 +113,7 @@ export default class Column {
 
 	updateCard({ $card, id, contents }) {
 		// update data
-		const cardList = data.columns.find((column) => column.index === this.columnIndex).cards;
+		const cardList = data.columns.find((column) => column.id === this.id).cards;
 		let updatedCard;
 		for (let index = 0, length = cardList.length; index < length; index++) {
 			if (cardList[index].id === id) {

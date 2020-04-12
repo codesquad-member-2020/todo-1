@@ -1,5 +1,6 @@
 package com.codesquad.todo1.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
@@ -14,13 +15,12 @@ public class Card {
     private String title;
     private String contents;
     private String device;
-    private Integer row;
 
-    public Card(String userId, String title, String contents, String device, Integer row) {
+    @Builder
+    public Card(String userId, String title, String contents, String device) {
         this.userId = userId;
         this.title = title;
         this.contents = contents;
         this.device = device;
-        this.row = row;
     }
 }

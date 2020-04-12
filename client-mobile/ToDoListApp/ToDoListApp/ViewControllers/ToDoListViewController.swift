@@ -44,7 +44,9 @@ class ToDoListViewController: UIViewController {
             self.configureToDoList()
         }
         alert.addAction(action)
-        present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     private func configureColumns(_ columns: [Column]) {

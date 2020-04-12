@@ -13,7 +13,7 @@ public class ApiShowList {
     private final List<Category> columns;
 
     public ApiShowList(int statusCode, List<Category> columns) {
-        this.statusCode = statusCode;
+       this.statusCode = statusCode;
         this.columns = columns;
     }
 }

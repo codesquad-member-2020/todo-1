@@ -40,7 +40,4 @@ public class TodoService {
         logger.info("cardId : {}", cardId);
         return categoryRepository.findByCardId(cardId);
     }
-
-
-
 }

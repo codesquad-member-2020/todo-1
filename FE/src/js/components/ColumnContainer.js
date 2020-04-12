@@ -37,6 +37,9 @@ export default class ColumnContainer {
 	bindeEventListener() {
 		this.$columnContainer.addEventListener("click", (e) => this.handleDeleteRequest(e));
 		this.$columnContainer.addEventListener("dblclick", (e) => this.handleUpdateRequest(e));
+		this.$columnContainer.addEventListener("dragstart", (e) => this.dragStart(e));
+		this.$columnContainer.addEventListener("dragover", (e) => this.dragOver(e));
+		this.$columnContainer.addEventListener("drop", (e) => this.drop(e));
 	}
 
 	handleDeleteRequest(e) {
@@ -85,5 +88,27 @@ export default class ColumnContainer {
 			id: $selectedCard.dataset.id,
 			data: { title, contents },
 		});
+	}
+
+	dragStart(e) {
+		if (e.target.className !== "card") return;
+
+		e.dataTransfer.setData("text/plain", e.target.dataset.id);
+		console.log(e.target, "drag started!");
+		this.$selectedCard = e.target;
+		e.target.classList.add("selected");
+		// drop 했을 때 column에서 card node 지워주기
+	}
+
+	dragOver(e) {
+		e.preventDefault();
+		// console.log(e.target, "dragging");
+	}
+
+	drop(e) {
+		e.preventDefault();
+		console.log(e.target, "drop");
+		e.dataTransfer.getData("text");
+		e.dataTransfer.clearData();
 	}
 }

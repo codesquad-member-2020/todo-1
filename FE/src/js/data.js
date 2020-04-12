@@ -26,14 +26,14 @@ export default {
 			columnName: "In Progress",
 			cards: [
 				{
-					id: "1",
+					id: "3",
 					userId: "sunny",
 					title: "hello world!! this is title  / row : 0",
 					contents: "contents~~",
 					device: "web",
 				},
 				{
-					id: "2",
+					id: "4",
 					userId: "honux",
 					title: "node.js 공부하기  / row : 1",
 					contents: "this is contents!",

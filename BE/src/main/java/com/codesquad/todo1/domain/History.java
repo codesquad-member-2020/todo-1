@@ -1,6 +1,7 @@
 package com.codesquad.todo1.domain;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
 
@@ -8,24 +9,17 @@ import java.time.LocalDateTime;
 
 @Getter
 @ToString
+@RequiredArgsConstructor
 public class History {
     @Id
     private Long id;
 
     private String userId;
+    private String profileUrl;
     private String action;
     private String title;
     private Integer fromColumn;
     private Integer toColumn;
-    private LocalDateTime localDateTime;
+    private LocalDateTime actionTime;
 
-    public History(String userId, String action, String title,
-                   Integer fromColumn, Integer toColumn, LocalDateTime localDateTime) {
-        this.userId = userId;
-        this.action = action;
-        this.title = title;
-        this.fromColumn = fromColumn;
-        this.toColumn = toColumn;
-        this.localDateTime = LocalDateTime.now();
-    }
 }

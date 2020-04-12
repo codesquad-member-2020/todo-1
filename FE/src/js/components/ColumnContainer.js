@@ -115,16 +115,16 @@ export default class ColumnContainer {
 
 	updateCardList() {
 		let { $fromColumn, $toColumn, $selectedCard } = this;
-		this.$cardListOfToColumn = [...$toColumn.querySelector(".card-container").children];
+		this.$cardListOfToColumn = new Set([...$toColumn.querySelector(".card-container").children]);
 		if ($fromColumn !== $toColumn) {
-			this.$cardListOfToColumn.push($selectedCard);
+			this.$cardListOfToColumn.add($selectedCard);
 		}
 	}
 
 	getCurrentPosition(currentYPos) {
 		let cardAbove;
 		this.setCardPositions();
-		this.$cardListOfToColumn.forEach(($card, i) => {
+		[...this.$cardListOfToColumn].forEach(($card, i) => {
 			if ($card.yPos < currentYPos) {
 				cardAbove = $card;
 				this.toIndex = i + 1;
@@ -174,5 +174,20 @@ export default class ColumnContainer {
 
 		e.dataTransfer.getData("text");
 		e.dataTransfer.clearData();
+		this.moveCard();
+	}
+
+	moveCard() {
+		const cardId = this.$selectedCard.dataset.id;
+		const fromColumnId = this.$fromColumn.dataset.id;
+		const toColumnId = this.$toColumn.dataset.id;
+		const toIndex = [...this.$cardListOfToColumn].reverse().indexOf(this.$selectedCard) + 1;
+
+		console.log("------------------------------");
+		console.log("cardId : ", cardId);
+		console.log("fromColumn : ", fromColumnId);
+		console.log("toColumn : ", toColumnId);
+		console.log("toRow : ", toIndex);
+		console.log("------------------------------");
 	}
 }

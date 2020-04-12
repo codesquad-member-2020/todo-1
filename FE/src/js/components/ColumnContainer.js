@@ -9,6 +9,8 @@ export default class ColumnContainer {
 	$selectedCard = null;
 	$fromColumn = null;
 	$toColumn = null;
+	$cardListOfToColumn = null;
+	toIndex = 0;
 
 	constructor({ $target, initialData }) {
 		this.$target = $target;
@@ -102,20 +104,64 @@ export default class ColumnContainer {
 
 	dragOver(e) {
 		e.preventDefault();
-		if (e.target.className !== "card-container") return;
 		this.$toColumn = e.target.closest(".column");
+		if (!this.$toColumn) return;
+
+		this.updateCardList();
+		this.getCurrentPosition(e.clientY);
+	}
+
+	updateCardList() {
+		let { $fromColumn, $toColumn, $selectedCard } = this;
+		this.$cardListOfToColumn = [...$toColumn.querySelector(".card-container").children];
+		if ($fromColumn !== $toColumn) {
+			this.$cardListOfToColumn.push($selectedCard);
+		}
+	}
+
+	getCurrentPosition(currentYPos) {
+		let cardAbove;
+		this.setCardPositions();
+		this.$cardListOfToColumn.forEach(($card, i) => {
+			if ($card.yPos < currentYPos) {
+				cardAbove = $card;
+				this.toIndex = i + 1;
+			}
+		});
+		console.log("cardAbove : ", cardAbove);
+		if (!cardAbove) {
+			this.toIndex = 0;
+		}
+		console.log("dragging --- ", this.toIndex);
+	}
+
+	setCardPositions() {
+		this.$cardListOfToColumn.forEach(($card) => {
+			const position = $card.getBoundingClientRect();
+			const yTop = position.top;
+			const yBottom = position.bottom;
+			$card.yPos = yTop + (yBottom - yTop) / 2;
+		});
 	}
 
 	drop(e) {
 		e.preventDefault();
-		if (e.target.className !== "card-container") {
+
+		this.$toColumn = e.target.closest(".column");
+		if (!this.$toColumn) {
 			this.$selectedCard.classList.remove("selected");
 			return;
 		}
-		this.$toColumn = e.target.closest(".column");
 
+		console.log("drop ---", this.toIndex);
 		this.$fromColumn.querySelector(".card-container").removeChild(this.$selectedCard);
-		this.$toColumn.querySelector(".card-container").appendChild(this.$selectedCard);
+
+		const targetCardContainer = this.$toColumn.querySelector(".card-container");
+		targetCardContainer.insertBefore(
+			this.$selectedCard,
+			targetCardContainer.children[this.toIndex]
+		);
+
 		this.$selectedCard.classList.remove("selected");
 
 		e.dataTransfer.getData("text");

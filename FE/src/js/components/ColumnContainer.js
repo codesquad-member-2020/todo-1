@@ -11,6 +11,8 @@ export default class ColumnContainer {
 	$toColumn = null;
 	$cardListOfToColumn = null;
 	toIndex = 0;
+	dragging = false;
+	timer = null;
 
 	constructor({ $target, initialData }) {
 		this.$target = $target;
@@ -106,7 +108,7 @@ export default class ColumnContainer {
 		e.preventDefault();
 		this.$toColumn = e.target.closest(".column");
 		if (!this.$toColumn) return;
-
+		this.dragging = true;
 		this.updateCardList();
 		this.getCurrentPosition(e.clientY);
 	}
@@ -128,11 +130,25 @@ export default class ColumnContainer {
 				this.toIndex = i + 1;
 			}
 		});
-		console.log("cardAbove : ", cardAbove);
+
 		if (!cardAbove) {
 			this.toIndex = 0;
 		}
-		console.log("dragging --- ", this.toIndex);
+
+		if (this.timer) {
+			clearTimeout(this.timer);
+		}
+		this.timer = setTimeout(() => {
+			if (this.$fromColumn === this.$toColumn && this.dragging) {
+				this.$fromColumn.querySelector(".card-container").removeChild(this.$selectedCard);
+			}
+		}, 5000);
+
+		const targetCardContainer = this.$toColumn.querySelector(".card-container");
+		targetCardContainer.insertBefore(
+			this.$selectedCard,
+			targetCardContainer.children[this.toIndex]
+		);
 	}
 
 	setCardPositions() {
@@ -153,16 +169,8 @@ export default class ColumnContainer {
 			return;
 		}
 
-		console.log("drop ---", this.toIndex);
-		this.$fromColumn.querySelector(".card-container").removeChild(this.$selectedCard);
-
-		const targetCardContainer = this.$toColumn.querySelector(".card-container");
-		targetCardContainer.insertBefore(
-			this.$selectedCard,
-			targetCardContainer.children[this.toIndex]
-		);
-
 		this.$selectedCard.classList.remove("selected");
+		this.dragging = false;
 
 		e.dataTransfer.getData("text");
 		e.dataTransfer.clearData();

@@ -111,12 +111,13 @@ export default class Column {
 		console.log("card deleted!", data);
 	}
 
-	updateCard({ $card, id, contents }) {
+	updateCard({ $card, id, data: { title, contents } }) {
 		// update data
 		const cardList = data.columns.find((column) => column.id === this.id).cards;
 		let updatedCard;
 		for (let index = 0, length = cardList.length; index < length; index++) {
 			if (cardList[index].id === id) {
+				cardList[index].title = title;
 				cardList[index].contents = contents;
 				updatedCard = cardList[index];
 				break;
@@ -126,6 +127,7 @@ export default class Column {
 		// send updatedCard to the server
 
 		// render new contents in the card
+		$card.querySelector(".title").textContent = title;
 		$card.querySelector(".contents").textContent = contents;
 		console.log("card updated!", data);
 	}

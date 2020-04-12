@@ -2,6 +2,8 @@ import { cardEditor } from "../utils/template";
 
 export default class CardEditor {
 	$cardEditor = null;
+	$title = null;
+	$contents = null;
 	$cancel = null;
 	$save = null;
 
@@ -19,18 +21,44 @@ export default class CardEditor {
 
 	cacheDomElements() {
 		this.$cardEditor = document.querySelector(".card-editor");
+		this.$title = this.$cardEditor.querySelector(".editor-title");
+		this.$contents = this.$cardEditor.querySelector(".editor-contents");
 		this.$cancel = this.$cardEditor.querySelector(".close-editor");
 		this.$save = this.$cardEditor.querySelector(".save");
 	}
 
 	bindEventListener() {
+		this.$contents.addEventListener("input", (e) => this.handleTextArea.call(this, e));
 		this.$cancel.addEventListener("click", this.toggleDisplay.bind(this, { visible: false }));
 		this.$save.addEventListener("click", () => this.handleUpdatingCard());
 	}
 
+	handleTextArea(e) {
+		const value = e.target.value;
+		const length = value.length;
+		length !== 0 ? this.activateSaveButton() : this.deactivateSaveButton();
+		if (length > 500) {
+			e.target.value = value.substring(0, 500);
+			alert("최대 500자 까지 입력할 수 있습니다.");
+		}
+	}
+
+	activateSaveButton() {
+		this.$save.removeAttribute("disabled");
+	}
+
+	deactivateSaveButton() {
+		this.$save.setAttribute("disabled", true);
+	}
+
 	handleUpdatingCard() {
-		const newContents = this.$cardEditor.querySelector(".editor-contents").value;
-		this.onSave(newContents);
+		const newTitle = this.$title.value;
+		const newContents = this.$contents.value;
+		if (!newTitle) {
+			alert("제목을 입력해주세요.");
+			return;
+		}
+		this.onSave(newTitle, newContents);
 		this.toggleDisplay({ visible: false });
 	}
 
@@ -38,8 +66,9 @@ export default class CardEditor {
 		this.data = nextData;
 		const {
 			$cardEditor,
-			data: { contents, visible },
+			data: { title, contents, visible },
 		} = this;
+		this.$cardEditor.querySelector(".editor-title").value = title;
 		this.$cardEditor.querySelector(".editor-contents").value = contents;
 		visible ? ($cardEditor.style.display = "block") : ($cardEditor.style.display = "none");
 	}

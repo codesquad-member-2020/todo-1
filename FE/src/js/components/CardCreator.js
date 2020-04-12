@@ -53,6 +53,7 @@ export default class CardCreator {
 	}
 
 	clearTextArea() {
+		this.$title.value = "";
 		this.$textArea.value = "";
 	}
 

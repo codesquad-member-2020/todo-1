@@ -45,7 +45,7 @@ export function card({ id, title, contents, userId }) {
 
 export function cardCreator() {
 	return `<div class="card-creator" style="display:none;">
-            <input class="card-title" placeholder="Title"></input>
+            <input class="card-title" placeholder="Title">
             <textarea class="card-textarea" placeholder="Enter a note"></textarea>
             <div class="card-creator__buttons">
               <button type="button" class="add" disabled>Add</button>
@@ -70,8 +70,9 @@ export function cardEditor(contents) {
 					<span class="title">Edit note</span>
 					<i class="fas fa-times close-editor"></i>
 				</div>
-				<span class="sub-title">note</span>
-				<textarea class="editor-contents">${contents}</textarea>
+        <span class="sub-title">note</span>
+        <input class="editor-title" placeholder="Title">
+				<textarea class="editor-contents" placeholder="Enter a note">${contents}</textarea>
 				<button class="save">Save note</button>
 			</div>
 		</div>`;

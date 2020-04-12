@@ -17,10 +17,10 @@ export function columnContainer() {
   </main>`;
 }
 
-export function column(columnName, numOfCards) {
+export function column({ id, columnName, cards }) {
 	const columnHeader = `<div class="column__header">
 					<div>
-						<span class="column__counter">${numOfCards}</span>
+						<span class="column__counter">${cards.length}</span>
 						<h3 class="column__name">${columnName}</h3>
 					</div>
 					<div>
@@ -29,7 +29,7 @@ export function column(columnName, numOfCards) {
 					</div>
         </div>`;
 	const columnBody = `<div class="column__body"><div class="card-container"></div></div>`;
-	return `<div class="column">${columnHeader}${columnBody}</div>`;
+	return `<div class="column" data-id="${id}">${columnHeader}${columnBody}</div>`;
 }
 
 export function card({ id, title, contents, userId }) {

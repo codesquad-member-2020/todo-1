@@ -54,6 +54,10 @@ export default class CardEditor {
 	handleUpdatingCard() {
 		const newTitle = this.$title.value;
 		const newContents = this.$contents.value;
+		if (!newTitle) {
+			alert("제목을 입력해주세요.");
+			return;
+		}
 		this.onSave(newTitle, newContents);
 		this.toggleDisplay({ visible: false });
 	}

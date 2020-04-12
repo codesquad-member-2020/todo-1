@@ -7,6 +7,8 @@ export default class ColumnContainer {
 	$columnContainer = null;
 	columns = null;
 	$selectedCard = null;
+	$fromColumn = null;
+	$toColumn = null;
 
 	constructor({ $target, initialData }) {
 		this.$target = $target;
@@ -37,9 +39,9 @@ export default class ColumnContainer {
 	bindeEventListener() {
 		this.$columnContainer.addEventListener("click", (e) => this.handleDeleteRequest(e));
 		this.$columnContainer.addEventListener("dblclick", (e) => this.handleUpdateRequest(e));
-		this.$columnContainer.addEventListener("dragstart", (e) => this.dragStart(e));
-		this.$columnContainer.addEventListener("dragover", (e) => this.dragOver(e));
-		this.$columnContainer.addEventListener("drop", (e) => this.drop(e));
+		this.$target.addEventListener("dragstart", (e) => this.dragStart(e));
+		this.$target.addEventListener("dragover", (e) => this.dragOver(e));
+		this.$target.addEventListener("drop", (e) => this.drop(e));
 	}
 
 	handleDeleteRequest(e) {
@@ -92,22 +94,30 @@ export default class ColumnContainer {
 
 	dragStart(e) {
 		if (e.target.className !== "card") return;
-
 		e.dataTransfer.setData("text/plain", e.target.dataset.id);
-		console.log(e.target, "drag started!");
 		this.$selectedCard = e.target;
-		e.target.classList.add("selected");
-		// drop 했을 때 column에서 card node 지워주기
+		this.$fromColumn = e.target.closest(".column");
+		this.$selectedCard.classList.add("selected");
 	}
 
 	dragOver(e) {
 		e.preventDefault();
-		// console.log(e.target, "dragging");
+		if (e.target.className !== "card-container") return;
+		this.$toColumn = e.target.closest(".column");
 	}
 
 	drop(e) {
 		e.preventDefault();
-		console.log(e.target, "drop");
+		if (e.target.className !== "card-container") {
+			this.$selectedCard.classList.remove("selected");
+			return;
+		}
+		this.$toColumn = e.target.closest(".column");
+
+		this.$fromColumn.querySelector(".card-container").removeChild(this.$selectedCard);
+		this.$toColumn.querySelector(".card-container").appendChild(this.$selectedCard);
+		this.$selectedCard.classList.remove("selected");
+
 		e.dataTransfer.getData("text");
 		e.dataTransfer.clearData();
 	}

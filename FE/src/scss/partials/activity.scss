@@ -1,0 +1,65 @@
+.activity {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 360px;
+	height: auto;
+	z-index: 30;
+	overflow: auto;
+	font-size: 13.5px;
+	background: $white;
+	border: 1px solid $midgrey;
+	box-shadow: -3px 0 5px rgba(36, 41, 46, 0.05);
+	.activity-border {
+		font-size: 14px;
+		font-weight: 600;
+		height: 40px;
+		background: $lightgrey;
+		border-bottom: 1px solid $midgrey;
+		padding: 0 15px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.fa-bars,
+		.fa-bell {
+			margin-right: 7px;
+			cursor: auto;
+			&:hover {
+				color: $black;
+			}
+		}
+		.close-activity {
+			font-size: 18px;
+		}
+	}
+	.detail-container {
+		border-bottom: 1px solid $midgrey;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		white-space: normal;
+		line-height: 1.3em;
+		padding: 16px 10px;
+		img {
+			width: 20px;
+			height: 20px;
+			border-radius: 20%;
+		}
+		.detail {
+			width: 92%;
+			.detail__data {
+				font-weight: 600;
+				color: $pink;
+			}
+			strong {
+				font-weight: 600;
+			}
+			.time {
+				display: block;
+				color: $grey;
+				margin-top: 8px;
+			}
+		}
+	}
+}

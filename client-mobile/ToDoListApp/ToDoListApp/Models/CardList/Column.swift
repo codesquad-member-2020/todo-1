@@ -19,8 +19,4 @@ struct Column: Codable {
         case name = "columnName"
         case cards
     }
-    
-    mutating func insertCard(_ card: Card, at index: Int) {
-        cards.insert(card, at: index)
-    }
 }

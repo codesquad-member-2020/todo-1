@@ -74,7 +74,7 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     
     func addNewCard(_ card: Card) {
         tableView.beginUpdates()
-        columnViewModel?.insertCard(card, at: 0)
+        cardListViewModel.insertCard(card, at: 0)
         tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .top)
         tableView.endUpdates()
     }

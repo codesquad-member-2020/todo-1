@@ -9,7 +9,9 @@
 import UIKit
 
 class CardListViewModel: NSObject, ViewModelBinding, UITableViewDelegate {
+    
     typealias Key = [Card]
+    
     private var cardList: Key = [] { didSet { changeHandler(cardList) } }
     private var changeHandler: (Key) -> Void
     

@@ -12,7 +12,4 @@ public interface CategoryRepository extends CrudRepository<Category, Long> {
 
     @Query("select * from card where id = :cardId")
     Optional<Card> findByCardId(Long cardId);
-
-    @Query("select * from user where user_id = :userId")
-    Optional<User> findByUserId(String userId);
 }

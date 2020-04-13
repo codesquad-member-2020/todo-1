@@ -9,11 +9,11 @@ import java.util.Optional;
 @Getter
 @ToString
 public class ApiCard {
-    private final int statusCode;
+    private final int status;
     private final Optional<Card> card;
 
-    public ApiCard(int statusCode, Optional<Card> card) {
-        this.statusCode = statusCode;
+    public ApiCard(int status, Optional<Card> card) {
+        this.status = status;
         this.card = card;
     }
 }

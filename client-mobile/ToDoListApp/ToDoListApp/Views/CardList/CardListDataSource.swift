@@ -21,4 +21,8 @@ class CardListDataSource: NSObject, UITableViewDataSource {
         cell.card = cards[indexPath.item]
         return cell
     }
+    
+    func updateCardList(_ cardList: [Card]) {
+        self.cards = cardList
+    }
 }

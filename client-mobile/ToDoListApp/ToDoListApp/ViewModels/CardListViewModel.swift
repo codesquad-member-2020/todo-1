@@ -19,8 +19,8 @@ class CardListViewModel: ViewModelBinding {
         changeHandler(cardList)
     }
     
-    func updateCardList(_ cardList: [Card]) {
-        self.cardList = cardList
+    func updateCardList(_ cardList: [Card]?) {
+        self.cardList = cardList ?? []
     }
     
     func updateNotify(changed: @escaping ([Card]) -> Void) {

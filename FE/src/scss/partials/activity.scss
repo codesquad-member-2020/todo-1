@@ -1,7 +1,7 @@
 .activity {
 	position: fixed;
 	top: 0;
-	right: 0;
+	right: -360px;
 	bottom: 0;
 	width: 360px;
 	height: auto;
@@ -11,6 +11,7 @@
 	background: $white;
 	border: 1px solid $midgrey;
 	box-shadow: -3px 0 5px rgba(36, 41, 46, 0.05);
+	transition: transform 0.3s ease-in-out;
 	.activity-border {
 		font-size: 14px;
 		font-weight: 600;

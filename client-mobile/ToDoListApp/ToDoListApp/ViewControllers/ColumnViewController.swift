@@ -13,8 +13,8 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     static let identifier = "Column"
     
     @IBOutlet weak var columnView: ColumnView!
-    @IBOutlet weak var bedgeView: BedgeView!
-    @IBOutlet weak var bedgeLabel: UILabel!
+    @IBOutlet weak var badgeView: BadgeView!
+    @IBOutlet weak var badgeLabel: UILabel!
     @IBOutlet weak var columnNameLabel: UILabel!
     @IBOutlet weak var addCardButton: UIButton!
     
@@ -47,8 +47,8 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     }
     
     private func configureColumnView() {
-        columnView.bedgeView = bedgeView
-        columnView.bedgeLabel = bedgeLabel
+        columnView.badgeView = badgeView
+        columnView.badgeLabel = badgeLabel
         columnView.nameLabel = columnNameLabel
         columnView.addCardButton = addCardButton
     }
@@ -56,7 +56,7 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     private func updateColumn(_ column: Column?) {
         guard let column = column else { return }
         columnView.updateName(column.name)
-        columnView.updateBedge(column.cards)
+        columnView.updateBadge(column.cards)
         dataSource.cards = column.cards
         tableView.reloadData()
     }

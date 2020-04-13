@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		380A5AE1243C5A360063A9F6 /* BedgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A5AE0243C5A360063A9F6 /* BedgeView.swift */; };
+		380A5AE1243C5A360063A9F6 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A5AE0243C5A360063A9F6 /* BadgeView.swift */; };
 		381C3A52243B505F00F83D4B /* CardListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381C3A51243B505F00F83D4B /* CardListDataSource.swift */; };
 		3830F72B243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3830F72A243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift */; };
 		3831B96B243B51D600550FA1 /* CardListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831B96A243B51D600550FA1 /* CardListDelegate.swift */; };
@@ -33,7 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		380A5AE0243C5A360063A9F6 /* BedgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedgeView.swift; sourceTree = "<group>"; };
+		380A5AE0243C5A360063A9F6 /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		381C3A51243B505F00F83D4B /* CardListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListDataSource.swift; sourceTree = "<group>"; };
 		3830F72A243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTitleTextFieldDelegate.swift; sourceTree = "<group>"; };
 		3831B96A243B51D600550FA1 /* CardListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListDelegate.swift; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 				381C3A51243B505F00F83D4B /* CardListDataSource.swift */,
 				3831B96A243B51D600550FA1 /* CardListDelegate.swift */,
 				3831B970243B58DF00550FA1 /* CardCell.swift */,
-				380A5AE0243C5A360063A9F6 /* BedgeView.swift */,
+				380A5AE0243C5A360063A9F6 /* BadgeView.swift */,
 				387B8B3A243CBFEE00805A34 /* ColumnView.swift */,
 			);
 			path = CardList;
@@ -272,7 +272,7 @@
 				388CA27C243AEE0900E99CED /* AppDelegate.swift in Sources */,
 				388CA27E243AEE0900E99CED /* SceneDelegate.swift in Sources */,
 				3831B971243B58DF00550FA1 /* CardCell.swift in Sources */,
-				380A5AE1243C5A360063A9F6 /* BedgeView.swift in Sources */,
+				380A5AE1243C5A360063A9F6 /* BadgeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

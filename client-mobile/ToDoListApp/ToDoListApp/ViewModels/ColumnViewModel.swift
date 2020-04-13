@@ -32,8 +32,4 @@ class ColumnViewModel: ViewModelBinding {
     func updateNotify(changed: @escaping (Column?) -> Void) {
         self.changeHandler = changed
     }
-    
-    func insertCard(_ card: Card, at index: Int) {
-        column?.insertCard(card, at: index)
-    }
 }

@@ -58,10 +58,12 @@ export default class ColumnContainer {
 
 	deleteCard() {
 		const { $selectedCard } = this;
-		const selectedColumn = this.columns.find(
-			(column) => column.$column === $selectedCard.closest(".column")
-		);
+		const selectedColumn = this.findColumn();
 		selectedColumn.deleteCard({ $card: $selectedCard, id: $selectedCard.dataset.id });
+	}
+
+	findColumn() {
+		return this.columns.find((column) => column.$column === this.$selectedCard.closest(".column"));
 	}
 
 	handleUpdateRequest(e) {
@@ -85,10 +87,7 @@ export default class ColumnContainer {
 
 	updateCard(title, contents) {
 		const { $selectedCard } = this;
-		const selectedColumn = this.columns.find(
-			(column) => column.$column === $selectedCard.closest(".column")
-		);
-
+		const selectedColumn = this.findColumn();
 		selectedColumn.updateCard({
 			$card: $selectedCard,
 			id: $selectedCard.dataset.id,
@@ -110,7 +109,8 @@ export default class ColumnContainer {
 		if (!this.$toColumn) return;
 		this.dragging = true;
 		this.updateCardList();
-		this.getCurrentPosition(e.clientY);
+		this.handlePosition(e.clientY);
+		this.handleAfterImage();
 	}
 
 	updateCardList() {
@@ -121,34 +121,9 @@ export default class ColumnContainer {
 		}
 	}
 
-	getCurrentPosition(currentYPos) {
-		let cardAbove;
+	handlePosition(currentYPos) {
 		this.setCardPositions();
-		[...this.$cardListOfToColumn].forEach(($card, i) => {
-			if ($card.yPos < currentYPos) {
-				cardAbove = $card;
-				this.toIndex = i + 1;
-			}
-		});
-
-		if (!cardAbove) {
-			this.toIndex = 0;
-		}
-
-		if (this.timer) {
-			clearTimeout(this.timer);
-		}
-		this.timer = setTimeout(() => {
-			if (this.$fromColumn === this.$toColumn && this.dragging) {
-				this.$fromColumn.querySelector(".card-container").removeChild(this.$selectedCard);
-			}
-		}, 5000);
-
-		const targetCardContainer = this.$toColumn.querySelector(".card-container");
-		targetCardContainer.insertBefore(
-			this.$selectedCard,
-			targetCardContainer.children[this.toIndex]
-		);
+		this.getCurrentPosition(currentYPos);
 	}
 
 	setCardPositions() {
@@ -158,6 +133,43 @@ export default class ColumnContainer {
 			const yBottom = position.bottom;
 			$card.yPos = yTop + (yBottom - yTop) / 2;
 		});
+	}
+
+	getCurrentPosition(currentYPos) {
+		let cardAbove;
+		[...this.$cardListOfToColumn].forEach(($card, i) => {
+			if ($card.yPos < currentYPos) {
+				cardAbove = $card;
+				this.toIndex = i + 1;
+			}
+		});
+		if (!cardAbove) {
+			this.toIndex = 0;
+		}
+	}
+
+	handleAfterImage() {
+		this.makeAfterImageForFromColumn();
+		this.makeAfterImageForToColumn();
+	}
+
+	makeAfterImageForFromColumn() {
+		if (this.timer) {
+			clearTimeout(this.timer);
+		}
+		this.timer = setTimeout(() => {
+			if (this.$fromColumn === this.$toColumn && this.dragging) {
+				this.$fromColumn.querySelector(".card-container").removeChild(this.$selectedCard);
+			}
+		}, 5000);
+	}
+
+	makeAfterImageForToColumn() {
+		const targetCardContainer = this.$toColumn.querySelector(".card-container");
+		targetCardContainer.insertBefore(
+			this.$selectedCard,
+			targetCardContainer.children[this.toIndex]
+		);
 	}
 
 	drop(e) {
@@ -181,13 +193,9 @@ export default class ColumnContainer {
 		const cardId = this.$selectedCard.dataset.id;
 		const fromColumnId = this.$fromColumn.dataset.id;
 		const toColumnId = this.$toColumn.dataset.id;
-		const toIndex = [...this.$cardListOfToColumn].reverse().indexOf(this.$selectedCard);
+		const toRow = [...this.$cardListOfToColumn].reverse().indexOf(this.$selectedCard);
 
-		console.log("------------------------------");
-		console.log("cardId : ", cardId);
-		console.log("fromColumn : ", fromColumnId);
-		console.log("toColumn : ", toColumnId);
-		console.log("toRow : ", toIndex);
-		console.log("------------------------------");
+		const selectedColumn = this.findColumn();
+		selectedColumn.moveCard({ cardId, fromColumnId, toColumnId, toRow });
 	}
 }

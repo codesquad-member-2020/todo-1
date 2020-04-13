@@ -130,4 +130,14 @@ export default class Column {
 		$card.querySelector(".contents").textContent = contents;
 		console.log("card updated!", data);
 	}
+
+	moveCard({ cardId, fromColumnId, toColumnId, toRow }) {
+		// send data to the server
+		console.log("------------------------------");
+		console.log("cardId : ", cardId);
+		console.log("fromColumn : ", fromColumnId);
+		console.log("toColumn : ", toColumnId);
+		console.log("toRow : ", toRow);
+		console.log("------------------------------");
+	}
 }

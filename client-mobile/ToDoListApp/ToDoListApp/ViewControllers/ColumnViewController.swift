@@ -17,7 +17,6 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     @IBOutlet weak var badgeLabel: UILabel!
     @IBOutlet weak var columnNameLabel: UILabel!
     @IBOutlet weak var addCardButton: UIButton!
-    
     @IBOutlet weak var tableView: UITableView!
     
     let dataSource = CardListDataSource()

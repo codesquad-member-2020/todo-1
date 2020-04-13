@@ -19,8 +19,8 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     @IBOutlet weak var addCardButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    let dataSource = CardListDataSource()
-    let delegate = CardListDelegate()
+    let cardListDataSource = CardListDataSource()
+    let cardListDelegate = CardListDelegate()
     
     var columnViewModel: ColumnViewModel? { didSet { configureViewModelHandler() } }
     private var cardListViewModel = CardListViewModel()
@@ -41,13 +41,13 @@ class ColumnViewController: UIViewController, NewCardDelegation {
             self.cardListViewModel.updateCardList(column?.cards)
         })
         cardListViewModel.updateNotify { (cardList) in
-            self.dataSource.updateCardList(cardList)
+            self.cardListDataSource.updateCardList(cardList)
         }
     }
     
     private func configureTableView() {
-        tableView.dataSource = dataSource
-        tableView.delegate = delegate
+        tableView.dataSource = cardListDataSource
+        tableView.delegate = cardListDelegate
     }
     
     private func configureColumnView() {
@@ -61,7 +61,7 @@ class ColumnViewController: UIViewController, NewCardDelegation {
         guard let column = column else { return }
         columnView.updateName(column.name)
         columnView.updateBadge(column.cards)
-        dataSource.updateCardList(column.cards)
+        cardListDataSource.updateCardList(column.cards)
         tableView.reloadData()
     }
     

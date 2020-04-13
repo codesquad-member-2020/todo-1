@@ -7,6 +7,85 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--User Info View Controller-->
+        <scene sceneID="mub-MB-gAe">
+            <objects>
+                <viewController id="Nx4-Il-xSa" customClass="UserInfoViewController" customModule="ToDoListApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eyu-h8-zvB">
+                        <rect key="frame" x="0.0" y="0.0" width="340" height="213"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" translatesAutoresizingMaskIntoConstraints="NO" id="pOt-5X-oja">
+                                <rect key="frame" x="24" y="33" width="72" height="72"/>
+                                <color key="tintColor" red="0.78764495610747642" green="0.79041348389532817" blue="0.79871906725888331" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="pOt-5X-oja" secondAttribute="height" multiplier="1:1" id="9KF-hb-E8E"/>
+                                    <constraint firstAttribute="width" constant="72" id="bOj-nq-Umv"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="D7O-aY-BRI">
+                                <rect key="frame" x="24" y="125" width="292" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8B-U6-cE5">
+                                        <rect key="frame" x="0.0" y="0.0" width="292" height="28"/>
+                                        <color key="backgroundColor" red="0.808573921319797" green="0.808573921319797" blue="0.808573921319797" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="정보 수정">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGp-Xm-asI">
+                                        <rect key="frame" x="0.0" y="36" width="292" height="28"/>
+                                        <color key="backgroundColor" red="0.79530853426395942" green="0.40162701452399618" blue="0.33961199707726331" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="로그아웃">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="CJ3-eC-WQb">
+                                <rect key="frame" x="116" y="41" width="200" height="56"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sunny" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kT0-uR-sNO">
+                                        <rect key="frame" x="0.0" y="0.0" width="74.5" height="31.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sunny@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8T5-we-24D">
+                                        <rect key="frame" x="0.0" y="35.5" width="139.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.53323286800000003" green="0.53323286800000003" blue="0.53323286800000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="D7O-aY-BRI" firstAttribute="leading" secondItem="GYQ-6i-5zW" secondAttribute="leading" constant="24" id="9hY-i0-eM5"/>
+                            <constraint firstItem="pOt-5X-oja" firstAttribute="leading" secondItem="GYQ-6i-5zW" secondAttribute="leading" constant="24" id="Cqb-XQ-zdt"/>
+                            <constraint firstItem="D7O-aY-BRI" firstAttribute="top" secondItem="pOt-5X-oja" secondAttribute="bottom" constant="20" id="L8Q-z8-ZVT"/>
+                            <constraint firstItem="GYQ-6i-5zW" firstAttribute="bottom" secondItem="D7O-aY-BRI" secondAttribute="bottom" constant="24" id="LFr-Px-RLx"/>
+                            <constraint firstItem="pOt-5X-oja" firstAttribute="top" secondItem="GYQ-6i-5zW" secondAttribute="top" constant="20" id="MH7-f9-SFR"/>
+                            <constraint firstItem="CJ3-eC-WQb" firstAttribute="centerY" secondItem="pOt-5X-oja" secondAttribute="centerY" id="iNX-OX-0up"/>
+                            <constraint firstItem="GYQ-6i-5zW" firstAttribute="trailing" secondItem="CJ3-eC-WQb" secondAttribute="trailing" constant="24" id="jqx-3j-uDe"/>
+                            <constraint firstItem="GYQ-6i-5zW" firstAttribute="trailing" secondItem="D7O-aY-BRI" secondAttribute="trailing" constant="24" id="o77-PL-h76"/>
+                            <constraint firstItem="CJ3-eC-WQb" firstAttribute="leading" secondItem="pOt-5X-oja" secondAttribute="trailing" constant="20" id="qVj-2N-WM2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GYQ-6i-5zW"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="340" height="200"/>
+                    <connections>
+                        <outlet property="imageView" destination="pOt-5X-oja" id="zsb-Th-7Zb"/>
+                        <outlet property="logoutButton" destination="EGp-Xm-asI" id="KLE-sm-mQP"/>
+                        <outlet property="nameLabel" destination="kT0-uR-sNO" id="P4G-SH-iZz"/>
+                        <outlet property="userSettingButton" destination="D8B-U6-cE5" id="VQG-BW-Ycx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CAP-97-EBv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="840.7035175879397" y="-559.71223021582739"/>
+        </scene>
         <!--To Do List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -29,6 +108,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="0gE-V2-02x">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="person.crop.circle" id="dUI-xZ-WWA">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="Nx4-Il-xSa" kind="popoverPresentation" popoverAnchorBarButtonItem="dUI-xZ-WWA" id="BuS-VU-7QU">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="line.horizontal.3" id="v9n-sd-YL6">
                             <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
@@ -358,6 +445,7 @@ sdasdsad</string>
     <resources>
         <image name="arrow.up.circle.fill" catalog="system" width="64" height="60"/>
         <image name="line.horizontal.3" width="17" height="9"/>
+        <image name="person.crop.circle" width="17" height="17"/>
         <image name="plus" catalog="system" width="64" height="56"/>
         <image name="text.justify" catalog="system" width="64" height="50"/>
     </resources>

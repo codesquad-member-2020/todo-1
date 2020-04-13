@@ -181,7 +181,7 @@ export default class ColumnContainer {
 		const cardId = this.$selectedCard.dataset.id;
 		const fromColumnId = this.$fromColumn.dataset.id;
 		const toColumnId = this.$toColumn.dataset.id;
-		const toIndex = [...this.$cardListOfToColumn].reverse().indexOf(this.$selectedCard) + 1;
+		const toIndex = [...this.$cardListOfToColumn].reverse().indexOf(this.$selectedCard);
 
 		console.log("------------------------------");
 		console.log("cardId : ", cardId);

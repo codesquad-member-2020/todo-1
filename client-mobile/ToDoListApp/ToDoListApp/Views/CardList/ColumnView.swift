@@ -10,8 +10,8 @@ import UIKit
 
 class ColumnView: UIView {
 
-    var bedgeView: BedgeView!
-    var bedgeLabel: UILabel! { didSet { bedgeView.bedgeLabel = bedgeLabel } }
+    var badgeView: BadgeView!
+    var badgeLabel: UILabel! { didSet { badgeView.badgeLabel = badgeLabel } }
     var nameLabel: UILabel!
     var addCardButton: UIButton!
     
@@ -19,7 +19,7 @@ class ColumnView: UIView {
         nameLabel.text = name
     }
     
-    func updateBedge(_ cards: [Card]) {
-        bedgeView.updateBedge(bedgeCount: cards.count)
+    func updateBadge(_ cards: [Card]) {
+        badgeView.updateBadge(badgeCount: cards.count)
     }
 }

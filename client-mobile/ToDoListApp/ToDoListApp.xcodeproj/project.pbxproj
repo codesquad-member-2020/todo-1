@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		380A5AE1243C5A360063A9F6 /* BedgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A5AE0243C5A360063A9F6 /* BedgeView.swift */; };
+		380A5AE1243C5A360063A9F6 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A5AE0243C5A360063A9F6 /* BadgeView.swift */; };
 		381C3A52243B505F00F83D4B /* CardListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381C3A51243B505F00F83D4B /* CardListDataSource.swift */; };
 		3830F72B243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3830F72A243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift */; };
 		3831B96B243B51D600550FA1 /* CardListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831B96A243B51D600550FA1 /* CardListDelegate.swift */; };
@@ -27,12 +27,13 @@
 		38B43793243D85B3000C2A8D /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B43792243D85B3000C2A8D /* NewCardViewController.swift */; };
 		38B43795243D9241000C2A8D /* CardContentsTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B43794243D9241000C2A8D /* CardContentsTextViewDelegate.swift */; };
 		38E05A49243F7436005679EC /* TItleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E05A48243F7436005679EC /* TItleViewModel.swift */; };
+		38F0A3E8244406AB00A20EF5 /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */; };
 		38F437E324401EFC009BE1FF /* ContentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F437E224401EFC009BE1FF /* ContentsViewModel.swift */; };
 		38F437E524403AE7009BE1FF /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F437E424403AE7009BE1FF /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		380A5AE0243C5A360063A9F6 /* BedgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedgeView.swift; sourceTree = "<group>"; };
+		380A5AE0243C5A360063A9F6 /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		381C3A51243B505F00F83D4B /* CardListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListDataSource.swift; sourceTree = "<group>"; };
 		3830F72A243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTitleTextFieldDelegate.swift; sourceTree = "<group>"; };
 		3831B96A243B51D600550FA1 /* CardListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +55,7 @@
 		38B43792243D85B3000C2A8D /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
 		38B43794243D9241000C2A8D /* CardContentsTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContentsTextViewDelegate.swift; sourceTree = "<group>"; };
 		38E05A48243F7436005679EC /* TItleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TItleViewModel.swift; sourceTree = "<group>"; };
+		38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
 		38F437E224401EFC009BE1FF /* ContentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsViewModel.swift; sourceTree = "<group>"; };
 		38F437E424403AE7009BE1FF /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,7 +77,7 @@
 				381C3A51243B505F00F83D4B /* CardListDataSource.swift */,
 				3831B96A243B51D600550FA1 /* CardListDelegate.swift */,
 				3831B970243B58DF00550FA1 /* CardCell.swift */,
-				380A5AE0243C5A360063A9F6 /* BedgeView.swift */,
+				380A5AE0243C5A360063A9F6 /* BadgeView.swift */,
 				387B8B3A243CBFEE00805A34 /* ColumnView.swift */,
 			);
 			path = CardList;
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */,
+				38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */,
 				38F437E124401EEA009BE1FF /* NewCard */,
 			);
 			path = ViewModels;
@@ -250,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38F0A3E8244406AB00A20EF5 /* CardListViewModel.swift in Sources */,
 				3831B96B243B51D600550FA1 /* CardListDelegate.swift in Sources */,
 				387B8B35243C977D00805A34 /* ColumnViewController.swift in Sources */,
 				388CA280243AEE0900E99CED /* ToDoListViewController.swift in Sources */,
@@ -268,7 +272,7 @@
 				388CA27C243AEE0900E99CED /* AppDelegate.swift in Sources */,
 				388CA27E243AEE0900E99CED /* SceneDelegate.swift in Sources */,
 				3831B971243B58DF00550FA1 /* CardCell.swift in Sources */,
-				380A5AE1243C5A360063A9F6 /* BedgeView.swift in Sources */,
+				380A5AE1243C5A360063A9F6 /* BadgeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

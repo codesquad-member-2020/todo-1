@@ -13,17 +13,17 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     static let identifier = "Column"
     
     @IBOutlet weak var columnView: ColumnView!
-    @IBOutlet weak var bedgeView: BedgeView!
-    @IBOutlet weak var bedgeLabel: UILabel!
+    @IBOutlet weak var badgeView: BadgeView!
+    @IBOutlet weak var badgeLabel: UILabel!
     @IBOutlet weak var columnNameLabel: UILabel!
     @IBOutlet weak var addCardButton: UIButton!
-    
     @IBOutlet weak var tableView: UITableView!
     
-    let dataSource = CardListDataSource()
-    let delegate = CardListDelegate()
+    let cardListDataSource = CardListDataSource()
+    let cardListDelegate = CardListDelegate()
     
     var columnViewModel: ColumnViewModel? { didSet { configureViewModelHandler() } }
+    private var cardListViewModel = CardListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,33 +35,15 @@ class ColumnViewController: UIViewController, NewCardDelegation {
         columnViewModel?.updateColumn(column)
     }
     
-    private func configureViewModelHandler() {
-        columnViewModel?.updateNotify(changed: { (column) in
-            self.updateColumn(column)
-        })
-    }
-    
-    private func configureTableView() {
-        tableView.dataSource = dataSource
-        tableView.delegate = delegate
-    }
-    
-    private func configureColumnView() {
-        columnView.bedgeView = bedgeView
-        columnView.bedgeLabel = bedgeLabel
-        columnView.nameLabel = columnNameLabel
-        columnView.addCardButton = addCardButton
-    }
-    
     private func updateColumn(_ column: Column?) {
         guard let column = column else { return }
         columnView.updateName(column.name)
-        columnView.updateBedge(column.cards)
-        dataSource.cards = column.cards
+        columnView.updateBadge(column.cards)
+        cardListDataSource.updateCardList(column.cards)
         tableView.reloadData()
     }
     
-    @IBAction func addNewCardButtonTapped(_ sender: Any) {
+    @IBAction func toAddNewCardButtonTapped(_ sender: Any) {
         guard let newCardViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? NewCardViewController else { return }
         present(newCardViewController, animated: true, completion: {
             newCardViewController.newCardDelegate = self
@@ -70,8 +52,41 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     
     func addNewCard(_ card: Card) {
         tableView.beginUpdates()
-        columnViewModel?.insertCard(card, at: 0)
+        cardListViewModel.insertCard(card, at: 0)
         tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .top)
         tableView.endUpdates()
+    }
+    
+    func removeCard(at index: Int) {
+        tableView.beginUpdates()
+        cardListViewModel.removeCard(at: index)
+        tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
+        tableView.endUpdates()
+    }
+}
+
+extension ColumnViewController {
+    
+    // MARK:- Configuration
+    private func configureViewModelHandler() {
+        columnViewModel?.updateNotify(changed: { (column) in
+            self.updateColumn(column)
+            self.cardListViewModel.updateCardList(column?.cards)
+        })
+        cardListViewModel.updateNotify { (cardList) in
+            self.cardListDataSource.updateCardList(cardList)
+        }
+    }
+    
+    private func configureTableView() {
+        tableView.dataSource = cardListDataSource
+        tableView.delegate = cardListDelegate
+    }
+    
+    private func configureColumnView() {
+        columnView.badgeView = badgeView
+        columnView.badgeLabel = badgeLabel
+        columnView.nameLabel = columnNameLabel
+        columnView.addCardButton = addCardButton
     }
 }

@@ -113,7 +113,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zxy-Eb-ORH" customClass="BedgeView" customModule="ToDoListApp" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zxy-Eb-ORH" customClass="BadgeView" customModule="ToDoListApp" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="15" width="26" height="26"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVR-Z0-nPN">
@@ -142,7 +142,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="plus" catalog="system"/>
                                                 <connections>
-                                                    <action selector="addNewCardButtonTapped:" destination="tTc-I3-ac2" eventType="touchUpInside" id="oDH-c6-HhT"/>
+                                                    <action selector="toAddNewCardButtonTapped:" destination="tTc-I3-ac2" eventType="touchUpInside" id="oDH-c6-HhT"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -238,8 +238,8 @@ sdasdsad</string>
                     </view>
                     <connections>
                         <outlet property="addCardButton" destination="dh1-4d-aLD" id="7pB-XK-4Hw"/>
-                        <outlet property="bedgeLabel" destination="RVR-Z0-nPN" id="ubP-pz-OIX"/>
-                        <outlet property="bedgeView" destination="Zxy-Eb-ORH" id="D2S-IB-6St"/>
+                        <outlet property="badgeLabel" destination="RVR-Z0-nPN" id="32Z-xi-OjJ"/>
+                        <outlet property="badgeView" destination="Zxy-Eb-ORH" id="X55-kq-Y3s"/>
                         <outlet property="columnNameLabel" destination="nQM-V2-vXo" id="gKo-uF-OAb"/>
                         <outlet property="columnView" destination="nC1-T4-bH7" id="OIY-A8-ZcE"/>
                         <outlet property="tableView" destination="MK3-04-ZMa" id="JH8-Lb-5xz"/>

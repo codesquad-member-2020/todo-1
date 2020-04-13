@@ -43,7 +43,7 @@ class ColumnViewController: UIViewController, NewCardDelegation {
         tableView.reloadData()
     }
     
-    @IBAction func addNewCardButtonTapped(_ sender: Any) {
+    @IBAction func toAddNewCardButtonTapped(_ sender: Any) {
         guard let newCardViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? NewCardViewController else { return }
         present(newCardViewController, animated: true, completion: {
             newCardViewController.newCardDelegate = self

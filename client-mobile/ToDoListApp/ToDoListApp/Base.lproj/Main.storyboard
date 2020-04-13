@@ -142,7 +142,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="plus" catalog="system"/>
                                                 <connections>
-                                                    <action selector="addNewCardButtonTapped:" destination="tTc-I3-ac2" eventType="touchUpInside" id="oDH-c6-HhT"/>
+                                                    <action selector="toAddNewCardButtonTapped:" destination="tTc-I3-ac2" eventType="touchUpInside" id="oDH-c6-HhT"/>
                                                 </connections>
                                             </button>
                                         </subviews>

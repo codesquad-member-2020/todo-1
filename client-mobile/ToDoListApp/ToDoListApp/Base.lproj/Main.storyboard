@@ -12,7 +12,7 @@
             <objects>
                 <viewController id="Nx4-Il-xSa" customClass="UserInfoViewController" customModule="ToDoListApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eyu-h8-zvB">
-                        <rect key="frame" x="0.0" y="0.0" width="340" height="213"/>
+                        <rect key="frame" x="0.0" y="0.0" width="340" height="173"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" translatesAutoresizingMaskIntoConstraints="NO" id="pOt-5X-oja">
@@ -23,20 +23,20 @@
                                     <constraint firstAttribute="width" constant="72" id="bOj-nq-Umv"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="D7O-aY-BRI">
-                                <rect key="frame" x="24" y="125" width="292" height="64"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="D7O-aY-BRI">
+                                <rect key="frame" x="24" y="125" width="292" height="28"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8B-U6-cE5">
-                                        <rect key="frame" x="0.0" y="0.0" width="292" height="28"/>
-                                        <color key="backgroundColor" red="0.808573921319797" green="0.808573921319797" blue="0.808573921319797" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <state key="normal" title="정보 수정">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="142" height="28"/>
+                                        <color key="backgroundColor" red="0.92937024111675126" green="0.92937024111675126" blue="0.92937024111675126" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Edit">
+                                            <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGp-Xm-asI">
-                                        <rect key="frame" x="0.0" y="36" width="292" height="28"/>
-                                        <color key="backgroundColor" red="0.79530853426395942" green="0.40162701452399618" blue="0.33961199707726331" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <state key="normal" title="로그아웃">
+                                        <rect key="frame" x="150" y="0.0" width="142" height="28"/>
+                                        <color key="backgroundColor" red="0.90151094543147203" green="0.46052700365431265" blue="0.3927877380276717" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Sign Out">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
@@ -65,7 +65,7 @@
                             <constraint firstItem="D7O-aY-BRI" firstAttribute="leading" secondItem="GYQ-6i-5zW" secondAttribute="leading" constant="24" id="9hY-i0-eM5"/>
                             <constraint firstItem="pOt-5X-oja" firstAttribute="leading" secondItem="GYQ-6i-5zW" secondAttribute="leading" constant="24" id="Cqb-XQ-zdt"/>
                             <constraint firstItem="D7O-aY-BRI" firstAttribute="top" secondItem="pOt-5X-oja" secondAttribute="bottom" constant="20" id="L8Q-z8-ZVT"/>
-                            <constraint firstItem="GYQ-6i-5zW" firstAttribute="bottom" secondItem="D7O-aY-BRI" secondAttribute="bottom" constant="24" id="LFr-Px-RLx"/>
+                            <constraint firstItem="GYQ-6i-5zW" firstAttribute="bottom" secondItem="D7O-aY-BRI" secondAttribute="bottom" constant="20" id="LFr-Px-RLx"/>
                             <constraint firstItem="pOt-5X-oja" firstAttribute="top" secondItem="GYQ-6i-5zW" secondAttribute="top" constant="20" id="MH7-f9-SFR"/>
                             <constraint firstItem="CJ3-eC-WQb" firstAttribute="centerY" secondItem="pOt-5X-oja" secondAttribute="centerY" id="iNX-OX-0up"/>
                             <constraint firstItem="GYQ-6i-5zW" firstAttribute="trailing" secondItem="CJ3-eC-WQb" secondAttribute="trailing" constant="24" id="jqx-3j-uDe"/>
@@ -74,7 +74,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GYQ-6i-5zW"/>
                     </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="340" height="200"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="340" height="160"/>
                     <connections>
                         <outlet property="imageView" destination="pOt-5X-oja" id="zsb-Th-7Zb"/>
                         <outlet property="logoutButton" destination="EGp-Xm-asI" id="KLE-sm-mQP"/>

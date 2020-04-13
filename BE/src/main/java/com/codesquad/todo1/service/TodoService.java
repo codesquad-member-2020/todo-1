@@ -4,6 +4,7 @@ import com.codesquad.todo1.domain.Card;
 import com.codesquad.todo1.domain.Category;
 import com.codesquad.todo1.domain.User;
 import com.codesquad.todo1.repository.CategoryRepository;
+import com.codesquad.todo1.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ public class TodoService {
 
     private Logger logger = LoggerFactory.getLogger(TodoService.class);
     private final CategoryRepository categoryRepository;
+    private final UserRepository userRepository;
 
     @Transactional
     public List<Category> showTodoList() {
@@ -27,7 +29,7 @@ public class TodoService {
 
     @Transactional
     public Optional<User> findByUserId(String userId) {
-        return categoryRepository.findByUserId(userId);
+        return userRepository.findByUserId(userId);
     }
 
     @Transactional
@@ -40,7 +42,4 @@ public class TodoService {
         logger.info("cardId : {}", cardId);
         return categoryRepository.findByCardId(cardId);
     }
-
-
-
 }

@@ -15,7 +15,10 @@ class ToDoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureToDoList()
+        let logInViewController = storyboard?.instantiateViewController(identifier: LogInViewController.identifier)
+        logInViewController?.modalPresentationStyle = .fullScreen
+        present(logInViewController!, animated: true, completion: nil)
+//        configureToDoList()
     }
     
     private func configureToDoList() {

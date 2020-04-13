@@ -29,7 +29,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="0gE-V2-02x">
-                        <barButtonItem key="rightBarButtonItem" title="Menu" id="v9n-sd-YL6">
+                        <barButtonItem key="rightBarButtonItem" image="line.horizontal.3" id="v9n-sd-YL6">
                             <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
                                 <segue destination="Tdl-32-mr1" kind="popoverPresentation" popoverAnchorBarButtonItem="v9n-sd-YL6" id="5w2-oH-9fS">
@@ -357,6 +357,7 @@ sdasdsad</string>
     </scenes>
     <resources>
         <image name="arrow.up.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="line.horizontal.3" width="17" height="9"/>
         <image name="plus" catalog="system" width="64" height="56"/>
         <image name="text.justify" catalog="system" width="64" height="50"/>
     </resources>

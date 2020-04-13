@@ -15,5 +15,4 @@ public class User {
 
     private String userId;
     private String password;
-    private List<Card> cards = new ArrayList<>();
 }

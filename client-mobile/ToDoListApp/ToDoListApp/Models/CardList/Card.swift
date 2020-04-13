@@ -26,6 +26,7 @@ struct Card: Codable {
     
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
-        case userID, title, contents, device
+        case userID = "userId"
+        case title, contents, device
     }
 }

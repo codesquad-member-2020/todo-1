@@ -56,6 +56,13 @@ class ColumnViewController: UIViewController, NewCardDelegation {
         tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .top)
         tableView.endUpdates()
     }
+    
+    func removeCard(at index: Int) {
+        tableView.beginUpdates()
+        cardListViewModel.removeCard(at: index)
+        tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
+        tableView.endUpdates()
+    }
 }
 
 extension ColumnViewController {

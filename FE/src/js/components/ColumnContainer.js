@@ -19,7 +19,7 @@ export default class ColumnContainer {
 		this.data = initialData;
 
 		this.render();
-		this.bindeEventListener();
+		this.bindEventListener();
 
 		this.alert = new Alert({
 			data: { message: "선택하신 카드를 삭제하시겠습니까?", visible: false },
@@ -40,7 +40,7 @@ export default class ColumnContainer {
 		);
 	}
 
-	bindeEventListener() {
+	bindEventListener() {
 		this.$columnContainer.addEventListener("click", (e) => this.handleDeleteRequest(e));
 		this.$columnContainer.addEventListener("dblclick", (e) => this.handleUpdateRequest(e));
 		this.$target.addEventListener("dragstart", (e) => this.dragStart(e));

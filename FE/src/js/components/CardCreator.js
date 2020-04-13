@@ -11,7 +11,7 @@ export default class CardCreator {
 		this.data = data;
 		this.render();
 		this.cacheDomElements();
-		this.bindeEventListener();
+		this.bindEventListener();
 	}
 
 	render() {
@@ -27,7 +27,7 @@ export default class CardCreator {
 		this.$cancelButton = this.$cardCreator.querySelector(".cancel");
 	}
 
-	bindeEventListener() {
+	bindEventListener() {
 		const { $textArea, $addButton, $cancelButton } = this;
 		$textArea.addEventListener("input", (e) => this.handleTextArea.call(this, e));
 		$addButton.addEventListener("click", this.addCard.bind(this));

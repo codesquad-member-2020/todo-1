@@ -73,6 +73,7 @@ extension ColumnViewController {
             self.cardListViewModel.updateCardList(column?.cards)
         })
         cardListViewModel.updateNotify { (cardList) in
+            self.columnView.updateBadge(cardList)
             self.cardListDataSource.updateCardList(cardList)
         }
     }

@@ -20,7 +20,6 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     @IBOutlet weak var tableView: UITableView!
     
     let cardListDataSource = CardListDataSource()
-    let cardListDelegate = CardListDelegate()
     
     var columnViewModel: ColumnViewModel? { didSet { configureViewModelHandler() } }
     private var cardListViewModel = CardListViewModel()
@@ -80,7 +79,7 @@ extension ColumnViewController {
     
     private func configureTableView() {
         tableView.dataSource = cardListDataSource
-        tableView.delegate = cardListDelegate
+        tableView.delegate = cardListViewModel
     }
     
     private func configureColumnView() {

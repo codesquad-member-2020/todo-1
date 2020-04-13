@@ -6,9 +6,9 @@
 //  Copyright © 2020 corykim0829. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class CardListViewModel: ViewModelBinding {
+class CardListViewModel: NSObject, ViewModelBinding, UITableViewDelegate {
     typealias Key = [Card]
     private var cardList: Key = [] { didSet { changeHandler(cardList) } }
     private var changeHandler: (Key) -> Void
@@ -33,5 +33,17 @@ class CardListViewModel: ViewModelBinding {
     
     func removeCard(at index: Int) {
         cardList.remove(at: index)
+    }
+    
+    // MARK:- UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let removeAction = UIContextualAction(style: .destructive, title: "delete") { (_, _, _) in
+            self.removeCard(at: indexPath.item)
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath], with: .left)
+            tableView.endUpdates()
+        }
+        return UISwipeActionsConfiguration(actions: [removeAction])
     }
 }

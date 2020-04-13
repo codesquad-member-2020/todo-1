@@ -10,19 +10,19 @@ import UIKit
 
 class CardListDataSource: NSObject, UITableViewDataSource {
     
-    private var cards: [Card] = []
+    private var cardList: [Card] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cards.count
+        return cardList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CardCell.identifier, for: indexPath) as! CardCell
-        cell.card = cards[indexPath.item]
+        cell.card = cardList[indexPath.item]
         return cell
     }
     
     func updateCardList(_ cardList: [Card]) {
-        self.cards = cardList
+        self.cardList = cardList
     }
 }

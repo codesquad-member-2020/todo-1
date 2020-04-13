@@ -11,7 +11,7 @@
 		381C3A52243B505F00F83D4B /* CardListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381C3A51243B505F00F83D4B /* CardListDataSource.swift */; };
 		3830F72B243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3830F72A243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift */; };
 		383133D5244488BE00E9891E /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383133D4244488BE00E9891E /* UserInfoViewController.swift */; };
-		383133D72444C46C00E9891E /* LogInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383133D62444C46C00E9891E /* LogInManager.swift */; };
+		383133D72444C46C00E9891E /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383133D62444C46C00E9891E /* TokenManager.swift */; };
 		3831B971243B58DF00550FA1 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831B970243B58DF00550FA1 /* CardCell.swift */; };
 		387B8B35243C977D00805A34 /* ColumnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B8B34243C977D00805A34 /* ColumnViewController.swift */; };
 		387B8B37243CBA4700805A34 /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B8B36243CBA4700805A34 /* Column.swift */; };
@@ -38,7 +38,7 @@
 		381C3A51243B505F00F83D4B /* CardListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListDataSource.swift; sourceTree = "<group>"; };
 		3830F72A243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTitleTextFieldDelegate.swift; sourceTree = "<group>"; };
 		383133D4244488BE00E9891E /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
-		383133D62444C46C00E9891E /* LogInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInManager.swift; sourceTree = "<group>"; };
+		383133D62444C46C00E9891E /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		3831B970243B58DF00550FA1 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		387B8B34243C977D00805A34 /* ColumnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnViewController.swift; sourceTree = "<group>"; };
 		387B8B36243CBA4700805A34 /* Column.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 		383133D82444C6C800E9891E /* LogIn */ = {
 			isa = PBXGroup;
 			children = (
-				383133D62444C46C00E9891E /* LogInManager.swift */,
+				383133D62444C46C00E9891E /* TokenManager.swift */,
 			);
 			path = LogIn;
 			sourceTree = "<group>";
@@ -272,7 +272,7 @@
 				387B8B3B243CBFEE00805A34 /* ColumnView.swift in Sources */,
 				381C3A52243B505F00F83D4B /* CardListDataSource.swift in Sources */,
 				3830F72B243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift in Sources */,
-				383133D72444C46C00E9891E /* LogInManager.swift in Sources */,
+				383133D72444C46C00E9891E /* TokenManager.swift in Sources */,
 				38B43793243D85B3000C2A8D /* NewCardViewController.swift in Sources */,
 				387B8B37243CBA4700805A34 /* Column.swift in Sources */,
 				387B8B39243CBAC400805A34 /* Card.swift in Sources */,

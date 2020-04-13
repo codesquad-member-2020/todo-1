@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LogInManager {
+class TokenManager {
     
     private let tokenKey = "JWTToken"
     private var JWTToken: String? = nil

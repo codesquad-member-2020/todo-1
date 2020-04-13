@@ -35,28 +35,6 @@ class ColumnViewController: UIViewController, NewCardDelegation {
         columnViewModel?.updateColumn(column)
     }
     
-    private func configureViewModelHandler() {
-        columnViewModel?.updateNotify(changed: { (column) in
-            self.updateColumn(column)
-            self.cardListViewModel.updateCardList(column?.cards)
-        })
-        cardListViewModel.updateNotify { (cardList) in
-            self.cardListDataSource.updateCardList(cardList)
-        }
-    }
-    
-    private func configureTableView() {
-        tableView.dataSource = cardListDataSource
-        tableView.delegate = cardListDelegate
-    }
-    
-    private func configureColumnView() {
-        columnView.badgeView = badgeView
-        columnView.badgeLabel = badgeLabel
-        columnView.nameLabel = columnNameLabel
-        columnView.addCardButton = addCardButton
-    }
-    
     private func updateColumn(_ column: Column?) {
         guard let column = column else { return }
         columnView.updateName(column.name)
@@ -77,5 +55,31 @@ class ColumnViewController: UIViewController, NewCardDelegation {
         cardListViewModel.insertCard(card, at: 0)
         tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .top)
         tableView.endUpdates()
+    }
+}
+
+extension ColumnViewController {
+    
+    // MARK:- Configuration
+    private func configureViewModelHandler() {
+        columnViewModel?.updateNotify(changed: { (column) in
+            self.updateColumn(column)
+            self.cardListViewModel.updateCardList(column?.cards)
+        })
+        cardListViewModel.updateNotify { (cardList) in
+            self.cardListDataSource.updateCardList(cardList)
+        }
+    }
+    
+    private func configureTableView() {
+        tableView.dataSource = cardListDataSource
+        tableView.delegate = cardListDelegate
+    }
+    
+    private func configureColumnView() {
+        columnView.badgeView = badgeView
+        columnView.badgeLabel = badgeLabel
+        columnView.nameLabel = columnNameLabel
+        columnView.addCardButton = addCardButton
     }
 }

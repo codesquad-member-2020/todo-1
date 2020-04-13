@@ -10,7 +10,7 @@ import UIKit
 
 class CardListDataSource: NSObject, UITableViewDataSource {
     
-    var cards: [Card] = []
+    private var cards: [Card] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cards.count

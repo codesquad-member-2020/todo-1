@@ -77,3 +77,69 @@ export function cardEditor(contents) {
 			</div>
 		</div>`;
 }
+
+const actions = {
+	add: (userId, profileURL, title, toColumn) => `
+    <li class="detail-container">
+      <img src="${profileURL}" alt="@${userId}" />
+      <p class="detail">
+        <span class="detail__data">@${userId}</span> <span class="action">added</span>
+        <span class="detail__data">${title}</span> to <strong>${toColumn}</strong
+        ><span class="time">1 day ago</span>
+      </p>
+    </li>
+  `,
+	remove: (userId, profileURL, title) => `
+    <li class="detail-container">
+      <img src="${profileURL}" alt="@${userId}" />
+      <p class="detail">
+        <span class="detail__data">@${userId}</span> <span class="action">removed</span>
+        <span class="detail__data">${title}</span
+        ><span class="time">1 day ago</span>
+      </p>
+    </li>
+  `,
+	update: (userId, profileURL, title) => `
+    <li class="detail-container">
+      <img src="${profileURL}" alt="@${userId}" />
+      <p class="detail">
+        <span class="detail__data">@${userId}</span> <span class="action">updated</span>
+        <span class="detail__data">${title}</span
+        ><span class="time">1 day ago</span>
+      </p>
+    </li>
+  `,
+	move: (userId, profileURL, title, fromColumn, toColumn) => `
+    <li class="detail-container">
+      <img src="${profileURL}" alt="@${userId}" />
+      <p class="detail">
+        <span class="detail__data">@${userId}</span> <span>moved</span>
+        <span class="detail__data">${title}</span> from
+        <strong>${fromColumn}</strong> to <strong>${toColumn}</strong
+        ><span class="time">1 day ago</span>
+      </p>
+    </li>
+  `,
+};
+
+export function activity(data) {
+	return `<div class="activity">
+			<div>
+				<div class="activity-border top">
+					<h3><i class="fas fa-bars"></i>Menu</h3>
+					<i class="fas fa-times close-activity"></i>
+				</div>
+				<div class="activity-border">
+					<h3><i class="fas fa-bell"></i>Activity</h3>
+				</div>
+				<div class="activity-detail">
+					<ul>
+						${data.reduce((list, { userId, profileURL, action, title, fromColumn, toColumn, actionTime }) => {
+							list += actions[action](userId, profileURL, title, fromColumn, toColumn);
+							return list;
+						}, "")}
+					</ul>
+				</div>
+			</div>
+		</div>`;
+}

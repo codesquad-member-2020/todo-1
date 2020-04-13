@@ -7,7 +7,7 @@
 header {
 	width: 100%;
 	background: $white;
-	height: 90px;
+	height: 80px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -18,7 +18,7 @@ header {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
-	padding: 30px;
+	padding: 25px;
 	border-bottom: 1.5px solid $lightgrey;
 	h1 {
 		margin: 0;
@@ -40,14 +40,14 @@ main {
 	flex: 1;
 	width: 100%;
 	position: absolute;
-	top: 90px;
+	top: 80px;
 	left: 0;
 }
 
 .columns-container {
 	width: 100%;
 	height: 100%;
-	padding: 30px;
+	padding: 25px;
 	overflow-x: visible;
 	.columns {
 		display: flex;
@@ -56,8 +56,8 @@ main {
 	.column {
 		min-width: 355px;
 		max-width: 355px;
-		min-height: 600px;
-		max-height: 600px;
+		min-height: 580px;
+		max-height: 580px;
 		background: $lightgrey;
 		border: 1px solid $midgrey;
 		border-radius: 6px;

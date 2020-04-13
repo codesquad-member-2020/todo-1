@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/columns")
+@RequestMapping("/columns")
 public class TodoController {
 
     private final Logger logger = LoggerFactory.getLogger(TodoController.class);
@@ -25,8 +25,6 @@ public class TodoController {
     @PostMapping("/{id}/cards")
     public ApiCard create(@PathVariable Long id,
                           @RequestBody Card card) {
-        logger.info("id : {}", id);
-        logger.info("card : {}", card);
         return new ApiCard(200, todoService.cardSave(card, id));
     }
 }

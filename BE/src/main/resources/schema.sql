@@ -28,7 +28,7 @@ create table card (
                       contents text,
                       device varchar(45),
                       category int references category(id) on delete cascade on update cascade,
-                      user_key int,
+--                       user_key int,
                       category_key int
 );
 

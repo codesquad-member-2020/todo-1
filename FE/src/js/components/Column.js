@@ -89,7 +89,7 @@ export default class Column {
 		new Card({ $target: this, data: newCardObj });
 
 		// update counter
-		this.$counter.textContent = Number(this.$counter.textContent) + 1;
+		this.handleCounter("up");
 		console.log("card added!", data);
 	}
 
@@ -106,7 +106,7 @@ export default class Column {
 		this.$cardContainer.removeChild($card);
 
 		// update counter
-		this.$counter.textContent = Number(this.$counter.textContent) - 1;
+		this.handleCounter("down");
 		console.log("card deleted!", data);
 	}
 
@@ -139,5 +139,19 @@ export default class Column {
 		console.log("toColumn : ", toColumnId);
 		console.log("toRow : ", toRow);
 		console.log("------------------------------");
+	}
+
+	handleCounter(state) {
+		switch (state) {
+			case "up":
+				this.$counter.textContent = Number(this.$counter.textContent) + 1;
+				break;
+			case "down":
+				this.$counter.textContent = Number(this.$counter.textContent) - 1;
+				break;
+			default:
+				console.error("카운터 인자가 전달되지 않았습니다.");
+				return;
+		}
 	}
 }

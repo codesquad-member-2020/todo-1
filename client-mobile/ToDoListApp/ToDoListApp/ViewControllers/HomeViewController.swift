@@ -66,14 +66,14 @@ class HomeViewController: UIViewController, LogInViewControllerDelegate {
     }
     
     private func showErrorAlert(error: RequestError) {
-        let alert = UIAlertController(title: "Error", message: error.description, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Done", style: .default, handler: nil)
-        let retryAction = UIAlertAction(title: "Retry", style: .cancel) { _ in
-            self.configureToDoList()
-        }
-        alert.addAction(retryAction)
-        alert.addAction(cancelAction)
         DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Error", message: error.description, preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Done", style: .default, handler: nil)
+            let retryAction = UIAlertAction(title: "Retry", style: .cancel) { _ in
+                self.configureToDoList()
+            }
+            alert.addAction(retryAction)
+            alert.addAction(cancelAction)
             self.present(alert, animated: true, completion: nil)
         }
     }

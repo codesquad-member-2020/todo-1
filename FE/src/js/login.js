@@ -1,17 +1,22 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import "Scss/styles.scss";
-import data from "./data";
+import HttpRequestHandler from "./utils/HttpRequestHandler";
+import { BASE_URL, USER_INFO } from "./utils/const";
+import { handleError } from "./utils/utilFunction";
 
-const replacePage = () => location.replace("todo.html");
-
-const showAlert = () => alert("Oopsy! Something went wrong.");
+const handleResponse = (response) => {
+	if (response.status === 200) {
+		location.replace("todo.html");
+	} else {
+		throw Error(`Network Error ─ ${code}`);
+	}
+};
 
 const handleLogin = () => {
-	// http.post
-	// 응답 받으면 데이터를 data.column에 할당
-	// todo.js가 import해서 사용
-	data.columns ? replacePage() : showAlert();
+	const http = new HttpRequestHandler();
+	const url = `${BASE_URL}/login`;
+	http.post(url, USER_INFO).then(handleResponse).catch(handleError);
 };
 
 document.querySelector(".login").addEventListener("click", handleLogin);

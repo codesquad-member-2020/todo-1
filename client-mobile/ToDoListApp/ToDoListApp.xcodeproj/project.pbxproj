@@ -21,7 +21,7 @@
 		387B8B3B243CBFEE00805A34 /* ColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B8B3A243CBFEE00805A34 /* ColumnView.swift */; };
 		388CA27C243AEE0900E99CED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27B243AEE0900E99CED /* AppDelegate.swift */; };
 		388CA27E243AEE0900E99CED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27D243AEE0900E99CED /* SceneDelegate.swift */; };
-		388CA280243AEE0900E99CED /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27F243AEE0900E99CED /* ToDoListViewController.swift */; };
+		388CA280243AEE0900E99CED /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27F243AEE0900E99CED /* HomeViewController.swift */; };
 		388CA283243AEE0900E99CED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388CA281243AEE0900E99CED /* Main.storyboard */; };
 		388CA285243AEE0C00E99CED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388CA284243AEE0C00E99CED /* Assets.xcassets */; };
 		388CA288243AEE0C00E99CED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388CA286243AEE0C00E99CED /* LaunchScreen.storyboard */; };
@@ -52,7 +52,7 @@
 		388CA278243AEE0900E99CED /* ToDoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		388CA27B243AEE0900E99CED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		388CA27D243AEE0900E99CED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		388CA27F243AEE0900E99CED /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
+		388CA27F243AEE0900E99CED /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		388CA282243AEE0900E99CED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		388CA284243AEE0C00E99CED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		388CA287243AEE0C00E99CED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 		388CA28F243AFE4400E99CED /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				388CA27F243AEE0900E99CED /* ToDoListViewController.swift */,
+				388CA27F243AEE0900E99CED /* HomeViewController.swift */,
 				387B8B34243C977D00805A34 /* ColumnViewController.swift */,
 				38B43792243D85B3000C2A8D /* NewCardViewController.swift */,
 				383133D4244488BE00E9891E /* UserInfoViewController.swift */,
@@ -284,7 +284,7 @@
 				38F0A3E8244406AB00A20EF5 /* CardListViewModel.swift in Sources */,
 				387B8B35243C977D00805A34 /* ColumnViewController.swift in Sources */,
 				383133DA2444C9B300E9891E /* LogInViewController.swift in Sources */,
-				388CA280243AEE0900E99CED /* ToDoListViewController.swift in Sources */,
+				388CA280243AEE0900E99CED /* HomeViewController.swift in Sources */,
 				38F437E524403AE7009BE1FF /* UserData.swift in Sources */,
 				38F437E324401EFC009BE1FF /* ContentsViewModel.swift in Sources */,
 				387B8B3B243CBFEE00805A34 /* ColumnView.swift in Sources */,

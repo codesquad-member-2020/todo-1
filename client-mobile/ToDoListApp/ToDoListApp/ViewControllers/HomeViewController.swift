@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ToDoListViewController: UIViewController, LogInViewControllerDelegate {
+class HomeViewController: UIViewController, LogInViewControllerDelegate {
       
     @IBOutlet weak var stackView: UIStackView!
     

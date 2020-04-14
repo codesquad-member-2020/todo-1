@@ -58,9 +58,9 @@ class LogInViewController: UIViewController {
         let user = User(userName: userName, password: password)
         NetworkManager.shared.requestLogIn(user: user) { (result) in
             switch result {
-            case .success(let cookie):
+            case .success(let token):
                 self.dismiss(animated: true) {
-                    self.delegate?.didSuccessToLogIn(with: cookie)
+                    self.delegate?.didSuccessToLogIn(with: token)
                 }
             case .failure(let error):
                 DispatchQueue.main.async {

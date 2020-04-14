@@ -19,10 +19,35 @@ class LogInViewController: UIViewController {
     
     static let identifier = "LogIn"
     
+    private var userName: String = "" {
+        didSet { checkValidation() }
+    }
+    private var password: String = "" {
+        didSet { checkValidation() }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureViews()
+    }
+    
+    @IBAction func userNameChanged(_ textField: UITextField) {
+        userName = textField.text ?? ""
+    }
+    
+    @IBAction func passwordChanged(_ textField: UITextField) {
+        password = textField.text ?? ""
+    }
+    
+    private func checkValidation() {
+        let isValid = userName != "" && password != ""
+        logInButton.isEnabled = isValid
+        logInButton.backgroundColor = isValid ? UIColor(named: "LogInButtonColor") : .lightGray
+    }
+    
+    @IBAction func logInButtonTapped(_ sender: Any) {
+        
     }
     
     private func configureViewsCornerRadius() {
@@ -32,8 +57,14 @@ class LogInViewController: UIViewController {
         signUpButton.layer.cornerRadius = 12
     }
     
+    private func configureButtonInterface() {
+        logInButton.setTitleColor(.darkGray, for: .disabled)
+        logInButton.setTitleColor(.white, for: .normal)
+    }
+    
     private func configureViews() {
         configureViewsCornerRadius()
+        configureButtonInterface()
         let backgroundEffectView = UIView()
         backgroundEffectView.backgroundColor = .lightGray
         backgroundView.addSubview(backgroundEffectView)
@@ -55,5 +86,4 @@ class LogInViewController: UIViewController {
         visualEffectView.widthAnchor.constraint(equalToConstant: 400).isActive = true
         visualEffectView.heightAnchor.constraint(equalToConstant: 400).isActive = true
     }
-    
 }

@@ -59,14 +59,18 @@ class LogInViewController: UIViewController {
         NetworkManager.shared.requestLogIn(user: user) { (result) in
             switch result {
             case .success(let token):
-                self.dismiss(animated: true) {
-                    self.delegate?.didSuccessToLogIn(with: token)
-                }
+                self.dismissCurrentViewController(with: token)
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.showErrorAlert(error: error)
                 }
             }
+        }
+    }
+    
+    private func dismissCurrentViewController(with token: String) {
+        dismiss(animated: true) {
+            self.delegate?.didSuccessToLogIn(with: token)
         }
     }
     

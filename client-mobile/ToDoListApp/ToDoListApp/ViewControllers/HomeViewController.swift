@@ -42,7 +42,7 @@ class HomeViewController: UIViewController, LogInViewControllerDelegate {
     }
     
     func didSuccessToLogIn(with token: String) {
-        
+        saveToken(token)
     }
     
     private func configureToDoList() {

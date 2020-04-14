@@ -18,6 +18,17 @@ class HomeViewController: UIViewController, LogInViewControllerDelegate {
 //        configureToDoList()
     }
     
+    private func loadToken() -> String? {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        return appDelegate?.token
+    }
+    
+    private func saveToken(_ token: String) {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let tokenManager = appDelegate?.tokenManager
+        tokenManager?.saveToken(token)
+    }
+    
     private func presentToLogIn() {
         let logInViewController = storyboard?.instantiateViewController(identifier: LogInViewController.identifier) as! LogInViewController
         logInViewController.modalPresentationStyle = .fullScreen

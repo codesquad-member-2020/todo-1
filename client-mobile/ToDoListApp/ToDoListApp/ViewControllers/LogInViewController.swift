@@ -19,6 +19,8 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     
+    private let buttonsCornerRadius: CGFloat = 12
+    
     private var userName: String = "" {
         didSet { checkValidation() }
     }
@@ -51,10 +53,10 @@ class LogInViewController: UIViewController {
     }
     
     private func configureViewsCornerRadius() {
-        userNameTextField.layer.cornerRadius = 12
-        passwordTextField.layer.cornerRadius = 12
-        logInButton.layer.cornerRadius = 12
-        signUpButton.layer.cornerRadius = 12
+        userNameTextField.layer.cornerRadius = buttonsCornerRadius
+        passwordTextField.layer.cornerRadius = buttonsCornerRadius
+        logInButton.layer.cornerRadius = buttonsCornerRadius
+        signUpButton.layer.cornerRadius = buttonsCornerRadius
     }
     
     private func configureButtonInterface() {

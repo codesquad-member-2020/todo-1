@@ -37,6 +37,8 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureViewsCornerRadius()
+        configureButtonInterface()
         configureViews()
     }
     
@@ -94,10 +96,11 @@ class LogInViewController: UIViewController {
         logInButton.setTitleColor(.darkGray, for: .disabled)
         logInButton.setTitleColor(.white, for: .normal)
     }
+}
+
+extension LogInViewController {
     
     private func configureViews() {
-        configureViewsCornerRadius()
-        configureButtonInterface()
         let backgroundEffectView = UIView()
         backgroundEffectView.backgroundColor = .lightGray
         backgroundView.addSubview(backgroundEffectView)

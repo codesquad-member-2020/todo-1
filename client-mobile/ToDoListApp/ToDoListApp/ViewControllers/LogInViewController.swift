@@ -10,14 +10,14 @@ import UIKit
 
 class LogInViewController: UIViewController {
 
+    static let identifier = "LogIn"
+    
     @IBOutlet weak var backgroundView: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var userNameTextField: LogInTextField!
     @IBOutlet weak var passwordTextField: LogInTextField!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
-    
-    static let identifier = "LogIn"
     
     private var userName: String = "" {
         didSet { checkValidation() }

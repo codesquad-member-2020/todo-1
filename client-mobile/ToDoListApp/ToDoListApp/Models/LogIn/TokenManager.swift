@@ -11,7 +11,6 @@ import Foundation
 class TokenManager {
     
     private let tokenKey = "JWTToken"
-    private var token: String? = nil
     
     func saveToken(_ token: String) {
         UserDefaults.standard.set(token, forKey: tokenKey)

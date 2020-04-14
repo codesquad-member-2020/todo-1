@@ -51,23 +51,22 @@ class LogInViewController: UIViewController {
     @IBAction func logInButtonTapped(_ sender: Any) {
         let user = User(userName: userName, password: password)
         NetworkManager.shared.requestLogIn(user: user) { (result) in
-            
             switch result {
             case .success(let cookie):
                 print(cookie)
             case .failure(let error):
-                self.showErrorAlert(error: error)
+                DispatchQueue.main.async {
+                    self.showErrorAlert(error: error)
+                }
             }
         }
     }
     
     private func showErrorAlert(error: RequestError) {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Failed to Log In", message: error.description, preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "Done", style: .default, handler: nil)
-            alert.addAction(cancelAction)
-            self.present(alert, animated: true, completion: nil)
-        }
+        let alert = UIAlertController(title: "Failed to Log In", message: error.description, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Done", style: .default, handler: nil)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     private func configureViewsCornerRadius() {

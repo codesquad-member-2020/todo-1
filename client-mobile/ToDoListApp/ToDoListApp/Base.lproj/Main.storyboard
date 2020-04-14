@@ -147,23 +147,23 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zmj-WM-dnY">
                                 <rect key="frame" x="397" y="157" width="400" height="400"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="aKq-dS-mgB">
-                                        <rect key="frame" x="48" y="158" width="304" height="198"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="aKq-dS-mgB">
+                                        <rect key="frame" x="48" y="154" width="304" height="202"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="USERNAME" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jrf-sL-fUn" customClass="LogInTextField" customModule="ToDoListApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="304" height="37.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="304" height="41"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" textContentType="username"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PASSWORD" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7hh-J7-6sx" customClass="LogInTextField" customModule="ToDoListApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="53.5" width="304" height="37.5"/>
+                                                <rect key="frame" x="0.0" y="54" width="304" height="40.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DH6-6f-lyA">
-                                                <rect key="frame" x="0.0" y="107" width="304" height="37.5"/>
+                                                <rect key="frame" x="0.0" y="107.5" width="304" height="41"/>
                                                 <color key="backgroundColor" red="0.90151094539999999" green="0.46052700369999999" blue="0.392787738" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <state key="normal" title="Log In">
@@ -171,7 +171,7 @@
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fda-eg-9Fj">
-                                                <rect key="frame" x="0.0" y="160.5" width="304" height="37.5"/>
+                                                <rect key="frame" x="0.0" y="161.5" width="304" height="40.5"/>
                                                 <color key="backgroundColor" red="0.33313684698160007" green="0.78293543781725883" blue="0.53343834772894505" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <state key="normal" title="Sign Up">
@@ -183,11 +183,11 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Do List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T1O-pb-TzP">
                                         <rect key="frame" x="24" y="48" width="352" height="66"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="55"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.2690751903553299" green="0.2690751903553299" blue="0.2690751903553299" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="KfH-T2-aXm">
-                                        <rect key="frame" x="64" y="168.5" width="20" height="17"/>
+                                        <rect key="frame" x="64" y="166" width="20" height="17"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="KfH-T2-aXm" secondAttribute="height" multiplier="1:1" id="Zmm-td-bex"/>
@@ -195,7 +195,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="kfm-TY-2nq">
-                                        <rect key="frame" x="64" y="221" width="20" height="18.5"/>
+                                        <rect key="frame" x="64" y="218.5" width="20" height="18.5"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="kfm-TY-2nq" secondAttribute="height" multiplier="1:1" id="3tc-08-clj"/>
@@ -210,7 +210,7 @@
                                     <constraint firstAttribute="bottom" secondItem="aKq-dS-mgB" secondAttribute="bottom" constant="44" id="61W-CW-zhn"/>
                                     <constraint firstItem="aKq-dS-mgB" firstAttribute="leading" secondItem="zmj-WM-dnY" secondAttribute="leading" constant="48" id="AZL-U4-o6Z"/>
                                     <constraint firstAttribute="height" constant="400" id="Hs1-RR-ZgF"/>
-                                    <constraint firstItem="aKq-dS-mgB" firstAttribute="top" secondItem="T1O-pb-TzP" secondAttribute="bottom" constant="44" id="KIe-Ff-BTd"/>
+                                    <constraint firstItem="aKq-dS-mgB" firstAttribute="top" secondItem="T1O-pb-TzP" secondAttribute="bottom" constant="40" id="KIe-Ff-BTd"/>
                                     <constraint firstItem="KfH-T2-aXm" firstAttribute="centerY" secondItem="Jrf-sL-fUn" secondAttribute="centerY" id="Nwx-9Z-1oX"/>
                                     <constraint firstItem="kfm-TY-2nq" firstAttribute="centerY" secondItem="7hh-J7-6sx" secondAttribute="centerY" id="Ylz-QL-hIw"/>
                                     <constraint firstAttribute="trailing" secondItem="T1O-pb-TzP" secondAttribute="trailing" constant="24" id="dC1-Ji-meW"/>

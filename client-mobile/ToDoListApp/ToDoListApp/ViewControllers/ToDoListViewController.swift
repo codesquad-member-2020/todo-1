@@ -30,7 +30,7 @@ class ToDoListViewController: UIViewController {
     }
     
     private func requestColumnsData(completion: @escaping ([Column]) -> Void) {
-        MockNetworkManager.shared.requestData { (result) in
+        NetworkManager.shared.requestData { (result) in
             switch result {
             case .success(let columns):
                 guard let columns = columns else { return }

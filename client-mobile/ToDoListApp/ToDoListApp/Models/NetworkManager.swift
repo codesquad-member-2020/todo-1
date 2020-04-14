@@ -24,11 +24,11 @@ enum RequestError: String, Error, CustomStringConvertible {
     }
 }
 
-class MockNetworkManager: NetworkManagable {
+class NetworkManager: NetworkManagable {
     
     typealias RequestData = [Column]?
     
-    static let shared = MockNetworkManager()
+    static let shared = NetworkManager()
     
     private let baseURL = "http://13.124.169.123"
     
@@ -61,7 +61,7 @@ class MockNetworkManager: NetworkManagable {
     }
 }
 
-extension MockNetworkManager {
+extension NetworkManager {
     
     enum path: String, CustomStringConvertible {
         case GetColumns = "/api/columns"

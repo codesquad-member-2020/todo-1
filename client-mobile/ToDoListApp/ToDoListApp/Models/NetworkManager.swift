@@ -35,7 +35,7 @@ class NetworkManager: NetworkManagable {
     private func requestDataToServer(completion: @escaping (Result<Data?, RequestError>) -> Void) {
         let successStatusCode = 200
         
-        URLSession.shared.dataTask(with: RequestURL(path: .GetColumns)) { (data, response, error) in
+        URLSession.shared.dataTask(with: RequestURL(path: .GetColumns, methodType: .get)) { (data, response, error) in
             guard let response = response as? HTTPURLResponse else { return }
             if response.statusCode != successStatusCode { completion(.failure(.ServerError)) }
             if error != nil { completion(.failure(.URLSessionError)) }
@@ -71,7 +71,21 @@ extension NetworkManager {
         }
     }
     
-    private func RequestURL(path: path) -> URL {
-        return URL(string: baseURL + path.description)!
+    enum methodType: String, CustomStringConvertible {
+        case get = "get"
+        case put = "put"
+        case post = "post"
+        case delete = "delete"
+        
+        var description: String {
+            return self.rawValue
+        }
+    }
+    
+    private func RequestURL(path: path, methodType: methodType) -> URLRequest {
+        let URLForRequest = URL(string: baseURL + path.description)!
+        var request = URLRequest(url: URLForRequest)
+        request.httpMethod = methodType.description
+        return request
     }
 }

@@ -19,6 +19,14 @@ export default class HttpRequestHandler {
 		return this.getResponse(url, options);
 	}
 
+	delete(url) {
+		const options = {
+			method: "DELETE",
+			credentials: "include",
+		};
+		return this.getResponse(url, options);
+	}
+
 	async getResponse(url, options) {
 		const response = await fetch(url, options);
 		const resPromise = await response.json();

@@ -95,20 +95,16 @@ export default class Column {
 	}
 
 	deleteCard({ $card, id }) {
-		// update data
-		const cardList = data.columns.find((column) => column.id === this.id).cards;
-		data.columns.find((column) => column.id === this.id).cards = cardList.filter(
-			(card) => card.id !== id
-		);
-
-		// send card id to the server
-
-		// remove Card DOM
-		this.$cardContainer.removeChild($card);
-
-		// update counter
-		this.handleCounter("down");
-		console.log("card deleted!", data);
+		this.http
+			.delete(`${BASE_URL}/columns/${this.id}/cards/${id}`)
+			.then((response) => {
+				if (response.status === 200) {
+					this.$cardContainer.removeChild($card);
+					this.handleCounter("down");
+					console.log("card deleted!");
+				}
+			})
+			.catch(handleError);
 	}
 
 	updateCard({ $card, id, data: { title, contents } }) {

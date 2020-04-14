@@ -12,9 +12,4 @@ struct UserData: Codable {
     
     let status: Int
     let columns: [Column]
-    
-    enum CodingKeys: String, CodingKey {
-        case status = "statusCode"
-        case columns
-    }
 }

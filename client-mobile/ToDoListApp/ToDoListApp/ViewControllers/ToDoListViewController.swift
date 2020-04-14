@@ -8,17 +8,26 @@
 
 import UIKit
 
-class ToDoListViewController: UIViewController {
-    
+class ToDoListViewController: UIViewController, LogInViewControllerDelegate {
+      
     @IBOutlet weak var stackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let logInViewController = storyboard?.instantiateViewController(identifier: LogInViewController.identifier)
-        logInViewController?.modalPresentationStyle = .fullScreen
-        present(logInViewController!, animated: true, completion: nil)
 //        configureToDoList()
+    }
+    
+    private func presentToLogIn() {
+        guard let logInViewController = storyboard?.instantiateViewController(identifier: LogInViewController.identifier) as? LogInViewController else { return }
+        logInViewController.modalPresentationStyle = .fullScreen
+        present(logInViewController, animated: true, completion: {
+            logInViewController.delegate = self
+        })
+    }
+    
+    func didSuccessToLogIn(with token: String) {
+        
     }
     
     private func configureToDoList() {

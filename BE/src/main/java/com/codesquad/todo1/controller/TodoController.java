@@ -5,6 +5,7 @@ import com.codesquad.todo1.api.ApiShowList;
 import com.codesquad.todo1.api.ApiStatus;
 import com.codesquad.todo1.domain.Card;
 import com.codesquad.todo1.service.TodoService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,5 +56,16 @@ public class TodoController {
             return new ApiStatus(204);
         }
 
+    }
+
+    @PatchMapping("{columnsId}/cards/{id}")
+    public ApiCard move(@PathVariable Long columnsId,
+                        @PathVariable Long id,
+                        @RequestBody String moveJson) {
+        try {
+            return new ApiCard(200, todoService.moveCard(columnsId, id, moveJson));
+        } catch (JsonProcessingException e) {
+            return new ApiCard(400, "Not Json");
+        }
     }
 }

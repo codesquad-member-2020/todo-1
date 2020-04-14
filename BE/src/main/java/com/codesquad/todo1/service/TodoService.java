@@ -35,7 +35,7 @@ public class TodoService {
     }
 
     @Transactional
-    public Optional<Card> cardSave(Card card, Long categoryId) {
+    public Optional<Card> saveCard(Card card, Long categoryId) {
         Category category = categoryRepository.findById(categoryId).orElseThrow(() ->
                 new FindCategoryFail("There is no category with this categoryId"));
         category.addCard(card);
@@ -45,7 +45,7 @@ public class TodoService {
     }
 
     @Transactional
-    public Optional<Card> cardUpdate(Card card, Long categoryId, Long cardId) {
+    public Optional<Card> updateCard(Card card, Long categoryId, Long cardId) {
         Category category = categoryRepository.findById(categoryId).orElseThrow(() ->
                 new FindCategoryFail("There is no category with this categoryId"));
         logger.info("category : {}", category);
@@ -60,16 +60,15 @@ public class TodoService {
     }
 
     @Transactional
-    public void cardDelete(Long id, Long cardId) {
-        Category category = categoryRepository.findById(id).orElseThrow(() ->
-                new IllegalStateException("No category"));
+    public void deleteCard(Long categoryId, Long cardId) {
+        Category category = categoryRepository.findById(categoryId).orElseThrow(() ->
+                new FindCategoryFail("There is no category with this categoryId"));
+        logger.info("category : {}", category);
         try {
             category.deleteCard(cardId);
-            Category savedCategory = categoryRepository.save(category);
-//            Long updatedCardId = savedCategory.findUpdatedCardId(cardId);
-//            return categoryRepository.findByCardId(updatedCardId);
+            categoryRepository.save(category);
         } catch (Exception e) {
-            throw new IllegalStateException("update Fail");
+            throw new IllegalStateException("delete Fail");
         }
     }
 }

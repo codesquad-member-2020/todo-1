@@ -6,9 +6,10 @@ export default class CardCreator {
 	$addButton = null;
 	$cancelButton = null;
 
-	constructor({ $target, data }) {
+	constructor({ $target, data, onSave }) {
 		this.$target = $target;
 		this.data = data;
+		this.onSave = onSave;
 		this.render();
 		this.cacheDomElements();
 		this.bindEventListener();
@@ -71,7 +72,7 @@ export default class CardCreator {
 			alert("제목을 입력해주세요.");
 			return;
 		}
-		this.$target.addCard({ title, contents });
+		this.onSave({ title, contents });
 		this.clearTextArea();
 		this.deactivateAddButton();
 	}

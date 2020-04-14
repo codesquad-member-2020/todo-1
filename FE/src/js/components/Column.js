@@ -2,6 +2,9 @@ import { column } from "../utils/template";
 import data from "../data";
 import Card from "./Card";
 import CardCreator from "./CardCreator";
+import HttpRequestHandler from "../utils/HttpRequestHandler";
+import { BASE_URL } from "../utils/const";
+import { handleError } from "../utils/utilFunction";
 
 export default class Column {
 	$column = null;
@@ -10,6 +13,8 @@ export default class Column {
 	$cardContainer = null;
 	$counter = null;
 	cardCreatorIsShowing = false;
+
+	http = new HttpRequestHandler();
 
 	constructor({ $target, initialData, index }) {
 		this.$target = $target;
@@ -28,6 +33,7 @@ export default class Column {
 			data: {
 				visible: false,
 			},
+			onSave: this.handleAddRequest.bind(this),
 		});
 	}
 
@@ -76,21 +82,16 @@ export default class Column {
 		};
 	}
 
-	addCard(value) {
-		// update data
-		const cardList = data.columns.find((column) => column.id === this.id).cards;
-		const newCardObj = this.createCardObj.call(this, value);
-		cardList.push(newCardObj);
-
-		// send newCardObj to the server
-		// synchronize card id with the one received from the server
-
-		// render Card DOM
-		new Card({ $target: this, data: newCardObj });
-
-		// update counter
-		this.handleCounter("up");
-		console.log("card added!", data);
+	handleAddRequest(value) {
+		const newCardObj = this.createCardObj(value);
+		this.http
+			.post(`${BASE_URL}/columns/${this.id}/cards`, newCardObj)
+			.then((response) => {
+				new Card({ $target: this, data: response });
+				this.handleCounter("up");
+				console.log("card added!");
+			})
+			.catch(handleError);
 	}
 
 	deleteCard({ $card, id }) {

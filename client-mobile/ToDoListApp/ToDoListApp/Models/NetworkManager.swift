@@ -11,7 +11,7 @@ import Foundation
 protocol NetworkManagable {
     associatedtype RequestData
     
-    func requestData(completion: @escaping (Result<RequestData, RequestError>) -> Void)
+    func requestData(method: NetworkManager.methodType, completion: @escaping (Result<RequestData, RequestError>) -> Void)
 }
 
 enum RequestError: String, Error, CustomStringConvertible {
@@ -32,10 +32,10 @@ class NetworkManager: NetworkManagable {
     
     private let baseURL = "http://13.124.169.123"
     
-    private func requestDataToServer(completion: @escaping (Result<Data?, RequestError>) -> Void) {
+    private func requestDataToServer(method: NetworkManager.methodType, completion: @escaping (Result<Data?, RequestError>) -> Void) {
         let successStatusCode = 200
         
-        URLSession.shared.dataTask(with: RequestURL(path: .GetColumns, methodType: .get)) { (data, response, error) in
+        URLSession.shared.dataTask(with: RequestURL(path: .GetColumns, method: method)) { (data, response, error) in
             guard let response = response as? HTTPURLResponse else { return }
             if response.statusCode != successStatusCode { completion(.failure(.ServerError)) }
             if error != nil { completion(.failure(.URLSessionError)) }
@@ -43,8 +43,8 @@ class NetworkManager: NetworkManagable {
         }.resume()
     }
     
-    func requestData(completion: @escaping (Result<RequestData, RequestError>) -> Void) {
-        requestDataToServer { (result) in
+    func requestData(method: NetworkManager.methodType, completion: @escaping (Result<RequestData, RequestError>) -> Void) {
+        requestDataToServer(method: method) { (result) in
             switch result {
             case .success(let data):
                 let decoder = JSONDecoder()
@@ -82,10 +82,10 @@ extension NetworkManager {
         }
     }
     
-    private func RequestURL(path: path, methodType: methodType) -> URLRequest {
+    private func RequestURL(path: path, method: methodType) -> URLRequest {
         let URLForRequest = URL(string: baseURL + path.description)!
         var request = URLRequest(url: URLForRequest)
-        request.httpMethod = methodType.description
+        request.httpMethod = method.description
         return request
     }
 }

@@ -73,13 +73,19 @@ class NetworkManager: NetworkManagable {
 
                 token = cookie.value
             }
+            
             switch response.statusCode {
             case unauthorizedStatusCode:
-                completion(.failure(.UnauthorizedError))
+                completion(.failure(.UnauthorizedError)); return
             case successStatusCode: break
             default: break
             }
-            if error != nil { completion(.failure(.URLSessionError)) }
+            
+            if error != nil {
+                completion(.failure(.URLSessionError))
+                return
+            }
+            
             completion(.success(token))
         }.resume()
     }

@@ -11,10 +11,10 @@ import Foundation
 class TokenManager {
     
     private let tokenKey = "JWTToken"
-    private var JWTToken: String? = nil
+    private var token: String? = nil
     
     func saveToken(_ token: String) {
-        UserDefaults.standard.set(JWTToken, forKey: tokenKey)
+        UserDefaults.standard.set(token, forKey: tokenKey)
     }
     
     func loadToken() -> String? {

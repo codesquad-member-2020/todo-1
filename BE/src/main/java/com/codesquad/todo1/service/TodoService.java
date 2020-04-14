@@ -39,7 +39,34 @@ public class TodoService {
         category.addCard(card);
         Category savedCategory = categoryRepository.save(category);
         Long cardId = savedCategory.getCards().get(savedCategory.getCards().size() - 1).getId();
-        logger.info("cardId : {}", cardId);
         return categoryRepository.findByCardId(cardId);
+    }
+
+    @Transactional
+    public Optional<Card> cardUpdate(Card card, Long id, Long cardId) {
+        Category category = categoryRepository.findById(id).orElseThrow(() ->
+                new IllegalStateException("No category"));
+        try {
+            category.updateCard(card, cardId);
+            Category savedCategory = categoryRepository.save(category);
+            Long updatedCardId = savedCategory.findUpdatedCardId(cardId);
+            return categoryRepository.findByCardId(updatedCardId);
+        } catch (Exception e) {
+            throw new IllegalStateException("update Fail");
+        }
+    }
+
+    @Transactional
+    public void cardDelete(Long id, Long cardId) {
+        Category category = categoryRepository.findById(id).orElseThrow(() ->
+                new IllegalStateException("No category"));
+        try {
+            category.deleteCard(cardId);
+            Category savedCategory = categoryRepository.save(category);
+//            Long updatedCardId = savedCategory.findUpdatedCardId(cardId);
+//            return categoryRepository.findByCardId(updatedCardId);
+        } catch (Exception e) {
+            throw new IllegalStateException("update Fail");
+        }
     }
 }

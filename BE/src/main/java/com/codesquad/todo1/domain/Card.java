@@ -23,4 +23,10 @@ public class Card {
         this.contents = contents;
         this.device = device;
     }
+
+    public void update(Card updateCard) {
+        this.title = updateCard.getTitle();
+        this.contents = updateCard.getContents();
+        this.device = updateCard.getDevice();
+    }
 }

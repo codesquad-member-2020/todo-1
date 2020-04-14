@@ -35,11 +35,11 @@ public class LoginController {
             Cookie cookie = new Cookie("jwt", jwt);
             response.addCookie(cookie);
             response.setStatus(200);
+            return new ApiLogin(200, jwt);
         } catch (Exception e) {
             response.setStatus(401);
-            return new ApiLogin(401);
+            return new ApiLogin(401, null);
         }
-        return new ApiLogin(200);
     }
 
     private void checkValidation(String userId, String password) throws AuthorizationFail {

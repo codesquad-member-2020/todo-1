@@ -19,7 +19,7 @@ class ToDoListViewController: UIViewController, LogInViewControllerDelegate {
     }
     
     private func presentToLogIn() {
-        guard let logInViewController = storyboard?.instantiateViewController(identifier: LogInViewController.identifier) as? LogInViewController else { return }
+        let logInViewController = storyboard?.instantiateViewController(identifier: LogInViewController.identifier) as! LogInViewController
         logInViewController.modalPresentationStyle = .fullScreen
         present(logInViewController, animated: true, completion: {
             logInViewController.delegate = self

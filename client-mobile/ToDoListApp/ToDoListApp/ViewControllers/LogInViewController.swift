@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol LogInViewControllerDelegate {
+    func didSuccessToLogIn(with token: String)
+}
+
 class LogInViewController: UIViewController {
 
     static let identifier = "LogIn"
@@ -18,6 +22,8 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var passwordTextField: LogInTextField!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
+    
+    var delegate: LogInViewControllerDelegate?
     
     private let buttonsCornerRadius: CGFloat = 12
     
@@ -53,7 +59,9 @@ class LogInViewController: UIViewController {
         NetworkManager.shared.requestLogIn(user: user) { (result) in
             switch result {
             case .success(let cookie):
-                print(cookie)
+                self.dismiss(animated: true) {
+                    self.delegate?.didSuccessToLogIn(with: cookie)
+                }
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.showErrorAlert(error: error)

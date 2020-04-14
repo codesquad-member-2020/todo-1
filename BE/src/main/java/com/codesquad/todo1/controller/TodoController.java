@@ -27,7 +27,7 @@ public class TodoController {
     @PostMapping("/{id}/cards")
     public ApiCard create(@PathVariable Long id,
                           @RequestBody Card card) {
-        return new ApiCard(200, todoService.saveCard(card, id));
+        return new ApiCard(200, todoService.saveCard(card, id), "OK");
     }
 
     @PutMapping("/{categoryId}/cards/{cardId}")
@@ -38,10 +38,10 @@ public class TodoController {
             logger.info("categoryId : {}", categoryId);
             logger.info("cardId : {}", cardId);
             logger.info("card : {}", card);
-            return new ApiCard(200, todoService.updateCard(card, categoryId, cardId));
+            return new ApiCard(200, todoService.updateCard(card, categoryId, cardId), "Ok");
         } catch (Exception e) {
             e.printStackTrace();
-           return new ApiCard(204, null);
+           return new ApiCard(204, "No Content");
         }
     }
 
@@ -55,7 +55,6 @@ public class TodoController {
             e.printStackTrace();
             return new ApiStatus(204);
         }
-
     }
 
     @PatchMapping("{columnsId}/cards/{id}")
@@ -63,7 +62,7 @@ public class TodoController {
                         @PathVariable Long id,
                         @RequestBody String moveJson) {
         try {
-            return new ApiCard(200, todoService.moveCard(columnsId, id, moveJson));
+            return new ApiCard(200, todoService.moveCard(columnsId, id, moveJson), "OK");
         } catch (JsonProcessingException e) {
             return new ApiCard(400, "Not Json");
         }

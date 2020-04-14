@@ -10,12 +10,13 @@ import java.util.Optional;
 @ToString
 public class ApiCard {
     private final int status;
-    private Card card;
-    private String message;
+    private Optional<Card> card;
+    private final String message;
 
-    public ApiCard(int status, Card card) {
+    public ApiCard(int status, Optional<Card> card, String message) {
         this.status = status;
         this.card = card;
+        this.message = message;
     }
 
     public ApiCard(int status, String message) {

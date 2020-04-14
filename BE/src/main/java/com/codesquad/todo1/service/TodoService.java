@@ -75,21 +75,17 @@ public class TodoService {
         }
     }
 
-    public Card moveCard(Long categoryId, Long cardId, String MoveJson) throws JsonProcessingException {
+    public Optional<Card> moveCard(Long categoryId, Long cardId, String MoveJson) throws JsonProcessingException {
         int[] moveData = parseJson(MoveJson);
         Category moveFromCategory = categoryRepository.findById(categoryId).orElseThrow(() ->
                 new IllegalStateException("No Category."));
         Category moveToCategory = categoryRepository.findById((long) moveData[0]).orElseThrow(() ->
                 new IllegalStateException("No Category."));
-        Card card = categoryRepository.findByCardId(cardId);
-        moveFromCategory.removeCard(card);
+        Card card = categoryRepository.findBycardId(cardId);
+        moveFromCategory.deleteCard(cardId);
         categoryRepository.save(moveFromCategory);
-//
-//        logger.info("#################################");
-//        logger.info("############# Card: '{}'", card);
-//        moveToCategory.addCard(card);
-//
-//        categoryRepository.save(moveToCategory);
+        moveToCategory.addCardToIndex(moveData[1], card);
+        categoryRepository.save(moveToCategory);
         return categoryRepository.findByCardId(cardId);
     }
 

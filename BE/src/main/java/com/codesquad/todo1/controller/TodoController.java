@@ -29,13 +29,17 @@ public class TodoController {
         return new ApiCard(200, todoService.cardSave(card, id));
     }
 
-    @PutMapping("/{id}/cards/{cardId}")
-    public ApiCard update(@PathVariable Long id,
+    @PutMapping("/{categoryId}/cards/{cardId}")
+    public ApiCard update(@PathVariable Long categoryId,
                          @PathVariable Long cardId,
                          @RequestBody Card card) {
         try {
-            return new ApiCard(200, todoService.cardUpdate(card, id, cardId));
+            logger.info("categoryId : {}", categoryId);
+            logger.info("cardId : {}", cardId);
+            logger.info("card : {}", card);
+            return new ApiCard(200, todoService.cardUpdate(card, categoryId, cardId));
         } catch (Exception e) {
+            e.printStackTrace();
            return new ApiCard(204, null);
         }
     }

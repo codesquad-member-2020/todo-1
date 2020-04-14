@@ -1,5 +1,6 @@
 package com.codesquad.todo1.domain;
 
+import com.codesquad.todo1.error.UpdateCardFail;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -37,7 +38,7 @@ public class Category {
                 return each;
             }
         }
-        throw new IllegalStateException("Update fail");
+        throw new UpdateCardFail("Fail updating card");
     }
 
     public Long findUpdatedCardId(Long cardId) {

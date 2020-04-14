@@ -3,6 +3,8 @@ package com.codesquad.todo1.service;
 import com.codesquad.todo1.domain.Card;
 import com.codesquad.todo1.domain.Category;
 import com.codesquad.todo1.domain.User;
+import com.codesquad.todo1.error.FindCategoryFail;
+import com.codesquad.todo1.error.UpdateCardFail;
 import com.codesquad.todo1.repository.CategoryRepository;
 import com.codesquad.todo1.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +37,7 @@ public class TodoService {
     @Transactional
     public Optional<Card> cardSave(Card card, Long categoryId) {
         Category category = categoryRepository.findById(categoryId).orElseThrow(() ->
-                new IllegalStateException("No category"));
+                new FindCategoryFail("There is no category with this categoryId"));
         category.addCard(card);
         Category savedCategory = categoryRepository.save(category);
         Long cardId = savedCategory.getCards().get(savedCategory.getCards().size() - 1).getId();
@@ -43,16 +45,17 @@ public class TodoService {
     }
 
     @Transactional
-    public Optional<Card> cardUpdate(Card card, Long id, Long cardId) {
-        Category category = categoryRepository.findById(id).orElseThrow(() ->
-                new IllegalStateException("No category"));
+    public Optional<Card> cardUpdate(Card card, Long categoryId, Long cardId) {
+        Category category = categoryRepository.findById(categoryId).orElseThrow(() ->
+                new FindCategoryFail("There is no category with this categoryId"));
+        logger.info("category : {}", category);
         try {
             category.updateCard(card, cardId);
             Category savedCategory = categoryRepository.save(category);
             Long updatedCardId = savedCategory.findUpdatedCardId(cardId);
             return categoryRepository.findByCardId(updatedCardId);
         } catch (Exception e) {
-            throw new IllegalStateException("update Fail");
+            throw new UpdateCardFail();
         }
     }
 

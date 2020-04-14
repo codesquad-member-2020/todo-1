@@ -53,6 +53,19 @@ class HomeViewController: UIViewController, LogInViewControllerDelegate {
         }
     }
     
+    private func configureColumns(_ columns: [Column]) {
+        for column in columns {
+            guard let columnViewController = storyboard?.instantiateViewController(identifier: ColumnViewController.identifier) as? ColumnViewController else { return }
+            self.addChild(columnViewController)
+            self.stackView.addArrangedSubview(columnViewController.view)
+            columnViewController.columnViewModel = ColumnViewModel()
+            columnViewController.updateColumn(column)
+        }
+    }
+}
+
+extension HomeViewController {
+    
     private func requestColumnsData(with token: String, completion: @escaping ([Column]) -> Void) {
         NetworkManager.shared.requestData(method: .get, token: token) { (result) in
             switch result {
@@ -77,15 +90,4 @@ class HomeViewController: UIViewController, LogInViewControllerDelegate {
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
-    private func configureColumns(_ columns: [Column]) {
-        for column in columns {
-            guard let columnViewController = storyboard?.instantiateViewController(identifier: ColumnViewController.identifier) as? ColumnViewController else { return }
-            self.addChild(columnViewController)
-            self.stackView.addArrangedSubview(columnViewController.view)
-            columnViewController.columnViewModel = ColumnViewModel()
-            columnViewController.updateColumn(column)
-        }
-    }
 }
-

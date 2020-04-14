@@ -11,7 +11,7 @@ import Foundation
 protocol NetworkManagable {
     associatedtype RequestData
     
-    func requestData(method: NetworkManager.methodType, completion: @escaping (Result<RequestData, RequestError>) -> Void)
+    func requestData(method: NetworkManager.methodType, token: String, completion: @escaping (Result<RequestData, RequestError>) -> Void)
 }
 
 enum RequestError: String, Error, CustomStringConvertible {
@@ -33,13 +33,22 @@ class NetworkManager: NetworkManagable {
     
     private let baseURL = "http://13.124.169.123"
     
-    private func requestDataToServer(method: NetworkManager.methodType, completion: @escaping (Result<Data?, RequestError>) -> Void) {
+    private func requestDataToServer(method: NetworkManager.methodType, token: String, completion: @escaping (Result<Data?, RequestError>) -> Void) {
         let successStatusCode = 200
-        
-        URLSession.shared.dataTask(with: RequestURL(path: .GetColumns, method: method)) { (data, response, error) in
+        var urlRequest = RequestURL(path: .GetColumns, method: method)
+        if token != "" {
+            urlRequest.setValue("jwt=\(token)", forHTTPHeaderField: "Cookie")
+        }
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             guard let response = response as? HTTPURLResponse else { return }
-            if response.statusCode != successStatusCode { completion(.failure(.ServerError)) }
-            if error != nil { completion(.failure(.URLSessionError)) }
+            if response.statusCode != successStatusCode {
+                completion(.failure(.ServerError))
+                return
+            }
+            if error != nil {
+                completion(.failure(.URLSessionError))
+                return
+            }
             completion(.success(data))
         }.resume()
     }
@@ -90,8 +99,8 @@ class NetworkManager: NetworkManagable {
         }.resume()
     }
     
-    func requestData(method: NetworkManager.methodType, completion: @escaping (Result<RequestData, RequestError>) -> Void) {
-        requestDataToServer(method: method) { (result) in
+    func requestData(method: NetworkManager.methodType, token: String = "", completion: @escaping (Result<RequestData, RequestError>) -> Void) {
+        requestDataToServer(method: method, token: token) { (result) in
             switch result {
             case .success(let data):
                 let decoder = JSONDecoder()

@@ -15,8 +15,8 @@ class HomeViewController: UIViewController, LogInViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if loadToken() != nil {
-            configureToDoList()
+        if let token = loadToken() {
+            configureToDoList(with: token)
         } else {
             presentToLogIn()
         }
@@ -45,16 +45,16 @@ class HomeViewController: UIViewController, LogInViewControllerDelegate {
         saveToken(token)
     }
     
-    private func configureToDoList() {
-        requestColumnsData { (columns) in
+    private func configureToDoList(with token: String) {
+        requestColumnsData(with: token) { (columns) in
             DispatchQueue.main.async {
                 self.configureColumns(columns)
             }
         }
     }
     
-    private func requestColumnsData(completion: @escaping ([Column]) -> Void) {
-        NetworkManager.shared.requestData(method: .get) { (result) in
+    private func requestColumnsData(with token: String, completion: @escaping ([Column]) -> Void) {
+        NetworkManager.shared.requestData(method: .get, token: token) { (result) in
             switch result {
             case .success(let columns):
                 guard let columns = columns else { return }
@@ -70,7 +70,7 @@ class HomeViewController: UIViewController, LogInViewControllerDelegate {
             let alert = UIAlertController(title: "Error", message: error.description, preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Done", style: .default, handler: nil)
             let retryAction = UIAlertAction(title: "Retry", style: .cancel) { _ in
-                self.configureToDoList()
+                self.configureToDoList(with: "")
             }
             alert.addAction(retryAction)
             alert.addAction(cancelAction)

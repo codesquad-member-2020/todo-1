@@ -1,5 +1,6 @@
 package com.codesquad.todo1.domain;
 
+import com.codesquad.todo1.error.UpdateCardFail;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -28,5 +29,33 @@ public class Category {
 
     public void addCard(Card card) {
         this.cards.add(card);
+    }
+
+    public Card updateCard(Card updateCard, Long cardId) {
+        for (Card each : cards) {
+            if (each.getId().equals(cardId)) {
+                each.update(updateCard);
+                return each;
+            }
+        }
+        throw new UpdateCardFail("Fail updating card");
+    }
+
+    public Long findUpdatedCardId(Long cardId) {
+        for (Card each : cards) {
+            if (each.getId().equals(cardId)) {
+                return each.getId();
+            }
+        }
+        throw new IllegalStateException("Find updated card fail");
+    }
+
+    public void deleteCard(Long cardId) {
+        for (Card each : cards) {
+            if (each.getId().equals(cardId)) {
+                cards.remove(each);
+            }
+        }
+        throw new IllegalStateException("Update fail");
     }
 }

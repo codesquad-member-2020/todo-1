@@ -7,8 +7,10 @@ import lombok.ToString;
 @ToString
 public class ApiLogin {
     private final int status;
+    private final String jwt;
 
-    public ApiLogin(int status) {
+    public ApiLogin(int status, String jwt) {
         this.status = status;
+        this.jwt = jwt;
     }
 }

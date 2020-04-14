@@ -10,6 +10,10 @@
 		380A5AE1243C5A360063A9F6 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A5AE0243C5A360063A9F6 /* BadgeView.swift */; };
 		381C3A52243B505F00F83D4B /* CardListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381C3A51243B505F00F83D4B /* CardListDataSource.swift */; };
 		3830F72B243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3830F72A243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift */; };
+		383133D5244488BE00E9891E /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383133D4244488BE00E9891E /* UserInfoViewController.swift */; };
+		383133D72444C46C00E9891E /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383133D62444C46C00E9891E /* TokenManager.swift */; };
+		383133DA2444C9B300E9891E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383133D92444C9B300E9891E /* LogInViewController.swift */; };
+		383133DC2444D9E900E9891E /* LogInTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383133DB2444D9E900E9891E /* LogInTextField.swift */; };
 		3831B971243B58DF00550FA1 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3831B970243B58DF00550FA1 /* CardCell.swift */; };
 		387B8B35243C977D00805A34 /* ColumnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B8B34243C977D00805A34 /* ColumnViewController.swift */; };
 		387B8B37243CBA4700805A34 /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B8B36243CBA4700805A34 /* Column.swift */; };
@@ -17,7 +21,7 @@
 		387B8B3B243CBFEE00805A34 /* ColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B8B3A243CBFEE00805A34 /* ColumnView.swift */; };
 		388CA27C243AEE0900E99CED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27B243AEE0900E99CED /* AppDelegate.swift */; };
 		388CA27E243AEE0900E99CED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27D243AEE0900E99CED /* SceneDelegate.swift */; };
-		388CA280243AEE0900E99CED /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27F243AEE0900E99CED /* ToDoListViewController.swift */; };
+		388CA280243AEE0900E99CED /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CA27F243AEE0900E99CED /* HomeViewController.swift */; };
 		388CA283243AEE0900E99CED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388CA281243AEE0900E99CED /* Main.storyboard */; };
 		388CA285243AEE0C00E99CED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388CA284243AEE0C00E99CED /* Assets.xcassets */; };
 		388CA288243AEE0C00E99CED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388CA286243AEE0C00E99CED /* LaunchScreen.storyboard */; };
@@ -25,6 +29,7 @@
 		38AB7CC2243F34DE00ADD8F8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB7CC1243F34DE00ADD8F8 /* NetworkManager.swift */; };
 		38B43793243D85B3000C2A8D /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B43792243D85B3000C2A8D /* NewCardViewController.swift */; };
 		38B43795243D9241000C2A8D /* CardContentsTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B43794243D9241000C2A8D /* CardContentsTextViewDelegate.swift */; };
+		38D239522445955B001E0B78 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D239512445955B001E0B78 /* User.swift */; };
 		38E05A49243F7436005679EC /* TitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E05A48243F7436005679EC /* TitleViewModel.swift */; };
 		38F0A3E8244406AB00A20EF5 /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */; };
 		38F437E324401EFC009BE1FF /* ContentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F437E224401EFC009BE1FF /* ContentsViewModel.swift */; };
@@ -35,6 +40,10 @@
 		380A5AE0243C5A360063A9F6 /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		381C3A51243B505F00F83D4B /* CardListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListDataSource.swift; sourceTree = "<group>"; };
 		3830F72A243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTitleTextFieldDelegate.swift; sourceTree = "<group>"; };
+		383133D4244488BE00E9891E /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		383133D62444C46C00E9891E /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		383133D92444C9B300E9891E /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		383133DB2444D9E900E9891E /* LogInTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInTextField.swift; sourceTree = "<group>"; };
 		3831B970243B58DF00550FA1 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		387B8B34243C977D00805A34 /* ColumnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnViewController.swift; sourceTree = "<group>"; };
 		387B8B36243CBA4700805A34 /* Column.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
@@ -43,7 +52,7 @@
 		388CA278243AEE0900E99CED /* ToDoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		388CA27B243AEE0900E99CED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		388CA27D243AEE0900E99CED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		388CA27F243AEE0900E99CED /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
+		388CA27F243AEE0900E99CED /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		388CA282243AEE0900E99CED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		388CA284243AEE0C00E99CED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		388CA287243AEE0C00E99CED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -52,6 +61,7 @@
 		38AB7CC1243F34DE00ADD8F8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		38B43792243D85B3000C2A8D /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
 		38B43794243D9241000C2A8D /* CardContentsTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContentsTextViewDelegate.swift; sourceTree = "<group>"; };
+		38D239512445955B001E0B78 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		38E05A48243F7436005679EC /* TitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewModel.swift; sourceTree = "<group>"; };
 		38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
 		38F437E224401EFC009BE1FF /* ContentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsViewModel.swift; sourceTree = "<group>"; };
@@ -69,6 +79,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		383133D82444C6C800E9891E /* LogIn */ = {
+			isa = PBXGroup;
+			children = (
+				383133D62444C46C00E9891E /* TokenManager.swift */,
+				38D239512445955B001E0B78 /* User.swift */,
+			);
+			path = LogIn;
+			sourceTree = "<group>";
+		};
+		383133DD2444D9ED00E9891E /* LogIn */ = {
+			isa = PBXGroup;
+			children = (
+				383133DB2444D9E900E9891E /* LogInTextField.swift */,
+			);
+			path = LogIn;
+			sourceTree = "<group>";
+		};
 		387B8B3C243CC75100805A34 /* CardList */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,9 +152,11 @@
 		388CA28F243AFE4400E99CED /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				388CA27F243AEE0900E99CED /* ToDoListViewController.swift */,
+				388CA27F243AEE0900E99CED /* HomeViewController.swift */,
 				387B8B34243C977D00805A34 /* ColumnViewController.swift */,
 				38B43792243D85B3000C2A8D /* NewCardViewController.swift */,
+				383133D4244488BE00E9891E /* UserInfoViewController.swift */,
+				383133D92444C9B300E9891E /* LogInViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -135,6 +164,7 @@
 		388CA290243AFE5900E99CED /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				383133D82444C6C800E9891E /* LogIn */,
 				38F437E424403AE7009BE1FF /* UserData.swift */,
 				387B8B3D243CC76C00805A34 /* CardList */,
 				38AB7CC1243F34DE00ADD8F8 /* NetworkManager.swift */,
@@ -145,6 +175,7 @@
 		388CA291243AFE6100E99CED /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				383133DD2444D9ED00E9891E /* LogIn */,
 				387B8B3C243CC75100805A34 /* CardList */,
 				38B44760243DC40A00232A15 /* NewCard */,
 			);
@@ -252,12 +283,14 @@
 			files = (
 				38F0A3E8244406AB00A20EF5 /* CardListViewModel.swift in Sources */,
 				387B8B35243C977D00805A34 /* ColumnViewController.swift in Sources */,
-				388CA280243AEE0900E99CED /* ToDoListViewController.swift in Sources */,
+				383133DA2444C9B300E9891E /* LogInViewController.swift in Sources */,
+				388CA280243AEE0900E99CED /* HomeViewController.swift in Sources */,
 				38F437E524403AE7009BE1FF /* UserData.swift in Sources */,
 				38F437E324401EFC009BE1FF /* ContentsViewModel.swift in Sources */,
 				387B8B3B243CBFEE00805A34 /* ColumnView.swift in Sources */,
 				381C3A52243B505F00F83D4B /* CardListDataSource.swift in Sources */,
 				3830F72B243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift in Sources */,
+				383133D72444C46C00E9891E /* TokenManager.swift in Sources */,
 				38B43793243D85B3000C2A8D /* NewCardViewController.swift in Sources */,
 				387B8B37243CBA4700805A34 /* Column.swift in Sources */,
 				387B8B39243CBAC400805A34 /* Card.swift in Sources */,
@@ -266,7 +299,10 @@
 				38E05A49243F7436005679EC /* TitleViewModel.swift in Sources */,
 				38AB7CC0243F0D3D00ADD8F8 /* ColumnViewModel.swift in Sources */,
 				388CA27C243AEE0900E99CED /* AppDelegate.swift in Sources */,
+				383133DC2444D9E900E9891E /* LogInTextField.swift in Sources */,
 				388CA27E243AEE0900E99CED /* SceneDelegate.swift in Sources */,
+				38D239522445955B001E0B78 /* User.swift in Sources */,
+				383133D5244488BE00E9891E /* UserInfoViewController.swift in Sources */,
 				3831B971243B58DF00550FA1 /* CardCell.swift in Sources */,
 				380A5AE1243C5A360063A9F6 /* BadgeView.swift in Sources */,
 			);

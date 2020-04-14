@@ -33,7 +33,7 @@ export default class Column {
 			data: {
 				visible: false,
 			},
-			onSave: this.handleAddRequest.bind(this),
+			onSave: this.addCard.bind(this),
 		});
 	}
 
@@ -82,7 +82,7 @@ export default class Column {
 		};
 	}
 
-	handleAddRequest(value) {
+	addCard(value) {
 		const newCardObj = this.createCardObj(value);
 		this.http
 			.post(`${BASE_URL}/columns/${this.id}/cards`, newCardObj)
@@ -107,25 +107,18 @@ export default class Column {
 			.catch(handleError);
 	}
 
-	updateCard({ $card, id, data: { title, contents } }) {
-		// update data
-		const cardList = data.columns.find((column) => column.id === this.id).cards;
-		let updatedCard;
-		for (let index = 0, length = cardList.length; index < length; index++) {
-			if (cardList[index].id === id) {
-				cardList[index].title = title;
-				cardList[index].contents = contents;
-				updatedCard = cardList[index];
-				break;
-			}
-		}
-
-		// send updatedCard to the server
-
-		// render new contents in the card
-		$card.querySelector(".title").textContent = title;
-		$card.querySelector(".contents").textContent = contents;
-		console.log("card updated!", data);
+	updateCard({ $card, id, data }) {
+		const newCardObj = this.createCardObj(data);
+		this.http
+			.put(`${BASE_URL}/columns/${this.id}/cards/${id}`, newCardObj)
+			.then((response) => {
+				if (response.status === 200) {
+					$card.querySelector(".title").textContent = response.card.title;
+					$card.querySelector(".contents").textContent = response.card.contents;
+					console.log("card updated!");
+				}
+			})
+			.catch(handleError);
 	}
 
 	moveCard({ cardId, fromColumnId, toColumnId, toRow }) {

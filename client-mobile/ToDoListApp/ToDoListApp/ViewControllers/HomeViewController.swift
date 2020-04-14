@@ -15,7 +15,11 @@ class HomeViewController: UIViewController, LogInViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        configureToDoList()
+        if loadToken() != nil {
+            configureToDoList()
+        } else {
+            presentToLogIn()
+        }
     }
     
     private func loadToken() -> String? {

@@ -67,8 +67,10 @@ class LogInViewController: UIViewController {
     }
     
     private func dismissCurrentViewController(with token: String) {
-        dismiss(animated: true) {
-            self.delegate?.didSuccessToLogIn(with: token)
+        DispatchQueue.main.async {
+            self.dismiss(animated: true) {
+                self.delegate?.didSuccessToLogIn(with: token)
+            }
         }
     }
     

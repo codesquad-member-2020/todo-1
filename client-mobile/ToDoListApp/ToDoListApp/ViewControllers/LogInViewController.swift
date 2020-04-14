@@ -61,9 +61,7 @@ class LogInViewController: UIViewController {
             case .success(let token):
                 self.dismissCurrentViewController(with: token)
             case .failure(let error):
-                DispatchQueue.main.async {
-                    self.showErrorAlert(error: error)
-                }
+                self.showErrorAlert(error: error)
             }
         }
     }
@@ -75,10 +73,12 @@ class LogInViewController: UIViewController {
     }
     
     private func showErrorAlert(error: RequestError) {
-        let alert = UIAlertController(title: "Failed to Log In", message: error.description, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Done", style: .default, handler: nil)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Failed to Log In", message: error.description, preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Done", style: .default, handler: nil)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     private func configureViewsCornerRadius() {

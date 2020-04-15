@@ -29,26 +29,29 @@ public class LoginController {
                         HttpServletResponse response) {
         String userId = user.getUserId();
         String password = user.getPassword();
+        logger.info("loginTryUser : {}", user);
         try {
-            checkValidation(userId, password);
+            User validationSuccessUser = checkValidation(userId, password);
             // 인증 통과한 userId로 jwt를 만든다.
             String jwt = JwtUtils.jwtCreate(userId);
             // 만든 jwt를 쿠키에 담아서 response 한다.
             Cookie cookie = new Cookie("jwt", jwt);
             response.addCookie(cookie);
             response.setStatus(200);
-            return new ApiLogin(200, jwt);
+            return new ApiLogin(200, jwt, validationSuccessUser.getProfileUrl(), userId);
         } catch (Exception e) {
             response.setStatus(401);
-            return new ApiLogin(401, null);
+            return new ApiLogin(401, null, null, null);
         }
     }
 
-    private void checkValidation(String userId, String password) throws AuthorizationFail {
+    private User checkValidation(String userId, String password) throws AuthorizationFail {
         User savedUser = todoService.findByUserId(userId).orElseThrow(AuthorizationFail::new);
+        logger.info("savedUser : {}", savedUser);
         String savedPassword = savedUser.getPassword();
         if (!password.equals(savedPassword)) {
             throw new AuthorizationFail();
         }
+        return savedUser;
     }
 }

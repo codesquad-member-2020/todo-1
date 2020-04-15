@@ -45,7 +45,7 @@ class NetworkManager {
         }.resume()
     }
     
-    private func requestLogInToServer(body: Data?, completion: @escaping (Result<String, RequestError>) -> Void) {
+    private func requestLogInToServer(body: Data?, completion: @escaping (Result<(String, UserInfo), RequestError>) -> Void) {
         let successStatusCode = 200
         let unauthorizedStatusCode = 401
         
@@ -87,7 +87,18 @@ class NetworkManager {
                 return
             }
             
-            completion(.success(token))
+            guard let data = data else {
+                completion(.failure(.ServerError))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            guard let userInfo = try? decoder.decode(UserInfo.self, from: data) else {
+                completion(.failure(.JSONDecodingError))
+                return
+            }
+            
+            completion(.success((token, userInfo)))
         }.resume()
     }
     
@@ -108,13 +119,13 @@ class NetworkManager {
         }
     }
     
-    func requestLogIn(user: User, completion: @escaping (Result<String, RequestError>) -> Void) {
+    func requestLogIn(user: User, completion: @escaping (Result<(String, UserInfo), RequestError>) -> Void) {
         let encoder = JSONEncoder()
         let data = try? encoder.encode(user)
         requestLogInToServer(body: data) { (result) in
             switch result {
-            case .success(let token):
-                completion(.success(token))
+            case .success((let token, let userInfo)):
+                completion(.success((token, userInfo)))
             case .failure(let error):
                 completion(.failure(error))
             }

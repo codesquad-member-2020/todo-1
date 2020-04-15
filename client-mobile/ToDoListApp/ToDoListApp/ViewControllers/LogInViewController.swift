@@ -9,7 +9,7 @@
 import UIKit
 
 protocol LogInViewControllerDelegate {
-    func didSuccessToLogIn(with token: String)
+    func didSuccessToLogIn(with logInInfo: (String, UserInfo))
 }
 
 class LogInViewController: UIViewController {
@@ -60,18 +60,18 @@ class LogInViewController: UIViewController {
         let user = User(userName: userName, password: password)
         NetworkManager.shared.requestLogIn(user: user) { (result) in
             switch result {
-            case .success(let token):
-                self.dismissCurrentViewController(with: token)
+            case .success(let token, let userInfo):
+                self.dismissCurrentViewController(with: (token, userInfo))
             case .failure(let error):
                 self.showErrorAlert(error: error)
             }
         }
     }
     
-    private func dismissCurrentViewController(with token: String) {
+    private func dismissCurrentViewController(with logInInfo: (String, UserInfo)) {
         DispatchQueue.main.async {
             self.dismiss(animated: true) {
-                self.delegate?.didSuccessToLogIn(with: token)
+                self.delegate?.didSuccessToLogIn(with: logInInfo)
             }
         }
     }

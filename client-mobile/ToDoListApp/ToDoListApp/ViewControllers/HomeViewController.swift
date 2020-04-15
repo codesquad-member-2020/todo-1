@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
       
     @IBOutlet weak var stackView: UIStackView!
+    private var userInfo: UserInfo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,7 +107,10 @@ extension HomeViewController {
 }
 
 extension HomeViewController: LogInViewControllerDelegate {
-    func didSuccessToLogIn(with token: String) {
+    func didSuccessToLogIn(with logInInfo: (String, UserInfo)) {
+        let token = logInInfo.0
+        let userInfo = logInInfo.1
         saveToken(token)
+        self.userInfo = userInfo
     }
 }

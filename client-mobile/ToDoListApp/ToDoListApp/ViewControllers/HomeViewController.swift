@@ -67,11 +67,10 @@ class HomeViewController: UIViewController, LogInViewControllerDelegate {
 extension HomeViewController {
     
     private func requestColumnsData(with token: String, completion: @escaping ([Column]) -> Void) {
-        NetworkManager.shared.requestData(method: .get, token: token) { (result) in
+        NetworkManager.shared.requestData(token: token) { (result: Result<UserData, RequestError>) in
             switch result {
-            case .success(let columns):
-                guard let columns = columns else { return }
-                completion(columns)
+            case .success(let userData):
+                completion(userData.columns)
             case .failure(let error):
                 self.showErrorAlert(error: error)
             }

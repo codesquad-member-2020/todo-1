@@ -8,12 +8,6 @@
 
 import Foundation
 
-protocol NetworkManagable {
-    associatedtype RequestData
-    
-    func requestData(method: NetworkManager.methodType, token: String, completion: @escaping (Result<RequestData, RequestError>) -> Void)
-}
-
 enum RequestError: String, Error, CustomStringConvertible {
     case ServerError = "서버 통신 요청에 실패했습니다."
     case URLSessionError = "네트워크 요청에 실패했습니다."
@@ -25,18 +19,16 @@ enum RequestError: String, Error, CustomStringConvertible {
     }
 }
 
-class NetworkManager: NetworkManagable {
-    
-    typealias RequestData = [Column]?
+class NetworkManager {
     
     static let shared = NetworkManager()
     
     private let baseURL = "http://13.124.169.123"
     
-    private func requestDataToServer(method: NetworkManager.methodType, token: String, completion: @escaping (Result<Data?, RequestError>) -> Void) {
+    private func requestDataToServer(method: NetworkManager.methodType, token: String? = nil, completion: @escaping (Result<Data?, RequestError>) -> Void) {
         let successStatusCode = 200
         var urlRequest = RequestURL(path: "/api/columns", method: method)
-        if token != "" {
+        if let token = token {
             urlRequest.setValue("jwt=\(token)", forHTTPHeaderField: "Cookie")
         }
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
@@ -99,17 +91,17 @@ class NetworkManager: NetworkManagable {
         }.resume()
     }
     
-    func requestData(method: NetworkManager.methodType, token: String = "", completion: @escaping (Result<RequestData, RequestError>) -> Void) {
+    func requestData<T: Codable>(method: NetworkManager.methodType = .get, token: String?, completion: @escaping (Result<T, RequestError>) -> Void) {
         requestDataToServer(method: method, token: token) { (result) in
             switch result {
             case .success(let data):
                 let decoder = JSONDecoder()
                 guard let data = data else { return }
-                guard let userData = try? decoder.decode(UserData.self, from: data) else {
+                guard let userData = try? decoder.decode(T.self, from: data) else {
                     completion(.failure(.JSONDecodingError))
                     return
                 }
-                completion(.success(userData.columns))
+                completion(.success(userData))
             case .failure(let error):
                 completion(.failure(error))
             }

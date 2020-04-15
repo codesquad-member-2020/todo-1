@@ -155,6 +155,21 @@ class NetworkManager {
             completion(.success(decodedData))
         }.resume()
     }
+    
+    func requestData(from URLString: String, method: NetworkManager.methodType = .get, completion: @escaping (Result<Data, RequestError>) -> Void) {
+        guard let url = URL(string: URLString) else { return }
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
+            guard let data = data else {
+                completion(.failure(.URLSessionError))
+                return
+            }
+            if error != nil {
+                completion(.failure(.URLSessionError))
+                return
+            }
+            completion(.success(data))
+        }
+    }
 }
 
 extension NetworkManager {

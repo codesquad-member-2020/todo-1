@@ -29,6 +29,8 @@ class NewCardViewController: UIViewController {
     
     private let device = "iOS"
     
+    private var columnId: Int = 0
+    
     var newCardDelegate: NewCardDelegation?
     
     override func viewDidLoad() {
@@ -69,6 +71,10 @@ class NewCardViewController: UIViewController {
         let card = Card(userID: "Sunny", title: titleText, contents: contentsText, device: device, index: 0)
         newCardDelegate?.addNewCard(card)
         dismiss(animated: true, completion: nil)
+    }
+    
+    func setColumnId(_ id: Int) {
+        self.columnId = id
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

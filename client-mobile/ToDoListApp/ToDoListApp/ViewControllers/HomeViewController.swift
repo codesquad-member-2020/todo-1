@@ -60,6 +60,7 @@ class HomeViewController: UIViewController, LogInViewControllerDelegate {
             self.stackView.addArrangedSubview(columnViewController.view)
             columnViewController.columnViewModel = ColumnViewModel()
             columnViewController.updateColumn(column)
+            columnViewController.setColumnId(column.identifier)
         }
     }
 }

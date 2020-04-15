@@ -119,15 +119,14 @@ export default class Column {
 			.catch(handleError);
 	}
 
-	moveCard({ cardId, fromColumnId, toColumnId, toRow }) {
+	moveCard({ cardId, toColumnId, toRow }) {
 		const data = {
-			fromColumn: fromColumnId,
 			toColumn: toColumnId,
 			toRow: toRow,
 		};
 
 		this.http
-			.patch(`${BASE_URL}/columns/${this.id}/cards/${cardId}`, data)
+			.patch(`${BASE_URL}/columns/${toColumnId}/cards/${cardId}`, data)
 			.then((response) => {
 				if (response.status !== 200)
 					throw Error("에러가 발생했습니다. 페이지 새로고침 후 다시 시도해주세요.");

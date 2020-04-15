@@ -27,6 +27,7 @@
 		388CA288243AEE0C00E99CED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388CA286243AEE0C00E99CED /* LaunchScreen.storyboard */; };
 		38AB7CC0243F0D3D00ADD8F8 /* ColumnViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */; };
 		38AB7CC2243F34DE00ADD8F8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB7CC1243F34DE00ADD8F8 /* NetworkManager.swift */; };
+		38B417932446D813007FDF82 /* NewCardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B417922446D813007FDF82 /* NewCardRequest.swift */; };
 		38B43793243D85B3000C2A8D /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B43792243D85B3000C2A8D /* NewCardViewController.swift */; };
 		38B43795243D9241000C2A8D /* CardContentsTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B43794243D9241000C2A8D /* CardContentsTextViewDelegate.swift */; };
 		38D239522445955B001E0B78 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D239512445955B001E0B78 /* User.swift */; };
@@ -59,6 +60,7 @@
 		388CA289243AEE0C00E99CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnViewModel.swift; sourceTree = "<group>"; };
 		38AB7CC1243F34DE00ADD8F8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		38B417922446D813007FDF82 /* NewCardRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardRequest.swift; sourceTree = "<group>"; };
 		38B43792243D85B3000C2A8D /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
 		38B43794243D9241000C2A8D /* CardContentsTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContentsTextViewDelegate.swift; sourceTree = "<group>"; };
 		38D239512445955B001E0B78 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			children = (
 				387B8B36243CBA4700805A34 /* Column.swift */,
 				387B8B38243CBAC400805A34 /* Card.swift */,
+				38B417922446D813007FDF82 /* NewCardRequest.swift */,
 			);
 			path = CardList;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				388CA27C243AEE0900E99CED /* AppDelegate.swift in Sources */,
 				383133DC2444D9E900E9891E /* LogInTextField.swift in Sources */,
 				388CA27E243AEE0900E99CED /* SceneDelegate.swift in Sources */,
+				38B417932446D813007FDF82 /* NewCardRequest.swift in Sources */,
 				38D239522445955B001E0B78 /* User.swift in Sources */,
 				383133D5244488BE00E9891E /* UserInfoViewController.swift in Sources */,
 				3831B971243B58DF00550FA1 /* CardCell.swift in Sources */,

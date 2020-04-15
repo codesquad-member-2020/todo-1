@@ -78,6 +78,22 @@ export function cardEditor(contents) {
 		</div>`;
 }
 
+export function activity() {
+	return `<div class="activity">
+			<div>
+				<div class="activity-border top">
+					<h3><i class="fas fa-bars"></i>Menu</h3>
+					<i class="fas fa-times close-activity"></i>
+				</div>
+				<div class="activity-border">
+					<h3><i class="fas fa-bell"></i>Activity</h3>
+				</div>
+				<div class="activity-detail">
+				</div>
+			</div>
+		</div>`;
+}
+
 const actions = {
 	add: (userId, profileURL, title, toColumn) => `
     <li class="detail-container">
@@ -122,24 +138,11 @@ const actions = {
   `,
 };
 
-export function activity(data) {
-	return `<div class="activity">
-			<div>
-				<div class="activity-border top">
-					<h3><i class="fas fa-bars"></i>Menu</h3>
-					<i class="fas fa-times close-activity"></i>
-				</div>
-				<div class="activity-border">
-					<h3><i class="fas fa-bell"></i>Activity</h3>
-				</div>
-				<div class="activity-detail">
-					<ul>
+export function activityList(data) {
+	return `<ul>
 						${data.reduce((list, { userId, profileURL, action, title, fromColumn, toColumn, actionTime }) => {
 							list += actions[action](userId, profileURL, title, fromColumn, toColumn);
 							return list;
 						}, "")}
-					</ul>
-				</div>
-			</div>
-		</div>`;
+					</ul>`;
 }

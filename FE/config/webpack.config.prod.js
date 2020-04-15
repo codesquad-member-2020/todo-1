@@ -17,23 +17,6 @@ const config = {
 			Scss: path.resolve(__dirname, "../src/scss/"),
 		},
 	},
-	plugins: [
-		new MiniCssExtractPlugin({
-			filename: "style.css",
-		}),
-		new HtmlWebpackPlugin({
-			filename: "login.html",
-			template: path.join(__dirname, "../src/login.html"),
-			hash: true,
-			chunks: ["login"],
-		}),
-		new HtmlWebpackPlugin({
-			filename: "todo.html",
-			template: path.join(__dirname, "../src/todo.html"),
-			hash: true,
-			excludeChunks: ["login"],
-		}),
-	],
 	module: {
 		rules: [
 			{
@@ -56,6 +39,23 @@ const config = {
 			},
 		],
 	},
+	plugins: [
+		new MiniCssExtractPlugin({
+			filename: "style.css",
+		}),
+		new HtmlWebpackPlugin({
+			filename: "login.html",
+			template: path.join(__dirname, "../src/login.html"),
+			hash: true,
+			chunks: ["login"],
+		}),
+		new HtmlWebpackPlugin({
+			filename: "todo.html",
+			template: path.join(__dirname, "../src/todo.html"),
+			hash: true,
+			excludeChunks: ["login"],
+		}),
+	],
 	output: {
 		path: OUTPUT_DIR,
 		filename: "[name].bundle.js",

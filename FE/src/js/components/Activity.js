@@ -1,9 +1,9 @@
-import { activity } from "../utils/template";
-import activityData from "../activityData";
+import { activity, activityList } from "../utils/template";
 
 export default class Header {
 	$activity = null;
 	$close = null;
+	$detailContainer = null;
 
 	constructor({ $target, data }) {
 		this.$target = $target;
@@ -14,16 +14,28 @@ export default class Header {
 	}
 
 	render() {
-		document.getElementById("Todo").insertAdjacentHTML("afterend", activity(activityData));
+		document.getElementById("Todo").insertAdjacentHTML("afterend", activity());
 	}
 
 	cacheDomElements() {
 		this.$activity = document.querySelector(".activity");
 		this.$close = this.$activity.querySelector(".close-activity");
+		this.$detailContainer = this.$activity.querySelector(".activity-detail");
 	}
 
 	bindEventListener() {
-		this.$close.addEventListener("click", this.toggleDisplay.bind(this, { visible: false }));
+		this.$close.addEventListener("click", this.closeActivity.bind(this));
+	}
+
+	clearList() {
+		const detailList = this.$detailContainer.querySelector("ul");
+		if (detailList) {
+			this.$detailContainer.removeChild(detailList);
+		}
+	}
+
+	appendList(data) {
+		this.$detailContainer.insertAdjacentHTML("afterbegin", activityList(data));
 	}
 
 	toggleDisplay(nextData) {
@@ -35,5 +47,15 @@ export default class Header {
 		visible
 			? ($activity.style.transform = "translateX(-360px)")
 			: ($activity.style.transform = "translateX(0px)");
+	}
+
+	openActivity(data) {
+		this.appendList(data);
+		this.toggleDisplay({ visible: true });
+	}
+
+	closeActivity() {
+		this.toggleDisplay({ visible: false });
+		this.clearList();
 	}
 }

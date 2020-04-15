@@ -1,7 +1,9 @@
 import { column } from "../utils/template";
-import data from "../data";
 import Card from "./Card";
 import CardCreator from "./CardCreator";
+import HttpRequestHandler from "../utils/HttpRequestHandler";
+import { BASE_URL } from "../utils/const";
+import { handleError } from "../utils/utilFunction";
 
 export default class Column {
 	$column = null;
@@ -10,6 +12,8 @@ export default class Column {
 	$cardContainer = null;
 	$counter = null;
 	cardCreatorIsShowing = false;
+
+	http = new HttpRequestHandler();
 
 	constructor({ $target, initialData, index }) {
 		this.$target = $target;
@@ -28,6 +32,7 @@ export default class Column {
 			data: {
 				visible: false,
 			},
+			onSave: this.addCard.bind(this),
 		});
 	}
 
@@ -77,68 +82,56 @@ export default class Column {
 	}
 
 	addCard(value) {
-		// update data
-		const cardList = data.columns.find((column) => column.id === this.id).cards;
-		const newCardObj = this.createCardObj.call(this, value);
-		cardList.push(newCardObj);
-
-		// send newCardObj to the server
-		// synchronize card id with the one received from the server
-
-		// render Card DOM
-		new Card({ $target: this, data: newCardObj });
-
-		// update counter
-		this.handleCounter("up");
-		console.log("card added!", data);
+		const newCardObj = this.createCardObj(value);
+		this.http
+			.post(`${BASE_URL}/columns/${this.id}/cards`, newCardObj)
+			.then((response) => {
+				if (response.status === 200) {
+					new Card({ $target: this, data: response.card });
+					this.handleCounter("up");
+				}
+			})
+			.catch(handleError);
 	}
 
 	deleteCard({ $card, id }) {
-		// update data
-		const cardList = data.columns.find((column) => column.id === this.id).cards;
-		data.columns.find((column) => column.id === this.id).cards = cardList.filter(
-			(card) => card.id !== id
-		);
-
-		// send card id to the server
-
-		// remove Card DOM
-		this.$cardContainer.removeChild($card);
-
-		// update counter
-		this.handleCounter("down");
-		console.log("card deleted!", data);
+		this.http
+			.delete(`${BASE_URL}/columns/${this.id}/cards/${id}`)
+			.then((response) => {
+				if (response.status === 200) {
+					this.$cardContainer.removeChild($card);
+					this.handleCounter("down");
+				}
+			})
+			.catch(handleError);
 	}
 
-	updateCard({ $card, id, data: { title, contents } }) {
-		// update data
-		const cardList = data.columns.find((column) => column.id === this.id).cards;
-		let updatedCard;
-		for (let index = 0, length = cardList.length; index < length; index++) {
-			if (cardList[index].id === id) {
-				cardList[index].title = title;
-				cardList[index].contents = contents;
-				updatedCard = cardList[index];
-				break;
-			}
-		}
-
-		// send updatedCard to the server
-
-		// render new contents in the card
-		$card.querySelector(".title").textContent = title;
-		$card.querySelector(".contents").textContent = contents;
-		console.log("card updated!", data);
+	updateCard({ $card, id, data }) {
+		const newCardObj = this.createCardObj(data);
+		this.http
+			.put(`${BASE_URL}/columns/${this.id}/cards/${id}`, newCardObj)
+			.then((response) => {
+				if (response.status === 200) {
+					$card.querySelector(".title").textContent = response.card.title;
+					$card.querySelector(".contents").textContent = response.card.contents;
+				}
+			})
+			.catch(handleError);
 	}
 
-	moveCard({ cardId, fromColumnId, toColumnId, toRow }) {
-		// send data to the server
-		console.log("------------------------------");
-		console.log("cardId : ", cardId);
-		console.log("fromColumn : ", fromColumnId);
-		console.log("toColumn : ", toColumnId);
-		console.log("toRow : ", toRow);
-		console.log("------------------------------");
+	moveCard({ cardId, toColumnId, toRow }) {
+		const data = {
+			toColumn: toColumnId,
+			toRow: toRow,
+		};
+
+		this.http
+			.patch(`${BASE_URL}/columns/${toColumnId}/cards/${cardId}`, data)
+			.then((response) => {
+				if (response.status !== 200)
+					throw Error("에러가 발생했습니다. 페이지 새로고침 후 다시 시도해주세요.");
+			})
+			.catch(handleError);
 	}
 
 	handleCounter(state) {

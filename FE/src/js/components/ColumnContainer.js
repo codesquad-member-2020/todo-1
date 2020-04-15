@@ -193,7 +193,7 @@ export default class ColumnContainer {
 		const cardId = this.$selectedCard.dataset.id;
 		const fromColumnId = this.$fromColumn.dataset.id;
 		const toColumnId = this.$toColumn.dataset.id;
-		const toRow = [...this.$cardListOfToColumn].reverse().indexOf(this.$selectedCard);
+		const toRow = [...this.$cardListOfToColumn].indexOf(this.$selectedCard);
 
 		const fromColumn = this.columns.find((column) => column.$column === this.$fromColumn);
 		const toColumn = this.columns.find((column) => column.$column === this.$toColumn);

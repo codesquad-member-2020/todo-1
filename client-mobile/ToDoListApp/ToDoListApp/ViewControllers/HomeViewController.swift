@@ -67,6 +67,15 @@ class HomeViewController: UIViewController {
             columnViewController.setColumnId(column.identifier)
         }
     }
+    
+    @IBAction func userInfoButtonTapped(_ sender: UIBarButtonItem) {
+        guard let userInfoViewController = storyboard?.instantiateViewController(identifier: UserInfoViewController.identifier) as? UserInfoViewController else { return }
+        userInfoViewController.modalPresentationStyle = .popover
+        self.present(userInfoViewController, animated: true) {
+            
+        }
+        userInfoViewController.popoverPresentationController?.barButtonItem = sender
+    }
 }
 
 extension HomeViewController {

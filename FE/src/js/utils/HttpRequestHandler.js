@@ -31,6 +31,18 @@ export default class HttpRequestHandler {
 		return this.getResponse(url, options);
 	}
 
+	patch(url, data) {
+		const options = {
+			method: "PATCH",
+			credentials: "include",
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify(data),
+		};
+		return this.getResponse(url, options);
+	}
+
 	delete(url) {
 		const options = {
 			method: "DELETE",

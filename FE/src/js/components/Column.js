@@ -1,5 +1,4 @@
 import { column } from "../utils/template";
-import data from "../data";
 import Card from "./Card";
 import CardCreator from "./CardCreator";
 import HttpRequestHandler from "../utils/HttpRequestHandler";
@@ -87,9 +86,10 @@ export default class Column {
 		this.http
 			.post(`${BASE_URL}/columns/${this.id}/cards`, newCardObj)
 			.then((response) => {
-				new Card({ $target: this, data: response });
-				this.handleCounter("up");
-				console.log("card added!");
+				if (response.status === 200) {
+					new Card({ $target: this, data: response.card });
+					this.handleCounter("up");
+				}
 			})
 			.catch(handleError);
 	}
@@ -101,7 +101,6 @@ export default class Column {
 				if (response.status === 200) {
 					this.$cardContainer.removeChild($card);
 					this.handleCounter("down");
-					console.log("card deleted!");
 				}
 			})
 			.catch(handleError);
@@ -115,20 +114,25 @@ export default class Column {
 				if (response.status === 200) {
 					$card.querySelector(".title").textContent = response.card.title;
 					$card.querySelector(".contents").textContent = response.card.contents;
-					console.log("card updated!");
 				}
 			})
 			.catch(handleError);
 	}
 
 	moveCard({ cardId, fromColumnId, toColumnId, toRow }) {
-		// send data to the server
-		console.log("------------------------------");
-		console.log("cardId : ", cardId);
-		console.log("fromColumn : ", fromColumnId);
-		console.log("toColumn : ", toColumnId);
-		console.log("toRow : ", toRow);
-		console.log("------------------------------");
+		const data = {
+			fromColumn: fromColumnId,
+			toColumn: toColumnId,
+			toRow: toRow,
+		};
+
+		this.http
+			.patch(`${BASE_URL}/columns/${this.id}/cards/${cardId}`, data)
+			.then((response) => {
+				if (response.status !== 200)
+					throw Error("에러가 발생했습니다. 페이지 새로고침 후 다시 시도해주세요.");
+			})
+			.then(handleError);
 	}
 
 	handleCounter(state) {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, LogInViewControllerDelegate {
+class HomeViewController: UIViewController {
       
     @IBOutlet weak var stackView: UIStackView!
     
@@ -39,10 +39,6 @@ class HomeViewController: UIViewController, LogInViewControllerDelegate {
         present(logInViewController, animated: true, completion: {
             logInViewController.delegate = self
         })
-    }
-    
-    func didSuccessToLogIn(with token: String) {
-        saveToken(token)
     }
     
     private func configureToDoList(with token: String) {
@@ -89,5 +85,11 @@ extension HomeViewController {
             alert.addAction(cancelAction)
             self.present(alert, animated: true, completion: nil)
         }
+    }
+}
+
+extension HomeViewController: LogInViewControllerDelegate {
+    func didSuccessToLogIn(with token: String) {
+        saveToken(token)
     }
 }

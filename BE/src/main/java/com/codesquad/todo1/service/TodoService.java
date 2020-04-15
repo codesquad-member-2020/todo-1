@@ -75,6 +75,7 @@ public class TodoService {
         }
     }
 
+    @Transactional
     public Optional<Card> moveCard(Long categoryId, Long cardId, String MoveJson) throws JsonProcessingException {
         int[] moveData = parseJson(MoveJson);
         Category moveFromCategory = categoryRepository.findById(categoryId).orElseThrow(() ->

@@ -57,9 +57,4 @@ public class Category {
         boolean deleted = cards.removeIf(each -> each.getId().equals(cardId));
         if (!deleted) throw new IllegalStateException("Delete Fail");
     }
-
-//    public Long getCreatedCardId() {
-//        this.cards.forEach(System.out::println);
-//        return this.cards.get(this.cards.size() - 1).getId();
-//    }
 }

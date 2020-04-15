@@ -1,12 +1,11 @@
 package com.codesquad.todo1.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 
 @Getter
 @ToString
+@NoArgsConstructor
 public class Card {
     @Id
     private Long id;

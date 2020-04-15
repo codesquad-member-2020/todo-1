@@ -7,6 +7,9 @@ import com.codesquad.todo1.error.FindCategoryFail;
 import com.codesquad.todo1.error.UpdateCardFail;
 import com.codesquad.todo1.repository.CategoryRepository;
 import com.codesquad.todo1.repository.UserRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,5 +73,26 @@ public class TodoService {
         } catch (Exception e) {
             throw new IllegalStateException("delete Fail");
         }
+    }
+
+    public Optional<Card> moveCard(Long categoryId, Long cardId, String MoveJson) throws JsonProcessingException {
+        int[] moveData = parseJson(MoveJson);
+        Category moveFromCategory = categoryRepository.findById(categoryId).orElseThrow(() ->
+                new IllegalStateException("No Category."));
+        Category moveToCategory = categoryRepository.findById((long) moveData[0]).orElseThrow(() ->
+                new IllegalStateException("No Category."));
+        Card card = categoryRepository.findBycardId(cardId);
+        moveFromCategory.deleteCard(cardId);
+        categoryRepository.save(moveFromCategory);
+        moveToCategory.addCardToIndex(moveData[1], card);
+        categoryRepository.save(moveToCategory);
+        return categoryRepository.findByCardId(cardId);
+    }
+
+    private int[] parseJson(String moveJson) throws JsonProcessingException {
+        JsonNode jsonNode = new ObjectMapper().readTree(moveJson);
+        int toColumn = jsonNode.get("toColumn").asInt();
+        int toRow = jsonNode.get("toRow").asInt();
+        return new int[]{toColumn, toRow};
     }
 }

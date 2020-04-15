@@ -30,6 +30,10 @@ public class Category {
         this.cards.add(card);
     }
 
+    public void addCardToIndex(int index, Card card) {
+        this.cards.add(index, card);
+    }
+
     public Card updateCard(Card updateCard, Long cardId) {
         for (Card each : cards) {
             if (each.getId().equals(cardId)) {

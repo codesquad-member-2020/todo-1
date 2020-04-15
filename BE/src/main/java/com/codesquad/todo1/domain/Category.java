@@ -26,12 +26,15 @@ public class Category {
         this.columnName = columnName;
     }
 
-//    public void addCard(Card card) {
-//        this.cards.add(card);
-//    }
+    // addCardToIndex로 쓰려고 했는데 이동하는 로직이 들어가기 때문에
+    // 새 카드 추가만 하는 메서드 생성.
+    public void addNewCard(int index, Card card) {
+        this.cards.add(index, card);
+    }
 
     public void addCardToIndex(int index, Card card) {
-        this.cards.add(index, card);
+        if (index >= this.cards.size()) this.cards.add(card);
+        else this.cards.add(index, card);
     }
 
     public Card updateCard(Card updateCard, Long cardId) {
@@ -56,5 +59,15 @@ public class Category {
     public void deleteCard(Long cardId) {
         boolean deleted = cards.removeIf(each -> each.getId().equals(cardId));
         if (!deleted) throw new IllegalStateException("Delete Fail");
+    }
+
+    public Card deleteCardForMove(Long cardId) {
+        for (Card each : cards) {
+            if (each.getId().equals(cardId)) {
+                this.cards.remove(each);
+                return each;
+            }
+        }
+        throw new IllegalStateException("Delete Fail");
     }
 }

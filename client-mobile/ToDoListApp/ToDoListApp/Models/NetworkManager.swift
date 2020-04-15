@@ -120,6 +120,30 @@ class NetworkManager {
             }
         }
     }
+    
+    func requestDataWithBody<ResponseData: Decodable, T: Encodable>(method: methodType, body: T, optionalData: Any? = nil, completion: @escaping (Result<ResponseData, RequestError>) -> Void) {
+        
+        let encoder = JSONEncoder()
+        let encodedData = try? encoder.encode(body)
+        guard let columnId = optionalData as? Int else { return }
+        let request = RequestURL(path: "/api/columns/\(columnId)/cards", method: method, body: encodedData)
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            let decoder = JSONDecoder()
+            guard let data = data else {
+                completion(.failure(.ServerError))
+                return
+            }
+            guard let decodedData = try? decoder.decode(ResponseData.self, from: data) else {
+                completion(.failure(.JSONDecodingError))
+                return
+            }
+            if error != nil {
+                completion(.failure(.URLSessionError))
+            }
+            completion(.success(decodedData))
+        }.resume()
+    }
 }
 
 extension NetworkManager {

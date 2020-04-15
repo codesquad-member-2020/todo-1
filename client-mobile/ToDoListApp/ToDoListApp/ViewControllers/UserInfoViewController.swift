@@ -10,6 +10,8 @@ import UIKit
 
 class UserInfoViewController: UIViewController {
 
+    static let identifier = "userInfo"
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userSettingButton: UIButton!

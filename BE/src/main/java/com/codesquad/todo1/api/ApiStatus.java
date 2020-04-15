@@ -5,12 +5,10 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class ApiLogin {
+public class ApiStatus {
     private final int status;
-    private final String jwt;
 
-    public ApiLogin(int status, String jwt) {
+    public ApiStatus(int status) {
         this.status = status;
-        this.jwt = jwt;
     }
 }

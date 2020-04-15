@@ -12,7 +12,7 @@ class TokenManager {
     
     private let tokenKey = "JWTToken"
     
-    func saveToken(_ token: String) {
+    func saveToken(_ token: String?) {
         UserDefaults.standard.set(token, forKey: tokenKey)
     }
     

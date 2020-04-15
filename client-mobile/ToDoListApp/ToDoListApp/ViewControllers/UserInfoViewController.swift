@@ -14,6 +14,7 @@ class UserInfoViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var userSettingButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
     
@@ -30,5 +31,20 @@ class UserInfoViewController: UIViewController {
     
     @IBAction func signOutButtonTapped(_ sender: Any) {
         
+    }
+    
+    func updateUserInfoView(with userInfo: UserInfo) {
+        NetworkManager.shared.requestData(from: userInfo.profileURL) { (result) in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    self.imageView.image = UIImage(data: data)
+                }
+            case .failure(_):
+                break
+            }
+        }
+        self.nameLabel.text = userInfo.userId
+        self.emailLabel.text = "\(userInfo.userId)@gmail.com"
     }
 }

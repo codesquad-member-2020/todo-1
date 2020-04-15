@@ -79,6 +79,7 @@
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="340" height="160"/>
                     <connections>
+                        <outlet property="emailLabel" destination="8T5-we-24D" id="PUK-vT-qbH"/>
                         <outlet property="imageView" destination="pOt-5X-oja" id="zsb-Th-7Zb"/>
                         <outlet property="logoutButton" destination="EGp-Xm-asI" id="KLE-sm-mQP"/>
                         <outlet property="nameLabel" destination="kT0-uR-sNO" id="P4G-SH-iZz"/>

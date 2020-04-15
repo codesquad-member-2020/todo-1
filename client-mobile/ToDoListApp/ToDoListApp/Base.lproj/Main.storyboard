@@ -39,6 +39,9 @@
                                         <state key="normal" title="Sign Out">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="signOutButtonTapped:" destination="Nx4-Il-xSa" eventType="touchUpInside" id="1LR-03-E9E"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

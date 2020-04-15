@@ -25,4 +25,8 @@ class UserInfoViewController: UIViewController {
         userSettingButton.layer.cornerRadius = 8
         logoutButton.layer.cornerRadius = 8
     }
+    
+    @IBAction func signOutButtonTapped(_ sender: Any) {
+        
+    }
 }

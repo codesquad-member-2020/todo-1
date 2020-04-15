@@ -17,11 +17,24 @@ class UserInfoViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var userSettingButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        startLoadingView()
         configureButtonsCornerRadius()
+    }
+    
+    private func startLoadingView() {
+        loadingView.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    private func stopLoadingView() {
+        loadingView.isHidden = true
+        activityIndicator.stopAnimating()
     }
 
     private func configureButtonsCornerRadius() {
@@ -46,5 +59,6 @@ class UserInfoViewController: UIViewController {
         }
         self.nameLabel.text = userInfo.userId
         self.emailLabel.text = "\(userInfo.userId)@gmail.com"
+        stopLoadingView()
     }
 }

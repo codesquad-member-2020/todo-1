@@ -73,7 +73,7 @@ class HomeViewController: UIViewController {
         guard let userInfoViewController = storyboard?.instantiateViewController(identifier: UserInfoViewController.identifier) as? UserInfoViewController else { return }
         userInfoViewController.modalPresentationStyle = .popover
         self.present(userInfoViewController, animated: true) {
-            
+            userInfoViewController.updateUserInfoView(with: self.userInfo ?? UserInfo(userId: "user", profileURL: ""))
         }
         userInfoViewController.popoverPresentationController?.barButtonItem = sender
     }

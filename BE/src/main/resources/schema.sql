@@ -18,7 +18,8 @@ create table category (
 create table user (
                       id int primary key auto_increment,
                       user_id varchar (45),
-                      password varchar (45)
+                      password varchar (45),
+                      profile_url varchar (45)
 );
 
 create table card (

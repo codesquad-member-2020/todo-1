@@ -24,11 +24,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
                              HttpServletResponse response,
                              Object handler) {
         logger.info("preHandle Interceptor");
-        logger.info("method : {}", request.getMethod());
-        logger.info("method type : {}", request.getMethod().getClass());
-
         if (request.getMethod().equals("OPTIONS")) {
-            logger.info("options 메서드는 통과");
             return true;
         }
 

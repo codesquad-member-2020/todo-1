@@ -68,9 +68,32 @@ class NewCardViewController: UIViewController {
     }
     
     @IBAction func addNewCardTapped(_ sender: Any) {
-        let card = Card(userID: "Sunny", title: titleText, contents: contentsText, device: device, index: 0)
-        newCardDelegate?.addNewCard(card)
-        dismiss(animated: true, completion: nil)
+        let newCardRequest = NewCardRequest(userId: "cory", title: titleText, contents: contentsText)
+        NetworkManager.shared.requestDataWithBody(method: .post, body: newCardRequest, optionalData: columnId) { (result: Result<CardContainer, RequestError>) in
+            switch result {
+            case .success(let cardContainer):
+                let card = cardContainer.card
+                self.addNewCard(card)
+            case .failure(let error):
+                self.showErrorAlert(error: error)
+            }
+        }
+    }
+    
+    private func addNewCard(_ card: Card) {
+        DispatchQueue.main.async {
+            self.newCardDelegate?.addNewCard(card)
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    private func showErrorAlert(error: RequestError) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Failed to add card", message: error.description, preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Done", style: .default, handler: nil)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func setColumnId(_ id: Int) {

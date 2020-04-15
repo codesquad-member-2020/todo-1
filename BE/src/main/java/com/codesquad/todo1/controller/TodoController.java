@@ -27,7 +27,7 @@ public class TodoController {
     @PostMapping("/{id}/cards")
     public ApiCard create(@PathVariable Long id,
                           @RequestBody Card card) {
-        return new ApiCard(200, todoService.saveCard(card, id), "OK");
+        return new ApiCard(200, todoService.addCard(card, id), "OK");
     }
 
     @PutMapping("/{categoryId}/cards/{cardId}")

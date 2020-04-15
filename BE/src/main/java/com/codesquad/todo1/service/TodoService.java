@@ -38,12 +38,12 @@ public class TodoService {
     }
 
     @Transactional
-    public Optional<Card> saveCard(Card card, Long categoryId) {
+    public Optional<Card> addCard(Card card, Long categoryId) {
         Category category = categoryRepository.findById(categoryId).orElseThrow(() ->
                 new FindCategoryFail("There is no category with this categoryId"));
-        category.addCard(card);
+        category.addNewCard(0, card);
         Category savedCategory = categoryRepository.save(category);
-        Long cardId = savedCategory.getCards().get(savedCategory.getCards().size() - 1).getId();
+        Long cardId = savedCategory.getCards().get(0).getId();
         return categoryRepository.findByCardId(cardId);
     }
 
@@ -78,14 +78,23 @@ public class TodoService {
     @Transactional
     public Optional<Card> moveCard(Long categoryId, Long cardId, String MoveJson) throws JsonProcessingException {
         int[] moveData = parseJson(MoveJson);
+        int toCategoryId = moveData[0];
+        int toRow = moveData[1];
         Category moveFromCategory = categoryRepository.findById(categoryId).orElseThrow(() ->
                 new IllegalStateException("No Category."));
-        Category moveToCategory = categoryRepository.findById((long) moveData[0]).orElseThrow(() ->
-                new IllegalStateException("No Category."));
-        Card card = categoryRepository.findBycardId(cardId);
-        moveFromCategory.deleteCard(cardId);
+        logger.info("moveFromCategory : {}", moveFromCategory);
+        Card deletedCard = moveFromCategory.deleteCardForMove(cardId);
+
+        logger.info("deletedCard : {}", deletedCard);
+        logger.info("moveFromCategory2 : {}", moveFromCategory);
+
         categoryRepository.save(moveFromCategory);
-        moveToCategory.addCardToIndex(moveData[1], card);
+        Category moveToCategory = categoryRepository.findById((long) toCategoryId).orElseThrow(() ->
+                new IllegalStateException("No Category."));
+
+        logger.info("moveToCategory : {}", moveToCategory);
+
+        moveToCategory.addCardToIndex(toRow, deletedCard);
         categoryRepository.save(moveToCategory);
         return categoryRepository.findByCardId(cardId);
     }

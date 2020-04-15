@@ -8,6 +8,8 @@ import com.codesquad.todo1.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,11 +37,11 @@ public class LoginController {
             Cookie cookie = new Cookie("jwt", jwt);
             response.addCookie(cookie);
             response.setStatus(200);
+            return new ApiLogin(200, jwt);
         } catch (Exception e) {
             response.setStatus(401);
-            return new ApiLogin(401);
+            return new ApiLogin(401, null);
         }
-        return new ApiLogin(200);
     }
 
     private void checkValidation(String userId, String password) throws AuthorizationFail {

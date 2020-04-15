@@ -35,7 +35,7 @@ class NetworkManager: NetworkManagable {
     
     private func requestDataToServer(method: NetworkManager.methodType, token: String, completion: @escaping (Result<Data?, RequestError>) -> Void) {
         let successStatusCode = 200
-        var urlRequest = RequestURL(path: .GetColumns, method: method)
+        var urlRequest = RequestURL(path: "/api/columns", method: method)
         if token != "" {
             urlRequest.setValue("jwt=\(token)", forHTTPHeaderField: "Cookie")
         }
@@ -57,7 +57,7 @@ class NetworkManager: NetworkManagable {
         let successStatusCode = 200
         let unauthorizedStatusCode = 401
         
-        URLSession.shared.dataTask(with: RequestURL(path: .LogIn, method: .post, body: body)) { (data, response, error) in
+        URLSession.shared.dataTask(with: RequestURL(path: "/api/login", method: .post, body: body)) { (data, response, error) in
             guard
                 let url = response?.url,
                 let response = response as? HTTPURLResponse,
@@ -132,15 +132,6 @@ class NetworkManager: NetworkManagable {
 
 extension NetworkManager {
     
-    enum path: String, CustomStringConvertible {
-        case GetColumns = "/api/columns"
-        case LogIn = "/api/login"
-        
-        var description: String {
-            return self.rawValue
-        }
-    }
-    
     enum methodType: String, CustomStringConvertible {
         case get = "get"
         case put = "put"
@@ -152,8 +143,8 @@ extension NetworkManager {
         }
     }
     
-    private func RequestURL(path: path, method: methodType, body: Data? = nil) -> URLRequest {
-        let URLForRequest = URL(string: baseURL + path.description)!
+    private func RequestURL(path: String, method: methodType, body: Data? = nil) -> URLRequest {
+        let URLForRequest = URL(string: baseURL + path)!
         var request = URLRequest(url: URLForRequest)
         request.httpMethod = method.description
         if body != nil {

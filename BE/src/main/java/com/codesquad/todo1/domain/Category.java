@@ -26,9 +26,9 @@ public class Category {
         this.columnName = columnName;
     }
 
-    public void addCard(Card card) {
-        this.cards.add(card);
-    }
+//    public void addCard(Card card) {
+//        this.cards.add(card);
+//    }
 
     public void addCardToIndex(int index, Card card) {
         this.cards.add(index, card);

@@ -38,12 +38,12 @@ public class TodoService {
     }
 
     @Transactional
-    public Optional<Card> saveCard(Card card, Long categoryId) {
+    public Optional<Card> addCard(Card card, Long categoryId) {
         Category category = categoryRepository.findById(categoryId).orElseThrow(() ->
                 new FindCategoryFail("There is no category with this categoryId"));
-        category.addCard(card);
+        category.addCardToIndex(0, card);
         Category savedCategory = categoryRepository.save(category);
-        Long cardId = savedCategory.getCards().get(savedCategory.getCards().size() - 1).getId();
+        Long cardId = savedCategory.getCards().get(0).getId();
         return categoryRepository.findByCardId(cardId);
     }
 

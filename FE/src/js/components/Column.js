@@ -131,7 +131,7 @@ export default class Column {
 				if (response.status !== 200)
 					throw Error("에러가 발생했습니다. 페이지 새로고침 후 다시 시도해주세요.");
 			})
-			.then(handleError);
+			.catch(handleError);
 	}
 
 	handleCounter(state) {

@@ -49,7 +49,15 @@ class HomeViewController: UIViewController {
         }
     }
     
+    private func resetColumnViewControllers() {
+        children.forEach {
+            $0.removeFromParent()
+        }
+        stackView.removeAll()
+    }
+    
     private func configureColumns(_ columns: [Column]) {
+        resetColumnViewControllers()
         for column in columns {
             guard let columnViewController = storyboard?.instantiateViewController(identifier: ColumnViewController.identifier) as? ColumnViewController else { return }
             self.addChild(columnViewController)

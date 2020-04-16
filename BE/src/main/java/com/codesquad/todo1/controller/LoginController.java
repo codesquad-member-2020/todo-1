@@ -30,6 +30,7 @@ public class LoginController {
                         HttpServletResponse response) {
         String userId = user.getUserId();
         String password = user.getPassword();
+        //todo: 해당 복잡한 로직은 UserService에 넣도록 하기.
         logger.info("loginTryUser : {}", user);
         try {
             User validationSuccessUser = checkValidation(userId, password);
@@ -53,7 +54,7 @@ public class LoginController {
                 new IllegalStateException("No User"));
         return new ApiUserInfo(user);
     }
-
+        //todo: UserService 로직에 포함 하기.
     private User checkValidation(String userId, String password) throws AuthorizationFail {
         User savedUser = userService.findByUserId(userId).orElseThrow(AuthorizationFail::new);
         logger.info("savedUser : {}", savedUser);

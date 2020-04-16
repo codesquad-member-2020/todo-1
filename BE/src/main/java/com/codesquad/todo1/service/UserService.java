@@ -1,5 +1,6 @@
 package com.codesquad.todo1.service;
 
+import com.codesquad.todo1.domain.Card;
 import com.codesquad.todo1.domain.User;
 import com.codesquad.todo1.error.AuthorizationFail;
 import com.codesquad.todo1.repository.UserRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
@@ -23,6 +25,12 @@ public class UserService {
         return userRepository.findByUserId(userId);
     }
 
+    @Transactional
+    public User findUser(Card card) {
+        return userRepository.findByUserId(card.getUserId()).orElseThrow(() ->
+                new IllegalStateException("No User"));
+    }
+
     public String makeJwt(User user, HttpServletResponse response) {
         String userId = user.getUserId();
         String password = user.getPassword();
@@ -34,6 +42,12 @@ public class UserService {
         response.addCookie(cookie);
         response.setStatus(200);
         return jwt;
+    }
+
+    public User findUserForInfo(HttpServletRequest request) {
+        String userInfo = (String) request.getAttribute("userId");
+        return findByUserId(userInfo).orElseThrow(() ->
+                new IllegalStateException("No User"));
     }
 
     private User checkValidation(String userId, String password) {

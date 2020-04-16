@@ -21,15 +21,16 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class TodoService {
 
     private final Logger logger = LoggerFactory.getLogger(TodoService.class);
 
     private final CategoryRepository categoryRepository;
-    private final UserRepository userRepository;
     private final HistoryRepository historyRepository;
+
+    private final UserService userService;
 
     @Transactional
     public List<Category> showTodoList() {
@@ -45,7 +46,7 @@ public class TodoService {
     public Optional<Card> addCard(Card card, Long categoryId) {
         Category category = findCategory(categoryId);
         category.addNewCard(0, card);
-        savedUser(card);
+        userService.findUser(card);
         historySave(card, "add", category, category);
         Category savedCategory = categoryRepository.save(category);
         Long cardId = savedCategory.getCards().get(0).getId();
@@ -56,7 +57,7 @@ public class TodoService {
     public Optional<Card> updateCard(Card card, Long categoryId, Long cardId) {
         Category category = findCategory(categoryId);
         try {
-            savedUser(card);
+            userService.findUser(card);
             category.updateCard(card, cardId);
             historySave(card, "update", category, category);
             Category savedCategory = categoryRepository.save(category);
@@ -72,7 +73,7 @@ public class TodoService {
         Category category = findCategory(categoryId);
         try {
             Card card = category.deleteCard(cardId);
-            savedUser(card);
+            userService.findUser(card);
             historySave(card, "remove", category, category);
             categoryRepository.save(category);
         } catch (RuntimeException e) {
@@ -88,7 +89,7 @@ public class TodoService {
         Category moveFromCategory = findCategory(categoryId);
         try {
             Card deletedCard = moveFromCategory.deleteCard(cardId);
-            savedUser(deletedCard);
+            userService.findUser(deletedCard);
             categoryRepository.save(moveFromCategory);
             Category moveToCategory = findCategory((long) toCategoryId);
             historySave(deletedCard, "move", moveFromCategory, moveToCategory);
@@ -112,15 +113,10 @@ public class TodoService {
                 new FindCategoryFail("There is no category with this categoryId"));
     }
 
-    private User savedUser(Card card) {
-        return userRepository.findByUserId(card.getUserId()).orElseThrow(() ->
-                new IllegalStateException("No User"));
-    }
-
     private void historySave(Card card, String action, Category fromCategory, Category toCategory) {
         History history = History.builder()
                 .userId(card.getUserId())
-                .profileUrl(savedUser(card).getProfileUrl())
+                .profileUrl(userService.findUser(card).getProfileUrl())
                 .action(action)
                 .title(card.getTitle())
                 .fromColumn(fromCategory.getColumnName())

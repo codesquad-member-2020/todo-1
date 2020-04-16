@@ -37,9 +37,7 @@ public class LoginController {
 
     @GetMapping("/userInfo")
     public ApiUserInfo userInfo(HttpServletRequest request) {
-        String userInfo = (String) request.getAttribute("userId");
-        User user = userService.findByUserId(userInfo).orElseThrow(() ->
-                new IllegalStateException("No User"));
+        User user = userService.findUserForInfo(request);
         return new ApiUserInfo(user);
     }
 }

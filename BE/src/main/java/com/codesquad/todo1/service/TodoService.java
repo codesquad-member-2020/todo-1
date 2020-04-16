@@ -2,10 +2,12 @@ package com.codesquad.todo1.service;
 
 import com.codesquad.todo1.domain.Card;
 import com.codesquad.todo1.domain.Category;
+import com.codesquad.todo1.domain.History;
 import com.codesquad.todo1.domain.User;
 import com.codesquad.todo1.error.FindCategoryFail;
 import com.codesquad.todo1.error.UpdateCardFail;
 import com.codesquad.todo1.repository.CategoryRepository;
+import com.codesquad.todo1.repository.HistoryRepository;
 import com.codesquad.todo1.repository.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -16,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +29,7 @@ public class TodoService {
     private Logger logger = LoggerFactory.getLogger(TodoService.class);
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
+    private final HistoryRepository historyRepository;
 
     @Transactional
     public List<Category> showTodoList() {
@@ -33,8 +37,8 @@ public class TodoService {
     }
 
     @Transactional
-    public Optional<User> findByUserId(String userId) {
-        return userRepository.findByUserId(userId);
+    public List<History> showActivityList(String userId) {
+        return historyRepository.findByUserIdOrderByIdDesc(userId);
     }
 
     @Transactional
@@ -43,6 +47,18 @@ public class TodoService {
                 new FindCategoryFail("There is no category with this categoryId"));
         category.addNewCard(0, card);
         Category savedCategory = categoryRepository.save(category);
+        User savedUser = userRepository.findByUserId(card.getUserId()).orElseThrow(() ->
+                new IllegalStateException("No User"));
+        History history = History.builder()
+                .userId(card.getUserId())
+                .profileUrl(savedUser.getProfileUrl())
+                .action("add")
+                .title(card.getTitle())
+                .fromColumn(Math.toIntExact(categoryId))
+                .toColumn(Math.toIntExact(categoryId))
+                .actionTime(LocalDateTime.now())
+                .build();
+        historyRepository.save(history);
         Long cardId = savedCategory.getCards().get(0).getId();
         return categoryRepository.findByCardId(cardId);
     }
@@ -54,7 +70,19 @@ public class TodoService {
         logger.info("category : {}", category);
         try {
             category.updateCard(card, cardId);
+            User savedUser = userRepository.findByUserId(card.getUserId()).orElseThrow(() ->
+                    new IllegalStateException("No User"));
+            History history = History.builder()
+                    .userId(card.getUserId())
+                    .profileUrl(savedUser.getProfileUrl())
+                    .action("update")
+                    .title(card.getTitle())
+                    .fromColumn(Math.toIntExact(categoryId))
+                    .toColumn(Math.toIntExact(categoryId))
+                    .actionTime(LocalDateTime.now())
+                    .build();
             Category savedCategory = categoryRepository.save(category);
+            historyRepository.save(history);
             Long updatedCardId = savedCategory.findUpdatedCardId(cardId);
             return categoryRepository.findByCardId(updatedCardId);
         } catch (Exception e) {
@@ -68,8 +96,20 @@ public class TodoService {
                 new FindCategoryFail("There is no category with this categoryId"));
         logger.info("category : {}", category);
         try {
-            category.deleteCard(cardId);
+            Card card = category.deleteCard(cardId);
+            User savedUser = userRepository.findByUserId(card.getUserId()).orElseThrow(() ->
+                    new IllegalStateException("No User"));
+            History history = History.builder()
+                    .userId(card.getUserId())
+                    .profileUrl(savedUser.getProfileUrl())
+                    .action("remove")
+                    .title(card.getTitle())
+                    .fromColumn(Math.toIntExact(categoryId))
+                    .toColumn(Math.toIntExact(categoryId))
+                    .actionTime(LocalDateTime.now())
+                    .build();
             categoryRepository.save(category);
+            historyRepository.save(history);
         } catch (Exception e) {
             throw new IllegalStateException("delete Fail");
         }
@@ -83,8 +123,19 @@ public class TodoService {
         Category moveFromCategory = categoryRepository.findById(categoryId).orElseThrow(() ->
                 new IllegalStateException("No Category."));
         logger.info("moveFromCategory : {}", moveFromCategory);
-        Card deletedCard = moveFromCategory.deleteCardForMove(cardId);
 
+        Card deletedCard = moveFromCategory.deleteCard(cardId);
+        User savedUser = userRepository.findByUserId(deletedCard.getUserId()).orElseThrow(() ->
+                new IllegalStateException("No User"));
+        History history = History.builder()
+                .userId(deletedCard.getUserId())
+                .profileUrl(savedUser.getProfileUrl())
+                .action("move")
+                .title(deletedCard.getTitle())
+                .fromColumn(Math.toIntExact(categoryId))
+                .toColumn(toCategoryId)
+                .actionTime(LocalDateTime.now())
+                .build();
         logger.info("deletedCard : {}", deletedCard);
         logger.info("moveFromCategory2 : {}", moveFromCategory);
 
@@ -95,6 +146,7 @@ public class TodoService {
         logger.info("moveToCategory : {}", moveToCategory);
 
         moveToCategory.addCardToIndex(toRow, deletedCard);
+        historyRepository.save(history);
         categoryRepository.save(moveToCategory);
         return categoryRepository.findByCardId(cardId);
     }

@@ -19,7 +19,7 @@ create table user (
                       id int primary key auto_increment,
                       user_id varchar (45),
                       password varchar (45),
-                      profile_url varchar (45)
+                      profile_url varchar (1000)
 );
 
 create table card (
@@ -29,7 +29,6 @@ create table card (
                       contents text,
                       device varchar(45),
                       category int references category(id) on delete cascade on update cascade,
---                       user_key int,
                       category_key int
 );
 

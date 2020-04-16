@@ -176,3 +176,9 @@ export function relativeTime(actionTime) {
 	const y = m / 12;
 	return parseInt(y) + " year" + (parseInt(y) > 1 ? "s" : "");
 }
+
+export function columnCreator() {
+	return `<div class="column-add">
+            <div><i class="fas fa-plus"></i>Add column</div>
+          </div>`;
+}

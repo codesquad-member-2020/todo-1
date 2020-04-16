@@ -49,13 +49,14 @@ main {
 	height: 100%;
 	padding: 25px;
 	overflow-x: visible;
+	display: flex;
 	.columns {
 		display: flex;
 		height: 100%;
 	}
 	.column {
-		min-width: 355px;
-		max-width: 355px;
+		min-width: 366px;
+		max-width: 366px;
 		min-height: 580px;
 		max-height: 580px;
 		background: $lightgrey;
@@ -118,6 +119,7 @@ main {
 		padding-bottom: 3px;
 	}
 }
+
 .column__body {
 	padding: 10px;
 	padding-top: 0;
@@ -239,6 +241,28 @@ main {
 			background: $white;
 			color: $black;
 			cursor: pointer;
+		}
+	}
+}
+
+.column-add {
+	min-width: 366px;
+	max-width: 366px;
+	padding-right: 16px;
+	div {
+		height: 140px;
+		border: 1px dashed $grey;
+		border-radius: 6px;
+		font-weight: 500;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		i {
+			margin-right: 5px;
+		}
+		&:hover {
+			color: $pink;
 		}
 	}
 }

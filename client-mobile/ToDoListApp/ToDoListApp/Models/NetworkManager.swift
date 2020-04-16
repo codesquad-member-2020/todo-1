@@ -121,12 +121,17 @@ class NetworkManager {
         }
     }
     
-    func requestDataWithBody<ResponseData: Decodable, T: Encodable>(method: methodType, body: T, optionalData: Any? = nil, completion: @escaping (Result<ResponseData, RequestError>) -> Void) {
+    func requestDataWithBody<ResponseData: Decodable, T: Encodable>(method: methodType, body: T, columnId: Int? = nil, cardId: Int? = nil, completion: @escaping (Result<ResponseData, RequestError>) -> Void) {
         
         let encoder = JSONEncoder()
         let encodedData = try? encoder.encode(body)
-        guard let columnId = optionalData as? Int else { return }
-        let request = RequestURL(path: "/api/columns/\(columnId)/cards", method: method, body: encodedData)
+        guard let columnId = columnId else { return }
+        
+        var cardIdPath = ""
+        if let cardId = cardId {
+            cardIdPath = "/\(cardId)"
+        }
+        let request = RequestURL(path: "/api/columns/\(columnId)/cards\(cardIdPath)", method: method, body: encodedData)
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             let decoder = JSONDecoder()
@@ -141,7 +146,13 @@ class NetworkManager {
             if error != nil {
                 completion(.failure(.URLSessionError))
             }
-            completion(.success(decodedData))
+            
+            guard let response = response as? HTTPURLResponse else { return }
+            if response.statusCode == 200 {
+                completion(.success(decodedData))
+            } else if response.statusCode == 204 {
+                completion(.failure(.ServerError))
+            }
         }.resume()
     }
     

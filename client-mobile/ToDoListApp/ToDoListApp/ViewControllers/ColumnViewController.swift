@@ -57,14 +57,23 @@ class ColumnViewController: UIViewController, NewCardDelegation {
         presentCardViewController()
     }
     
-    private func presentCardViewController(card: Card? = nil) {
+    private func presentCardViewController(card: Card? = nil, at row: Int? = nil) {
         guard let cardEditorViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? CardEditorViewController else { return }
         present(cardEditorViewController, animated: true, completion: {
             cardEditorViewController.updateCard(card)
             cardEditorViewController.newCardDelegate = self
             cardEditorViewController.configureColumnId(self.columnId)
             cardEditorViewController.configureUserInfo(self.userInfo)
+            cardEditorViewController.configureRow(row)
+            cardEditorViewController.configureIsCardEditing(true)
         })
+    }
+    
+    func removeCard(at index: Int) {
+        tableView.beginUpdates()
+        cardListViewModel.removeCard(at: index)
+        tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
+        tableView.endUpdates()
     }
     
     func addNewCard(_ card: Card) {
@@ -74,10 +83,10 @@ class ColumnViewController: UIViewController, NewCardDelegation {
         tableView.endUpdates()
     }
     
-    func removeCard(at index: Int) {
+    func editCard(_ card: Card, at row: Int) {
         tableView.beginUpdates()
-        cardListViewModel.removeCard(at: index)
-        tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
+        cardListViewModel.editCard(at: row, with: card)
+        tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .fade)
         tableView.endUpdates()
     }
 }
@@ -94,8 +103,8 @@ extension ColumnViewController {
             self.columnView.updateBadge(cardList)
             self.cardListDataSource.updateCardList(cardList)
         }
-        cardListViewModel.didTapEdit = { card in
-            self.presentCardViewController(card: card)
+        cardListViewModel.didTapEdit = { card, row in
+            self.presentCardViewController(card: card, at: row)
         }
     }
     

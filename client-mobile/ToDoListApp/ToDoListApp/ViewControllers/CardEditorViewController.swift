@@ -10,6 +10,7 @@ import UIKit
 
 protocol NewCardDelegation {
     func addNewCard(_ card: Card)
+    func editCard(_ card: Card, at row: Int)
 }
 
 class CardEditorViewController: UIViewController {
@@ -29,7 +30,11 @@ class CardEditorViewController: UIViewController {
     
     private let device = "iOS"
     private var userInfo: UserInfo!
-    private var columnId: Int = 0
+    private var columnId: Int!
+    private var cardId: Int?
+    private var row: Int!
+    
+    private var isCardEditing: Bool = false
     
     var newCardDelegate: NewCardDelegation?
     
@@ -43,6 +48,7 @@ class CardEditorViewController: UIViewController {
     
     func updateCard(_ card: Card?) {
         guard let card = card else { return }
+        self.cardId = card.identifier
         self.titleTextField.text = card.title
         self.contentsTextView.text = card.contents
     }
@@ -91,8 +97,16 @@ class CardEditorViewController: UIViewController {
     }
     
     @IBAction func addNewCardTapped(_ sender: Any) {
-        let newCardRequest = NewCardRequest(userId: userInfo.userId, title: titleText, contents: contentsText)
-        NetworkManager.shared.requestDataWithBody(method: .post, body: newCardRequest, optionalData: columnId) { (result: Result<CardContainer, RequestError>) in
+        let cardRequest = NewCardRequest(userId: userInfo.userId, title: titleText, contents: contentsText)
+        if isCardEditing {
+            requestEditCard(cardRequest)
+        } else {
+            requestAddNewCard(cardRequest)
+        }
+    }
+    
+    private func requestAddNewCard(_ cardRequest: NewCardRequest) {
+        NetworkManager.shared.requestDataWithBody(method: .post, body: cardRequest, columnId: columnId) { (result: Result<CardContainer, RequestError>) in
             switch result {
             case .success(let cardContainer):
                 let card = cardContainer.card
@@ -110,6 +124,25 @@ class CardEditorViewController: UIViewController {
         }
     }
     
+    private func requestEditCard(_ cardRequest: NewCardRequest) {
+        NetworkManager.shared.requestDataWithBody(method: .put, body: cardRequest, columnId: columnId, cardId: cardId) { (result: Result<CardContainer, RequestError>) in
+            switch result {
+            case .success(let cardContainer):
+                let card = cardContainer.card
+                self.editCard(card)
+            case .failure(let error):
+                self.showErrorAlert(error: error)
+            }
+        }
+    }
+    
+    private func editCard(_ card: Card) {
+        DispatchQueue.main.async {
+            self.newCardDelegate?.editCard(card, at: self.row)
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     private func showErrorAlert(error: RequestError) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Failed to add card", message: error.description, preferredStyle: .alert)
@@ -117,6 +150,15 @@ class CardEditorViewController: UIViewController {
             alert.addAction(cancelAction)
             self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    func configureIsCardEditing(_ isCardEditing: Bool) {
+        self.isCardEditing = isCardEditing
+    }
+    
+    func configureRow(_ row: Int?) {
+        guard let row = row else { return }
+        self.row = row
     }
     
     func configureColumnId(_ id: Int) {

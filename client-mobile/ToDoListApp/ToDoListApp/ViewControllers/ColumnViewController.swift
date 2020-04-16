@@ -131,6 +131,7 @@ extension ColumnViewController {
         tableView.dataSource = cardListDataSource
         tableView.delegate = cardListViewModel
         tableView.dragDelegate = cardListViewModel
+        tableView.dropDelegate = cardListViewModel
         tableView.dragInteractionEnabled = true
     }
     

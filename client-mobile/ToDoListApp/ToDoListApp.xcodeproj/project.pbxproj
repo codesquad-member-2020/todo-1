@@ -39,6 +39,8 @@
 		38F437E324401EFC009BE1FF /* ContentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F437E224401EFC009BE1FF /* ContentsViewModel.swift */; };
 		38F437E524403AE7009BE1FF /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F437E424403AE7009BE1FF /* UserData.swift */; };
 		38FAD47A2448B19800577391 /* ColumnViewModel+DragDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FAD4792448B19800577391 /* ColumnViewModel+DragDelegate.swift */; };
+		38FAD47C2448B3A600577391 /* ColumnViewModel+DropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FAD47B2448B3A600577391 /* ColumnViewModel+DropDelegate.swift */; };
+		38FAD47E2448E56700577391 /* DragCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FAD47D2448E56600577391 /* DragCardCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +78,8 @@
 		38F437E224401EFC009BE1FF /* ContentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsViewModel.swift; sourceTree = "<group>"; };
 		38F437E424403AE7009BE1FF /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		38FAD4792448B19800577391 /* ColumnViewModel+DragDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColumnViewModel+DragDelegate.swift"; sourceTree = "<group>"; };
+		38FAD47B2448B3A600577391 /* ColumnViewModel+DropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColumnViewModel+DropDelegate.swift"; sourceTree = "<group>"; };
+		38FAD47D2448E56600577391 /* DragCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragCardCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +129,7 @@
 				387B8B38243CBAC400805A34 /* Card.swift */,
 				38B417942446FE1E007FDF82 /* CardContainer.swift */,
 				38B417922446D813007FDF82 /* NewCardRequest.swift */,
+				38FAD47D2448E56600577391 /* DragCardCell.swift */,
 			);
 			path = CardList;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */,
 				38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */,
 				38FAD4792448B19800577391 /* ColumnViewModel+DragDelegate.swift */,
+				38FAD47B2448B3A600577391 /* ColumnViewModel+DropDelegate.swift */,
 				38F437E124401EEA009BE1FF /* NewCard */,
 			);
 			path = ViewModels;
@@ -324,6 +330,8 @@
 				38B417952446FE1E007FDF82 /* CardContainer.swift in Sources */,
 				38E05A49243F7436005679EC /* TitleViewModel.swift in Sources */,
 				38AB7CC0243F0D3D00ADD8F8 /* ColumnViewModel.swift in Sources */,
+				38FAD47E2448E56700577391 /* DragCardCell.swift in Sources */,
+				38FAD47C2448B3A600577391 /* ColumnViewModel+DropDelegate.swift in Sources */,
 				388CA27C243AEE0900E99CED /* AppDelegate.swift in Sources */,
 				383133DC2444D9E900E9891E /* LogInTextField.swift in Sources */,
 				38B6490D244786C200E4413F /* StackView+Extension.swift in Sources */,

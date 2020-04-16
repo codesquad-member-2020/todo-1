@@ -58,7 +58,7 @@ export default class Column {
 			initialData: { cards },
 		} = this;
 		if (cards.length !== 0) {
-			cards.forEach((card) => new Card({ $target: this, data: card }));
+			cards.reverse().forEach((card) => new Card({ $target: this, data: card }));
 		}
 	}
 

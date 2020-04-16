@@ -39,6 +39,7 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     
     func configureColumnId(_ id: Int) {
         self.columnId = id
+        cardListViewModel.configureColumnId(id)
     }
     
     func configureColumnViewModel(with column: Column) {

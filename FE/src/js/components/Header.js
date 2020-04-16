@@ -1,9 +1,8 @@
 import { header } from "../utils/template";
 import Activity from "./Activity";
 import HttpRequestHandler from "../utils/HttpRequestHandler";
-import { BASE_URL } from "../utils/const";
+import { BASE_URL, NETWORK_MESSAGE } from "../utils/const";
 import { handleError } from "../utils/utilFunction";
-import activityData from "../activityData";
 
 export default class Header {
 	$menuButton = null;
@@ -35,9 +34,9 @@ export default class Header {
 			.get(`${BASE_URL}/activity`)
 			.then((response) => {
 				if (response.status === 200) {
-					this.activity.openActivity(activityData);
+					this.activity.openActivity(response);
 				} else {
-					throw Error("네트워크 에러가 발생했습니다. 새로고침후 다시 시도해주세요.");
+					throw Error(NETWORK_MESSAGE.NETWORK_ERROR);
 				}
 			})
 			.catch(handleError);

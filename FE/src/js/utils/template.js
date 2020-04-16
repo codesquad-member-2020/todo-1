@@ -95,44 +95,44 @@ export function activity() {
 }
 
 const actions = {
-	add: (userId, profileURL, title, toColumn) => `
+	add: ({ userId, profileURL, title, toColumn, actionTime }) => `
     <li class="detail-container">
       <img src="${profileURL}" alt="@${userId}" />
       <p class="detail">
         <span class="detail__data">@${userId}</span> <span class="action">added</span>
         <span class="detail__data">${title}</span> to <strong>${toColumn}</strong
-        ><span class="time">1 day ago</span>
+        ><span class="time">${relativeTime(actionTime)} ago</span>
       </p>
     </li>
   `,
-	remove: (userId, profileURL, title) => `
+	remove: ({ userId, profileURL, title, actionTime }) => `
     <li class="detail-container">
       <img src="${profileURL}" alt="@${userId}" />
       <p class="detail">
         <span class="detail__data">@${userId}</span> <span class="action">removed</span>
         <span class="detail__data">${title}</span
-        ><span class="time">1 day ago</span>
+        ><span class="time">${relativeTime(actionTime)} ago</span>
       </p>
     </li>
   `,
-	update: (userId, profileURL, title) => `
+	update: ({ userId, profileURL, title, actionTime }) => `
     <li class="detail-container">
       <img src="${profileURL}" alt="@${userId}" />
       <p class="detail">
         <span class="detail__data">@${userId}</span> <span class="action">updated</span>
         <span class="detail__data">${title}</span
-        ><span class="time">1 day ago</span>
+        ><span class="time">${relativeTime(actionTime)} ago</span>
       </p>
     </li>
   `,
-	move: (userId, profileURL, title, fromColumn, toColumn) => `
+	move: ({ userId, profileURL, title, fromColumn, toColumn, actionTime }) => `
     <li class="detail-container">
       <img src="${profileURL}" alt="@${userId}" />
       <p class="detail">
         <span class="detail__data">@${userId}</span> <span>moved</span>
         <span class="detail__data">${title}</span> from
         <strong>${fromColumn}</strong> to <strong>${toColumn}</strong
-        ><span class="time">1 day ago</span>
+        ><span class="time">${relativeTime(actionTime)} ago</span>
       </p>
     </li>
   `,
@@ -141,8 +141,44 @@ const actions = {
 export function activityList(data) {
 	return `<ul>
 						${data.reduce((list, { userId, profileURL, action, title, fromColumn, toColumn, actionTime }) => {
-							list += actions[action](userId, profileURL, title, fromColumn, toColumn);
+							list += actions[action]({
+								userId,
+								profileURL,
+								title,
+								fromColumn,
+								toColumn,
+								actionTime,
+							});
 							return list;
 						}, "")}
 					</ul>`;
+}
+
+export function relativeTime(actionTime) {
+	const currDate = new Date();
+	const diffMs = currDate.getTime() - new Date(actionTime).getTime();
+
+	const sec = diffMs / 1000;
+	if (sec < 60) return parseInt(sec) + " second" + (parseInt(sec) > 1 ? "s" : "");
+
+	const min = sec / 60;
+	if (min < 60) return parseInt(min) + " minute" + (parseInt(min) > 1 ? "s" : "");
+
+	const h = min / 60;
+	if (h < 24) return parseInt(h) + " hour" + (parseInt(h) > 1 ? "s" : "");
+
+	const d = h / 24;
+	if (d < 30) return parseInt(d) + " day" + (parseInt(d) > 1 ? "s" : "");
+
+	const m = d / 30;
+	if (m < 12) return parseInt(m) + " month" + (parseInt(m) > 1 ? "s" : "");
+
+	const y = m / 12;
+	return parseInt(y) + " year" + (parseInt(y) > 1 ? "s" : "");
+}
+
+export function columnCreator() {
+	return `<div class="column-add">
+            <div><i class="fas fa-plus"></i>Add column</div>
+          </div>`;
 }

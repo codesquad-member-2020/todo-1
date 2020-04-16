@@ -1,4 +1,5 @@
 import { cardCreator } from "../utils/template";
+import { ALERT_MESSAGE } from "../utils/const";
 
 export default class CardCreator {
 	$cardCreator = null;
@@ -41,7 +42,7 @@ export default class CardCreator {
 		length !== 0 ? this.activateAddButton() : this.deactivateAddButton();
 		if (length > 500) {
 			e.target.value = value.substring(0, 500);
-			alert("최대 500자 까지 입력할 수 있습니다.");
+			alert(ALERT_MESSAGE.LIMIT_NUM_OF_CHAR);
 		}
 	}
 
@@ -69,7 +70,7 @@ export default class CardCreator {
 		const title = this.$title.value;
 		const contents = this.$textArea.value;
 		if (!title) {
-			alert("제목을 입력해주세요.");
+			alert(ALERT_MESSAGE.NO_TITLE);
 			return;
 		}
 		this.onSave({ title, contents });

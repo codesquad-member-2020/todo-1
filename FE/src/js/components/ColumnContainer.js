@@ -1,5 +1,6 @@
 import { columnContainer } from "../utils/template";
 import Column from "./Column";
+import ColumnCreator from "./ColumnCreator";
 import Alert from "./Alert";
 import CardEditor from "./CardEditor";
 
@@ -38,6 +39,7 @@ export default class ColumnContainer {
 		this.columns = this.data.map(
 			(column, index) => new Column({ $target: this.$columnContainer, initialData: column, index })
 		);
+		new ColumnCreator({ $target: this.$target });
 	}
 
 	bindEventListener() {
@@ -191,6 +193,7 @@ export default class ColumnContainer {
 
 	moveCard() {
 		const cardId = this.$selectedCard.dataset.id;
+		const fromColumnId = this.$fromColumn.dataset.id;
 		const toColumnId = this.$toColumn.dataset.id;
 		const toRow = [...this.$cardListOfToColumn].indexOf(this.$selectedCard);
 
@@ -199,6 +202,6 @@ export default class ColumnContainer {
 
 		fromColumn.handleCounter("down");
 		toColumn.handleCounter("up");
-		toColumn.moveCard({ cardId, toColumnId, toRow });
+		toColumn.moveCard({ cardId, fromColumnId, toColumnId, toRow });
 	}
 }

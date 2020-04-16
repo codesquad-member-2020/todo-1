@@ -27,14 +27,17 @@ public class History {
 
     @Builder
     public History(String userId, String profileUrl, String action, String title,
-                   Integer fromColumn, Integer toColumn, String actionTime) {
+                   Integer fromColumn, Integer toColumn) {
         this.userId = userId;
         this.profileUrl = profileUrl;
         this.action = action;
         this.title = title;
         this.fromColumn = fromColumn;
         this.toColumn = toColumn;
-        this.actionTime = ZonedDateTime.now(ZoneId.of("Asia/Seoul"))
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        this.actionTime = seoulTime();
+    }
+
+    private static String seoulTime() {
+        return ZonedDateTime.now(ZoneId.of("Asia/Seoul")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 }

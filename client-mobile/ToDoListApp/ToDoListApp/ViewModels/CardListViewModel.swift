@@ -48,4 +48,22 @@ class CardListViewModel: NSObject, ViewModelBinding, UITableViewDelegate {
         }
         return UISwipeActionsConfiguration(actions: [removeAction])
     }
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+            UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (_) -> UIMenu? in
+                let editAction = UIAction(title: "Edit", image: UIImage(named: "card-edit")) { _ in
+    
+                }
+
+                let deleteAction = UIAction(title: "Delete", image: UIImage(named: "card-remove"), attributes: .destructive) { _ in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                        tableView.beginUpdates()
+                        self.removeCard(at: indexPath.item)
+                        tableView.deleteRows(at: [indexPath], with: .left)
+                        tableView.endUpdates()
+                    }
+                }
+                return UIMenu(title: "", children: [editAction, deleteAction])
+            }
+        }
 }

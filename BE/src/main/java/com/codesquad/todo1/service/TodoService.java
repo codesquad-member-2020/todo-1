@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,7 +57,6 @@ public class TodoService {
                 .title(card.getTitle())
                 .fromColumn(Math.toIntExact(categoryId))
                 .toColumn(Math.toIntExact(categoryId))
-                .actionTime(LocalDateTime.now())
                 .build();
         historyRepository.save(history);
         Long cardId = savedCategory.getCards().get(0).getId();
@@ -79,7 +79,6 @@ public class TodoService {
                     .title(card.getTitle())
                     .fromColumn(Math.toIntExact(categoryId))
                     .toColumn(Math.toIntExact(categoryId))
-                    .actionTime(LocalDateTime.now())
                     .build();
             Category savedCategory = categoryRepository.save(category);
             historyRepository.save(history);
@@ -106,7 +105,6 @@ public class TodoService {
                     .title(card.getTitle())
                     .fromColumn(Math.toIntExact(categoryId))
                     .toColumn(Math.toIntExact(categoryId))
-                    .actionTime(LocalDateTime.now())
                     .build();
             categoryRepository.save(category);
             historyRepository.save(history);
@@ -134,7 +132,6 @@ public class TodoService {
                 .title(deletedCard.getTitle())
                 .fromColumn(Math.toIntExact(categoryId))
                 .toColumn(toCategoryId)
-                .actionTime(LocalDateTime.now())
                 .build();
         logger.info("deletedCard : {}", deletedCard);
         logger.info("moveFromCategory2 : {}", moveFromCategory);

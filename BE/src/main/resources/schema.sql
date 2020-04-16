@@ -40,5 +40,5 @@ create table history (
                          title varchar(45),
                          from_column int,
                          to_column int,
-                         action_time TIMESTAMP not null default now()
+                         action_time datetime
 );

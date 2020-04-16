@@ -24,12 +24,17 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     var columnViewModel: ColumnViewModel? { didSet { configureViewModelHandler() } }
     private var cardListViewModel = CardListViewModel()
     
+    private var userInfo: UserInfo!
     private var columnId: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureColumnView()
         configureTableView()
+    }
+    
+    func configureUserInfo(_ userInfo: UserInfo) {
+        self.userInfo = userInfo
     }
     
     func setColumnId(_ id: Int) {
@@ -53,11 +58,12 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     }
     
     private func presentCardViewController(card: Card? = nil) {
-        guard let newCardViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? NewCardViewController else { return }
+        guard let newCardViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? CardEditorViewController else { return }
         present(newCardViewController, animated: true, completion: {
             newCardViewController.updateCard(card)
             newCardViewController.newCardDelegate = self
             newCardViewController.setColumnId(self.columnId)
+            newCardViewController.configureUserInfo(self.userInfo)
         })
     }
     

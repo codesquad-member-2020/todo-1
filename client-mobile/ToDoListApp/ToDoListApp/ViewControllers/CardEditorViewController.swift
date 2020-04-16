@@ -28,7 +28,7 @@ class CardEditorViewController: UIViewController {
     private var contentsDelegate: CardContentsTextViewDelegate?
     
     private let device = "iOS"
-    
+    private var userInfo: UserInfo!
     private var columnId: Int = 0
     
     var newCardDelegate: NewCardDelegation?
@@ -91,7 +91,7 @@ class CardEditorViewController: UIViewController {
     }
     
     @IBAction func addNewCardTapped(_ sender: Any) {
-        let newCardRequest = NewCardRequest(userId: "cory", title: titleText, contents: contentsText)
+        let newCardRequest = NewCardRequest(userId: userInfo.userId, title: titleText, contents: contentsText)
         NetworkManager.shared.requestDataWithBody(method: .post, body: newCardRequest, optionalData: columnId) { (result: Result<CardContainer, RequestError>) in
             switch result {
             case .success(let cardContainer):
@@ -121,6 +121,10 @@ class CardEditorViewController: UIViewController {
     
     func setColumnId(_ id: Int) {
         self.columnId = id
+    }
+    
+    func configureUserInfo(_ userInfo: UserInfo) {
+        self.userInfo = userInfo
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

@@ -25,7 +25,7 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     private var cardListViewModel = CardListViewModel()
     
     private var userInfo: UserInfo!
-    private var columnId: Int = 0
+    private var columnId: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,15 +57,39 @@ class ColumnViewController: UIViewController, NewCardDelegation {
         presentCardViewController()
     }
     
-    private func presentCardViewController(card: Card? = nil) {
+    private func presentCardViewController(card: Card? = nil, at row: Int? = nil) {
         guard let cardEditorViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? CardEditorViewController else { return }
         present(cardEditorViewController, animated: true, completion: {
             cardEditorViewController.updateCard(card)
             cardEditorViewController.newCardDelegate = self
             cardEditorViewController.configureColumnId(self.columnId)
             cardEditorViewController.configureUserInfo(self.userInfo)
+            cardEditorViewController.configureRow(row)
+            cardEditorViewController.configureIsCardEditing(true)
         })
     }
+    
+    private func requestRemoveCard(_ card: Card, at row: Int) {
+        NetworkManager.shared.requestRemoveCard(columnId: columnId, cardId: card.identifier) { (result) in
+            switch result {
+            case .success(_):
+                self.removeCard(at: row)
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
+    func removeCard(at row: Int) {
+        DispatchQueue.main.async {
+            self.tableView.beginUpdates()
+            self.cardListViewModel.removeCard(at: row)
+            self.tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .left)
+            self.tableView.endUpdates()
+        }
+    }
+    
+    // MARK:- NewCardDelegation
     
     func addNewCard(_ card: Card) {
         tableView.beginUpdates()
@@ -74,10 +98,10 @@ class ColumnViewController: UIViewController, NewCardDelegation {
         tableView.endUpdates()
     }
     
-    func removeCard(at index: Int) {
+    func editCard(_ card: Card, at row: Int) {
         tableView.beginUpdates()
-        cardListViewModel.removeCard(at: index)
-        tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .left)
+        cardListViewModel.editCard(at: row, with: card)
+        tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .fade)
         tableView.endUpdates()
     }
 }
@@ -94,8 +118,11 @@ extension ColumnViewController {
             self.columnView.updateBadge(cardList)
             self.cardListDataSource.updateCardList(cardList)
         }
-        cardListViewModel.didTapEdit = { card in
-            self.presentCardViewController(card: card)
+        cardListViewModel.didTapEdit = { card, row in
+            self.presentCardViewController(card: card, at: row)
+        }
+        cardListViewModel.didTapRemove = { card, row in
+            self.requestRemoveCard(card, at: row)
         }
     }
     

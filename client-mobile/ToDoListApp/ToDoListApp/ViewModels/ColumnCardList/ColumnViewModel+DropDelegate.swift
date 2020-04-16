@@ -20,7 +20,6 @@ extension CardListViewModel: UITableViewDropDelegate {
             let row = tableView.numberOfRows(inSection: section)
             destinationIndexPath = IndexPath(row: row, section: section)
         }
-        print("destinationIndexPath.row:", destinationIndexPath.row)
         
         coordinator.items.forEach { item in
             

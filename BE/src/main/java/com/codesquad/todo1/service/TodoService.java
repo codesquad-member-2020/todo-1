@@ -18,8 +18,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,9 +45,11 @@ public class TodoService {
         Category category = categoryRepository.findById(categoryId).orElseThrow(() ->
                 new FindCategoryFail("There is no category with this categoryId"));
         category.addNewCard(0, card);
-        Category savedCategory = categoryRepository.save(category);
+        //todo: 유저 Optional util이나 private method로 리팩토링.
         User savedUser = userRepository.findByUserId(card.getUserId()).orElseThrow(() ->
                 new IllegalStateException("No User"));
+        logger.info("######### Card ####: {}", card);
+        //todo: History builder (userId, profileUrl, title) 중복 제거.
         History history = History.builder()
                 .userId(card.getUserId())
                 .profileUrl(savedUser.getProfileUrl())
@@ -59,6 +59,7 @@ public class TodoService {
                 .toColumn(Math.toIntExact(categoryId))
                 .build();
         historyRepository.save(history);
+        Category savedCategory = categoryRepository.save(category);
         Long cardId = savedCategory.getCards().get(0).getId();
         return categoryRepository.findByCardId(cardId);
     }
@@ -69,9 +70,10 @@ public class TodoService {
                 new FindCategoryFail("There is no category with this categoryId"));
         logger.info("category : {}", category);
         try {
-            category.updateCard(card, cardId);
             User savedUser = userRepository.findByUserId(card.getUserId()).orElseThrow(() ->
                     new IllegalStateException("No User"));
+            category.updateCard(card, cardId);
+            logger.info("!!!!! Card!!!!!!: {}", card);
             History history = History.builder()
                     .userId(card.getUserId())
                     .profileUrl(savedUser.getProfileUrl())

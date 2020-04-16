@@ -1,7 +1,6 @@
 package com.codesquad.todo1.controller;
 
 import com.codesquad.todo1.api.ApiUserInfo;
-import com.codesquad.todo1.error.AuthorizationFail;
 import com.codesquad.todo1.service.UserService;
 import com.codesquad.todo1.api.ApiLogin;
 import com.codesquad.todo1.domain.User;
@@ -38,6 +37,10 @@ public class LoginController {
     @GetMapping("/userInfo")
     public ApiUserInfo userInfo(HttpServletRequest request) {
         User user = userService.findUserForInfo(request);
-        return new ApiUserInfo(user);
+        try {
+            return new ApiUserInfo(200, user, "OK");
+        } catch (RuntimeException e) {
+            return new ApiUserInfo(401, null, "Unauthorized");
+        }
     }
 }

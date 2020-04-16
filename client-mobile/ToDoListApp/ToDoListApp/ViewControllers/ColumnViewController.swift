@@ -25,7 +25,7 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     private var cardListViewModel = CardListViewModel()
     
     private var userInfo: UserInfo!
-    private var columnId: Int = 0
+    private var columnId: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()

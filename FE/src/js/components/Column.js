@@ -2,7 +2,7 @@ import { column } from "../utils/template";
 import Card from "./Card";
 import CardCreator from "./CardCreator";
 import HttpRequestHandler from "../utils/HttpRequestHandler";
-import { BASE_URL } from "../utils/const";
+import { BASE_URL, NETWORK_MESSAGE, CONSOLE_MESSAGE } from "../utils/const";
 import { handleError } from "../utils/utilFunction";
 
 export default class Column {
@@ -90,7 +90,7 @@ export default class Column {
 					new Card({ $target: this, data: response.card });
 					this.handleCounter("up");
 				} else {
-					throw Error("네트워크 에러가 발생했습니다. 페이지 새로고침 후 다시 시도해주세요.");
+					throw Error(NETWORK_MESSAGE.NETWORK_ERROR);
 				}
 			})
 			.catch(handleError);
@@ -120,7 +120,7 @@ export default class Column {
 					$card.querySelector(".contents").textContent = response.card.contents;
 				} else {
 					this.deleteCard({ $card, id });
-					throw Error("삭제된 카드입니다.");
+					throw Error(NETWORK_MESSAGE.ALREADY_DELETED);
 				}
 			})
 			.catch(handleError);
@@ -137,9 +137,9 @@ export default class Column {
 			.then((response) => {
 				if (response.status === 204) {
 					this.deleteCard({ $card, id });
-					throw Error("삭제된 카드입니다.");
+					throw Error(NETWORK_MESSAGE.ALREADY_DELETED);
 				} else if (response.status !== 200) {
-					throw Error("네트워크 에러가 발생했습니다. 페이지 새로고침 후 다시 시도해주세요.");
+					throw Error(NETWORK_MESSAGE.NETWORK_ERROR);
 				}
 			})
 			.catch(handleError);
@@ -154,7 +154,7 @@ export default class Column {
 				this.$counter.textContent = Number(this.$counter.textContent) - 1;
 				break;
 			default:
-				console.error("카운터 인자가 전달되지 않았습니다.");
+				console.error(CONSOLE_MESSAGE.NO_PROPER_ARGUMENTS);
 				return;
 		}
 	}

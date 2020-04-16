@@ -1,4 +1,5 @@
 import { cardEditor } from "../utils/template";
+import { ALERT_MESSAGE } from "../utils/const";
 
 export default class CardEditor {
 	$cardEditor = null;
@@ -39,7 +40,7 @@ export default class CardEditor {
 		length !== 0 ? this.activateSaveButton() : this.deactivateSaveButton();
 		if (length > 500) {
 			e.target.value = value.substring(0, 500);
-			alert("최대 500자 까지 입력할 수 있습니다.");
+			alert(ALERT_MESSAGE.LIMIT_NUM_OF_CHAR);
 		}
 	}
 
@@ -55,7 +56,7 @@ export default class CardEditor {
 		const newTitle = this.$title.value;
 		const newContents = this.$contents.value;
 		if (!newTitle) {
-			alert("제목을 입력해주세요.");
+			alert(ALERT_MESSAGE.NO_TITLE);
 			return;
 		}
 		this.onSave(newTitle, newContents);

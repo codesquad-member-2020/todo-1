@@ -15,7 +15,6 @@ public class Card {
     private String contents;
     private String device;
 
-    @Builder
     public Card(String userId, String title, String contents, String device) {
         this.userId = userId;
         this.title = title;

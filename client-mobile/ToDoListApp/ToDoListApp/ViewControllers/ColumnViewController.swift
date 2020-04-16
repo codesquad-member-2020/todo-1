@@ -41,7 +41,7 @@ class ColumnViewController: UIViewController, NewCardDelegation {
         self.columnId = id
     }
     
-    func updateColumn(_ column: Column) {
+    func configureColumnViewModel(with column: Column) {
         columnViewModel?.updateColumn(column)
     }
     

@@ -14,6 +14,6 @@ struct UserInfo: Codable {
     
     enum CodingKeys: String, CodingKey {
         case userId
-        case profileURL = "profileUrl"
+        case profileURL = "imageUrl"
     }
 }

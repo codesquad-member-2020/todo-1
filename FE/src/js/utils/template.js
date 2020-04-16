@@ -139,6 +139,7 @@ const actions = {
 };
 
 export function activityList(data) {
+	if (data.length === 0) return "";
 	return `<ul>
 						${data.reduce((list, { userId, profileURL, action, title, fromColumn, toColumn, actionTime }) => {
 							list += actions[action]({

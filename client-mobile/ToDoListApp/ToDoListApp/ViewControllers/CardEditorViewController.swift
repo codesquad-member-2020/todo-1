@@ -12,7 +12,7 @@ protocol NewCardDelegation {
     func addNewCard(_ card: Card)
 }
 
-class NewCardViewController: UIViewController {
+class CardEditorViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentsTextView: UITextView!

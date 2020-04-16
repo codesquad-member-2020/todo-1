@@ -480,10 +480,10 @@ sdasdsad</string>
             </objects>
             <point key="canvasLocation" x="1558.7939698492462" y="813.66906474820155"/>
         </scene>
-        <!--New Card View Controller-->
+        <!--Card Editor View Controller-->
         <scene sceneID="tb8-Zz-MlL">
             <objects>
-                <viewController storyboardIdentifier="newCard" id="skG-No-lBB" customClass="NewCardViewController" customModule="ToDoListApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newCard" id="skG-No-lBB" customClass="CardEditorViewController" customModule="ToDoListApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I3C-Gu-Ics">
                         <rect key="frame" x="0.0" y="0.0" width="712" height="794"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

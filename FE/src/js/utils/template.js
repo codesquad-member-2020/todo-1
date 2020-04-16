@@ -155,5 +155,24 @@ export function activityList(data) {
 }
 
 export function relativeTime(actionTime) {
-	return actionTime + "wow";
+	const currDate = new Date();
+	const diffMs = currDate.getTime() - new Date(actionTime).getTime();
+
+	const sec = diffMs / 1000;
+	if (sec < 60) return parseInt(sec) + " second" + (parseInt(sec) > 1 ? "s" : "");
+
+	const min = sec / 60;
+	if (min < 60) return parseInt(min) + " minute" + (parseInt(min) > 1 ? "s" : "");
+
+	const h = min / 60;
+	if (h < 24) return parseInt(h) + " hour" + (parseInt(h) > 1 ? "s" : "");
+
+	const d = h / 24;
+	if (d < 30) return parseInt(d) + " day" + (parseInt(d) > 1 ? "s" : "");
+
+	const m = d / 30;
+	if (m < 12) return parseInt(m) + " month" + (parseInt(m) > 1 ? "s" : "");
+
+	const y = m / 12;
+	return parseInt(y) + " year" + (parseInt(y) > 1 ? "s" : "");
 }

@@ -12,10 +12,21 @@ class HomeViewController: UIViewController {
       
     @IBOutlet weak var stackView: UIStackView!
     private var userInfo: UserInfo?
+    private var tokenManager: TokenManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureTokenManager()
+        checkToken()
+    }
+    
+    private func configureTokenManager() {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        self.tokenManager = appDelegate?.tokenManager
+    }
+    
+    private func checkToken() {
         if let token = loadToken() {
             configureToDoList(with: token)
         } else {
@@ -24,11 +35,11 @@ class HomeViewController: UIViewController {
     }
     
     private func loadToken() -> String? {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        return appDelegate?.token
+        tokenManager.loadToken()
+        return tokenManager.token
     }
     
-    private func saveToken(_ token: String) {
+    private func saveToken(_ token: String?) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let tokenManager = appDelegate?.tokenManager
         tokenManager?.saveToken(token)
@@ -74,6 +85,7 @@ class HomeViewController: UIViewController {
         userInfoViewController.modalPresentationStyle = .popover
         self.present(userInfoViewController, animated: true) {
             userInfoViewController.updateUserInfoView(with: self.userInfo ?? UserInfo(userId: "user", profileURL: ""))
+            userInfoViewController.delegate = self
         }
         userInfoViewController.popoverPresentationController?.barButtonItem = sender
     }
@@ -106,11 +118,19 @@ extension HomeViewController {
     }
 }
 
+extension HomeViewController: UserInfoViewControllerDelegate {
+    func didTapSignOut() {
+        saveToken(nil)
+        checkToken()
+    }
+}
+
 extension HomeViewController: LogInViewControllerDelegate {
     func didSuccessToLogIn(with logInInfo: (String, UserInfo)) {
         let token = logInInfo.0
         let userInfo = logInInfo.1
         saveToken(token)
         self.userInfo = userInfo
+        checkToken()
     }
 }

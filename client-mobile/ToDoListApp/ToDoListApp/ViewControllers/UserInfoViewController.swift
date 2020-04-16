@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol UserInfoViewControllerDelegate {
+    func didTapSignOut()
+}
+
 class UserInfoViewController: UIViewController {
 
     static let identifier = "userInfo"
@@ -19,6 +23,8 @@ class UserInfoViewController: UIViewController {
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    var delegate: UserInfoViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +49,9 @@ class UserInfoViewController: UIViewController {
     }
     
     @IBAction func signOutButtonTapped(_ sender: Any) {
-        
+        dismiss(animated: true, completion: {
+            self.delegate?.didTapSignOut()
+        })
     }
     
     func updateUserInfoView(with userInfo: UserInfo) {

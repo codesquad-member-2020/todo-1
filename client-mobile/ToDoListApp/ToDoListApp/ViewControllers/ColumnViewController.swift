@@ -62,7 +62,7 @@ class ColumnViewController: UIViewController, NewCardDelegation {
         present(cardEditorViewController, animated: true, completion: {
             cardEditorViewController.updateCard(card)
             cardEditorViewController.newCardDelegate = self
-            cardEditorViewController.setColumnId(self.columnId)
+            cardEditorViewController.configureColumnId(self.columnId)
             cardEditorViewController.configureUserInfo(self.userInfo)
         })
     }

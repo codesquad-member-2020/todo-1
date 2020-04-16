@@ -119,7 +119,7 @@ class CardEditorViewController: UIViewController {
         }
     }
     
-    func setColumnId(_ id: Int) {
+    func configureColumnId(_ id: Int) {
         self.columnId = id
     }
     

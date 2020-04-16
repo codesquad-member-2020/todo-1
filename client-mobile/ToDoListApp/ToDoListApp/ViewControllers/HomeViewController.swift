@@ -94,7 +94,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     
     private func requestColumnsData(with token: String, completion: @escaping ([Column]) -> Void) {
-        NetworkManager.shared.requestData(token: token) { (result: Result<UserData, RequestError>) in
+        NetworkManager.shared.requestData(path: "/api/columns", token: token) { (result: Result<UserData, RequestError>) in
             switch result {
             case .success(let userData):
                 completion(userData.columns)

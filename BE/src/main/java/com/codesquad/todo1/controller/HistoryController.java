@@ -1,6 +1,7 @@
 package com.codesquad.todo1.controller;
 
 import com.codesquad.todo1.domain.History;
+import com.codesquad.todo1.service.HistoryService;
 import com.codesquad.todo1.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +14,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HistoryController {
 
-    private final TodoService todoService;
+    private final HistoryService historyService;
 
     @GetMapping("/activity")
     public List<History> activityLog(HttpServletRequest request) {
         String userId = (String) request.getAttribute("userId");
-        return todoService.showActivityList(userId);
+        return historyService.showActivityList(userId);
     }
 }

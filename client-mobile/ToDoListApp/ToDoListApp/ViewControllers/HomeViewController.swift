@@ -126,11 +126,8 @@ extension HomeViewController: UserInfoViewControllerDelegate {
 }
 
 extension HomeViewController: LogInViewControllerDelegate {
-    func didSuccessToLogIn(with logInInfo: (String, UserInfo)) {
-        let token = logInInfo.0
-        let userInfo = logInInfo.1
+    func didSuccessToLogIn(with token: String) {
         saveToken(token)
-        self.userInfo = userInfo
         checkToken()
     }
 }

@@ -45,11 +45,11 @@ class NetworkManager {
         }.resume()
     }
     
-    private func requestLogInToServer(body: Data?, completion: @escaping (Result<(String, UserInfo), RequestError>) -> Void) {
+    private func requestLogInToServer(body: Data?, completion: @escaping (Result<String, RequestError>) -> Void) {
         let successStatusCode = 200
         let unauthorizedStatusCode = 401
         
-        URLSession.shared.dataTask(with: RequestURL(path: "/api/login", method: .post, body: body)) { (data, response, error) in
+        URLSession.shared.dataTask(with: RequestURL(path: "/api/login", method: .post, body: body)) { (_, response, error) in
             guard
                 let url = response?.url,
                 let response = response as? HTTPURLResponse,
@@ -87,18 +87,7 @@ class NetworkManager {
                 return
             }
             
-            guard let data = data else {
-                completion(.failure(.ServerError))
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            guard let userInfo = try? decoder.decode(UserInfo.self, from: data) else {
-                completion(.failure(.JSONDecodingError))
-                return
-            }
-            
-            completion(.success((token, userInfo)))
+            completion(.success(token))
         }.resume()
     }
     
@@ -119,13 +108,13 @@ class NetworkManager {
         }
     }
     
-    func requestLogIn(user: User, completion: @escaping (Result<(String, UserInfo), RequestError>) -> Void) {
+    func requestLogIn(user: User, completion: @escaping (Result<String, RequestError>) -> Void) {
         let encoder = JSONEncoder()
         let data = try? encoder.encode(user)
         requestLogInToServer(body: data) { (result) in
             switch result {
-            case .success((let token, let userInfo)):
-                completion(.success((token, userInfo)))
+            case .success(let token):
+                completion(.success(token))
             case .failure(let error):
                 completion(.failure(error))
             }

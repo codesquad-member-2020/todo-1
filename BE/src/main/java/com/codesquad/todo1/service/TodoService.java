@@ -18,8 +18,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,8 +46,10 @@ public class TodoService {
                 new FindCategoryFail("There is no category with this categoryId"));
         category.addNewCard(0, card);
         Category savedCategory = categoryRepository.save(category);
+        //todo: 유저 Optional util이나 private method로 리팩토링.
         User savedUser = userRepository.findByUserId(card.getUserId()).orElseThrow(() ->
                 new IllegalStateException("No User"));
+        //todo: History builder (userId, profileUrl, title) 중복 제거.
         History history = History.builder()
                 .userId(card.getUserId())
                 .profileUrl(savedUser.getProfileUrl())

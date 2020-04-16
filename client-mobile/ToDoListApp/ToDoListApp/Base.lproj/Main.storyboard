@@ -480,12 +480,12 @@ sdasdsad</string>
             </objects>
             <point key="canvasLocation" x="1558.7939698492462" y="813.66906474820155"/>
         </scene>
-        <!--New Card View Controller-->
+        <!--Card Editor View Controller-->
         <scene sceneID="tb8-Zz-MlL">
             <objects>
-                <viewController storyboardIdentifier="newCard" id="skG-No-lBB" customClass="NewCardViewController" customModule="ToDoListApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newCard" id="skG-No-lBB" customClass="CardEditorViewController" customModule="ToDoListApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I3C-Gu-Ics">
-                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
+                        <rect key="frame" x="0.0" y="0.0" width="712" height="794"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kz-Zk-cj4">
@@ -497,13 +497,13 @@ sdasdsad</string>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Card" textAlignment="natural" minimumFontSize="34" translatesAutoresizingMaskIntoConstraints="NO" id="xT0-Fy-WBu">
-                                <rect key="frame" x="28" y="85" width="1078" height="41"/>
+                                <rect key="frame" x="28" y="85" width="596" height="41"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleAspectFill" enabled="NO" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dwh-tc-ScI">
-                                <rect key="frame" x="1122" y="83.5" width="44" height="44"/>
+                                <rect key="frame" x="640" y="83.5" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Dwh-tc-ScI" secondAttribute="height" multiplier="1:1" id="eTv-mt-gfu"/>
                                     <constraint firstAttribute="width" constant="44" id="ldh-Gu-Ky5"/>
@@ -514,17 +514,17 @@ sdasdsad</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPad에서 작성됨" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaF-s2-WTN">
-                                <rect key="frame" x="28" y="398" width="111" height="21"/>
+                                <rect key="frame" x="28" y="318" width="111" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.55325983499999998" green="0.55325983499999998" blue="0.55325983499999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTr-CU-Jn4">
-                                <rect key="frame" x="28" y="142" width="1142" height="240"/>
+                                <rect key="frame" x="28" y="142" width="660" height="160"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="Qq9-0Q-Guh"/>
+                                    <constraint firstAttribute="height" constant="160" id="Qq9-0Q-Guh"/>
                                 </constraints>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
@@ -556,6 +556,7 @@ sdasdsad</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UAc-fh-x4q"/>
                     </view>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="addCardButton" destination="Dwh-tc-ScI" id="idq-FJ-6t7"/>
                         <outlet property="contentsPlaceholderLabel" destination="y0z-2i-QF2" id="aNE-ht-7AL"/>

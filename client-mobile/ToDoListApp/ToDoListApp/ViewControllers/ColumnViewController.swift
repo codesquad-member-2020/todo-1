@@ -24,6 +24,7 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     var columnViewModel: ColumnViewModel? { didSet { configureViewModelHandler() } }
     private var cardListViewModel = CardListViewModel()
     
+    private var userInfo: UserInfo!
     private var columnId: Int = 0
     
     override func viewDidLoad() {
@@ -32,11 +33,15 @@ class ColumnViewController: UIViewController, NewCardDelegation {
         configureTableView()
     }
     
-    func setColumnId(_ id: Int) {
+    func configureUserInfo(_ userInfo: UserInfo) {
+        self.userInfo = userInfo
+    }
+    
+    func configureColumnId(_ id: Int) {
         self.columnId = id
     }
     
-    func updateColumn(_ column: Column) {
+    func configureColumnViewModel(with column: Column) {
         columnViewModel?.updateColumn(column)
     }
     
@@ -49,10 +54,16 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     }
     
     @IBAction func toAddNewCardButtonTapped(_ sender: Any) {
-        guard let newCardViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? NewCardViewController else { return }
-        present(newCardViewController, animated: true, completion: {
-            newCardViewController.newCardDelegate = self
-            newCardViewController.setColumnId(self.columnId)
+        presentCardViewController()
+    }
+    
+    private func presentCardViewController(card: Card? = nil) {
+        guard let cardEditorViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? CardEditorViewController else { return }
+        present(cardEditorViewController, animated: true, completion: {
+            cardEditorViewController.updateCard(card)
+            cardEditorViewController.newCardDelegate = self
+            cardEditorViewController.configureColumnId(self.columnId)
+            cardEditorViewController.configureUserInfo(self.userInfo)
         })
     }
     
@@ -82,6 +93,9 @@ extension ColumnViewController {
         cardListViewModel.updateNotify { (cardList) in
             self.columnView.updateBadge(cardList)
             self.cardListDataSource.updateCardList(cardList)
+        }
+        cardListViewModel.didTapEdit = { card in
+            self.presentCardViewController(card: card)
         }
     }
     

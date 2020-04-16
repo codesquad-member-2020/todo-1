@@ -12,7 +12,7 @@ protocol NewCardDelegation {
     func addNewCard(_ card: Card)
 }
 
-class NewCardViewController: UIViewController {
+class CardEditorViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentsTextView: UITextView!
@@ -28,7 +28,7 @@ class NewCardViewController: UIViewController {
     private var contentsDelegate: CardContentsTextViewDelegate?
     
     private let device = "iOS"
-    
+    private var userInfo: UserInfo!
     private var columnId: Int = 0
     
     var newCardDelegate: NewCardDelegation?
@@ -37,6 +37,29 @@ class NewCardViewController: UIViewController {
         super.viewDidLoad()
         configureViewModels()
         configureDelegates()
+        configureNotification()
+        configureTextFieldFirstResponder()
+    }
+    
+    func updateCard(_ card: Card?) {
+        guard let card = card else { return }
+        self.titleTextField.text = card.title
+        self.contentsTextView.text = card.contents
+    }
+    
+    private func configureTextFieldFirstResponder() {
+        titleTextField.becomeFirstResponder()
+    }
+    
+    private func configureNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didFinishReturnTitle),
+                                               name: .didFinishReturnCardTitleNotification,
+                                               object: nil)
+    }
+    
+    @objc func didFinishReturnTitle(notification: Notification) {
+        contentsTextView.becomeFirstResponder()
     }
     
     private func configureDelegates() {
@@ -68,7 +91,7 @@ class NewCardViewController: UIViewController {
     }
     
     @IBAction func addNewCardTapped(_ sender: Any) {
-        let newCardRequest = NewCardRequest(userId: "cory", title: titleText, contents: contentsText)
+        let newCardRequest = NewCardRequest(userId: userInfo.userId, title: titleText, contents: contentsText)
         NetworkManager.shared.requestDataWithBody(method: .post, body: newCardRequest, optionalData: columnId) { (result: Result<CardContainer, RequestError>) in
             switch result {
             case .success(let cardContainer):
@@ -96,8 +119,12 @@ class NewCardViewController: UIViewController {
         }
     }
     
-    func setColumnId(_ id: Int) {
+    func configureColumnId(_ id: Int) {
         self.columnId = id
+    }
+    
+    func configureUserInfo(_ userInfo: UserInfo) {
+        self.userInfo = userInfo
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

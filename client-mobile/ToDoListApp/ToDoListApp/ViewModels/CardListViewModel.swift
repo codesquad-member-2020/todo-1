@@ -8,12 +8,13 @@
 
 import UIKit
 
-class CardListViewModel: NSObject, ViewModelBinding, UITableViewDelegate {
+class CardListViewModel: NSObject, ViewModelBinding {
     
     typealias Key = [Card]
     
     private var cardList: Key = [] { didSet { changeHandler(cardList) } }
     private var changeHandler: (Key) -> Void
+    var didTapEdit: ((Card) -> Void)?
     
     init(with cardList: [Card] = [], changed handler: @escaping (Key) -> Void = { _ in } ) {
         self.changeHandler = handler
@@ -36,8 +37,11 @@ class CardListViewModel: NSObject, ViewModelBinding, UITableViewDelegate {
     func removeCard(at index: Int) {
         cardList.remove(at: index)
     }
-    
-    // MARK:- UITableViewDelegate
+}
+
+// MARK:- UITableViewDelegate
+
+extension CardListViewModel: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let removeAction = UIContextualAction(style: .destructive, title: "delete") { (_, _, _) in
@@ -47,5 +51,24 @@ class CardListViewModel: NSObject, ViewModelBinding, UITableViewDelegate {
             tableView.endUpdates()
         }
         return UISwipeActionsConfiguration(actions: [removeAction])
+    }
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (_) -> UIMenu? in
+            let editAction = UIAction(title: "Edit", image: UIImage(named: "card-edit")) { _ in
+                let currentCard = self.cardList[indexPath.item]
+                self.didTapEdit?(currentCard)
+            }
+            
+            let deleteAction = UIAction(title: "Delete", image: UIImage(named: "card-remove"), attributes: .destructive) { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                    tableView.beginUpdates()
+                    self.removeCard(at: indexPath.item)
+                    tableView.deleteRows(at: [indexPath], with: .left)
+                    tableView.endUpdates()
+                }
+            }
+            return UIMenu(title: "", children: [editAction, deleteAction])
+        }
     }
 }

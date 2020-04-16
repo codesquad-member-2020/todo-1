@@ -11,7 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
       
     @IBOutlet weak var stackView: UIStackView!
-    private var userInfo: UserInfo?
+    private var userInfo: UserInfo!
     private var tokenManager: TokenManager!
     
     override func viewDidLoad() {
@@ -28,8 +28,9 @@ class HomeViewController: UIViewController {
     
     private func checkToken() {
         if let token = loadToken() {
-            fetchUserInfo(with: token)
-            configureToDoList(with: token)
+            fetchUserInfo(with: token, completion: {
+                self.configureToDoList(with: token)
+            })
         } else {
             presentToLogIn()
         }
@@ -76,17 +77,18 @@ class HomeViewController: UIViewController {
             self.addChild(columnViewController)
             self.stackView.addArrangedSubview(columnViewController.view)
             columnViewController.columnViewModel = ColumnViewModel()
-            columnViewController.updateColumn(column)
-            columnViewController.setColumnId(column.identifier)
+            columnViewController.configureColumnViewModel(with: column)
+            columnViewController.configureColumnId(column.identifier)
+            columnViewController.configureUserInfo(userInfo)
         }
     }
     
     @IBAction func userInfoButtonTapped(_ sender: UIBarButtonItem) {
-        guard let userInfo = userInfo else { return }
+//        guard let userInfo = userInfo else { return }
         guard let userInfoViewController = storyboard?.instantiateViewController(identifier: UserInfoViewController.identifier) as? UserInfoViewController else { return }
         userInfoViewController.modalPresentationStyle = .popover
         self.present(userInfoViewController, animated: true) {
-            userInfoViewController.updateUserInfoView(with: userInfo)
+            userInfoViewController.updateUserInfoView(with: self.userInfo)
             userInfoViewController.delegate = self
         }
         userInfoViewController.popoverPresentationController?.barButtonItem = sender
@@ -107,11 +109,12 @@ extension HomeViewController {
         }
     }
     
-    private func fetchUserInfo(with token: String) {
+    private func fetchUserInfo(with token: String, completion: @escaping () -> Void) {
         NetworkManager.shared.requestData(path: "/api/userInfo", token: token) { (result: Result<UserInfo, RequestError>) in
             switch result {
             case .success(let userInfo):
                 self.userInfo = userInfo
+                completion()
             case .failure(_):
                 break
             }

@@ -89,6 +89,8 @@ export default class Column {
 				if (response.status === 200) {
 					new Card({ $target: this, data: response.card });
 					this.handleCounter("up");
+				} else {
+					throw Error("네트워크 에러가 발생했습니다. 페이지 새로고침 후 다시 시도해주세요.");
 				}
 			})
 			.catch(handleError);
@@ -98,9 +100,11 @@ export default class Column {
 		this.http
 			.delete(`${BASE_URL}/columns/${this.id}/cards/${id}`)
 			.then((response) => {
-				if (response.status === 200) {
+				if (response.status === 200 || response.status === 204) {
 					this.$cardContainer.removeChild($card);
 					this.handleCounter("down");
+				} else {
+					throw Error();
 				}
 			})
 			.catch(handleError);
@@ -114,6 +118,9 @@ export default class Column {
 				if (response.status === 200) {
 					$card.querySelector(".title").textContent = response.card.title;
 					$card.querySelector(".contents").textContent = response.card.contents;
+				} else {
+					this.deleteCard({ $card, id });
+					throw Error("삭제된 카드입니다.");
 				}
 			})
 			.catch(handleError);
@@ -128,8 +135,12 @@ export default class Column {
 		this.http
 			.patch(`${BASE_URL}/columns/${fromColumnId}/cards/${cardId}`, data)
 			.then((response) => {
-				if (response.status !== 200)
-					throw Error("에러가 발생했습니다. 페이지 새로고침 후 다시 시도해주세요.");
+				if (response.status === 204) {
+					this.deleteCard({ $card, id });
+					throw Error("삭제된 카드입니다.");
+				} else if (response.status !== 200) {
+					throw Error("네트워크 에러가 발생했습니다. 페이지 새로고침 후 다시 시도해주세요.");
+				}
 			})
 			.catch(handleError);
 	}

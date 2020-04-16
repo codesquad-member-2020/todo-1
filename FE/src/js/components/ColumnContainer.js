@@ -1,5 +1,6 @@
 import { columnContainer } from "../utils/template";
 import Column from "./Column";
+import ColumnCreator from "./ColumnCreator";
 import Alert from "./Alert";
 import CardEditor from "./CardEditor";
 
@@ -38,6 +39,7 @@ export default class ColumnContainer {
 		this.columns = this.data.map(
 			(column, index) => new Column({ $target: this.$columnContainer, initialData: column, index })
 		);
+		new ColumnCreator({ $target: this.$target });
 	}
 
 	bindEventListener() {

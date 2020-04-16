@@ -57,7 +57,7 @@ class ColumnViewController: UIViewController, NewCardDelegation {
         presentCardViewController()
     }
     
-    private func presentCardViewController(card: Card? = nil, at row: Int? = nil) {
+    private func presentCardViewController(card: Card? = nil, at row: Int? = nil, isCardEditing: Bool = false) {
         guard let cardEditorViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? CardEditorViewController else { return }
         present(cardEditorViewController, animated: true, completion: {
             cardEditorViewController.updateCard(card)
@@ -65,7 +65,7 @@ class ColumnViewController: UIViewController, NewCardDelegation {
             cardEditorViewController.configureColumnId(self.columnId)
             cardEditorViewController.configureUserInfo(self.userInfo)
             cardEditorViewController.configureRow(row)
-            cardEditorViewController.configureIsCardEditing(true)
+            cardEditorViewController.configureIsCardEditing(isCardEditing)
         })
     }
     
@@ -119,7 +119,7 @@ extension ColumnViewController {
             self.cardListDataSource.updateCardList(cardList)
         }
         cardListViewModel.didTapEdit = { card, row in
-            self.presentCardViewController(card: card, at: row)
+            self.presentCardViewController(card: card, at: row, isCardEditing: true)
         }
         cardListViewModel.didTapRemove = { card, row in
             self.requestRemoveCard(card, at: row)

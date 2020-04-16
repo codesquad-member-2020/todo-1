@@ -8,14 +8,11 @@ import lombok.ToString;
 public class ApiLogin {
     private final int status;
     private final String jwt;
-    private final String profileUrl;
-    private final String userId;
 
-    public ApiLogin(int status, String jwt, String profileUrl, String userId) {
+    public ApiLogin(int status, String jwt) {
         this.status = status;
         this.jwt = jwt;
-        this.profileUrl = profileUrl;
-        this.userId = userId;
     }
-
 }
+
+

@@ -28,6 +28,7 @@ class HomeViewController: UIViewController {
     
     private func checkToken() {
         if let token = loadToken() {
+            fetchUserInfo(with: token)
             configureToDoList(with: token)
         } else {
             presentToLogIn()
@@ -105,8 +106,7 @@ extension HomeViewController {
         }
     }
     
-    private func fetchUserInfo() {
-        let token = loadToken()
+    private func fetchUserInfo(with token: String) {
         NetworkManager.shared.requestData(path: "/api/userInfo", token: token) { (result: Result<UserInfo, RequestError>) in
             switch result {
             case .success(let userInfo):

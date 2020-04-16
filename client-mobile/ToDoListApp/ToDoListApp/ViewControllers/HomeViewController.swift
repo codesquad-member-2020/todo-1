@@ -104,6 +104,18 @@ extension HomeViewController {
             }
         }
     }
+    
+    private func fetchUserInfo() {
+        let token = loadToken()
+        NetworkManager.shared.requestData(path: "/api/userInfo", token: token) { (result: Result<UserInfo, RequestError>) in
+            switch result {
+            case .success(let userInfo):
+                self.userInfo = userInfo
+            case .failure(_):
+                break
+            }
+        }
+    }
 }
 
 extension HomeViewController {

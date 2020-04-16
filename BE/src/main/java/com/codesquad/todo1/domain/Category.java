@@ -56,12 +56,7 @@ public class Category {
         throw new IllegalStateException("Find updated card fail");
     }
 
-    public void deleteCard(Long cardId) {
-        boolean deleted = cards.removeIf(each -> each.getId().equals(cardId));
-        if (!deleted) throw new IllegalStateException("Delete Fail");
-    }
-
-    public Card deleteCardForMove(Long cardId) {
+    public Card deleteCard(Long cardId) {
         for (Card each : cards) {
             if (each.getId().equals(cardId)) {
                 this.cards.remove(each);

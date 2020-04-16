@@ -14,6 +14,7 @@ class CardListViewModel: NSObject, ViewModelBinding {
     
     private var cardList: Key = [] { didSet { changeHandler(cardList) } }
     private var changeHandler: (Key) -> Void
+    var didTapEdit: ((Card) -> Void)?
     
     init(with cardList: [Card] = [], changed handler: @escaping (Key) -> Void = { _ in } ) {
         self.changeHandler = handler
@@ -55,7 +56,8 @@ extension CardListViewModel: UITableViewDelegate {
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (_) -> UIMenu? in
             let editAction = UIAction(title: "Edit", image: UIImage(named: "card-edit")) { _ in
-                
+                let currentCard = self.cardList[indexPath.item]
+                self.didTapEdit?(currentCard)
             }
             
             let deleteAction = UIAction(title: "Delete", image: UIImage(named: "card-remove"), attributes: .destructive) { _ in

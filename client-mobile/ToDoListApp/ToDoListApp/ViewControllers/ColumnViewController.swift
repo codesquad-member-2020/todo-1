@@ -49,8 +49,13 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     }
     
     @IBAction func toAddNewCardButtonTapped(_ sender: Any) {
+        presentCardViewController()
+    }
+    
+    private func presentCardViewController(card: Card? = nil) {
         guard let newCardViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? NewCardViewController else { return }
         present(newCardViewController, animated: true, completion: {
+            newCardViewController.updateCard(card)
             newCardViewController.newCardDelegate = self
             newCardViewController.setColumnId(self.columnId)
         })
@@ -82,6 +87,9 @@ extension ColumnViewController {
         cardListViewModel.updateNotify { (cardList) in
             self.columnView.updateBadge(cardList)
             self.cardListDataSource.updateCardList(cardList)
+        }
+        cardListViewModel.didTapEdit = { card in
+            self.presentCardViewController(card: card)
         }
     }
     

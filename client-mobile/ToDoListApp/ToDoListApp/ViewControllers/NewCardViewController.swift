@@ -41,6 +41,12 @@ class NewCardViewController: UIViewController {
         configureTextFieldFirstResponder()
     }
     
+    func updateCard(_ card: Card?) {
+        guard let card = card else { return }
+        self.titleTextField.text = card.title
+        self.contentsTextView.text = card.contents
+    }
+    
     private func configureTextFieldFirstResponder() {
         titleTextField.becomeFirstResponder()
     }

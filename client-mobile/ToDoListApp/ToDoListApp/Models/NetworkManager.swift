@@ -170,6 +170,21 @@ class NetworkManager {
             completion(.success(data))
         }.resume()
     }
+    
+    func requestRemoveCard(columnId: Int, cardId: Int, completion: @escaping (Result<Data?, RequestError>) -> Void) {
+        let path = "/api/columns/\(columnId)/cards/\(cardId)"
+        URLSession.shared.dataTask(with: RequestURL(path: path, method: .delete)) { (_, response, error) in
+            guard let response = response as? HTTPURLResponse else { return }
+            let statusCode = response.statusCode
+            if (statusCode == 200) || (statusCode == 204) {
+                completion(.success(nil))
+                return
+            }
+            if error != nil {
+                completion(.failure(.ServerError))
+            }
+        }.resume()
+    }
 }
 
 extension NetworkManager {

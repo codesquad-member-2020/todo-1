@@ -10,19 +10,11 @@ import Foundation
 
 struct Card: Codable {
     
-    let identifier: Int?
+    let identifier: Int
     let userID: String
     let title: String
     let contents: String
     let device: String
-    
-    init(identifier: Int? = nil, userID: String, title: String, contents: String, device: String, index: Int) {
-        self.identifier = identifier
-        self.userID = userID
-        self.title = title
-        self.contents = contents
-        self.device = device
-    }
     
     enum CodingKeys: String, CodingKey {
         case identifier = "id"

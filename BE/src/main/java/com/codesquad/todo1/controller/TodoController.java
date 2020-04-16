@@ -27,7 +27,11 @@ public class TodoController {
     @PostMapping("/{id}/cards")
     public ApiCard create(@PathVariable Long id,
                           @RequestBody Card card) {
-        return new ApiCard(200, todoService.addCard(card, id), "OK");
+        try {
+            return new ApiCard(200, todoService.addCard(card, id), "OK");
+        } catch (RuntimeException e) {
+            return new ApiCard(400, null, "Bad Request");
+        }
     }
 
     @PutMapping("/{categoryId}/cards/{cardId}")
@@ -38,7 +42,7 @@ public class TodoController {
             logger.info("categoryId : {}", categoryId);
             logger.info("cardId : {}", cardId);
             logger.info("card : {}", card);
-            return new ApiCard(200, todoService.updateCard(card, categoryId, cardId), "Ok");
+            return new ApiCard(200, todoService.updateCard(card, categoryId, cardId), "OK");
         } catch (Exception e) {
             e.printStackTrace();
            return new ApiCard(204, "No Content");

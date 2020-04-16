@@ -5,11 +5,15 @@ import lombok.Getter;
 
 @Getter
 public class ApiUserInfo {
+    private final int status;
     private final String userId;
     private final String imageUrl;
+    private final String message;
 
-    public ApiUserInfo(User user) {
+    public ApiUserInfo(int status, User user, String message) {
+        this.status = status;
         this.userId = user.getUserId();
         this.imageUrl = user.getProfileUrl();
+        this.message = message;
     }
 }

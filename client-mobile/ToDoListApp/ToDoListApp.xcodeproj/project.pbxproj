@@ -38,6 +38,7 @@
 		38F0A3E8244406AB00A20EF5 /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */; };
 		38F437E324401EFC009BE1FF /* ContentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F437E224401EFC009BE1FF /* ContentsViewModel.swift */; };
 		38F437E524403AE7009BE1FF /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F437E424403AE7009BE1FF /* UserData.swift */; };
+		38FAD47A2448B19800577391 /* ColumnViewModel+DragDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FAD4792448B19800577391 /* ColumnViewModel+DragDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
 		38F437E224401EFC009BE1FF /* ContentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsViewModel.swift; sourceTree = "<group>"; };
 		38F437E424403AE7009BE1FF /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		38FAD4792448B19800577391 /* ColumnViewModel+DragDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColumnViewModel+DragDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +218,7 @@
 			children = (
 				38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */,
 				38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */,
+				38FAD4792448B19800577391 /* ColumnViewModel+DragDelegate.swift */,
 				38F437E124401EEA009BE1FF /* NewCard */,
 			);
 			path = ViewModels;
@@ -311,6 +314,7 @@
 				381C3A52243B505F00F83D4B /* CardListDataSource.swift in Sources */,
 				3830F72B243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift in Sources */,
 				383133D72444C46C00E9891E /* TokenManager.swift in Sources */,
+				38FAD47A2448B19800577391 /* ColumnViewModel+DragDelegate.swift in Sources */,
 				38B43793243D85B3000C2A8D /* CardEditorViewController.swift in Sources */,
 				387B8B37243CBA4700805A34 /* Column.swift in Sources */,
 				38B6490F24478CD400E4413F /* UserInfo.swift in Sources */,

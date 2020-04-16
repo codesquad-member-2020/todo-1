@@ -129,6 +129,8 @@ extension ColumnViewController {
     private func configureTableView() {
         tableView.dataSource = cardListDataSource
         tableView.delegate = cardListViewModel
+        tableView.dragDelegate = cardListViewModel
+        tableView.dragInteractionEnabled = true
     }
     
     private func configureColumnView() {

@@ -31,6 +31,10 @@ class CardListViewModel: NSObject, ViewModelBinding {
         self.changeHandler = changed
     }
     
+    func card(at row: Int) -> Card {
+        return cardList[row]
+    }
+    
     func insertCard(_ card: Card, at row: Int) {
         cardList.insert(card, at: row)
     }

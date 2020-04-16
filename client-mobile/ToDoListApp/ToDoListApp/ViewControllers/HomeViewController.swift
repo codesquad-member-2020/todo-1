@@ -78,7 +78,7 @@ class HomeViewController: UIViewController {
             self.stackView.addArrangedSubview(columnViewController.view)
             columnViewController.columnViewModel = ColumnViewModel()
             columnViewController.configureColumnViewModel(with: column)
-            columnViewController.setColumnId(column.identifier)
+            columnViewController.configureColumnId(column.identifier)
             columnViewController.configureUserInfo(userInfo)
         }
     }

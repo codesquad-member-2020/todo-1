@@ -37,7 +37,7 @@ class ColumnViewController: UIViewController, NewCardDelegation {
         self.userInfo = userInfo
     }
     
-    func setColumnId(_ id: Int) {
+    func configureColumnId(_ id: Int) {
         self.columnId = id
     }
     

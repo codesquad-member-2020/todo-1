@@ -82,10 +82,11 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func userInfoButtonTapped(_ sender: UIBarButtonItem) {
+        guard let userInfo = userInfo else { return }
         guard let userInfoViewController = storyboard?.instantiateViewController(identifier: UserInfoViewController.identifier) as? UserInfoViewController else { return }
         userInfoViewController.modalPresentationStyle = .popover
         self.present(userInfoViewController, animated: true) {
-            userInfoViewController.updateUserInfoView(with: self.userInfo ?? UserInfo(userId: "user", profileURL: ""))
+            userInfoViewController.updateUserInfoView(with: userInfo)
             userInfoViewController.delegate = self
         }
         userInfoViewController.popoverPresentationController?.barButtonItem = sender

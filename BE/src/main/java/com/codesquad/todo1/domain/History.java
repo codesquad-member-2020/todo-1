@@ -21,13 +21,13 @@ public class History {
     private String profileUrl;
     private String action;
     private String title;
-    private Integer fromColumn;
-    private Integer toColumn;
+    private String fromColumn;
+    private String toColumn;
     private String actionTime;
 
     @Builder
     public History(String userId, String profileUrl, String action, String title,
-                   Integer fromColumn, Integer toColumn) {
+                   String fromColumn, String toColumn) {
         this.userId = userId;
         this.profileUrl = profileUrl;
         this.action = action;

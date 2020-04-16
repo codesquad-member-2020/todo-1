@@ -1,19 +1,21 @@
 package com.codesquad.todo1.controller;
 
+import com.codesquad.todo1.api.ApiUserInfo;
 import com.codesquad.todo1.error.AuthorizationFail;
 import com.codesquad.todo1.service.UserService;
 import com.codesquad.todo1.utils.JwtUtils;
 import com.codesquad.todo1.api.ApiLogin;
 import com.codesquad.todo1.domain.User;
-import com.codesquad.todo1.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
@@ -42,6 +44,14 @@ public class LoginController {
             response.setStatus(401);
             return new ApiLogin(401, null, null, null);
         }
+    }
+
+    @GetMapping("/userinfo")
+    public ApiUserInfo userInfo(HttpServletRequest request) {
+        String userInfo = (String) request.getAttribute("userId");
+        User user = userService.findByUserId(userInfo).orElseThrow(() ->
+                new IllegalStateException("No User"));
+        return new ApiUserInfo(user);
     }
 
     private User checkValidation(String userId, String password) throws AuthorizationFail {

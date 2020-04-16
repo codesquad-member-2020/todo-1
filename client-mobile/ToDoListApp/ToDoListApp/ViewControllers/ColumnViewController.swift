@@ -58,12 +58,12 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     }
     
     private func presentCardViewController(card: Card? = nil) {
-        guard let newCardViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? CardEditorViewController else { return }
-        present(newCardViewController, animated: true, completion: {
-            newCardViewController.updateCard(card)
-            newCardViewController.newCardDelegate = self
-            newCardViewController.setColumnId(self.columnId)
-            newCardViewController.configureUserInfo(self.userInfo)
+        guard let cardEditorViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? CardEditorViewController else { return }
+        present(cardEditorViewController, animated: true, completion: {
+            cardEditorViewController.updateCard(card)
+            cardEditorViewController.newCardDelegate = self
+            cardEditorViewController.setColumnId(self.columnId)
+            cardEditorViewController.configureUserInfo(self.userInfo)
         })
     }
     

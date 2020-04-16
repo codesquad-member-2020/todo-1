@@ -8,14 +8,27 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, LogInViewControllerDelegate {
+class HomeViewController: UIViewController {
       
     @IBOutlet weak var stackView: UIStackView!
+    private var userInfo: UserInfo?
+    private var tokenManager: TokenManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureTokenManager()
+        checkToken()
+    }
+    
+    private func configureTokenManager() {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        self.tokenManager = appDelegate?.tokenManager
+    }
+    
+    private func checkToken() {
         if let token = loadToken() {
+            fetchUserInfo(with: token)
             configureToDoList(with: token)
         } else {
             presentToLogIn()
@@ -23,11 +36,11 @@ class HomeViewController: UIViewController, LogInViewControllerDelegate {
     }
     
     private func loadToken() -> String? {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        return appDelegate?.token
+        tokenManager.loadToken()
+        return tokenManager.token
     }
     
-    private func saveToken(_ token: String) {
+    private func saveToken(_ token: String?) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let tokenManager = appDelegate?.tokenManager
         tokenManager?.saveToken(token)
@@ -41,10 +54,6 @@ class HomeViewController: UIViewController, LogInViewControllerDelegate {
         })
     }
     
-    func didSuccessToLogIn(with token: String) {
-        saveToken(token)
-    }
-    
     private func configureToDoList(with token: String) {
         requestColumnsData(with: token) { (columns) in
             DispatchQueue.main.async {
@@ -53,7 +62,15 @@ class HomeViewController: UIViewController, LogInViewControllerDelegate {
         }
     }
     
+    private func resetColumnViewControllers() {
+        children.forEach {
+            $0.removeFromParent()
+        }
+        stackView.removeAll()
+    }
+    
     private func configureColumns(_ columns: [Column]) {
+        resetColumnViewControllers()
         for column in columns {
             guard let columnViewController = storyboard?.instantiateViewController(identifier: ColumnViewController.identifier) as? ColumnViewController else { return }
             self.addChild(columnViewController)
@@ -63,12 +80,24 @@ class HomeViewController: UIViewController, LogInViewControllerDelegate {
             columnViewController.setColumnId(column.identifier)
         }
     }
+    
+    @IBAction func userInfoButtonTapped(_ sender: UIBarButtonItem) {
+        guard let userInfo = userInfo else { return }
+        guard let userInfoViewController = storyboard?.instantiateViewController(identifier: UserInfoViewController.identifier) as? UserInfoViewController else { return }
+        userInfoViewController.modalPresentationStyle = .popover
+        self.present(userInfoViewController, animated: true) {
+            userInfoViewController.updateUserInfoView(with: userInfo)
+            userInfoViewController.delegate = self
+        }
+        userInfoViewController.popoverPresentationController?.barButtonItem = sender
+    }
 }
 
 extension HomeViewController {
     
+    // MARK:- Network
     private func requestColumnsData(with token: String, completion: @escaping ([Column]) -> Void) {
-        NetworkManager.shared.requestData(token: token) { (result: Result<UserData, RequestError>) in
+        NetworkManager.shared.requestData(path: "/api/columns", token: token) { (result: Result<UserData, RequestError>) in
             switch result {
             case .success(let userData):
                 completion(userData.columns)
@@ -78,6 +107,21 @@ extension HomeViewController {
         }
     }
     
+    private func fetchUserInfo(with token: String) {
+        NetworkManager.shared.requestData(path: "/api/userInfo", token: token) { (result: Result<UserInfo, RequestError>) in
+            switch result {
+            case .success(let userInfo):
+                self.userInfo = userInfo
+            case .failure(_):
+                break
+            }
+        }
+    }
+}
+
+extension HomeViewController {
+    
+    // MARK:- AlertViewController
     private func showErrorAlert(error: RequestError) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Error", message: error.description, preferredStyle: .alert)
@@ -89,5 +133,19 @@ extension HomeViewController {
             alert.addAction(cancelAction)
             self.present(alert, animated: true, completion: nil)
         }
+    }
+}
+
+extension HomeViewController: UserInfoViewControllerDelegate {
+    func didTapSignOut() {
+        saveToken(nil)
+        checkToken()
+    }
+}
+
+extension HomeViewController: LogInViewControllerDelegate {
+    func didSuccessToLogIn(with token: String) {
+        saveToken(token)
+        checkToken()
     }
 }

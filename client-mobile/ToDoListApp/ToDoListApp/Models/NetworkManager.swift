@@ -25,9 +25,9 @@ class NetworkManager {
     
     private let baseURL = "http://13.124.169.123"
     
-    private func requestDataToServer(method: NetworkManager.methodType, token: String? = nil, completion: @escaping (Result<Data?, RequestError>) -> Void) {
+    private func requestDataToServer(path: String, method: NetworkManager.methodType, token: String? = nil, completion: @escaping (Result<Data?, RequestError>) -> Void) {
         let successStatusCode = 200
-        var urlRequest = RequestURL(path: "/api/columns", method: method)
+        var urlRequest = RequestURL(path: path, method: method)
         if let token = token {
             urlRequest.setValue("jwt=\(token)", forHTTPHeaderField: "Cookie")
         }
@@ -49,7 +49,7 @@ class NetworkManager {
         let successStatusCode = 200
         let unauthorizedStatusCode = 401
         
-        URLSession.shared.dataTask(with: RequestURL(path: "/api/login", method: .post, body: body)) { (data, response, error) in
+        URLSession.shared.dataTask(with: RequestURL(path: "/api/login", method: .post, body: body)) { (_, response, error) in
             guard
                 let url = response?.url,
                 let response = response as? HTTPURLResponse,
@@ -91,8 +91,8 @@ class NetworkManager {
         }.resume()
     }
     
-    func requestData<T: Codable>(method: NetworkManager.methodType = .get, token: String?, completion: @escaping (Result<T, RequestError>) -> Void) {
-        requestDataToServer(method: method, token: token) { (result) in
+    func requestData<T: Codable>(path: String = "", method: NetworkManager.methodType = .get, token: String?, completion: @escaping (Result<T, RequestError>) -> Void) {
+        requestDataToServer(path: path, method: method, token: token) { (result) in
             switch result {
             case .success(let data):
                 let decoder = JSONDecoder()
@@ -142,6 +142,21 @@ class NetworkManager {
                 completion(.failure(.URLSessionError))
             }
             completion(.success(decodedData))
+        }.resume()
+    }
+    
+    func requestData(from URLString: String, method: NetworkManager.methodType = .get, completion: @escaping (Result<Data, RequestError>) -> Void) {
+        guard let url = URL(string: URLString) else { return }
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
+            guard let data = data else {
+                completion(.failure(.URLSessionError))
+                return
+            }
+            if error != nil {
+                completion(.failure(.URLSessionError))
+                return
+            }
+            completion(.success(data))
         }.resume()
     }
 }

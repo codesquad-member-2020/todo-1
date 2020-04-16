@@ -11,13 +11,17 @@ import Foundation
 class TokenManager {
     
     private let tokenKey = "JWTToken"
+    private(set) var token: String? = nil
     
     func saveToken(_ token: String?) {
-        UserDefaults.standard.set(token, forKey: tokenKey)
+        if token == nil {
+            UserDefaults.standard.removeObject(forKey: tokenKey)
+        } else {
+            UserDefaults.standard.set(token, forKey: tokenKey)
+        }
     }
     
-    func loadToken() -> String? {
-        let token = UserDefaults.standard.object(forKey: tokenKey) as? String
-        return token
+    func loadToken() {
+        self.token = UserDefaults.standard.object(forKey: tokenKey) as? String
     }
 }

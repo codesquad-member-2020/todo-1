@@ -2,6 +2,8 @@ package com.codesquad.todo1.utils;
 
 import com.codesquad.todo1.error.AuthorizationFail;
 import com.codesquad.todo1.service.TodoService;
+import com.codesquad.todo1.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +14,13 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
-    private Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
+    private final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 
     @Autowired
-    private TodoService todoService;
+    private UserService userService;
 
     @Override
     public boolean preHandle(HttpServletRequest request,
@@ -40,7 +43,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
             String jwt = cookie.getValue();
             String jwtUserId = JwtUtils.jwtParsing(jwt);
-            todoService.findByUserId(jwtUserId).orElseThrow(AuthorizationFail::new);
+            userService.findByUserId(jwtUserId).orElseThrow(AuthorizationFail::new);
+            request.setAttribute("userId", jwtUserId);
         } catch (Exception e) {
             response.setStatus(401);
             return false;

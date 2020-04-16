@@ -93,6 +93,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController {
     
+    // MARK:- Network
     private func requestColumnsData(with token: String, completion: @escaping ([Column]) -> Void) {
         NetworkManager.shared.requestData(path: "/api/columns", token: token) { (result: Result<UserData, RequestError>) in
             switch result {
@@ -103,7 +104,11 @@ extension HomeViewController {
             }
         }
     }
+}
+
+extension HomeViewController {
     
+    // MARK:- AlertViewController
     private func showErrorAlert(error: RequestError) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Error", message: error.description, preferredStyle: .alert)

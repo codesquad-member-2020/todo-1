@@ -10,7 +10,7 @@ import UIKit
 
 class CardTitleTextFieldDelegate: NSObject, UITextFieldDelegate {
     
-    private let titleTextCountLimitation: Int = 19
+    private let titleTextCountLimitation: Int = 24
     
     private var titleViewModel: TitleViewModel?
     
@@ -28,4 +28,13 @@ class CardTitleTextFieldDelegate: NSObject, UITextFieldDelegate {
         let estimatedTextCount = textFieldText.count + string.count - range.length
         return estimatedTextCount <= titleTextCountLimitation
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        NotificationCenter.default.post(name: .didFinishReturnCardTitleNotification, object: nil)
+        return false
+    }
+}
+
+extension Notification.Name {
+    static let didFinishReturnCardTitleNotification = Notification.Name(rawValue: "didFinishReturnCardTitleNotification")
 }

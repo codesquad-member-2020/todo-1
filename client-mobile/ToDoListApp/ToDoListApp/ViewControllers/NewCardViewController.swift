@@ -37,6 +37,23 @@ class NewCardViewController: UIViewController {
         super.viewDidLoad()
         configureViewModels()
         configureDelegates()
+        configureNotification()
+        configureTextFieldFirstResponder()
+    }
+    
+    private func configureTextFieldFirstResponder() {
+        titleTextField.becomeFirstResponder()
+    }
+    
+    private func configureNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didFinishReturnTitle),
+                                               name: .didFinishReturnCardTitleNotification,
+                                               object: nil)
+    }
+    
+    @objc func didFinishReturnTitle(notification: Notification) {
+        contentsTextView.becomeFirstResponder()
     }
     
     private func configureDelegates() {

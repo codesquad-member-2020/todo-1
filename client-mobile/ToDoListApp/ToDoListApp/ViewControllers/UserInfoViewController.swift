@@ -60,6 +60,7 @@ class UserInfoViewController: UIViewController {
             case .success(let data):
                 DispatchQueue.main.async {
                     self.imageView.image = UIImage(data: data)
+                    self.stopLoadingView()
                 }
             case .failure(_):
                 break
@@ -67,6 +68,5 @@ class UserInfoViewController: UIViewController {
         }
         self.nameLabel.text = userInfo.userId
         self.emailLabel.text = "\(userInfo.userId)@gmail.com"
-        stopLoadingView()
     }
 }

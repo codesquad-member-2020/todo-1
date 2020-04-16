@@ -168,7 +168,7 @@ class NetworkManager {
                 return
             }
             completion(.success(data))
-        }
+        }.resume()
     }
 }
 

@@ -24,12 +24,15 @@ class UserInfoViewController: UIViewController {
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    private let imageViewHeight: CGFloat = 72
+    
     var delegate: UserInfoViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         startLoadingView()
+        configureImageView()
         configureButtonsCornerRadius()
     }
     
@@ -41,6 +44,10 @@ class UserInfoViewController: UIViewController {
     private func stopLoadingView() {
         loadingView.isHidden = true
         activityIndicator.stopAnimating()
+    }
+    
+    private func configureImageView() {
+        imageView.layer.cornerRadius = imageViewHeight / 2
     }
 
     private func configureButtonsCornerRadius() {

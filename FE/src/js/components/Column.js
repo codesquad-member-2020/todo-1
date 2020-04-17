@@ -1,7 +1,9 @@
 import { column } from "../utils/template";
-import data from "../data";
 import Card from "./Card";
 import CardCreator from "./CardCreator";
+import HttpRequestHandler from "../utils/HttpRequestHandler";
+import { BASE_URL, NETWORK_MESSAGE, CONSOLE_MESSAGE } from "../utils/const";
+import { handleError } from "../utils/utilFunction";
 
 export default class Column {
 	$column = null;
@@ -11,14 +13,17 @@ export default class Column {
 	$counter = null;
 	cardCreatorIsShowing = false;
 
-	constructor({ $target, initialData }) {
+	http = new HttpRequestHandler();
+
+	constructor({ $target, initialData, index }) {
 		this.$target = $target;
 		this.initialData = initialData;
-		this.columnIndex = initialData.index;
+		this.id = initialData.id;
+		this.index = index;
 
 		this.render();
 		this.cacheDomElements();
-		this.bindeEventListener();
+		this.bindEventListener();
 
 		this.renderCards();
 
@@ -27,23 +32,23 @@ export default class Column {
 			data: {
 				visible: false,
 			},
+			onSave: this.addCard.bind(this),
 		});
 	}
 
 	render() {
-		const { columnName, cards } = this.initialData;
-		this.$target.insertAdjacentHTML("beforeend", column(columnName, cards.length));
+		this.$target.insertAdjacentHTML("beforeend", column(this.initialData));
 	}
 
 	cacheDomElements() {
-		this.$column = [...this.$target.children][this.columnIndex];
+		this.$column = [...this.$target.children][this.index];
 		this.$columnHeader = this.$column.querySelector(".column__header");
 		this.$columnBody = this.$column.querySelector(".column__body");
 		this.$cardContainer = this.$column.querySelector(".card-container");
 		this.$counter = this.$columnHeader.querySelector(".column__counter");
 	}
 
-	bindeEventListener() {
+	bindEventListener() {
 		const addCardButton = this.$columnHeader.querySelector(".add-card");
 		addCardButton.addEventListener("click", this.handleCardCreator.bind(this));
 	}
@@ -53,7 +58,7 @@ export default class Column {
 			initialData: { cards },
 		} = this;
 		if (cards.length !== 0) {
-			cards.forEach((card) => new Card({ $target: this, data: card }));
+			cards.reverse().forEach((card) => new Card({ $target: this, data: card }));
 		}
 	}
 
@@ -67,66 +72,96 @@ export default class Column {
 		}
 	}
 
-	createCardObj(value, cardList) {
+	createCardObj({ title, contents }) {
 		return {
 			userId: "reese",
-			title: "제목없음",
-			contents: value,
+			title: title,
+			contents: contents,
 			device: "web",
-			row: cardList.length + 1,
 		};
 	}
 
-	addCard(value) {
-		// update data
-		const cardList = data.columns.find((column) => column.index === this.columnIndex).cards;
-		const newCardObj = this.createCardObj.call(this, value, cardList);
-		cardList.push(newCardObj);
-
-		// send newCardObj to the server
-		// synchronize card id with the one received from the server
-
-		// render Card DOM
-		new Card({ $target: this, data: newCardObj });
-
-		// update counter
-		this.$counter.textContent = Number(this.$counter.textContent) + 1;
-		console.log("card added!", data);
-	}
-
-	deleteCard({ $card, id }) {
-		// update data
-		const cardList = data.columns.find((column) => column.index === this.columnIndex).cards;
-		data.columns.find((column) => column.index === this.columnIndex).cards = cardList.filter(
-			(card) => card.id !== id
-		);
-
-		// send card id to the server
-
-		// remove Card DOM
-		this.$cardContainer.removeChild($card);
-
-		// update counter
-		this.$counter.textContent = Number(this.$counter.textContent) - 1;
-		console.log("card deleted!", data);
-	}
-
-	updateCard({ $card, id, contents }) {
-		// update data
-		const cardList = data.columns.find((column) => column.index === this.columnIndex).cards;
-		let updatedCard;
-		for (let index = 0, length = cardList.length; index < length; index++) {
-			if (cardList[index].id === id) {
-				cardList[index].contents = contents;
-				updatedCard = cardList[index];
-				break;
+	async addCard(value) {
+		const newCardObj = this.createCardObj(value);
+		try {
+			const response = await this.http.post(`${BASE_URL}/columns/${this.id}/cards`, newCardObj);
+			if (response.status === 200) {
+				new Card({ $target: this, data: response.card });
+				this.handleCounter("up");
 			}
+		} catch (err) {
+			handleError(err);
 		}
+	}
 
-		// send updatedCard to the server
+	async deleteCard({ $card, id }) {
+		try {
+			const response = await this.http.delete(`${BASE_URL}/columns/${this.id}/cards/${id}`);
+			if (response.status === 200 || response.status === 204) {
+				this.$cardContainer.removeChild($card);
+				this.handleCounter("down");
+			}
+		} catch (err) {
+			handleError(err);
+		}
+	}
 
-		// render new contents in the card
-		$card.querySelector(".contents").textContent = contents;
-		console.log("card updated!", data);
+	async updateCard({ $card, id, data }) {
+		const newCardObj = this.createCardObj(data);
+		try {
+			const response = await this.http.put(
+				`${BASE_URL}/columns/${this.id}/cards/${id}`,
+				newCardObj
+			);
+
+			if (response.status === 200) {
+				$card.querySelector(".title").textContent = response.card.title;
+				$card.querySelector(".contents").textContent = response.card.contents;
+				return;
+			}
+			if (response.status === 204) {
+				this.deleteCard({ $card, id });
+				throw Error(NETWORK_MESSAGE.ALREADY_DELETED);
+			}
+		} catch (err) {
+			handleError(err);
+		}
+	}
+
+	async moveCard({ cardId, fromColumnId, toColumnId, toRow }) {
+		const data = {
+			toColumn: toColumnId,
+			toRow: toRow,
+		};
+
+		try {
+			const response = await this.http.post(
+				`${BASE_URL}/columns/${fromColumnId}/cards/${cardId}`,
+				data
+			);
+			if (response.status === 204) {
+				this.deleteCard({ $card, id });
+				throw Error(NETWORK_MESSAGE.ALREADY_DELETED);
+			}
+			if (response.status !== 200) {
+				throw Error(NETWORK_MESSAGE.NETWORK_ERROR);
+			}
+		} catch (err) {
+			handleError(err);
+		}
+	}
+
+	handleCounter(state) {
+		switch (state) {
+			case "up":
+				this.$counter.textContent = Number(this.$counter.textContent) + 1;
+				break;
+			case "down":
+				this.$counter.textContent = Number(this.$counter.textContent) - 1;
+				break;
+			default:
+				console.error(CONSOLE_MESSAGE.NO_PROPER_ARGUMENTS);
+				return;
+		}
 	}
 }

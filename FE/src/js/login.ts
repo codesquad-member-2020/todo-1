@@ -7,16 +7,18 @@ import { handleError } from "./utils/utilFunction";
 
 const http = new HttpRequestHandler();
 
-const handleLoginResponse = (response) => {
-	if (response.status === 200) {
+const handleLoginResponse = (response: any): void => {
+	const { status } = response;
+	if (status === 200) {
 		location.replace("todo.html");
 	} else {
-		throw Error(`Network Error ─ ${code}`);
+		throw Error(`Network Error ─ ${status}`);
 	}
 };
 
-const handleLogin = () => {
+const handleLogin = (): void => {
 	http.post(`${BASE_URL}/login`, USER_INFO).then(handleLoginResponse).catch(handleError);
 };
 
-document.querySelector(".login").addEventListener("click", handleLogin);
+const loginButton = document.querySelector(".login") as HTMLElement;
+loginButton.addEventListener("click", handleLogin);

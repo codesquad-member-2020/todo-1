@@ -8,10 +8,10 @@
 
 import UIKit
 
-class BedgeView: UIView {
+class BadgeView: UIView {
     
     fileprivate let height: CGFloat = 26
-    var bedgeLabel: UILabel!
+    var badgeLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,7 +27,7 @@ class BedgeView: UIView {
         layer.cornerRadius = height / 2
     }
     
-    func updateBedge(bedgeCount count: Int) {
-        bedgeLabel.text = String(count)
+    func updateBadge(badgeCount count: Int) {
+        badgeLabel.text = String(count)
     }
 }

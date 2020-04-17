@@ -1,5 +1,5 @@
 //
-//  TItleViewModel.swift
+//  TitleViewModel.swift
 //  ToDoListApp
 //
 //  Created by Cory Kim on 2020/04/10.

@@ -29,16 +29,14 @@ export default class Header {
 		this.$menuButton.addEventListener("click", this.handleActivityDisplay.bind(this));
 	}
 
-	handleActivityDisplay() {
-		this.http
-			.get(`${BASE_URL}/activity`)
-			.then((response) => {
-				if (response.status === 200) {
-					this.activity.openActivity(response);
-				} else {
-					throw Error(NETWORK_MESSAGE.NETWORK_ERROR);
-				}
-			})
-			.catch(handleError);
+	async handleActivityDisplay() {
+		try {
+			const response = await this.http.get(`${BASE_URL}/activity`);
+			if (response.status === 200) {
+				this.activity.openActivity(response);
+			}
+		} catch (err) {
+			handleError(err);
+		}
 	}
 }

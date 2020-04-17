@@ -116,7 +116,6 @@
 		387B8B3C243CC75100805A34 /* CardList */ = {
 			isa = PBXGroup;
 			children = (
-				381C3A51243B505F00F83D4B /* CardListDataSource.swift */,
 				3831B970243B58DF00550FA1 /* CardCell.swift */,
 				380A5AE0243C5A360063A9F6 /* BadgeView.swift */,
 				387B8B3A243CBFEE00805A34 /* ColumnView.swift */,
@@ -195,18 +194,17 @@
 			children = (
 				383133DD2444D9ED00E9891E /* LogIn */,
 				387B8B3C243CC75100805A34 /* CardList */,
-				38B44760243DC40A00232A15 /* NewCard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		38B44760243DC40A00232A15 /* NewCard */ = {
+		38A28F85244962BF009D705C /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				38B43794243D9241000C2A8D /* CardContentsTextViewDelegate.swift */,
-				3830F72A243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift */,
+				388CA27B243AEE0900E99CED /* AppDelegate.swift */,
+				388CA27D243AEE0900E99CED /* SceneDelegate.swift */,
 			);
-			path = NewCard;
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 		38B6490B244786A800E4413F /* Extensions */ = {
@@ -222,8 +220,7 @@
 			children = (
 				38FAD4802448E64900577391 /* ColumnCardList */,
 				38F437E124401EEA009BE1FF /* NewCard */,
-				388CA27B243AEE0900E99CED /* AppDelegate.swift */,
-				388CA27D243AEE0900E99CED /* SceneDelegate.swift */,
+				38A28F85244962BF009D705C /* Delegates */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -231,6 +228,8 @@
 		38F437E124401EEA009BE1FF /* NewCard */ = {
 			isa = PBXGroup;
 			children = (
+				38B43794243D9241000C2A8D /* CardContentsTextViewDelegate.swift */,
+				3830F72A243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift */,
 				38E05A48243F7436005679EC /* TitleViewModel.swift */,
 				38F437E224401EFC009BE1FF /* ContentsViewModel.swift */,
 			);
@@ -249,6 +248,7 @@
 		38FAD4802448E64900577391 /* ColumnCardList */ = {
 			isa = PBXGroup;
 			children = (
+				381C3A51243B505F00F83D4B /* CardListDataSource.swift */,
 				38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */,
 				38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */,
 				38FAD4792448B19800577391 /* ColumnViewModel+DragDelegate.swift */,

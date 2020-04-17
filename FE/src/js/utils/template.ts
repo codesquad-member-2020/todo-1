@@ -1,4 +1,4 @@
-export function header() {
+export function header(): string {
 	return `<header>
 		<div class="header-container">
 			<h1>Todo List</h1>
@@ -9,7 +9,7 @@ export function header() {
 	</header>`;
 }
 
-export function columnContainer() {
+export function columnContainer(): string {
 	return `<main>
 		<div class="columns-container">
       <div class="columns"></div>
@@ -17,7 +17,13 @@ export function columnContainer() {
   </main>`;
 }
 
-export function column({ id, columnName, cards }) {
+interface ColumnParams {
+	id: string;
+	columnName: string;
+	cards: object[];
+}
+
+export function column({ id, columnName, cards }: ColumnParams): string {
 	const columnHeader = `<div class="column__header">
 					<div>
 						<span class="column__counter">${cards.length}</span>
@@ -32,7 +38,14 @@ export function column({ id, columnName, cards }) {
 	return `<div class="column" data-id="${id}">${columnHeader}${columnBody}</div>`;
 }
 
-export function card({ id, title, contents, userId }) {
+interface CardParams {
+	id: string;
+	title: string;
+	contents: string;
+	userId: string;
+}
+
+export function card({ id, title, contents, userId }: CardParams): string {
 	return `<div class="card" data-id="${id}" draggable="true">
             <div class="card-wrapper">
               <div class="title"><i class="far fa-sticky-note"></i>${title}</div>
@@ -43,7 +56,7 @@ export function card({ id, title, contents, userId }) {
 					</div>`;
 }
 
-export function cardCreator() {
+export function cardCreator(): string {
 	return `<div class="card-creator" style="display:none;">
             <input class="card-title" placeholder="Title">
             <textarea class="card-textarea" placeholder="Enter a note"></textarea>
@@ -53,7 +66,7 @@ export function cardCreator() {
           </div>`;
 }
 
-export function alert(message) {
+export function alert(message: string): string {
 	return `<div class="alert" style="display:none;">
 		<div class="alert__message">${message}</div>
 		<div class="alert__buttons">
@@ -63,7 +76,7 @@ export function alert(message) {
 	</div>`;
 }
 
-export function cardEditor(contents) {
+export function cardEditor(contents: string): string {
 	return `<div class="card-editor" style="display:none;">
 			<div class="editor-container">
 				<div class="editor-header">
@@ -78,7 +91,7 @@ export function cardEditor(contents) {
 		</div>`;
 }
 
-export function activity() {
+export function activity(): string {
 	return `<div class="activity">
 			<div>
 				<div class="activity-border top">
@@ -94,8 +107,18 @@ export function activity() {
 		</div>`;
 }
 
+interface ActionParams {
+	userId: string;
+	profileURL: string;
+	action: string;
+	title: string;
+	fromColumn: string;
+	toColumn: string;
+	actionTime: string;
+}
+
 const actions = {
-	add: ({ userId, profileURL, title, toColumn, actionTime }) => `
+	add: ({ userId, profileURL, title, toColumn, actionTime }: ActionParams): string => `
     <li class="detail-container">
       <img src="${profileURL}" alt="@${userId}" />
       <p class="detail">
@@ -105,7 +128,7 @@ const actions = {
       </p>
     </li>
   `,
-	remove: ({ userId, profileURL, title, actionTime }) => `
+	remove: ({ userId, profileURL, title, actionTime }: ActionParams): string => `
     <li class="detail-container">
       <img src="${profileURL}" alt="@${userId}" />
       <p class="detail">
@@ -115,7 +138,7 @@ const actions = {
       </p>
     </li>
   `,
-	update: ({ userId, profileURL, title, actionTime }) => `
+	update: ({ userId, profileURL, title, actionTime }: ActionParams): string => `
     <li class="detail-container">
       <img src="${profileURL}" alt="@${userId}" />
       <p class="detail">
@@ -125,7 +148,7 @@ const actions = {
       </p>
     </li>
   `,
-	move: ({ userId, profileURL, title, fromColumn, toColumn, actionTime }) => `
+	move: ({ userId, profileURL, title, fromColumn, toColumn, actionTime }: ActionParams): string => `
     <li class="detail-container">
       <img src="${profileURL}" alt="@${userId}" />
       <p class="detail">
@@ -138,47 +161,61 @@ const actions = {
   `,
 };
 
-export function activityList(data) {
+export function activityList(data: any): string {
 	if (data.length === 0) return "";
 	return `<ul>
-						${data.reduce((list, { userId, profileURL, action, title, fromColumn, toColumn, actionTime }) => {
-							list += actions[action]({
-								userId,
-								profileURL,
-								title,
-								fromColumn,
-								toColumn,
-								actionTime,
-							});
-							return list;
-						}, "")}
+						${data.reduce(
+							(
+								list: string,
+								{
+									userId,
+									profileURL,
+									action,
+									title,
+									fromColumn,
+									toColumn,
+									actionTime,
+								}: ActionParams
+							) => {
+								list += actions[action]({
+									userId,
+									profileURL,
+									title,
+									fromColumn,
+									toColumn,
+									actionTime,
+								});
+								return list;
+							},
+							""
+						)}
 					</ul>`;
 }
 
-export function relativeTime(actionTime) {
+export function relativeTime(actionTime: string): string {
 	const currDate = new Date();
 	const diffMs = currDate.getTime() - new Date(actionTime).getTime();
 
-	const sec = diffMs / 1000;
-	if (sec < 60) return parseInt(sec) + " second" + (parseInt(sec) > 1 ? "s" : "");
+	const second = diffMs / 1000;
+	if (second < 60) return parseInt(second.toString()) + " second" + (second > 1 ? "s" : "");
 
-	const min = sec / 60;
-	if (min < 60) return parseInt(min) + " minute" + (parseInt(min) > 1 ? "s" : "");
+	const minute = second / 60;
+	if (minute < 60) return parseInt(minute.toString()) + " minute" + (minute > 1 ? "s" : "");
 
-	const h = min / 60;
-	if (h < 24) return parseInt(h) + " hour" + (parseInt(h) > 1 ? "s" : "");
+	const hour = minute / 60;
+	if (hour < 24) return parseInt(hour.toString()) + " hour" + (hour > 1 ? "s" : "");
 
-	const d = h / 24;
-	if (d < 30) return parseInt(d) + " day" + (parseInt(d) > 1 ? "s" : "");
+	const day = hour / 24;
+	if (day < 30) return parseInt(day.toString()) + " day" + (day > 1 ? "s" : "");
 
-	const m = d / 30;
-	if (m < 12) return parseInt(m) + " month" + (parseInt(m) > 1 ? "s" : "");
+	const month = day / 30;
+	if (month < 12) return parseInt(month.toString()) + " month" + (month > 1 ? "s" : "");
 
-	const y = m / 12;
-	return parseInt(y) + " year" + (parseInt(y) > 1 ? "s" : "");
+	const year = month / 12;
+	return parseInt(year.toString()) + " year" + (year > 1 ? "s" : "");
 }
 
-export function columnCreator() {
+export function columnCreator(): string {
 	return `<div class="column-add">
             <div><i class="fas fa-plus"></i>Add column</div>
           </div>`;

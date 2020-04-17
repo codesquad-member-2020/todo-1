@@ -110,20 +110,26 @@ export default class Column {
 			.catch(handleError);
 	}
 
-	updateCard({ $card, id, data }) {
+	async updateCard({ $card, id, data }) {
 		const newCardObj = this.createCardObj(data);
-		this.http
-			.put(`${BASE_URL}/columns/${this.id}/cards/${id}`, newCardObj)
-			.then((response) => {
-				if (response.status === 200) {
-					$card.querySelector(".title").textContent = response.card.title;
-					$card.querySelector(".contents").textContent = response.card.contents;
-				} else {
-					this.deleteCard({ $card, id });
-					throw Error(NETWORK_MESSAGE.ALREADY_DELETED);
-				}
-			})
-			.catch(handleError);
+		try {
+			const response = await this.http.put(
+				`${BASE_URL}/columns/${this.id}/cards/${id}`,
+				newCardObj
+			);
+
+			if (response.status === 200) {
+				$card.querySelector(".title").textContent = response.card.title;
+				$card.querySelector(".contents").textContent = response.card.contents;
+				return;
+			}
+			if (response.status === 204) {
+				this.deleteCard({ $card, id });
+				throw Error(NETWORK_MESSAGE.ALREADY_DELETED);
+			}
+		} catch (err) {
+			handleError(err);
+		}
 	}
 
 	async moveCard({ cardId, fromColumnId, toColumnId, toRow }) {

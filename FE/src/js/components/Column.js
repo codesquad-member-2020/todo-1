@@ -126,23 +126,27 @@ export default class Column {
 			.catch(handleError);
 	}
 
-	moveCard({ cardId, fromColumnId, toColumnId, toRow }) {
+	async moveCard({ cardId, fromColumnId, toColumnId, toRow }) {
 		const data = {
 			toColumn: toColumnId,
 			toRow: toRow,
 		};
 
-		this.http
-			.post(`${BASE_URL}/columns/${fromColumnId}/cards/${cardId}`, data)
-			.then((response) => {
-				if (response.status === 204) {
-					this.deleteCard({ $card, id });
-					throw Error(NETWORK_MESSAGE.ALREADY_DELETED);
-				} else if (response.status !== 200) {
-					throw Error(NETWORK_MESSAGE.NETWORK_ERROR);
-				}
-			})
-			.catch(handleError);
+		try {
+			const response = await this.http.post(
+				`${BASE_URL}/columns/${fromColumnId}/cards/${cardId}`,
+				data
+			);
+			if (response.status === 204) {
+				this.deleteCard({ $card, id });
+				throw Error(NETWORK_MESSAGE.ALREADY_DELETED);
+			}
+			if (response.status !== 200) {
+				throw Error(NETWORK_MESSAGE.NETWORK_ERROR);
+			}
+		} catch (err) {
+			handleError(err);
+		}
 	}
 
 	handleCounter(state) {

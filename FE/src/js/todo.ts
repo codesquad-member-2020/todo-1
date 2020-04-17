@@ -8,12 +8,12 @@ import { handleError } from "./utils/utilFunction";
 
 const http = new HttpRequestHandler();
 
-const loadTodoModule = (response) => {
+const loadTodoModule = (response: object): void => {
 	const $target = document.querySelector("#Todo");
 	new Todo({ $target, data: response });
 };
 
-const fetchTodoData = () => {
+const fetchTodoData = (): void => {
 	http.get(`${BASE_URL}/columns`).then(loadTodoModule).catch(handleError);
 };
 

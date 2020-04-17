@@ -26,6 +26,7 @@
 		388CA285243AEE0C00E99CED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388CA284243AEE0C00E99CED /* Assets.xcassets */; };
 		388CA288243AEE0C00E99CED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388CA286243AEE0C00E99CED /* LaunchScreen.storyboard */; };
 		38A28F8824496364009D705C /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A28F8724496364009D705C /* ActivityViewController.swift */; };
+		38A28F8B244968E4009D705C /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A28F8A244968E4009D705C /* ActivityCell.swift */; };
 		38AB7CC0243F0D3D00ADD8F8 /* ColumnViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */; };
 		38AB7CC2243F34DE00ADD8F8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB7CC1243F34DE00ADD8F8 /* NetworkManager.swift */; };
 		38B417932446D813007FDF82 /* NewCardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B417922446D813007FDF82 /* NewCardRequest.swift */; };
@@ -67,6 +68,7 @@
 		388CA287243AEE0C00E99CED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		388CA289243AEE0C00E99CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38A28F8724496364009D705C /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		38A28F8A244968E4009D705C /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
 		38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnViewModel.swift; sourceTree = "<group>"; };
 		38AB7CC1243F34DE00ADD8F8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		38B417922446D813007FDF82 /* NewCardRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardRequest.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 		388CA291243AFE6100E99CED /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				38A28F89244968D1009D705C /* Activity */,
 				383133DD2444D9ED00E9891E /* LogIn */,
 				387B8B3C243CC75100805A34 /* CardList */,
 			);
@@ -214,6 +217,14 @@
 			isa = PBXGroup;
 			children = (
 				38A28F8724496364009D705C /* ActivityViewController.swift */,
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
+		38A28F89244968D1009D705C /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				38A28F8A244968E4009D705C /* ActivityCell.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -388,6 +399,7 @@
 				38AB7CC0243F0D3D00ADD8F8 /* ColumnViewModel.swift in Sources */,
 				38FAD47E2448E56700577391 /* DragCardCell.swift in Sources */,
 				38FAD47C2448B3A600577391 /* ColumnViewModel+DropDelegate.swift in Sources */,
+				38A28F8B244968E4009D705C /* ActivityCell.swift in Sources */,
 				388CA27C243AEE0900E99CED /* AppDelegate.swift in Sources */,
 				383133DC2444D9E900E9891E /* LogInTextField.swift in Sources */,
 				38B6490D244786C200E4413F /* StackView+Extension.swift in Sources */,

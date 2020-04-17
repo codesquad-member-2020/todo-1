@@ -20,7 +20,7 @@ public class HistoryService {
 
     @Transactional
     public List<History> showActivityList(String userId) {
-        return historyRepository.findByUserIdOrderByIdDesc(userId);
+        return historyRepository.findAll();
     }
 
     @Transactional

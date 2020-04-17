@@ -24,13 +24,21 @@ const config = {
 				test: /\.(ts|tsx)$/,
 				loader: "babel-loader",
 				options: {
+					presets: ["@babel/preset-typescript"],
+				},
+			},
+			{
+				test: /\.js$/,
+				loader: "babel-loader",
+				options: {
 					presets: [
-						"@babel/preset-typescript",
+						"@babel/preset-env",
 						{
 							plugins: ["@babel/plugin-proposal-class-properties"],
 						},
 					],
 				},
+				exclude: /node_modules/,
 			},
 			{
 				test: /\.scss$/,

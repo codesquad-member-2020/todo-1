@@ -96,18 +96,16 @@ export default class Column {
 			.catch(handleError);
 	}
 
-	deleteCard({ $card, id }) {
-		this.http
-			.delete(`${BASE_URL}/columns/${this.id}/cards/${id}`)
-			.then((response) => {
-				if (response.status === 200 || response.status === 204) {
-					this.$cardContainer.removeChild($card);
-					this.handleCounter("down");
-				} else {
-					throw Error();
-				}
-			})
-			.catch(handleError);
+	async deleteCard({ $card, id }) {
+		try {
+			const response = await this.http.delete(`${BASE_URL}/columns/${this.id}/cards/${id}`);
+			if (response.status === 200 || response.status === 204) {
+				this.$cardContainer.removeChild($card);
+				this.handleCounter("down");
+			}
+		} catch (err) {
+			handleError(err);
+		}
 	}
 
 	async updateCard({ $card, id, data }) {

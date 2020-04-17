@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,23 +39,23 @@ public class TodoService {
     }
 
     @Transactional
-    public Optional<Card> addCard(Card card, Long categoryId) {
+    public Optional<Card> addCard(Card card, Long categoryId, HttpServletRequest request) {
         Category category = findCategory(categoryId);
         category.addNewCard(0, card);
         userService.findUser(card);
-        historyService.historySave(card, "add", category, category);
+        historyService.historySave(card, "add", category, category, request);
         Category savedCategory = categoryRepository.save(category);
         Long cardId = savedCategory.getCards().get(0).getId();
         return categoryRepository.findByCardId(cardId);
     }
 
     @Transactional
-    public Optional<Card> updateCard(Card card, Long categoryId, Long cardId) {
+    public Optional<Card> updateCard(Card card, Long categoryId, Long cardId, HttpServletRequest request) {
         Category category = findCategory(categoryId);
         try {
             userService.findUser(card);
             category.updateCard(card, cardId);
-            historyService.historySave(card, "update", category, category);
+            historyService.historySave(card, "update", category, category, request);
             Category savedCategory = categoryRepository.save(category);
             Long updatedCardId = savedCategory.findUpdatedCardId(cardId);
             return categoryRepository.findByCardId(updatedCardId);
@@ -64,12 +65,12 @@ public class TodoService {
     }
 
     @Transactional
-    public void deleteCard(Long categoryId, Long cardId) {
+    public void deleteCard(Long categoryId, Long cardId, HttpServletRequest request) {
         Category category = findCategory(categoryId);
         try {
             Card card = category.deleteCard(cardId);
             userService.findUser(card);
-            historyService.historySave(card, "remove", category, category);
+            historyService.historySave(card, "remove", category, category, request);
             categoryRepository.save(category);
         } catch (RuntimeException e) {
             throw new IllegalStateException("delete Fail");
@@ -77,7 +78,8 @@ public class TodoService {
     }
 
     @Transactional
-    public Optional<Card> moveCard(Long categoryId, Long cardId, String MoveJson) throws JsonProcessingException {
+    public Optional<Card> moveCard(Long categoryId, Long cardId, String MoveJson,
+                                   HttpServletRequest request) throws JsonProcessingException {
         int[] moveData = parseJson(MoveJson);
         int toCategoryId = moveData[0];
         int toRow = moveData[1];
@@ -87,7 +89,7 @@ public class TodoService {
             userService.findUser(deletedCard);
             categoryRepository.save(moveFromCategory);
             Category moveToCategory = findCategory((long) toCategoryId);
-            historyService.historySave(deletedCard, "move", moveFromCategory, moveToCategory);
+            historyService.historySave(deletedCard, "move", moveFromCategory, moveToCategory, request);
             moveToCategory.addCardToIndex(toRow, deletedCard);
             categoryRepository.save(moveToCategory);
             return categoryRepository.findByCardId(cardId);

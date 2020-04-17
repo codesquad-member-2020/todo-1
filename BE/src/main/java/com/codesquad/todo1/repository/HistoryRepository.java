@@ -9,9 +9,6 @@ import java.util.List;
 
 public interface HistoryRepository extends CrudRepository<History, Long> {
 
-    @Query("select * from history where user_id = :userId order by id desc")
-    List<History> findByUserIdOrderByIdDesc(@Param("userId") String userId);
-
     @Query("select * from history order by id desc")
     List<History> findAll();
 }

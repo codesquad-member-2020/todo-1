@@ -27,6 +27,8 @@
 		388CA288243AEE0C00E99CED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388CA286243AEE0C00E99CED /* LaunchScreen.storyboard */; };
 		38A28F8824496364009D705C /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A28F8724496364009D705C /* ActivityViewController.swift */; };
 		38A28F8B244968E4009D705C /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A28F8A244968E4009D705C /* ActivityCell.swift */; };
+		38A3275024496C200089E77A /* ActivityContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3274F24496C200089E77A /* ActivityContainer.swift */; };
+		38A32752244970AD0089E77A /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A32751244970AD0089E77A /* Activity.swift */; };
 		38AB7CC0243F0D3D00ADD8F8 /* ColumnViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */; };
 		38AB7CC2243F34DE00ADD8F8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB7CC1243F34DE00ADD8F8 /* NetworkManager.swift */; };
 		38B417932446D813007FDF82 /* NewCardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B417922446D813007FDF82 /* NewCardRequest.swift */; };
@@ -69,6 +71,8 @@
 		388CA289243AEE0C00E99CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38A28F8724496364009D705C /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		38A28F8A244968E4009D705C /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
+		38A3274F24496C200089E77A /* ActivityContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityContainer.swift; sourceTree = "<group>"; };
+		38A32751244970AD0089E77A /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnViewModel.swift; sourceTree = "<group>"; };
 		38AB7CC1243F34DE00ADD8F8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		38B417922446D813007FDF82 /* NewCardRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardRequest.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 		388CA290243AFE5900E99CED /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				38A3274E24496C140089E77A /* Activity */,
 				383133D82444C6C800E9891E /* User */,
 				387B8B3D243CC76C00805A34 /* CardList */,
 			);
@@ -225,6 +230,15 @@
 			isa = PBXGroup;
 			children = (
 				38A28F8A244968E4009D705C /* ActivityCell.swift */,
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
+		38A3274E24496C140089E77A /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				38A3274F24496C200089E77A /* ActivityContainer.swift */,
+				38A32751244970AD0089E77A /* Activity.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -381,6 +395,7 @@
 				388CA280243AEE0900E99CED /* HomeViewController.swift in Sources */,
 				38F437E524403AE7009BE1FF /* UserData.swift in Sources */,
 				38F437E324401EFC009BE1FF /* ContentsViewModel.swift in Sources */,
+				38A32752244970AD0089E77A /* Activity.swift in Sources */,
 				387B8B3B243CBFEE00805A34 /* ColumnView.swift in Sources */,
 				381C3A52243B505F00F83D4B /* CardListDataSource.swift in Sources */,
 				3830F72B243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift in Sources */,
@@ -393,6 +408,7 @@
 				38B6490F24478CD400E4413F /* UserInfo.swift in Sources */,
 				387B8B39243CBAC400805A34 /* Card.swift in Sources */,
 				38B43795243D9241000C2A8D /* CardContentsTextViewDelegate.swift in Sources */,
+				38A3275024496C200089E77A /* ActivityContainer.swift in Sources */,
 				38AB7CC2243F34DE00ADD8F8 /* NetworkManager.swift in Sources */,
 				38B417952446FE1E007FDF82 /* CardContainer.swift in Sources */,
 				38E05A49243F7436005679EC /* TitleViewModel.swift in Sources */,

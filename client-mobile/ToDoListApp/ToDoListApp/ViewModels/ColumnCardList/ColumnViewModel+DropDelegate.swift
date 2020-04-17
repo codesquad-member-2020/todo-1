@@ -28,17 +28,28 @@ extension CardListViewModel: UITableViewDropDelegate {
             let dragCardListViewModel = dragCardCell.cardListViewModel
             let dragRow = dragCardCell.row
             let dragColumnId = dragCardCell.columnId
-            
-            dragCardListViewModel.removeCard(at: dragRow)
-            dragTableView.beginUpdates()
-            dragTableView.deleteRows(at: [IndexPath(row: dragRow, section: 0)], with: .fade)
-            dragTableView.endUpdates()
-            
             let draggedCard = dragCardCell.card
-            self.insertCard(draggedCard, at: destinationIndexPath.row)
-            tableView.beginUpdates()
-            tableView.insertRows(at: [IndexPath(row: destinationIndexPath.row, section: 0)], with: .fade)
-            tableView.endUpdates()
+            let dragCardId = draggedCard.identifier
+            
+            let cardMoveRequest = CardMoveRequest(toColumn: columnId, toRow: destinationIndexPath.row)
+            NetworkManager.shared.requestDataWithBody(method: .post, body: cardMoveRequest, columnId: dragColumnId, cardId: dragCardId) { (result: Result<CardContainer, RequestError>) in
+                switch result {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        dragCardListViewModel.removeCard(at: dragRow)
+                        dragTableView.beginUpdates()
+                        dragTableView.deleteRows(at: [IndexPath(row: dragRow, section: 0)], with: .fade)
+                        dragTableView.endUpdates()
+                        
+                        self.insertCard(draggedCard, at: destinationIndexPath.row)
+                        tableView.beginUpdates()
+                        tableView.insertRows(at: [IndexPath(row: destinationIndexPath.row, section: 0)], with: .fade)
+                        tableView.endUpdates()
+                    }
+                case .failure(_):
+                    break
+                }
+            }
         }
     }
     

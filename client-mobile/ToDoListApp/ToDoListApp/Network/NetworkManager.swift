@@ -139,12 +139,10 @@ class NetworkManager {
                 completion(.failure(.ServerError))
                 return
             }
+            
             guard let decodedData = try? decoder.decode(ResponseData.self, from: data) else {
                 completion(.failure(.JSONDecodingError))
                 return
-            }
-            if error != nil {
-                completion(.failure(.URLSessionError))
             }
             
             guard let response = response as? HTTPURLResponse else { return }
@@ -153,6 +151,7 @@ class NetworkManager {
             } else if response.statusCode == 204 {
                 completion(.failure(.ServerError))
             }
+            
         }.resume()
     }
     
@@ -194,6 +193,7 @@ extension NetworkManager {
         case put = "put"
         case post = "post"
         case delete = "delete"
+        case patch = "PATCH"
         
         var description: String {
             return self.rawValue

@@ -33,6 +33,7 @@
 		38B43795243D9241000C2A8D /* CardContentsTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B43794243D9241000C2A8D /* CardContentsTextViewDelegate.swift */; };
 		38B6490D244786C200E4413F /* StackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B6490C244786C200E4413F /* StackView+Extension.swift */; };
 		38B6490F24478CD400E4413F /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B6490E24478CD400E4413F /* UserInfo.swift */; };
+		38CD33642449609C0057011C /* CardMoveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CD33632449609C0057011C /* CardMoveRequest.swift */; };
 		38D239522445955B001E0B78 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D239512445955B001E0B78 /* User.swift */; };
 		38E05A49243F7436005679EC /* TitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E05A48243F7436005679EC /* TitleViewModel.swift */; };
 		38F0A3E8244406AB00A20EF5 /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */; };
@@ -72,6 +73,7 @@
 		38B43794243D9241000C2A8D /* CardContentsTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContentsTextViewDelegate.swift; sourceTree = "<group>"; };
 		38B6490C244786C200E4413F /* StackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView+Extension.swift"; sourceTree = "<group>"; };
 		38B6490E24478CD400E4413F /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		38CD33632449609C0057011C /* CardMoveRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardMoveRequest.swift; sourceTree = "<group>"; };
 		38D239512445955B001E0B78 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		38E05A48243F7436005679EC /* TitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewModel.swift; sourceTree = "<group>"; };
 		38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				38B417942446FE1E007FDF82 /* CardContainer.swift */,
 				38B417922446D813007FDF82 /* NewCardRequest.swift */,
 				38FAD47D2448E56600577391 /* DragCardCell.swift */,
+				38CD33632449609C0057011C /* CardMoveRequest.swift */,
 			);
 			path = CardList;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				381C3A52243B505F00F83D4B /* CardListDataSource.swift in Sources */,
 				3830F72B243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift in Sources */,
 				383133D72444C46C00E9891E /* TokenManager.swift in Sources */,
+				38CD33642449609C0057011C /* CardMoveRequest.swift in Sources */,
 				38FAD47A2448B19800577391 /* ColumnViewModel+DragDelegate.swift in Sources */,
 				38B43793243D85B3000C2A8D /* CardEditorViewController.swift in Sources */,
 				387B8B37243CBA4700805A34 /* Column.swift in Sources */,

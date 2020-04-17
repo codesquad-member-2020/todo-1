@@ -82,7 +82,7 @@ class ActivityCell: UITableViewCell {
             firstProposition = "to "
             toColumn = "\(activity.toColumn) "
             break
-        case "removed":
+        case "remove":
             actionBehavior = "removed "
             secondProposition = "at "
             toColumn = "\(activity.toColumn) "

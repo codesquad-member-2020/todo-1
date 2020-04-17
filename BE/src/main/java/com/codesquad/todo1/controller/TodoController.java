@@ -61,7 +61,7 @@ public class TodoController {
         }
     }
 
-    @PatchMapping("{columnsId}/cards/{id}")
+    @PostMapping("{columnsId}/cards/{id}")
     public ApiCard move(@PathVariable Long columnsId,
                         @PathVariable Long id,
                         @RequestBody String moveJson) {

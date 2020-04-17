@@ -20,7 +20,7 @@ export function columnContainer(): string {
 interface ColumnParams {
 	id: string;
 	columnName: string;
-	cards: object[];
+	cards: { id: number; userId: string; title: string; contents: string; device: string }[];
 }
 
 export function column({ id, columnName, cards }: ColumnParams): string {

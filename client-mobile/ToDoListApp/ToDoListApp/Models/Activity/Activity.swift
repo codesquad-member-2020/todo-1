@@ -11,7 +11,7 @@ import Foundation
 struct Activity: Decodable {
     let identifier: Int
     let userId: String
-    let profileUrl: String
+    let profileURL: String
     let action: String
     let title: String
     let fromColumn: String
@@ -20,6 +20,7 @@ struct Activity: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
-        case userId, profileUrl, action, title, fromColumn, toColumn, actionTime
+        case profileURL = "profileUrl"
+        case userId, action, title, fromColumn, toColumn, actionTime
     }
 }

@@ -24,6 +24,19 @@ class ActivityCell: UITableViewCell {
         configureProfileImageView()
     }
     
+    func updateCell(with activity: Activity) {
+        NetworkManager.shared.requestData(from: activity.profileURL) { (result) in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    self.profileImageView.image = UIImage(data: data)
+                }
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
     private func configureProfileImageView() {
         profileImageView.layer.cornerRadius = profileImageHeight / 2
         profileImageView.layer.borderWidth = 1

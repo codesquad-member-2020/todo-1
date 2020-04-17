@@ -2,8 +2,8 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const ENTRY_FILE_LOGIN = path.resolve(__dirname, "../src", "js", "login.js");
-const ENTRY_FILE_TODO = path.resolve(__dirname, "../src", "js", "todo.js");
+const ENTRY_FILE_LOGIN = path.resolve(__dirname, "../src", "js", "login.ts");
+const ENTRY_FILE_TODO = path.resolve(__dirname, "../src", "js", "todo.ts");
 const OUTPUT_DIR = path.resolve(__dirname, "../build");
 
 const config = {
@@ -16,9 +16,17 @@ const config = {
 		alias: {
 			Scss: path.resolve(__dirname, "../src/scss/"),
 		},
+		extensions: [".js", ".jsx", ".tsx", ".ts", ".json"],
 	},
 	module: {
 		rules: [
+			{
+				test: /\.(ts|tsx)$/,
+				loader: "babel-loader",
+				options: {
+					presets: ["@babel/preset-typescript"],
+				},
+			},
 			{
 				test: /\.js$/,
 				loader: "babel-loader",

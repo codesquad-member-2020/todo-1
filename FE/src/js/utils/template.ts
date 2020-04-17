@@ -109,7 +109,7 @@ export function activity(): string {
 
 interface ActionParams {
 	userId: string;
-	profileURL: string;
+	profileUrl: string;
 	action: string;
 	title: string;
 	fromColumn: string;
@@ -118,9 +118,9 @@ interface ActionParams {
 }
 
 const actions = {
-	add: ({ userId, profileURL, title, toColumn, actionTime }: ActionParams): string => `
+	add: ({ userId, profileUrl, title, toColumn, actionTime }: ActionParams): string => `
     <li class="detail-container">
-      <img src="${profileURL}" alt="@${userId}" />
+      <img src="${profileUrl}" alt="@${userId}" />
       <p class="detail">
         <span class="detail__data">@${userId}</span> <span class="action">added</span>
         <span class="detail__data">${title}</span> to <strong>${toColumn}</strong
@@ -128,9 +128,9 @@ const actions = {
       </p>
     </li>
   `,
-	remove: ({ userId, profileURL, title, actionTime }: ActionParams): string => `
+	remove: ({ userId, profileUrl, title, actionTime }: ActionParams): string => `
     <li class="detail-container">
-      <img src="${profileURL}" alt="@${userId}" />
+      <img src="${profileUrl}" alt="@${userId}" />
       <p class="detail">
         <span class="detail__data">@${userId}</span> <span class="action">removed</span>
         <span class="detail__data">${title}</span
@@ -138,9 +138,9 @@ const actions = {
       </p>
     </li>
   `,
-	update: ({ userId, profileURL, title, actionTime }: ActionParams): string => `
+	update: ({ userId, profileUrl, title, actionTime }: ActionParams): string => `
     <li class="detail-container">
-      <img src="${profileURL}" alt="@${userId}" />
+      <img src="${profileUrl}" alt="@${userId}" />
       <p class="detail">
         <span class="detail__data">@${userId}</span> <span class="action">updated</span>
         <span class="detail__data">${title}</span
@@ -148,9 +148,9 @@ const actions = {
       </p>
     </li>
   `,
-	move: ({ userId, profileURL, title, fromColumn, toColumn, actionTime }: ActionParams): string => `
+	move: ({ userId, profileUrl, title, fromColumn, toColumn, actionTime }: ActionParams): string => `
     <li class="detail-container">
-      <img src="${profileURL}" alt="@${userId}" />
+      <img src="${profileUrl}" alt="@${userId}" />
       <p class="detail">
         <span class="detail__data">@${userId}</span> <span>moved</span>
         <span class="detail__data">${title}</span> from
@@ -169,7 +169,7 @@ export function activityList(data: any): string {
 								list: string,
 								{
 									userId,
-									profileURL,
+									profileUrl,
 									action,
 									title,
 									fromColumn,
@@ -179,7 +179,7 @@ export function activityList(data: any): string {
 							) => {
 								list += actions[action]({
 									userId,
-									profileURL,
+									profileUrl,
 									title,
 									fromColumn,
 									toColumn,

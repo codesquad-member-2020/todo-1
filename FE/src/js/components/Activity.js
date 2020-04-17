@@ -35,7 +35,7 @@ export default class Header {
 	}
 
 	appendList(data) {
-		this.$detailContainer.insertAdjacentHTML("afterbegin", activityList(data));
+		this.$detailContainer.insertAdjacentHTML("afterbegin", activityList(data.activities));
 	}
 
 	toggleDisplay(nextData) {

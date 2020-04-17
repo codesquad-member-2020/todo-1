@@ -91,7 +91,7 @@ class NetworkManager {
         }.resume()
     }
     
-    func requestData<T: Codable>(path: String = "", method: NetworkManager.methodType = .get, token: String?, completion: @escaping (Result<T, RequestError>) -> Void) {
+    func requestData<T: Decodable>(path: String = "", method: NetworkManager.methodType = .get, token: String? = nil, completion: @escaping (Result<T, RequestError>) -> Void) {
         requestDataToServer(path: path, method: method, token: token) { (result) in
             switch result {
             case .success(let data):

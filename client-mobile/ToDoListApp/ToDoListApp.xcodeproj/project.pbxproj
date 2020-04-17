@@ -25,6 +25,10 @@
 		388CA283243AEE0900E99CED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388CA281243AEE0900E99CED /* Main.storyboard */; };
 		388CA285243AEE0C00E99CED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388CA284243AEE0C00E99CED /* Assets.xcassets */; };
 		388CA288243AEE0C00E99CED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388CA286243AEE0C00E99CED /* LaunchScreen.storyboard */; };
+		38A28F8824496364009D705C /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A28F8724496364009D705C /* ActivityViewController.swift */; };
+		38A28F8B244968E4009D705C /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A28F8A244968E4009D705C /* ActivityCell.swift */; };
+		38A3275024496C200089E77A /* ActivityContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3274F24496C200089E77A /* ActivityContainer.swift */; };
+		38A32752244970AD0089E77A /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A32751244970AD0089E77A /* Activity.swift */; };
 		38AB7CC0243F0D3D00ADD8F8 /* ColumnViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */; };
 		38AB7CC2243F34DE00ADD8F8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB7CC1243F34DE00ADD8F8 /* NetworkManager.swift */; };
 		38B417932446D813007FDF82 /* NewCardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B417922446D813007FDF82 /* NewCardRequest.swift */; };
@@ -65,6 +69,10 @@
 		388CA284243AEE0C00E99CED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		388CA287243AEE0C00E99CED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		388CA289243AEE0C00E99CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38A28F8724496364009D705C /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		38A28F8A244968E4009D705C /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
+		38A3274F24496C200089E77A /* ActivityContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityContainer.swift; sourceTree = "<group>"; };
+		38A32751244970AD0089E77A /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnViewModel.swift; sourceTree = "<group>"; };
 		38AB7CC1243F34DE00ADD8F8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		38B417922446D813007FDF82 /* NewCardRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardRequest.swift; sourceTree = "<group>"; };
@@ -116,7 +124,6 @@
 		387B8B3C243CC75100805A34 /* CardList */ = {
 			isa = PBXGroup;
 			children = (
-				381C3A51243B505F00F83D4B /* CardListDataSource.swift */,
 				3831B970243B58DF00550FA1 /* CardCell.swift */,
 				380A5AE0243C5A360063A9F6 /* BadgeView.swift */,
 				387B8B3A243CBFEE00805A34 /* ColumnView.swift */,
@@ -173,6 +180,7 @@
 		388CA28F243AFE4400E99CED /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				38A28F8624496338009D705C /* Activity */,
 				388CA27F243AEE0900E99CED /* HomeViewController.swift */,
 				38FAD4822448E68400577391 /* Card */,
 				38FAD4812448E66D00577391 /* User */,
@@ -184,6 +192,7 @@
 		388CA290243AFE5900E99CED /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				38A3274E24496C140089E77A /* Activity */,
 				383133D82444C6C800E9891E /* User */,
 				387B8B3D243CC76C00805A34 /* CardList */,
 			);
@@ -193,20 +202,45 @@
 		388CA291243AFE6100E99CED /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				38A28F89244968D1009D705C /* Activity */,
 				383133DD2444D9ED00E9891E /* LogIn */,
 				387B8B3C243CC75100805A34 /* CardList */,
-				38B44760243DC40A00232A15 /* NewCard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		38B44760243DC40A00232A15 /* NewCard */ = {
+		38A28F85244962BF009D705C /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				38B43794243D9241000C2A8D /* CardContentsTextViewDelegate.swift */,
-				3830F72A243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift */,
+				388CA27B243AEE0900E99CED /* AppDelegate.swift */,
+				388CA27D243AEE0900E99CED /* SceneDelegate.swift */,
 			);
-			path = NewCard;
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		38A28F8624496338009D705C /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				38A28F8724496364009D705C /* ActivityViewController.swift */,
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
+		38A28F89244968D1009D705C /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				38A28F8A244968E4009D705C /* ActivityCell.swift */,
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
+		38A3274E24496C140089E77A /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				38A3274F24496C200089E77A /* ActivityContainer.swift */,
+				38A32751244970AD0089E77A /* Activity.swift */,
+			);
+			path = Activity;
 			sourceTree = "<group>";
 		};
 		38B6490B244786A800E4413F /* Extensions */ = {
@@ -222,8 +256,7 @@
 			children = (
 				38FAD4802448E64900577391 /* ColumnCardList */,
 				38F437E124401EEA009BE1FF /* NewCard */,
-				388CA27B243AEE0900E99CED /* AppDelegate.swift */,
-				388CA27D243AEE0900E99CED /* SceneDelegate.swift */,
+				38A28F85244962BF009D705C /* Delegates */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -231,6 +264,8 @@
 		38F437E124401EEA009BE1FF /* NewCard */ = {
 			isa = PBXGroup;
 			children = (
+				38B43794243D9241000C2A8D /* CardContentsTextViewDelegate.swift */,
+				3830F72A243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift */,
 				38E05A48243F7436005679EC /* TitleViewModel.swift */,
 				38F437E224401EFC009BE1FF /* ContentsViewModel.swift */,
 			);
@@ -249,6 +284,7 @@
 		38FAD4802448E64900577391 /* ColumnCardList */ = {
 			isa = PBXGroup;
 			children = (
+				381C3A51243B505F00F83D4B /* CardListDataSource.swift */,
 				38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */,
 				38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */,
 				38FAD4792448B19800577391 /* ColumnViewModel+DragDelegate.swift */,
@@ -359,10 +395,12 @@
 				388CA280243AEE0900E99CED /* HomeViewController.swift in Sources */,
 				38F437E524403AE7009BE1FF /* UserData.swift in Sources */,
 				38F437E324401EFC009BE1FF /* ContentsViewModel.swift in Sources */,
+				38A32752244970AD0089E77A /* Activity.swift in Sources */,
 				387B8B3B243CBFEE00805A34 /* ColumnView.swift in Sources */,
 				381C3A52243B505F00F83D4B /* CardListDataSource.swift in Sources */,
 				3830F72B243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift in Sources */,
 				383133D72444C46C00E9891E /* TokenManager.swift in Sources */,
+				38A28F8824496364009D705C /* ActivityViewController.swift in Sources */,
 				38CD33642449609C0057011C /* CardMoveRequest.swift in Sources */,
 				38FAD47A2448B19800577391 /* ColumnViewModel+DragDelegate.swift in Sources */,
 				38B43793243D85B3000C2A8D /* CardEditorViewController.swift in Sources */,
@@ -370,12 +408,14 @@
 				38B6490F24478CD400E4413F /* UserInfo.swift in Sources */,
 				387B8B39243CBAC400805A34 /* Card.swift in Sources */,
 				38B43795243D9241000C2A8D /* CardContentsTextViewDelegate.swift in Sources */,
+				38A3275024496C200089E77A /* ActivityContainer.swift in Sources */,
 				38AB7CC2243F34DE00ADD8F8 /* NetworkManager.swift in Sources */,
 				38B417952446FE1E007FDF82 /* CardContainer.swift in Sources */,
 				38E05A49243F7436005679EC /* TitleViewModel.swift in Sources */,
 				38AB7CC0243F0D3D00ADD8F8 /* ColumnViewModel.swift in Sources */,
 				38FAD47E2448E56700577391 /* DragCardCell.swift in Sources */,
 				38FAD47C2448B3A600577391 /* ColumnViewModel+DropDelegate.swift in Sources */,
+				38A28F8B244968E4009D705C /* ActivityCell.swift in Sources */,
 				388CA27C243AEE0900E99CED /* AppDelegate.swift in Sources */,
 				383133DC2444D9E900E9891E /* LogInTextField.swift in Sources */,
 				38B6490D244786C200E4413F /* StackView+Extension.swift in Sources */,

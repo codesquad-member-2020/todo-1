@@ -81,19 +81,17 @@ export default class Column {
 		};
 	}
 
-	addCard(value) {
+	async addCard(value) {
 		const newCardObj = this.createCardObj(value);
-		this.http
-			.post(`${BASE_URL}/columns/${this.id}/cards`, newCardObj)
-			.then((response) => {
-				if (response.status === 200) {
-					new Card({ $target: this, data: response.card });
-					this.handleCounter("up");
-				} else {
-					throw Error(NETWORK_MESSAGE.NETWORK_ERROR);
-				}
-			})
-			.catch(handleError);
+		try {
+			const response = await this.http.post(`${BASE_URL}/columns/${this.id}/cards`, newCardObj);
+			if (response.status === 200) {
+				new Card({ $target: this, data: response.card });
+				this.handleCounter("up");
+			}
+		} catch (err) {
+			handleError(err);
+		}
 	}
 
 	async deleteCard({ $card, id }) {

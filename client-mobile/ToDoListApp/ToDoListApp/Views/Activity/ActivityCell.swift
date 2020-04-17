@@ -28,6 +28,37 @@ class ActivityCell: UITableViewCell {
     func updateCell(with activity: Activity) {
         fetchImage(with: activity.profileURL)
         actionLabel.attributedText = generateActionLabel(with: activity)
+        timeLabel.text = generateActionTimeLabel(with: activity.actionTime)
+    }
+    
+    func generateActionTimeLabel(with actionTime: String) -> String {
+        var timeText = ""
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.s"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: +9)
+        let actionDate = dateFormatter.date(from: actionTime)!
+        
+        let now = Date()
+        
+        var calendar = Calendar(identifier: .iso8601)
+        calendar.timeZone = TimeZone(secondsFromGMT: +9)!
+        
+        let components = calendar.dateComponents([.hour, .minute], from: actionDate, to: now)
+        
+        guard let hours = components.hour else { return "" }
+        let calculatedHours = 9 + hours - 1
+        if calculatedHours < 1 {
+            guard let minutes = components.minute else { return "" }
+            let calculatedMinutes = 60 + minutes
+            timeText = calculatedMinutes <= 1 ? "a minute" : "\(calculatedMinutes) minutes"
+        } else if calculatedHours == 1 {
+            timeText = "an hour"
+        } else {
+            timeText = "\(calculatedHours) hours"
+        }
+        
+        return "\(timeText) ago"
     }
     
     private func generateActionLabel(with activity: Activity) -> NSAttributedString {

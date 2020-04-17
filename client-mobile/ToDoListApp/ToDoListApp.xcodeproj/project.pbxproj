@@ -33,11 +33,15 @@
 		38B43795243D9241000C2A8D /* CardContentsTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B43794243D9241000C2A8D /* CardContentsTextViewDelegate.swift */; };
 		38B6490D244786C200E4413F /* StackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B6490C244786C200E4413F /* StackView+Extension.swift */; };
 		38B6490F24478CD400E4413F /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B6490E24478CD400E4413F /* UserInfo.swift */; };
+		38CD33642449609C0057011C /* CardMoveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CD33632449609C0057011C /* CardMoveRequest.swift */; };
 		38D239522445955B001E0B78 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D239512445955B001E0B78 /* User.swift */; };
 		38E05A49243F7436005679EC /* TitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E05A48243F7436005679EC /* TitleViewModel.swift */; };
 		38F0A3E8244406AB00A20EF5 /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */; };
 		38F437E324401EFC009BE1FF /* ContentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F437E224401EFC009BE1FF /* ContentsViewModel.swift */; };
 		38F437E524403AE7009BE1FF /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F437E424403AE7009BE1FF /* UserData.swift */; };
+		38FAD47A2448B19800577391 /* ColumnViewModel+DragDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FAD4792448B19800577391 /* ColumnViewModel+DragDelegate.swift */; };
+		38FAD47C2448B3A600577391 /* ColumnViewModel+DropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FAD47B2448B3A600577391 /* ColumnViewModel+DropDelegate.swift */; };
+		38FAD47E2448E56700577391 /* DragCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FAD47D2448E56600577391 /* DragCardCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,11 +73,15 @@
 		38B43794243D9241000C2A8D /* CardContentsTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContentsTextViewDelegate.swift; sourceTree = "<group>"; };
 		38B6490C244786C200E4413F /* StackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView+Extension.swift"; sourceTree = "<group>"; };
 		38B6490E24478CD400E4413F /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		38CD33632449609C0057011C /* CardMoveRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardMoveRequest.swift; sourceTree = "<group>"; };
 		38D239512445955B001E0B78 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		38E05A48243F7436005679EC /* TitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewModel.swift; sourceTree = "<group>"; };
 		38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
 		38F437E224401EFC009BE1FF /* ContentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsViewModel.swift; sourceTree = "<group>"; };
 		38F437E424403AE7009BE1FF /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		38FAD4792448B19800577391 /* ColumnViewModel+DragDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColumnViewModel+DragDelegate.swift"; sourceTree = "<group>"; };
+		38FAD47B2448B3A600577391 /* ColumnViewModel+DropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColumnViewModel+DropDelegate.swift"; sourceTree = "<group>"; };
+		38FAD47D2448E56600577391 /* DragCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragCardCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,14 +95,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		383133D82444C6C800E9891E /* LogIn */ = {
+		383133D82444C6C800E9891E /* User */ = {
 			isa = PBXGroup;
 			children = (
-				383133D62444C46C00E9891E /* TokenManager.swift */,
+				38F437E424403AE7009BE1FF /* UserData.swift */,
 				38D239512445955B001E0B78 /* User.swift */,
 				38B6490E24478CD400E4413F /* UserInfo.swift */,
 			);
-			path = LogIn;
+			path = User;
 			sourceTree = "<group>";
 		};
 		383133DD2444D9ED00E9891E /* LogIn */ = {
@@ -123,6 +131,8 @@
 				387B8B38243CBAC400805A34 /* Card.swift */,
 				38B417942446FE1E007FDF82 /* CardContainer.swift */,
 				38B417922446D813007FDF82 /* NewCardRequest.swift */,
+				38FAD47D2448E56600577391 /* DragCardCell.swift */,
+				38CD33632449609C0057011C /* CardMoveRequest.swift */,
 			);
 			path = CardList;
 			sourceTree = "<group>";
@@ -151,11 +161,10 @@
 				388CA290243AFE5900E99CED /* Models */,
 				388CA291243AFE6100E99CED /* Views */,
 				38B6490B244786A800E4413F /* Extensions */,
-				388CA27B243AEE0900E99CED /* AppDelegate.swift */,
-				388CA27D243AEE0900E99CED /* SceneDelegate.swift */,
+				38FAD47F2448E61E00577391 /* Network */,
 				388CA281243AEE0900E99CED /* Main.storyboard */,
-				388CA284243AEE0C00E99CED /* Assets.xcassets */,
 				388CA286243AEE0C00E99CED /* LaunchScreen.storyboard */,
+				388CA284243AEE0C00E99CED /* Assets.xcassets */,
 				388CA289243AEE0C00E99CED /* Info.plist */,
 			);
 			path = ToDoListApp;
@@ -165,10 +174,9 @@
 			isa = PBXGroup;
 			children = (
 				388CA27F243AEE0900E99CED /* HomeViewController.swift */,
-				387B8B34243C977D00805A34 /* ColumnViewController.swift */,
-				38B43792243D85B3000C2A8D /* CardEditorViewController.swift */,
-				383133D4244488BE00E9891E /* UserInfoViewController.swift */,
-				383133D92444C9B300E9891E /* LogInViewController.swift */,
+				38FAD4822448E68400577391 /* Card */,
+				38FAD4812448E66D00577391 /* User */,
+				38FAD4832448E69000577391 /* Column */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -176,10 +184,8 @@
 		388CA290243AFE5900E99CED /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				383133D82444C6C800E9891E /* LogIn */,
-				38F437E424403AE7009BE1FF /* UserData.swift */,
+				383133D82444C6C800E9891E /* User */,
 				387B8B3D243CC76C00805A34 /* CardList */,
-				38AB7CC1243F34DE00ADD8F8 /* NetworkManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -214,9 +220,10 @@
 		38D116F9243D9D2A00E3D90E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */,
-				38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */,
+				38FAD4802448E64900577391 /* ColumnCardList */,
 				38F437E124401EEA009BE1FF /* NewCard */,
+				388CA27B243AEE0900E99CED /* AppDelegate.swift */,
+				388CA27D243AEE0900E99CED /* SceneDelegate.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -228,6 +235,51 @@
 				38F437E224401EFC009BE1FF /* ContentsViewModel.swift */,
 			);
 			path = NewCard;
+			sourceTree = "<group>";
+		};
+		38FAD47F2448E61E00577391 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				38AB7CC1243F34DE00ADD8F8 /* NetworkManager.swift */,
+				383133D62444C46C00E9891E /* TokenManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		38FAD4802448E64900577391 /* ColumnCardList */ = {
+			isa = PBXGroup;
+			children = (
+				38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */,
+				38F0A3E7244406AB00A20EF5 /* CardListViewModel.swift */,
+				38FAD4792448B19800577391 /* ColumnViewModel+DragDelegate.swift */,
+				38FAD47B2448B3A600577391 /* ColumnViewModel+DropDelegate.swift */,
+			);
+			path = ColumnCardList;
+			sourceTree = "<group>";
+		};
+		38FAD4812448E66D00577391 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				383133D4244488BE00E9891E /* UserInfoViewController.swift */,
+				383133D92444C9B300E9891E /* LogInViewController.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		38FAD4822448E68400577391 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				38B43792243D85B3000C2A8D /* CardEditorViewController.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		38FAD4832448E69000577391 /* Column */ = {
+			isa = PBXGroup;
+			children = (
+				387B8B34243C977D00805A34 /* ColumnViewController.swift */,
+			);
+			path = Column;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +363,8 @@
 				381C3A52243B505F00F83D4B /* CardListDataSource.swift in Sources */,
 				3830F72B243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift in Sources */,
 				383133D72444C46C00E9891E /* TokenManager.swift in Sources */,
+				38CD33642449609C0057011C /* CardMoveRequest.swift in Sources */,
+				38FAD47A2448B19800577391 /* ColumnViewModel+DragDelegate.swift in Sources */,
 				38B43793243D85B3000C2A8D /* CardEditorViewController.swift in Sources */,
 				387B8B37243CBA4700805A34 /* Column.swift in Sources */,
 				38B6490F24478CD400E4413F /* UserInfo.swift in Sources */,
@@ -320,6 +374,8 @@
 				38B417952446FE1E007FDF82 /* CardContainer.swift in Sources */,
 				38E05A49243F7436005679EC /* TitleViewModel.swift in Sources */,
 				38AB7CC0243F0D3D00ADD8F8 /* ColumnViewModel.swift in Sources */,
+				38FAD47E2448E56700577391 /* DragCardCell.swift in Sources */,
+				38FAD47C2448B3A600577391 /* ColumnViewModel+DropDelegate.swift in Sources */,
 				388CA27C243AEE0900E99CED /* AppDelegate.swift in Sources */,
 				383133DC2444D9E900E9891E /* LogInTextField.swift in Sources */,
 				38B6490D244786C200E4413F /* StackView+Extension.swift in Sources */,

@@ -12,6 +12,8 @@ class CardListViewModel: NSObject, ViewModelBinding {
     
     typealias Key = [Card]
     
+    private(set) var columnId: Int!
+    
     private var cardList: Key = [] { didSet { changeHandler(cardList) } }
     private var changeHandler: (Key) -> Void
     var didTapEdit: ((Card, Int) -> Void)?
@@ -29,6 +31,14 @@ class CardListViewModel: NSObject, ViewModelBinding {
     
     func updateNotify(changed: @escaping ([Card]) -> Void) {
         self.changeHandler = changed
+    }
+    
+    func configureColumnId(_ columnId: Int) {
+        self.columnId = columnId
+    }
+    
+    func card(at row: Int) -> Card {
+        return cardList[row]
     }
     
     func insertCard(_ card: Card, at row: Int) {

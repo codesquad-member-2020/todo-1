@@ -39,6 +39,7 @@ class ColumnViewController: UIViewController, NewCardDelegation {
     
     func configureColumnId(_ id: Int) {
         self.columnId = id
+        cardListViewModel.configureColumnId(id)
     }
     
     func configureColumnViewModel(with column: Column) {
@@ -129,6 +130,9 @@ extension ColumnViewController {
     private func configureTableView() {
         tableView.dataSource = cardListDataSource
         tableView.delegate = cardListViewModel
+        tableView.dragDelegate = cardListViewModel
+        tableView.dropDelegate = cardListViewModel
+        tableView.dragInteractionEnabled = true
     }
     
     private func configureColumnView() {

@@ -25,6 +25,7 @@
 		388CA283243AEE0900E99CED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388CA281243AEE0900E99CED /* Main.storyboard */; };
 		388CA285243AEE0C00E99CED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388CA284243AEE0C00E99CED /* Assets.xcassets */; };
 		388CA288243AEE0C00E99CED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388CA286243AEE0C00E99CED /* LaunchScreen.storyboard */; };
+		38A28F8824496364009D705C /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A28F8724496364009D705C /* ActivityViewController.swift */; };
 		38AB7CC0243F0D3D00ADD8F8 /* ColumnViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */; };
 		38AB7CC2243F34DE00ADD8F8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB7CC1243F34DE00ADD8F8 /* NetworkManager.swift */; };
 		38B417932446D813007FDF82 /* NewCardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B417922446D813007FDF82 /* NewCardRequest.swift */; };
@@ -65,6 +66,7 @@
 		388CA284243AEE0C00E99CED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		388CA287243AEE0C00E99CED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		388CA289243AEE0C00E99CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38A28F8724496364009D705C /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		38AB7CBF243F0D3D00ADD8F8 /* ColumnViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnViewModel.swift; sourceTree = "<group>"; };
 		38AB7CC1243F34DE00ADD8F8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		38B417922446D813007FDF82 /* NewCardRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardRequest.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 		388CA28F243AFE4400E99CED /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				38A28F8624496338009D705C /* Activity */,
 				388CA27F243AEE0900E99CED /* HomeViewController.swift */,
 				38FAD4822448E68400577391 /* Card */,
 				38FAD4812448E66D00577391 /* User */,
@@ -205,6 +208,14 @@
 				388CA27D243AEE0900E99CED /* SceneDelegate.swift */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		38A28F8624496338009D705C /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				38A28F8724496364009D705C /* ActivityViewController.swift */,
+			);
+			path = Activity;
 			sourceTree = "<group>";
 		};
 		38B6490B244786A800E4413F /* Extensions */ = {
@@ -363,6 +374,7 @@
 				381C3A52243B505F00F83D4B /* CardListDataSource.swift in Sources */,
 				3830F72B243D9F2400C03FEB /* CardTitleTextFieldDelegate.swift in Sources */,
 				383133D72444C46C00E9891E /* TokenManager.swift in Sources */,
+				38A28F8824496364009D705C /* ActivityViewController.swift in Sources */,
 				38CD33642449609C0057011C /* CardMoveRequest.swift in Sources */,
 				38FAD47A2448B19800577391 /* ColumnViewModel+DragDelegate.swift in Sources */,
 				38B43793243D85B3000C2A8D /* CardEditorViewController.swift in Sources */,

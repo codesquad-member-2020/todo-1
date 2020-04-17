@@ -16,9 +16,8 @@ public class HistoryController {
 
     @GetMapping("/activity")
     public ApiHistory activityLog(HttpServletRequest request) {
-        String userId = (String) request.getAttribute("userId");
         try {
-            return new ApiHistory(200, historyService.showActivityList(userId), "OK");
+            return new ApiHistory(200, historyService.showActivityList(), "OK");
         } catch (RuntimeException e) {
             return new ApiHistory(401, null, "Unauthorized");
         }

@@ -27,10 +27,10 @@ class ActivityCell: UITableViewCell {
     
     func updateCell(with activity: Activity) {
         fetchImage(with: activity.profileURL)
-        actionLabel.attributedText = updateActionLabel(with: activity)
+        actionLabel.attributedText = generateActionLabel(with: activity)
     }
     
-    private func updateActionLabel(with activity: Activity) -> NSAttributedString {
+    private func generateActionLabel(with activity: Activity) -> NSAttributedString {
         let userId = activity.userId
         let action = activity.action
         let title = activity.title

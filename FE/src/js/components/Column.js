@@ -133,7 +133,7 @@ export default class Column {
 		};
 
 		this.http
-			.patch(`${BASE_URL}/columns/${fromColumnId}/cards/${cardId}`, data)
+			.post(`${BASE_URL}/columns/${fromColumnId}/cards/${cardId}`, data)
 			.then((response) => {
 				if (response.status === 204) {
 					this.deleteCard({ $card, id });

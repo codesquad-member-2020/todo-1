@@ -1,14 +1,19 @@
 import { cardCreator } from "../utils/template";
+import { ALERT_MESSAGE } from "../utils/const";
 
 export default class CardCreator {
 	$cardCreator = null;
+	$textArea = null;
+	$addButton = null;
+	$cancelButton = null;
 
-	constructor({ $target, data }) {
+	constructor({ $target, data, onSave }) {
 		this.$target = $target;
 		this.data = data;
+		this.onSave = onSave;
 		this.render();
 		this.cacheDomElements();
-		this.bindeEventListener();
+		this.bindEventListener();
 	}
 
 	render() {
@@ -18,12 +23,13 @@ export default class CardCreator {
 
 	cacheDomElements() {
 		this.$cardCreator = this.$target.$column.querySelector(".card-creator");
+		this.$title = this.$cardCreator.querySelector(".card-title");
 		this.$textArea = this.$cardCreator.querySelector(".card-textarea");
 		this.$addButton = this.$cardCreator.querySelector(".add");
 		this.$cancelButton = this.$cardCreator.querySelector(".cancel");
 	}
 
-	bindeEventListener() {
+	bindEventListener() {
 		const { $textArea, $addButton, $cancelButton } = this;
 		$textArea.addEventListener("input", (e) => this.handleTextArea.call(this, e));
 		$addButton.addEventListener("click", this.addCard.bind(this));
@@ -36,7 +42,7 @@ export default class CardCreator {
 		length !== 0 ? this.activateAddButton() : this.deactivateAddButton();
 		if (length > 500) {
 			e.target.value = value.substring(0, 500);
-			alert("최대 500자 까지 입력할 수 있습니다.");
+			alert(ALERT_MESSAGE.LIMIT_NUM_OF_CHAR);
 		}
 	}
 
@@ -49,6 +55,7 @@ export default class CardCreator {
 	}
 
 	clearTextArea() {
+		this.$title.value = "";
 		this.$textArea.value = "";
 	}
 
@@ -60,7 +67,13 @@ export default class CardCreator {
 	}
 
 	addCard() {
-		this.$target.addCard(this.$textArea.value);
+		const title = this.$title.value;
+		const contents = this.$textArea.value;
+		if (!title) {
+			alert(ALERT_MESSAGE.NO_TITLE);
+			return;
+		}
+		this.onSave({ title, contents });
 		this.clearTextArea();
 		this.deactivateAddButton();
 	}

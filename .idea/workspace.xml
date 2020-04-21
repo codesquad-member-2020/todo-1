@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="afc7a919-69ce-4001-af9f-9beefa43e42d" name="Default Changelist" comment="" />
+=======
+    <list default="true" id="110bc153-0be6-4e70-8ac0-b6f21a7b0a7f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/BE/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/BE/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BE/src/main/java/com/codesquad/todo1/controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE/src/main/java/com/codesquad/todo1/controller/HelloController.java" afterDir="false" />
+    </list>
+>>>>>>> be/feature/intercepter
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+<<<<<<< HEAD
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1aOKYml80FrFkGet5pEzc6SkZ7E" />
+=======
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/BE">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1aFaYv57ScE5m4ZAbsXDGfggikk" />
+>>>>>>> be/feature/intercepter
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/BE" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
+      <changelist id="afc7a919-69ce-4001-af9f-9beefa43e42d" name="Default Changelist" comment="" />
+      <created>1586601249745</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586601249745</updated>
+      <workItem from="1586601251632" duration="106000" />
+=======
+      <changelist id="110bc153-0be6-4e70-8ac0-b6f21a7b0a7f" name="Default Changelist" comment="" />
+      <created>1586333846971</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586333846971</updated>
+      <workItem from="1586333849642" duration="64000" />
+      <workItem from="1586397753473" duration="109000" />
+>>>>>>> be/feature/intercepter
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+<<<<<<< HEAD
+    <state x="776" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1586601355136">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="776" y="311" width="424" height="491" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1586601355136" />
+=======
+    <state x="776" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1586397859790">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="776" y="311" width="424" height="491" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1586397859790" />
+>>>>>>> be/feature/intercepter
+  </component>
+</project>

@@ -24,7 +24,7 @@ public class LoginController {
 
     @PostMapping("login")
     public ApiLogin login(@RequestBody User user,
-                        HttpServletResponse response) {
+                          HttpServletResponse response) {
         try {
             String jwt = userService.makeJwt(user, response);
             return new ApiLogin(200, jwt);

@@ -1,9 +1,7 @@
 package com.codesquad.todo1.utils;
 
 import com.codesquad.todo1.error.AuthorizationFail;
-import com.codesquad.todo1.service.TodoService;
 import com.codesquad.todo1.service.UserService;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
